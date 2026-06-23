@@ -17,14 +17,31 @@ const gere = [
   { icon: 'utensils', text: 'Restaurant reservations and appetizers' },
 ];
 
-// ⚠ FAQ answers to RECOVER from Guillermo (accordion, not visible in the Framer HTML).
 const faq = [
-  'Is a good level of mountain biking required to participate?',
-  'Do you provide e-bikes and the necessary equipment?',
-  'Do you offer all-inclusive packages with meals and activities?',
-  'Is it possible to arrange an outing for a large group?',
-  'How is the coordination with our company managed?',
-  'Is the excursion still on in case of bad weather?',
+  {
+    q: 'Is a good level of mountain biking required to participate?',
+    a: 'Not at all. The outings are open to all levels, beginners included. Thanks to e-bikes, everyone goes at their own pace, with no pressure. The goal is to share a friendly moment out in nature, not to race.',
+  },
+  {
+    q: 'Do you provide e-bikes and the necessary equipment?',
+    a: 'Yes. We book quality e-bikes for you with our local partners. Helmets and other gear can be provided on request. You simply come with suitable outdoor clothing, we take care of the rest.',
+  },
+  {
+    q: 'Do you offer all-inclusive packages with meals and activities?',
+    a: 'Yes, we design turnkey packages: aperitifs on the terrace, mountain-top meals, tastings of local produce or even side activities. Every outing is designed as a complete, tailor-made experience.',
+  },
+  {
+    q: 'Is it possible to arrange an outing for a large group?',
+    a: 'Absolutely. We can host groups of all sizes, including 20 people or more. The logistics are adapted to ensure comfort, safety and flow, even for large teams. A second guide is sometimes needed.',
+  },
+  {
+    q: 'How is the coordination with our company managed?',
+    a: 'A single point of contact is assigned to your company to make sharing information and handling the details easy. We stay available and responsive at every step, so everything runs smoothly.',
+  },
+  {
+    q: 'Is the excursion still on in case of bad weather?',
+    a: 'In case of bad weather, several options are considered: adapting the route, changing the date, or switching to an alternative activity. Our priority remains the safety and enjoyment of every participant.',
+  },
 ];
 ---
 
@@ -80,10 +97,10 @@ const faq = [
       <h2 class="h2" style="margin-bottom:1.5rem">FAQ</h2>
       <div class="faq">
         {
-          faq.map((q) => (
+          faq.map((item) => (
             <details>
-              <summary>{q}</summary>
-              <p>Answer to be completed, to be provided by Guillermo.</p>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
             </details>
           ))
         }

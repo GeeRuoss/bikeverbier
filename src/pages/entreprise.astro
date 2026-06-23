@@ -17,14 +17,31 @@ const gere = [
   { icon: 'utensils', text: 'Réservation des restaurants et apéritifs' },
 ];
 
-// ⚠ Réponses FAQ à RÉCUPÉRER auprès de Guillermo (accordéon, non visible dans le HTML Framer).
 const faq = [
-  'Faut-il avoir un bon niveau en VTT pour participer ?',
-  "Fournissez-vous les e-bikes et l'équipement nécessaire ?",
-  'Proposez-vous des formules tout compris avec repas et activités ?',
-  'Peut-on organiser une sortie pour un grand groupe ?',
-  'Comment se passe la coordination avec notre entreprise ?',
-  'La sortie est-elle maintenue en cas de mauvais temps ?',
+  {
+    q: 'Faut-il avoir un bon niveau en VTT pour participer ?',
+    a: "Pas du tout. Les sorties sont accessibles à tous les niveaux, y compris aux débutants. Grâce aux e-bikes, chacun peut avancer à son rythme, sans pression. L'objectif est de partager un moment convivial en pleine nature, pas de faire la course.",
+  },
+  {
+    q: "Fournissez-vous les e-bikes et l'équipement nécessaire ?",
+    a: "Oui. Nous réservons pour vous des e-bikes de qualité auprès de nos partenaires locaux. Les casques et d'autres équipements peuvent être fournis sur demande. Vous venez simplement avec des vêtements adaptés à l'extérieur, on s'occupe du reste.",
+  },
+  {
+    q: 'Proposez-vous des formules tout compris avec repas et activités ?',
+    a: 'Oui, nous concevons des formules « clé en main » : apéritifs en terrasse, repas en altitude, dégustations de produits locaux ou même activités annexes. Chaque sortie est pensée comme une expérience complète et sur mesure.',
+  },
+  {
+    q: 'Peut-on organiser une sortie pour un grand groupe ?',
+    a: 'Absolument. Nous pouvons accueillir des groupes de taille variée, y compris 20 personnes ou plus. La logistique est adaptée pour garantir confort, sécurité et fluidité, même pour les grandes équipes. Deux guides seront parfois nécessaires.',
+  },
+  {
+    q: 'Comment se passe la coordination avec notre entreprise ?',
+    a: "Un seul point de contact est désigné pour votre entreprise afin de faciliter l'échange d'informations et la gestion des détails. Nous restons disponibles et réactifs à chaque étape, pour que tout se déroule sans accroc.",
+  },
+  {
+    q: 'La sortie est-elle maintenue en cas de mauvais temps ?',
+    a: "En cas de météo défavorable, plusieurs options sont envisagées : adaptation de l'itinéraire, changement de date, ou repli vers une activité alternative. Notre priorité reste la sécurité et le plaisir de tous les participants.",
+  },
 ];
 ---
 
@@ -80,10 +97,10 @@ const faq = [
       <h2 class="h2" style="margin-bottom:1.5rem">FAQ</h2>
       <div class="faq">
         {
-          faq.map((q) => (
+          faq.map((item) => (
             <details>
-              <summary>{q}</summary>
-              <p>Réponse à compléter, à récupérer auprès de Guillermo.</p>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
             </details>
           ))
         }
