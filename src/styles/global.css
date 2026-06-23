@@ -87,22 +87,24 @@ button {
   font-weight: 700;
   line-height: 1.15;
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 .h1 {
-  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-size: clamp(2rem, 5vw, 4.25rem);
 }
 .h2 {
-  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  font-size: clamp(1.65rem, 3.8vw, 2.75rem);
 }
 .h3 {
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
 }
 .lead {
   font-family: var(--font-lead);
   font-weight: 500;
-  font-size: clamp(1.05rem, 2vw, 1.5rem);
-  line-height: 1.4;
+  font-size: clamp(1rem, 1.7vw, 1.35rem);
+  line-height: 1.45;
   letter-spacing: -0.01em;
+  text-wrap: pretty;
 }
 .eyebrow {
   font-family: var(--font-body);
