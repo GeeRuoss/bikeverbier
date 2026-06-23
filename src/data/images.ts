@@ -54,14 +54,16 @@ export const IMG = {
 export const BADGES = {
   swissCycling: '/badges/swiss-cycling-guide.svg',
   mountainGuide: '/badges/ivbv-ifmga-uiagm.svg',
+  shvFsvl: '/logos/shv-fsvl.svg',
+  flyverbier: '/logos/flyverbier.svg',
 } as const;
 
-// Logos partenaires (SVG récupérés du site)
+// Logos partenaires (SVG récupérés du site). SHV/FSVL retiré : c'est une
+// affiliation des guides (pilotes tandem), pas un partenaire commercial.
 export const PARTNERS = [
   { name: 'FlyVerbier.ch', src: '/logos/flyverbier.svg' },
   { name: 'Cabane Brunet', src: '/logos/cabane-brunet.svg' },
   { name: 'backside', src: '/logos/backside.svg' },
-  { name: 'SHV / FSVL', src: '/logos/shv-fsvl.svg' },
   { name: 'Montagne Show SA', src: '/logos/montagne-show.svg' },
   { name: 'Medran Sports Verbier', src: '/logos/medran-sports.svg' },
   { name: 'Le Carrefour', src: '/logos/le-carrefour.svg' },
