@@ -17,7 +17,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
 
 <form class={`cform ${card ? 'cform--card' : ''}`} action={action} method="POST">
   <!-- Réglages Formsubmit -->
-  <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch — nouveau message'} />
+  <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch · nouveau message'} />
   <input type="hidden" name="_captcha" value="false" />
   <input type="hidden" name="_template" value="table" />
   <!-- Honeypot anti-bot : doit rester vide -->
@@ -42,7 +42,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
     <label>
       <span>{c.request}</span>
       <select name="request">
-        <option value="">—</option>
+        <option value=""></option>
         {c.requestOptions.map((o) => <option value={o}>{o}</option>)}
       </select>
     </label>

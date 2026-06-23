@@ -7,7 +7,7 @@ import { SITE } from '../data/site';
 
 const lang = 'fr' as const;
 
-// Prix CHF — IDENTIQUES en FR et EN (cf. README : bug de traduction Framer à ne pas reproduire).
+// Prix CHF, IDENTIQUES en FR et EN (cf. README : bug de traduction Framer à ne pas reproduire).
 const rows = [
   ['1 personne', '320.-', '550.-'],
   ['2 personnes', '195.-', '290.-'],
@@ -30,7 +30,7 @@ const features = [
     icon: 'leaf',
     eyebrow: 'Respect & plaisir',
     title: 'À votre rythme, dans le respect de la montagne',
-    desc: 'Débutant ou pilote confirmé, en e-bike ou en enduro, on adapte le terrain et le tempo à votre niveau. On roule propre, on respecte les sentiers et la nature — pour que le plaisir dure, sortie après sortie.',
+    desc: 'Débutant ou pilote confirmé, en e-bike ou en enduro, on adapte le terrain et le tempo à votre niveau. On roule propre, on respecte les sentiers et la nature, pour que le plaisir dure, sortie après sortie.',
   },
 ];
 ---
@@ -38,8 +38,8 @@ const features = [
 <Layout
   lang={lang}
   routeKey="guide"
-  title="Guide VTT à Verbier | Sorties E-bike & Enduro avec des locaux – Bike Verbier"
-  description="Le meilleur guide VTT de Verbier : sorties guidées et coaching privé avec des guides nés à Verbier. E-bike ou enduro, tous niveaux. Sentiers secrets du Valais, terroir, technique et plaisir — location et organisation incluses."
+  title="Guide VTT à Verbier | Sorties E-bike & Enduro avec des locaux | Bike Verbier"
+  description="Le meilleur guide VTT de Verbier : sorties guidées et coaching privé avec des guides nés à Verbier. E-bike ou enduro, tous niveaux. Sentiers secrets du Valais, terroir, technique et plaisir. Location et organisation incluses."
   ogImage={IMG.heroGuide}
 >
   <section class="hero">
@@ -57,7 +57,7 @@ const features = [
       <p class="eyebrow">Guide VTT Verbier</p>
       <h2 class="h2">Le Verbier des <span class="teal">locaux</span>, à vélo</h2>
       <p class="lead measure" style="margin:1.25rem auto 0">
-        Nés et grandis à Verbier, nous connaissons chaque sentier du Valais — des chemins secrets aux descentes à couper le souffle. En e-bike ou en enduro, pour débutants comme experts, on vous fait découvrir notre montagne avec respect et plaisir.
+        Nés et grandis à Verbier, nous connaissons chaque sentier du Valais, des chemins secrets aux descentes à couper le souffle. En e-bike ou en enduro, pour débutants comme experts, on vous fait découvrir notre montagne avec respect et plaisir.
       </p>
     </section>
 
@@ -83,7 +83,7 @@ const features = [
       <div class="container">
         <p class="eyebrow">Tarifs</p>
         <h2 class="h2">Roulez à votre <span class="teal">niveau</span> !</h2>
-        <p class="lead measure" style="margin-top:.5rem">Prix par personne, en CHF — plus on est nombreux, moins c'est cher.</p>
+        <p class="lead measure" style="margin-top:.5rem">Prix par personne, en CHF. Plus on est nombreux, moins c'est cher.</p>
 
         <div style="overflow-x:auto; margin-top:2rem">
           <table class="price-table">
@@ -111,7 +111,7 @@ const features = [
           {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={26} class="star-filled" />)}
         </div>
         <blockquote class="lead">« Une expérience incroyable ! Un guide professionnel, passionné et très patient. Que vous soyez débutant ou expérimenté, je recommande vivement ce cours afin de perfectionner les bases, prendre confiance et savourer pleinement vos sorties bike. Et le fait qu'il connaisse parfaitement la région est un bel atout. »</blockquote>
-        <p style="margin-top:1rem; color:var(--gray-text)">— Norma, Verbier</p>
+        <p style="margin-top:1rem; color:var(--gray-text)">Norma, Verbier</p>
       </div>
     </section>
 

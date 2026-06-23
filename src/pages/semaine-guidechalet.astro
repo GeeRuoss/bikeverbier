@@ -13,18 +13,18 @@ const atouts = [
 ];
 
 const tarifs = [
-  ['9 riders', "CHF 1'290.–"],
-  ['8 riders', "CHF 1'390.–"],
-  ['7 riders', "CHF 1'540.–"],
-  ['6 riders', "CHF 1'760.–"],
-  ['5 riders', "CHF 1'990.–"],
+  ['9 riders', "CHF 1'290.-"],
+  ['8 riders', "CHF 1'390.-"],
+  ['7 riders', "CHF 1'540.-"],
+  ['6 riders', "CHF 1'760.-"],
+  ['5 riders', "CHF 1'990.-"],
 ];
 
 // ⚠ Dates saison 2026 à CONFIRMER avec Guillermo.
 const semaines = [
-  '3 – 9 août', '10 – 16 août', '17 – 23 août', '24 – 30 août',
-  '31 août – 6 sept.', '7 – 13 sept.', '14 – 20 sept.', '21 – 27 sept.',
-  '28 sept. – 4 oct.', '5 – 11 oct.', '12 – 18 oct.', '19 – 25 oct.',
+  '3 au 9 août', '10 au 16 août', '17 au 23 août', '24 au 30 août',
+  '31 août au 6 sept.', '7 au 13 sept.', '14 au 20 sept.', '21 au 27 sept.',
+  '28 sept. au 4 oct.', '5 au 11 oct.', '12 au 18 oct.', '19 au 25 oct.',
 ];
 const action = `https://formsubmit.co/${SITE.contactEmail}`;
 ---
@@ -32,7 +32,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
 <Layout
   lang={lang}
   routeKey="semaine"
-  title="Semaine VTT Guidée + Chalet à Verbier – Bikeverbier.ch"
+  title="Semaine VTT Guidée + Chalet à Verbier | Bikeverbier.ch"
   description="Semaine VTT guidée à Verbier avec hébergement en chalet, guide local, petits groupes et paysages valaisans à couper le souffle. Organisée par Bikeverbier.ch."
   ogImage={IMG.heroSemaine}
 >
@@ -51,7 +51,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
       <p class="eyebrow">Semaine VTT guidée à Verbier</p>
       <h2 class="h2">Une semaine de ride, <span class="teal">tout organisé</span></h2>
       <p class="lead measure" style="margin:1.25rem auto 0">
-        Chalet privé à 30 secondes des remontées, guide local certifié Swiss Cycling, forfait inclus et sentiers du Valais adaptés à votre groupe. Vous n'avez qu'à rouler — on s'occupe du reste.
+        Chalet privé à 30 secondes des remontées, guide local certifié Swiss Cycling, forfait inclus et sentiers du Valais adaptés à votre groupe. Vous n'avez qu'à rouler, on s'occupe du reste.
       </p>
     </section>
 
@@ -68,7 +68,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
 
     <section class="section section--alt">
       <div class="container">
-        <p class="eyebrow">Tarifs — prix par personne</p>
+        <p class="eyebrow">Prix par personne</p>
         <h2 class="h2">Plus on est, <span class="teal">mieux c'est</span></h2>
         <p class="measure" style="margin:1rem 0 2rem; color:var(--gray-text)">Inclus : 6 nuits en chalet privé (à 30 sec. du télécabine de Médran) · 5 jours guidés par un guide certifié Swiss Cycling · forfait remontées ou shuttle tous les jours de ride.</p>
         <div style="overflow-x:auto">
@@ -94,7 +94,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
       <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">Remplissez le formulaire pour demander la semaine de votre choix. Nous reviendrons vers vous rapidement pour confirmer les détails. À bientôt sur les sentiers !</p>
 
       <form class="cform cform--card" action={action} method="POST">
-        <input type="hidden" name="_subject" value="Réservation Semaine + Chalet — Bikeverbier.ch" />
+        <input type="hidden" name="_subject" value="Réservation Semaine + Chalet · Bikeverbier.ch" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_template" value="table" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />

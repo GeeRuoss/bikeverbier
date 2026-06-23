@@ -7,7 +7,7 @@ import { SITE } from '../../data/site';
 
 const lang = 'en' as const;
 
-// CHF prices — IDENTICAL to FR (do not reproduce the Framer auto-translation bug).
+// CHF prices, IDENTICAL to FR (do not reproduce the Framer auto-translation bug).
 const rows = [
   ['1 person', '320.-', '550.-'],
   ['2 people', '195.-', '290.-'],
@@ -23,14 +23,14 @@ const features = [
     icon: 'pin',
     eyebrow: 'Local guides',
     title: 'Born in Verbier, we know every trail',
-    desc: "We don't follow a route on a map — we share the trails of our childhood. From secret singletracks to the panoramic descents of Valais, every ride is a real encounter with the land and its hidden spots.",
+    desc: "We don't follow a route on a map, we share the trails of our childhood. From secret singletracks to the panoramic descents of Valais, every ride is a real encounter with the land and its hidden spots.",
   },
   {
     img: IMG.welcome,
     icon: 'leaf',
     eyebrow: 'Respect & enjoyment',
     title: 'At your pace, respecting the mountain',
-    desc: 'Beginner or seasoned rider, on an e-bike or enduro, we adapt the terrain and tempo to your level. We ride clean and respect the trails and nature — so the fun lasts, ride after ride.',
+    desc: 'Beginner or seasoned rider, on an e-bike or enduro, we adapt the terrain and tempo to your level. We ride clean and respect the trails and nature, so the fun lasts, ride after ride.',
   },
 ];
 ---
@@ -38,8 +38,8 @@ const features = [
 <Layout
   lang={lang}
   routeKey="guide"
-  title="Mountain Biking Guide in Verbier | E-bike & Enduro Tours with locals – Bike Verbier"
-  description="The best mountain biking guide in Verbier: guided tours and private coaching with guides born in Verbier. E-bike or enduro, all levels. Secret Valais trails, local culture, technique and enjoyment — rental and organisation included."
+  title="Mountain Biking Guide in Verbier | E-bike & Enduro Tours with locals | Bike Verbier"
+  description="The best mountain biking guide in Verbier: guided tours and private coaching with guides born in Verbier. E-bike or enduro, all levels. Secret Valais trails, local culture, technique and enjoyment. Rental and organisation included."
   ogImage={IMG.heroGuide}
 >
   <section class="hero">
@@ -57,7 +57,7 @@ const features = [
       <p class="eyebrow">Mountain biking guide Verbier</p>
       <h2 class="h2">The <span class="teal">locals'</span> Verbier, on two wheels</h2>
       <p class="lead measure" style="margin:1.25rem auto 0">
-        Born and raised in Verbier, we know every trail in Valais — from secret paths to breathtaking descents. On an e-bike or enduro, for beginners and experts alike, we share our mountains with respect and enjoyment.
+        Born and raised in Verbier, we know every trail in Valais, from secret paths to breathtaking descents. On an e-bike or enduro, for beginners and experts alike, we share our mountains with respect and enjoyment.
       </p>
     </section>
 
@@ -83,7 +83,7 @@ const features = [
       <div class="container">
         <p class="eyebrow">Prices</p>
         <h2 class="h2">Drive at your <span class="teal">level</span>!</h2>
-        <p class="lead measure" style="margin-top:.5rem">Price per person, in CHF — the bigger the group, the cheaper.</p>
+        <p class="lead measure" style="margin-top:.5rem">Price per person, in CHF. The bigger the group, the cheaper.</p>
 
         <div style="overflow-x:auto; margin-top:2rem">
           <table class="price-table">
@@ -111,7 +111,7 @@ const features = [
           {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={26} class="star-filled" />)}
         </div>
         <blockquote class="lead">“An incredible experience! A professional, passionate, and very patient guide. Whether you are a beginner or experienced, I highly recommend this course to perfect the basics, build confidence, and fully enjoy your bike outings. And the fact that he knows the region perfectly is a great asset.”</blockquote>
-        <p style="margin-top:1rem; color:var(--gray-text)">— Norma, Verbier</p>
+        <p style="margin-top:1rem; color:var(--gray-text)">Norma, Verbier</p>
       </div>
     </section>
 
