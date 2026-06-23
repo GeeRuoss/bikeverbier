@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
+import ContactBand from '../../components/ContactBand.astro';
 import { IMG } from '../../data/images';
 import { SITE } from '../../data/site';
 
@@ -89,11 +90,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
       </div>
     </section>
 
-    <section class="section section--alt container" id="reservation">
-      <p class="eyebrow">Reservation</p>
-      <h2 class="h2" style="margin-bottom:1rem">Request your week</h2>
-      <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">Fill out the form to request your preferred week. We'll get back to you shortly to confirm the details. Have a great day and see you on the trails!</p>
-
+    <ContactBand lang={lang} eyebrow="Reservation" title="Request your week" lead="Fill out the form to request your preferred week. We'll get back to you shortly to confirm the details. See you on the trails!" id="reservation">
       <form class="cform cform--card" action={action} method="POST">
         <input type="hidden" name="_subject" value="Week + Chalet reservation · Bikeverbier.ch" />
         <input type="hidden" name="_captcha" value="false" />
@@ -121,6 +118,6 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
         <label><span>Message</span><textarea name="message" rows="5"></textarea></label>
         <button type="submit" class="btn btn--dark cform__submit"><span>Reserve Now</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       </form>
-    </section>
+    </ContactBand>
   </div>
 </Layout>

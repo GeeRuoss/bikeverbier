@@ -1,0 +1,33 @@
+---
+import { type Lang } from '../data/site';
+import { IMG } from '../data/images';
+import CallLink from './CallLink.astro';
+
+interface Props {
+  lang: Lang;
+  eyebrow: string;
+  title: string;
+  lead: string;
+  id?: string;
+}
+const { lang, eyebrow, title, lead, id } = Astro.props;
+const speak = lang === 'fr' ? 'Nous parlons' : 'We speak';
+---
+
+<section class="section contact-hero" id={id}>
+  <div class="container contact-split">
+    <div>
+      <p class="eyebrow" style="color:rgba(0,0,0,.5)">{eyebrow}</p>
+      <h2 class="h2" style="color:#fff; margin-top:.5rem">{title}</h2>
+      <p class="lead" style="margin-top:1rem; max-width:42ch">{lead}</p>
+      <p style="margin-top:1.5rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-weight:600">
+        {speak}
+        <img class="contact-flags" src={IMG.flags} alt="Français, English, Español, Deutsch" />
+      </p>
+      <p style="margin-top:1.5rem"><CallLink /></p>
+    </div>
+    <div>
+      <slot />
+    </div>
+  </div>
+</section>

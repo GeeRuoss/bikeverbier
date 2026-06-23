@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import ContactForm from '../components/ContactForm.astro';
+import ContactBand from '../components/ContactBand.astro';
 import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
 
@@ -89,12 +90,14 @@ const faq = [
       </div>
     </section>
 
-    <section class="section section--alt" id="contact">
-      <div class="container">
-        <p class="eyebrow">Contact</p>
-        <h2 class="h2" style="margin-bottom:1.5rem">Une demande pour votre équipe ?</h2>
-        <ContactForm lang={lang} subject="Demande Teambuilding · Bikeverbier.ch" card />
-      </div>
-    </section>
+    <ContactBand
+      lang={lang}
+      eyebrow="Contact"
+      title="Une demande pour votre équipe ?"
+      lead="Dites-nous ce que vous imaginez, on s'occupe de toute l'organisation."
+      id="contact"
+    >
+      <ContactForm lang={lang} subject="Demande Teambuilding · Bikeverbier.ch" card />
+    </ContactBand>
   </div>
 </Layout>
