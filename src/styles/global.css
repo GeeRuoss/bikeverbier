@@ -129,6 +129,10 @@ button {
 .section--alt {
   background: var(--gray-bg);
 }
+/* Intro centrée : pas de padding-bas (la section suivante fournit l'espace) */
+.section--intro {
+  padding-bottom: 0;
+}
 .section--dark {
   background: var(--ink);
   color: var(--white);
