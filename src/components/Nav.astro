@@ -18,13 +18,7 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal'];
 <header class="nav" data-nav>
   <div class="nav__inner">
     <a class="brand" href={homeHref} aria-label="Bikeverbier.ch — accueil">
-      <svg class="brand__star" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-        <path
-          d="M12 0c.6 6 5.4 10.8 12 12-6.6 1.2-11.4 6-12 12-.6-6-5.4-10.8-12-12C6.6 10.8 11.4 6 12 0Z"
-          fill="var(--teal)"></path>
-        <path d="M10.9 7.2h2.2v3.6h3.6v2.2h-3.6v3.6h-2.2v-3.6H7.3v-2.2h3.6Z" fill="#fff"></path>
-      </svg>
-      <span class="brand__word">BIKE VERBIER<span class="teal">.CH</span></span>
+      <img class="brand__logo" src="/brand/logo.svg" alt="Bikeverbier.ch" width="104" height="40" />
     </a>
 
     <button class="burger" aria-label="Menu" aria-expanded="false" data-burger>
@@ -86,12 +80,11 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal'];
   .brand {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--white);
-    font-family: var(--font-display);
-    font-weight: 700;
-    letter-spacing: 0.02em;
-    font-size: 1.05rem;
+  }
+  .brand__logo {
+    height: 36px;
+    width: auto;
+    display: block;
   }
   .nav__menu {
     display: flex;
