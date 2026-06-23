@@ -364,6 +364,75 @@ button {
   gap: 0.5rem;
 }
 
+/* ---------- Logos partenaires ---------- */
+.partners {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  justify-items: center;
+}
+.partners img {
+  max-height: 56px;
+  max-width: 100%;
+  width: auto;
+  opacity: 0.7;
+  filter: grayscale(1);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.partners img:hover {
+  opacity: 1;
+  filter: none;
+}
+@media (min-width: 600px) {
+  .partners {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 900px) {
+  .partners {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* ---------- Badges diplômes (guides) ---------- */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+.badges img {
+  height: 44px;
+  width: auto;
+}
+
+/* ---------- Galerie photos ---------- */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
+}
+.gallery img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+@media (min-width: 768px) {
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ---------- Drapeaux langues ---------- */
+.flags {
+  height: 22px;
+  width: auto;
+  vertical-align: middle;
+}
+
 /* ---------- Utilitaires ---------- */
 .stack > * + * {
   margin-top: 1rem;

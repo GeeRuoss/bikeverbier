@@ -46,6 +46,15 @@ const atouts = [
     </section>
 
     <section class="section container">
+      <div class="gallery" data-reveal>
+        <img src={IMG.nepalMustang} alt="Vallée du Mustang, Népal" loading="lazy" />
+        <img src={IMG.nepalShuttle} alt="Shuttle privé au Népal" loading="lazy" />
+        <img src={IMG.nepalDays} alt="10 jours guidés au Népal" loading="lazy" />
+        {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro VTT au Népal" loading="lazy" />)}
+      </div>
+    </section>
+
+    <section class="section container">
       <p class="eyebrow">Prix & période</p>
       <h2 class="h2">Octobre – Novembre</h2>
       <p class="lead measure" style="margin-top:1rem">Les tarifs sont sur demande, selon la taille du groupe. Nous faisons de notre mieux pour répondre à vos attentes.</p>

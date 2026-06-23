@@ -72,7 +72,15 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
       </div>
     </section>
 
-    <section class="section container" id="reservation">
+    <section class="section container">
+      <div class="gallery" data-reveal>
+        <img src={IMG.semaineChalet} alt="Mountain chalet in Verbier" loading="lazy" />
+        <img src={IMG.semaineLift} alt="Lift pass" loading="lazy" />
+        {IMG.semaineGallery.map((src) => <img src={src} alt="MTB week in Verbier" loading="lazy" />)}
+      </div>
+    </section>
+
+    <section class="section section--alt container" id="reservation">
       <p class="eyebrow">Reservation</p>
       <h2 class="h2" style="margin-bottom:1rem">Request your week</h2>
       <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">Fill out the form to request your preferred week. We'll get back to you shortly to confirm the details. Have a great day and see you on the trails!</p>

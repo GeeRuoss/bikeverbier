@@ -24,6 +24,8 @@ const { lang, routeKey, title, description, ogImage = IMG.ogDefault, jsonLd = fa
 const htmlLang = lang === 'fr' ? 'fr-FR' : 'en-GB';
 const route = ROUTES.find((r) => r.key === routeKey)!;
 const canonical = SITE.domain + route[lang];
+// og:image doit être une URL absolue.
+const ogImageAbs = ogImage.startsWith('http') ? ogImage : SITE.domain + ogImage;
 const frUrl = SITE.domain + route.fr;
 const enUrl = SITE.domain + route.en;
 const ui = t(lang);
@@ -70,14 +72,14 @@ const businessLd = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageAbs} />
     <meta property="og:locale" content={htmlLang.replace('-', '_')} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={ogImageAbs} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(businessLd)} />}

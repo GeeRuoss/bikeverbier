@@ -46,6 +46,15 @@ const atouts = [
     </section>
 
     <section class="section container">
+      <div class="gallery" data-reveal>
+        <img src={IMG.nepalMustang} alt="Mustang Valley, Nepal" loading="lazy" />
+        <img src={IMG.nepalShuttle} alt="Private shuttle in Nepal" loading="lazy" />
+        <img src={IMG.nepalDays} alt="10 guided days in Nepal" loading="lazy" />
+        {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro mountain biking in Nepal" loading="lazy" />)}
+      </div>
+    </section>
+
+    <section class="section container">
       <p class="eyebrow">Pricing & period</p>
       <h2 class="h2">October – November</h2>
       <p class="lead measure" style="margin-top:1rem">Pricing is on demand, depending on group size. We do our best to match your expectations.</p>

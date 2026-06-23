@@ -1,43 +1,70 @@
-// Inventaire images (cf. IMAGES.md).
-// ⚠ TEMPORAIRE : on pointe le CDN Framer pour avoir un visuel tout de suite.
-// À remplacer par les originaux HD (WebP + srcset) servis depuis /public — voir IMAGES.md.
-const framer = (id: string) => `https://framerusercontent.com/images/${id}`;
+// Assets récupérés depuis le site Framer live et servis en local (public/).
+// Photos en /img, logos partenaires en /logos, badges diplômes en /badges, drapeaux en /flags.
+// Originaux HD conservés (jusqu'à 6048×8064). Crédits photos : Tiffany Troillet / Soren Rickards (Nepal).
 
 export const IMG = {
-  // Accueil
-  heroHome: framer('dipvhd0ZpczIH5QEyvHDxI1lDME.jpg'),
-  cardEntreprise: framer('J7Fl56Pxct9tqMf8pwTfObveTgA.jpg'),
-  cardGuide: framer('SO9L2g9tvMFHPGzlNWsVmn7Tc.jpg'),
-  cardSemaine: framer('ioR8bKK7RSfZqjiz3m9vRTX4vzs.jpg'),
-  cardNepal: framer('kLLIJAJ96l3guqejmgNYPBwBMM.jpg'),
-  welcome: framer('uvhPTgASQYRvaT3DS75MvL0ow.jpg'),
-  ogHome: framer('VmZCJkcZrWU6fjIk0c7TPmNeEiM.jpg'),
+  // Héros
+  heroHome: '/img/hero-home.jpg',
+  heroGuide: '/img/hero-guide.jpg',
+  heroEntreprise: '/img/hero-entreprise.jpg',
+  heroSemaine: '/img/hero-semaine.jpg',
+  heroNepal: '/img/hero-nepal.jpg',
+
+  // Cartes offres (accueil)
+  cardEntreprise: '/img/card-entreprise.jpg',
+  cardGuide: '/img/card-guide.jpg',
+  cardSemaine: '/img/card-semaine.jpg',
+  cardNepal: '/img/hero-nepal.jpg',
+  welcome: '/img/guillermo.jpg',
 
   // Guide privé
-  heroGuide: framer('6k7ZMm0IGdqLiAkfQbKrOkOYSM.jpg'),
-  guideVideos: framer('eNIDRVnLPdjGZ3D0KgjZ45kr4ZU.jpg'),
+  guideVideos: '/img/guide-videos.jpg',
 
   // Entreprise
-  heroEntreprise: framer('b3eYJxnSISxgNNWI07NsrJ3KI4.jpg'),
-  contactVisual: framer('QOUPDJeY3cE3wMkmlY64CoHIBxY.png'),
+  contactVisual: '/img/contact-visual.png',
+  entrepriseForm: '/img/entreprise-form.jpg',
 
   // Semaine + chalet
-  heroSemaine: framer('F3AjQSAmzLZ6tHtoWjWCYWp5aw.jpg'),
-  semaineChalet: framer('qzi9VJDDC9udO3UkHE3Xj4KZ61E.jpg'),
-  semaineLift: framer('q0qjI1IWFj6xqUz7Hr294Yxtzg.jpg'),
+  semaineChalet: '/img/semaine-chalet.jpg',
+  semaineLift: '/img/semaine-lift.jpg',
+  semaineGallery: ['/img/semaine-gallery-1.jpg', '/img/semaine-gallery-2.jpg', '/img/semaine-gallery-3.jpg'],
 
   // Nepal
-  heroNepal: framer('kLLIJAJ96l3guqejmgNYPBwBMM.jpg'),
-  nepalMustang: framer('3ApUpsB0s2YVqS78oFApDG3qIU.jpg'),
-  nepalDays: framer('8RqlWuqNKHjHsyKd1q60CFQwVk.png'),
-  nepalShuttle: framer('OgvadCrXRjMjl1CO3iA8KhPo2w.png'),
-  ogNepal: framer('p6CtQFZmQ56R4OA2GLVc2tlcx6k.jpg'),
+  nepalMustang: '/img/nepal-mustang.jpg',
+  nepalDays: '/img/nepal-days.png',
+  nepalShuttle: '/img/nepal-shuttle.png',
+  nepalGallery: ['/img/nepal-gallery-1.jpg', '/img/nepal-gallery-2.jpg', '/img/nepal-gallery-3.jpg'],
 
-  // Contact (guides)
-  guideGuillermo: framer('uvhPTgASQYRvaT3DS75MvL0ow.jpg'),
-  guideJoshua: framer('PynoT1fkgruv9NzKmhlwoc8OMY.jpeg'),
-  guideGilles: framer('K3FNFkwvWASIzyxLq9yRExPMM.jpeg'),
+  // Guides (contact)
+  guideGuillermo: '/img/guillermo.jpg',
+  guideJoshua: '/img/joshua.jpeg',
+  guideGilles: '/img/gilles.jpeg',
 
-  // OG par défaut
-  ogDefault: framer('l0eD4PCp2VAmzmeruvXBOB7Ukb0.png'),
+  // Marque
+  logoMark: '/brand/logo-mark.png',
+  flags: '/flags/flags.svg',
+
+  // Open Graph (chemins absolus ajoutés dans le Layout)
+  ogHome: '/img/og-home.jpg',
+  ogNepal: '/img/nepal-gallery-3.jpg',
+  ogDefault: '/img/og-default.png',
 } as const;
+
+// Diplômes / certifications des guides (badges SVG récupérés du site)
+export const BADGES = {
+  swissCycling: '/badges/swiss-cycling-guide.svg',
+  mountainGuide: '/badges/ivbv-ifmga-uiagm.svg',
+} as const;
+
+// Logos partenaires (SVG récupérés du site)
+export const PARTNERS = [
+  { name: 'FlyVerbier.ch', src: '/logos/flyverbier.svg' },
+  { name: 'Cabane Brunet', src: '/logos/cabane-brunet.svg' },
+  { name: 'backside', src: '/logos/backside.svg' },
+  { name: 'SHV / FSVL', src: '/logos/shv-fsvl.svg' },
+  { name: 'Montagne Show SA', src: '/logos/montagne-show.svg' },
+  { name: 'Medran Sports Verbier', src: '/logos/medran-sports.svg' },
+  { name: 'Le Carrefour', src: '/logos/le-carrefour.svg' },
+  { name: 'La Vallée Restaurant', src: '/logos/la-vallee.svg' },
+  { name: 'Philippe Roux Sports', src: '/logos/philippe-roux.svg' },
+] as const;

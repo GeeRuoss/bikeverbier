@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
-import { IMG } from '../data/images';
+import { IMG, PARTNERS } from '../data/images';
 import { pathFor } from '../data/site';
 
 const lang = 'fr' as const;
@@ -113,9 +113,11 @@ const counters = [
     </section>
 
     <section class="section section--alt">
-      <div class="container center">
-        <p class="eyebrow">Nos partenaires</p>
-        <p class="lead measure" style="margin-inline:auto">Logos partenaires à intégrer.</p>
+      <div class="container">
+        <p class="eyebrow center">Nos partenaires</p>
+        <div class="partners" style="margin-top:2.5rem">
+          {PARTNERS.map((p) => <img src={p.src} alt={p.name} title={p.name} loading="lazy" />)}
+        </div>
       </div>
     </section>
   </div>

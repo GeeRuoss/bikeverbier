@@ -1,7 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/ContactForm.astro';
-import { IMG } from '../../data/images';
+import { IMG, BADGES } from '../../data/images';
 import { SITE } from '../../data/site';
 
 const lang = 'en' as const;
@@ -13,18 +13,21 @@ const guides = [
     role: 'Director · Swiss Cycling guide',
     bio: 'Director of Bikeverbier.ch, certified by Swiss Cycling and freelance graphic designer, Guillermo was born in Verbier in 2001. Curious and passionate about meeting people, he created Bikeverbier to share his love of the mountains with people from all walks of life.',
     quote: 'There exists a hidden Verbier.',
+    badges: [{ src: BADGES.swissCycling, label: 'Swiss Cycling Guide' }],
   },
   {
     img: IMG.guideJoshua,
     name: 'Joshua Ruoss',
-    role: 'Tandem pilot',
+    role: 'Mountain guide · Tandem pilot',
     bio: 'Certified mountain guide and enthusiastic paragliding pilot, "Josh" Ruoss was born in Verbier in 1998. Rooted in the Valais Alps, he now divides his time between the summits, the trails and the skies, eager to pass on his passion and his view of the mountains to those who join him.',
+    badges: [{ src: BADGES.mountainGuide, label: 'Mountain guide IVBV / IFMGA / UIAGM' }],
   },
   {
     img: IMG.guideGilles,
     name: 'Gilles Ammann',
     role: 'Tandem pilot',
     bio: 'Director of Flyverbier.ch and a paragliding enthusiast, Gilles Ammann shares his grounding in Verbier between thermal winds and alpine paths. When the sky closes to wings, he hops on his bike to explore the terrain, savouring every climb like a flight in waiting. His sharp eye for the mountains, forged by experience, passes naturally to those he guides through the air.',
+    badges: [],
   },
 ];
 ---
@@ -40,7 +43,7 @@ const guides = [
       <p class="eyebrow" style="color:var(--teal)">Contact</p>
       <h1 class="h1">Discover Verbier with the <span class="teal">locals</span>!</h1>
       <p class="lead" style="margin-top:1rem; max-width:46ch">Feel free to call us even for inquiries or advice about the region!</p>
-      <p style="margin-top:1rem; color:rgba(255,255,255,.75)">We speak: Français · Deutsch · English · Español</p>
+      <p style="margin-top:1rem; color:rgba(255,255,255,.75); display:flex; align-items:center; gap:.7rem; flex-wrap:wrap">We speak <img class="flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
       <p style="margin-top:1.5rem"><a class="lead teal" href={SITE.phoneHref}>{SITE.phoneDisplay}</a></p>
     </div>
   </section>
@@ -64,6 +67,9 @@ const guides = [
                 <h3 class="h3">{g.name}</h3>
                 <p class="eyebrow">{g.role}</p>
                 <p style="color:var(--gray-text)">{g.bio}</p>
+                {g.badges.length > 0 && (
+                  <div class="badges">{g.badges.map((b) => <img src={b.src} alt={b.label} title={b.label} />)}</div>
+                )}
                 {g.quote && <p class="lead teal">“{g.quote}”</p>}
               </div>
             </article>
