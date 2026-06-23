@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
+import Icon from '../../components/Icon.astro';
 import { IMG, PARTNERS } from '../../data/images';
 import { pathFor } from '../../data/site';
 
@@ -43,10 +44,10 @@ const offers = [
 
 // ⚠ Counter values to CONFIRM with Guillermo (0 on the current Framer site).
 const counters = [
-  { n: 15, label: 'Mountain-top restaurants' },
-  { n: 400, label: 'km of marked trails' },
-  { n: 150, label: 'Bicycle days per year' },
-  { n: 30, label: 'Ski lifts' },
+  { n: 15, label: 'Mountain-top restaurants', icon: 'utensils' },
+  { n: 400, label: 'km of marked trails', icon: 'route' },
+  { n: 150, label: 'Bicycle days per year', icon: 'sun' },
+  { n: 30, label: 'Ski lifts', icon: 'gondola' },
 ];
 ---
 
@@ -92,6 +93,7 @@ const counters = [
         {
           counters.map((c) => (
             <div data-reveal>
+              <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
               <div class="counter__num"><span data-count={c.n}>0</span></div>
               <div class="counter__label">{c.label}</div>
             </div>
@@ -107,6 +109,7 @@ const counters = [
           <p class="eyebrow">Welcome</p>
           <h2 class="h2">Welcome to <span class="teal">Bikeverbier.ch</span>!</h2>
           <p class="lead">We are guides all born in Verbier, ready to introduce you to our local trails and traditions!</p>
+          <p style="color:var(--gray-text)">Your local mountain biking guide in Verbier: e-bike and enduro outings, gourmet rides and guided weeks in a chalet. From the secret trails of Valais to the finest mountain-top restaurants, we share our mountains with those who want to experience them differently.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Our Guides" variant="teal" />
         </div>
       </div>

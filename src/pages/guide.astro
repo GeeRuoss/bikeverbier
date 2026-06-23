@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
+import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
 import { SITE } from '../data/site';
 
@@ -15,67 +16,116 @@ const rows = [
   ['5 personnes', '95.-', '145.-'],
   ['6 personnes', '80.-', '120.-'],
 ];
+
+const features = [
+  {
+    img: IMG.cardGuide,
+    icon: 'pin',
+    eyebrow: 'Guides locaux',
+    title: 'Nés à Verbier, on connaît chaque sentier',
+    desc: 'On ne suit pas un itinéraire sur une carte : on partage les chemins de notre enfance. Des singletracks secrets aux descentes panoramiques du Valais, chaque sortie VTT est une vraie rencontre avec le terroir et ses adresses cachées.',
+  },
+  {
+    img: IMG.welcome,
+    icon: 'leaf',
+    eyebrow: 'Respect & plaisir',
+    title: 'À votre rythme, dans le respect de la montagne',
+    desc: 'Débutant ou pilote confirmé, en e-bike ou en enduro, on adapte le terrain et le tempo à votre niveau. On roule propre, on respecte les sentiers et la nature — pour que le plaisir dure, sortie après sortie.',
+  },
+];
 ---
 
 <Layout
   lang={lang}
   routeKey="guide"
-  title="Sorties guidées VTT à Verbier | Bike Verbier"
-  description="Sorties VTT guidées et coaching privé à Verbier avec guides locaux. Pour tous niveaux, en e-bike ou vélo classique. Sentiers alpins, terroir, technique et plaisir. Expérience authentique, sur-mesure, avec location et organisation incluse."
+  title="Guide VTT à Verbier | Sorties E-bike & Enduro avec des locaux – Bike Verbier"
+  description="Le meilleur guide VTT de Verbier : sorties guidées et coaching privé avec des guides nés à Verbier. E-bike ou enduro, tous niveaux. Sentiers secrets du Valais, terroir, technique et plaisir — location et organisation incluses."
   ogImage={IMG.heroGuide}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroGuide} alt="Sortie VTT guidée à Verbier" />
+    <img class="hero__bg" src={IMG.heroGuide} alt="Sortie VTT guidée à Verbier avec un guide local" />
     <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Guide privé · Rando gourmande</p>
       <h1 class="h1" data-wipe>Découvrez les plus beaux <span class="teal">chemins de Verbier</span> !</h1>
-      <p class="lead">Profitez de l'air pur de Verbier à votre niveau !</p>
+      <p class="lead">Profitez de l'air pur de Verbier à votre niveau, avec des guides locaux.</p>
       <CtaButton href={SITE.whatsapp} label="C'est parti !" variant="light" external />
     </div>
   </section>
 
   <div class="sheet">
+    <section class="section container center">
+      <p class="eyebrow">Guide VTT Verbier</p>
+      <h2 class="h2">Le Verbier des <span class="teal">locaux</span>, à vélo</h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Nés et grandis à Verbier, nous connaissons chaque sentier du Valais — des chemins secrets aux descentes à couper le souffle. En e-bike ou en enduro, pour débutants comme experts, on vous fait découvrir notre montagne avec respect et plaisir.
+      </p>
+    </section>
+
     <section class="section container">
-      <p class="eyebrow">Tarifs</p>
-      <h2 class="h2">Roulez à votre <span class="teal">niveau</span> !</h2>
-      <p class="lead measure" style="margin-top:.5rem">Prix par personne, en CHF.</p>
-
-      <div style="overflow-x:auto; margin-top:2rem">
-        <table class="price-table">
-          <thead>
-            <tr><th>Personnes</th><th>1/2 journée</th><th>Journée</th></tr>
-          </thead>
-          <tbody>
-            {rows.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>)}
-          </tbody>
-        </table>
+      <div class="cards">
+        {
+          features.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.title} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h2 class="h3 teal">{f.title}</h2>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
-
-      <ul class="stack" style="margin-top:1.5rem; color:var(--gray-text)">
-        <li>E-Bike location 1 jour : <strong>120.-</strong></li>
-        <li>E-Bike location 1/2 journée : <strong>95.-</strong></li>
-        <li>Casque : <strong>Offert</strong></li>
-      </ul>
-
-      <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="C'est parti !" variant="dark" external /></div>
     </section>
 
     <section class="section section--alt">
-      <div class="container measure center" style="margin-inline:auto">
-        <p class="eyebrow">Témoignage</p>
+      <div class="container">
+        <p class="eyebrow">Tarifs</p>
+        <h2 class="h2">Roulez à votre <span class="teal">niveau</span> !</h2>
+        <p class="lead measure" style="margin-top:.5rem">Prix par personne, en CHF — plus on est nombreux, moins c'est cher.</p>
+
+        <div style="overflow-x:auto; margin-top:2rem">
+          <table class="price-table">
+            <thead>
+              <tr><th>Personnes</th><th>1/2 journée</th><th>Journée</th></tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span>Location E-Bike : 120.- la journée · 95.- la demi-journée</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Casque : <strong style="margin-left:.3rem">offert</strong></li>
+        </ul>
+
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="C'est parti !" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="measure center" style="margin-inline:auto">
+        <div style="display:flex; justify-content:center; gap:.25rem; color:#f5b301; margin-bottom:1rem">
+          {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={26} class="star-filled" />)}
+        </div>
         <blockquote class="lead">« Une expérience incroyable ! Un guide professionnel, passionné et très patient. Que vous soyez débutant ou expérimenté, je recommande vivement ce cours afin de perfectionner les bases, prendre confiance et savourer pleinement vos sorties bike. Et le fait qu'il connaisse parfaitement la région est un bel atout. »</blockquote>
         <p style="margin-top:1rem; color:var(--gray-text)">— Norma, Verbier</p>
       </div>
     </section>
 
-    <section class="section container">
-      <div class="card" data-reveal>
-        <img class="card__img" src={IMG.guideVideos} alt="Vidéos techniques VTT" loading="lazy" />
-        <div class="card__body">
-          <p class="eyebrow">Cours & technique</p>
-          <h2 class="h3">Le plaisir en VTT passe par la <span class="teal">maîtrise</span>.</h2>
-          <p>Que vous soyez adulte ou enfant, des <strong>cours privés</strong> sont proposés sur demande, pour progresser à votre rythme, avec un accompagnement personnalisé. En attendant, découvrez une sélection de <strong>vidéos techniques</strong> utiles pour affiner votre pilotage.</p>
-          <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Voir les Vidéos" variant="dark" external />
-        </div>
+    <section class="section section--alt">
+      <div class="container">
+        <article class="card card--reverse">
+          <img class="card__img" src={IMG.guideVideos} alt="Vidéos techniques VTT" loading="lazy" data-reveal="right" />
+          <div class="card__body" data-reveal>
+            <p class="eyebrow">Cours &amp; technique</p>
+            <h2 class="h3">Le plaisir en VTT passe par la <span class="teal">maîtrise</span>.</h2>
+            <p style="color:var(--gray-text)">Adulte ou enfant, des <strong>cours privés</strong> sont proposés sur demande, pour progresser à votre rythme avec un accompagnement personnalisé. En attendant, découvrez une sélection de <strong>vidéos techniques</strong> pour affiner votre pilotage.</p>
+            <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Voir les Vidéos" variant="dark" external />
+          </div>
+        </article>
       </div>
     </section>
   </div>

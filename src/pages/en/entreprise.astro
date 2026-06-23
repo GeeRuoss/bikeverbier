@@ -2,16 +2,17 @@
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import ContactForm from '../../components/ContactForm.astro';
+import Icon from '../../components/Icon.astro';
 import { IMG } from '../../data/images';
 
 const lang = 'en' as const;
 const formUrl = '/docs/formulaire-entreprise.pdf';
 
 const gere = [
-  'Planning a tour tailored for the group',
-  'Reservation of E-bikes with our partners',
-  'Coordination with your supervisor',
-  'Restaurant reservations and appetizers',
+  { icon: 'calendar', text: 'Planning a tour tailored for the group' },
+  { icon: 'bike', text: 'Reservation of E-bikes with our partners' },
+  { icon: 'users', text: 'Coordination with your supervisor' },
+  { icon: 'utensils', text: 'Restaurant reservations and appetizers' },
 ];
 
 // ⚠ FAQ answers to RECOVER from Guillermo (accordion, not visible in the Framer HTML).
@@ -49,7 +50,11 @@ const faq = [
         <div class="card__body" data-reveal>
           <p class="eyebrow">What we handle</p>
           <h2 class="h2">A <span class="teal">turnkey</span> day</h2>
-          <ul>{gere.map((g) => <li>{g}</li>)}</ul>
+          <ul class="icon-list">
+            {gere.map((g) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name={g.icon} size={20} /></span>{g.text}</li>
+            ))}
+          </ul>
         </div>
       </article>
     </section>

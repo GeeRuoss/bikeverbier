@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
+import Icon from '../components/Icon.astro';
 import { IMG, PARTNERS } from '../data/images';
 import { pathFor } from '../data/site';
 
@@ -43,10 +44,10 @@ const offers = [
 
 // ⚠ Valeurs des compteurs à CONFIRMER avec Guillermo (0 sur le site Framer actuel).
 const counters = [
-  { n: 15, label: "Restaurants d’altitude" },
-  { n: 400, label: 'km de sentiers balisés' },
-  { n: 150, label: 'Jours de vélo par an' },
-  { n: 30, label: 'Remontées mécaniques' },
+  { n: 15, label: "Restaurants d’altitude", icon: 'utensils' },
+  { n: 400, label: 'km de sentiers balisés', icon: 'route' },
+  { n: 150, label: 'Jours de vélo par an', icon: 'sun' },
+  { n: 30, label: 'Remontées mécaniques', icon: 'gondola' },
 ];
 ---
 
@@ -92,6 +93,7 @@ const counters = [
         {
           counters.map((c) => (
             <div data-reveal>
+              <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
               <div class="counter__num"><span data-count={c.n}>0</span></div>
               <div class="counter__label">{c.label}</div>
             </div>
@@ -107,6 +109,7 @@ const counters = [
           <p class="eyebrow">Bienvenue</p>
           <h2 class="h2">Bienvenue chez <span class="teal">Bikeverbier.ch</span> !</h2>
           <p class="lead">Nous sommes des guides tous nés à Verbier prêts à vous faire découvrir nos chemins et traditions locales !</p>
+          <p style="color:var(--gray-text)">Votre guide VTT local à Verbier : sorties e-bike et enduro, randos gourmandes et semaines guidées en chalet. Des sentiers secrets du Valais aux meilleures tables d'altitude, on partage notre montagne avec ceux qui veulent la vivre autrement.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Nos Guides" variant="teal" />
         </div>
       </div>

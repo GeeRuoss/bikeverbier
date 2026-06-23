@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
+import Icon from '../../components/Icon.astro';
 import { IMG } from '../../data/images';
 import { SITE } from '../../data/site';
 
@@ -10,18 +11,21 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
 const features = [
   {
     img: IMG.nepalMustang,
+    icon: 'mountain',
     eyebrow: 'The valley',
     title: "The world's deepest valley",
     desc: 'Surrounded by two 8,000-meter peaks, the Mustang Valley is the deepest in the world. Breathtaking Himalayan landscapes, ridden on two wheels.',
   },
   {
     img: IMG.nepalDays,
+    icon: 'route',
     eyebrow: '10 guided days',
     title: 'From Kathmandu to Upper Mustang',
     desc: 'Experience enduro from the busy streets of Kathmandu to the remote trails of Upper Mustang, guided from start to finish.',
   },
   {
     img: IMG.nepalShuttle,
+    icon: 'van',
     eyebrow: 'Private shuttle',
     title: 'A warm Nepali welcome',
     desc: 'Experience the welcome of young, dynamic Nepali teams. Private shuttle, logistics handled — all you have to do is ride.',
@@ -60,6 +64,7 @@ const features = [
             <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
               <img class="card__img" src={f.img} alt={f.title} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
               <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
                 <p class="eyebrow">{f.eyebrow}</p>
                 <h2 class="h3 teal">{f.title}</h2>
                 <p style="color:var(--gray-text)">{f.desc}</p>

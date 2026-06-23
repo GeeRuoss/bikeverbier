@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
+import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
 import { SITE } from '../data/site';
 
@@ -10,18 +11,21 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
 const features = [
   {
     img: IMG.nepalMustang,
+    icon: 'mountain',
     eyebrow: 'La vallée',
     title: 'La vallée la plus profonde du monde',
     desc: 'Entourée de deux sommets de 8000 m, la vallée du Mustang est la plus profonde du monde. Des paysages himalayens à couper le souffle, à parcourir en vélo.',
   },
   {
     img: IMG.nepalDays,
+    icon: 'route',
     eyebrow: '10 jours guidés',
     title: 'De Katmandou au Haut-Mustang',
     desc: 'Vivez l’enduro des rues animées de Katmandou jusqu’aux pistes isolées du Haut-Mustang, accompagnés du début à la fin.',
   },
   {
     img: IMG.nepalShuttle,
+    icon: 'van',
     eyebrow: 'Shuttle privé',
     title: 'Un accueil népalais chaleureux',
     desc: 'Découvrez l’accueil de jeunes équipes népalaises dynamiques. Shuttle privé, logistique gérée : vous n’avez qu’à rouler.',
@@ -60,6 +64,7 @@ const features = [
             <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
               <img class="card__img" src={f.img} alt={f.title} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
               <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
                 <p class="eyebrow">{f.eyebrow}</p>
                 <h2 class="h3 teal">{f.title}</h2>
                 <p style="color:var(--gray-text)">{f.desc}</p>

@@ -2,16 +2,17 @@
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import ContactForm from '../components/ContactForm.astro';
+import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
 
 const lang = 'fr' as const;
 const formUrl = '/docs/formulaire-entreprise.pdf';
 
 const gere = [
-  "Planification d'un tour adapté au groupe",
-  'Réservation des E-bikes auprès de nos partenaires',
-  'Coordination avec votre responsable',
-  'Réservation des restaurants et apéritifs',
+  { icon: 'calendar', text: "Planification d'un tour adapté au groupe" },
+  { icon: 'bike', text: 'Réservation des E-bikes auprès de nos partenaires' },
+  { icon: 'users', text: 'Coordination avec votre responsable' },
+  { icon: 'utensils', text: 'Réservation des restaurants et apéritifs' },
 ];
 
 // ⚠ Réponses FAQ à RÉCUPÉRER auprès de Guillermo (accordéon, non visible dans le HTML Framer).
@@ -49,7 +50,11 @@ const faq = [
         <div class="card__body" data-reveal>
           <p class="eyebrow">Ce qu'on gère</p>
           <h2 class="h2">Une journée <span class="teal">clé en main</span></h2>
-          <ul>{gere.map((g) => <li>{g}</li>)}</ul>
+          <ul class="icon-list">
+            {gere.map((g) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name={g.icon} size={20} /></span>{g.text}</li>
+            ))}
+          </ul>
         </div>
       </article>
     </section>

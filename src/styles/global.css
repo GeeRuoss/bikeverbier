@@ -455,6 +455,55 @@ button {
   vertical-align: middle;
 }
 
+/* ---------- Icônes ---------- */
+.icon-badge {
+  display: inline-grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(84, 184, 179, 0.12);
+  color: var(--teal);
+  flex: none;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+.icon-badge--lg {
+  width: 64px;
+  height: 64px;
+}
+.icon-badge--sm {
+  width: 42px;
+  height: 42px;
+}
+.card:hover .icon-badge,
+.icon-list li:hover .icon-badge {
+  transform: translateY(-3px) rotate(-4deg);
+  background: rgba(84, 184, 179, 0.2);
+}
+.section--dark .icon-badge {
+  background: rgba(84, 184, 179, 0.18);
+}
+.icon-list {
+  display: grid;
+  gap: 1.1rem;
+}
+.icon-list li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding-left: 0;
+}
+.icon-list li::before {
+  content: none;
+}
+.counter__icon {
+  margin: 0 auto 0.85rem;
+}
+.icon.star-filled {
+  fill: currentColor;
+  stroke: currentColor;
+}
+
 /* ---------- Formulaires (composant + inline) ---------- */
 .cform {
   display: grid;
