@@ -1,15 +1,31 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
 import { IMG } from '../../data/images';
 import { SITE } from '../../data/site';
 
 const lang = 'en' as const;
 const action = `https://formsubmit.co/${SITE.contactEmail}`;
 
-const atouts = [
-  ["Experience the world's deepest valley.", 'Surrounded by two 8,000-meter peaks, the Mustang Valley is the deepest valley in the world.'],
-  ['10 guided days', 'Experience enduro from the streets of Kathmandu to the Upper Mustang Valley.'],
-  ['Private shuttle', 'Experience the warm welcome of young, dynamic Nepali teams.'],
+const features = [
+  {
+    img: IMG.nepalMustang,
+    eyebrow: 'The valley',
+    title: "The world's deepest valley",
+    desc: 'Surrounded by two 8,000-meter peaks, the Mustang Valley is the deepest in the world. Breathtaking Himalayan landscapes, ridden on two wheels.',
+  },
+  {
+    img: IMG.nepalDays,
+    eyebrow: '10 guided days',
+    title: 'From Kathmandu to Upper Mustang',
+    desc: 'Experience enduro from the busy streets of Kathmandu to the remote trails of Upper Mustang, guided from start to finish.',
+  },
+  {
+    img: IMG.nepalShuttle,
+    eyebrow: 'Private shuttle',
+    title: 'A warm Nepali welcome',
+    desc: 'Experience the welcome of young, dynamic Nepali teams. Private shuttle, logistics handled — all you have to do is ride.',
+  },
 ];
 ---
 
@@ -23,50 +39,69 @@ const atouts = [
   <section class="hero">
     <img class="hero__bg" src={IMG.heroNepal} alt="Enduro mountain biking in Mustang, Nepal" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
+      <p class="eyebrow" style="color:#fff">The journey of a lifetime</p>
       <h1 class="h1" data-wipe>10 days of enduro in <span class="teal">Mustang, Nepal</span></h1>
       <p class="lead">Local culture in a truly magical land.</p>
+      <CtaButton href="#demande" label="Book the adventure" variant="light" />
     </div>
   </section>
 
   <div class="sheet">
-    <section class="section container">
-      <p class="lead measure">Ride enduro in Nepal, from the streets of Kathmandu to the Upper Mustang Valley. Discover a magical country shaped by local culture, Himalayan landscapes and deep valleys, through a unique high-altitude mountain biking adventure.</p>
+    <section class="section container center">
+      <p class="lead measure" style="margin-inline:auto">
+        Ride enduro in Nepal, from the streets of Kathmandu to the Upper Mustang Valley. Discover a magical country shaped by local culture, Himalayan landscapes and deep valleys — a unique high-altitude mountain biking adventure.
+      </p>
     </section>
 
-    <section class="section section--alt">
-      <div class="container feature-grid">
-        {atouts.map(([t, d]) => (
-          <div class="feature" data-reveal>
-            <h2 class="h3 teal">{t}</h2>
-            <p style="color:var(--gray-text)">{d}</p>
-          </div>
-        ))}
+    <section class="section container">
+      <div class="cards">
+        {
+          features.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.title} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h2 class="h3 teal">{f.title}</h2>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
       </div>
-    </section>
-
-    <section class="section container">
-      <div class="gallery" data-reveal>
-        <img src={IMG.nepalMustang} alt="Mustang Valley, Nepal" loading="lazy" />
-        <img src={IMG.nepalShuttle} alt="Private shuttle in Nepal" loading="lazy" />
-        <img src={IMG.nepalDays} alt="10 guided days in Nepal" loading="lazy" />
-        {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro mountain biking in Nepal" loading="lazy" />)}
-      </div>
-    </section>
-
-    <section class="section container">
-      <p class="eyebrow">Pricing & period</p>
-      <h2 class="h2">October – November</h2>
-      <p class="lead measure" style="margin-top:1rem">Pricing is on demand, depending on group size. We do our best to match your expectations.</p>
     </section>
 
     <section class="section section--alt">
       <div class="container">
+        <p class="eyebrow center">Gallery</p>
+        <div class="gallery" style="margin-top:2rem" data-reveal>
+          {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro mountain biking in Nepal" loading="lazy" />)}
+        </div>
+        <p class="center" style="margin-top:1.5rem; color:var(--gray-soft); font-size:.85rem">Photos: Soren Rickards</p>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container center">
+        <p class="eyebrow">Pricing &amp; period</p>
+        <h2 class="h2">October – <span class="teal">November</span></h2>
+        <p class="lead measure" style="margin:1.25rem auto 0">
+          Pricing is on demand, depending on group size. We do our best to match your expectations.
+        </p>
+        <div style="margin-top:2rem; display:flex; justify-content:center">
+          <CtaButton href="#demande" label="Request a quote" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt" id="demande">
+      <div class="container">
         <p class="eyebrow">Inquiry</p>
         <h2 class="h2" style="margin-bottom:1rem">Write to us</h2>
-        <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">To match your expectations, write to us and we'll do our best for you.</p>
+        <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">
+          To match your expectations, write to us and we'll do our best for you.
+        </p>
 
-        <form class="cform" action={action} method="POST">
+        <form class="cform cform--card" action={action} method="POST">
           <input type="hidden" name="_subject" value="Nepal inquiry — Bikeverbier.ch" />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
@@ -85,10 +120,6 @@ const atouts = [
           <button type="submit" class="btn btn--dark cform__submit"><span>Send</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </form>
       </div>
-    </section>
-
-    <section class="section container center">
-      <p class="eyebrow">Photos: Soren Rickards</p>
     </section>
   </div>
 </Layout>

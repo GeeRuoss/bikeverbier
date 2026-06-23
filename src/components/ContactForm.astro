@@ -6,14 +6,16 @@ interface Props {
   lang: Lang;
   // Sujet de l'email (ex. "Demande Teambuilding"), pour s'y retrouver dans la boîte mail.
   subject?: string;
+  // Affiche le formulaire dans une carte blanche surélevée.
+  card?: boolean;
 }
-const { lang, subject } = Astro.props;
+const { lang, subject, card = false } = Astro.props;
 const c = t(lang).contact;
 // Formsubmit : gratuit, sans backend. ⚠ Première soumission = email d'activation à valider.
 const action = `https://formsubmit.co/${SITE.contactEmail}`;
 ---
 
-<form class="cform" action={action} method="POST">
+<form class={`cform ${card ? 'cform--card' : ''}`} action={action} method="POST">
   <!-- Réglages Formsubmit -->
   <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch — nouveau message'} />
   <input type="hidden" name="_captcha" value="false" />
@@ -60,48 +62,4 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
     </span>
   </button>
 </form>
-
-<style>
-  .cform {
-    display: grid;
-    gap: 1.1rem;
-    max-width: 620px;
-  }
-  .cform__row {
-    display: grid;
-    gap: 1.1rem;
-  }
-  .cform label {
-    display: grid;
-    gap: 0.4rem;
-    font-size: 0.9rem;
-    color: var(--gray-text);
-  }
-  .cform input,
-  .cform select,
-  .cform textarea {
-    font: inherit;
-    color: var(--ink);
-    padding: 0.75rem 0.9rem;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    border-radius: var(--radius-card);
-    background: var(--white);
-    width: 100%;
-  }
-  .cform input:focus,
-  .cform select:focus,
-  .cform textarea:focus {
-    outline: 2px solid var(--teal);
-    outline-offset: 1px;
-    border-color: var(--teal);
-  }
-  .cform__submit {
-    justify-self: start;
-    margin-top: 0.5rem;
-  }
-  @media (min-width: 600px) {
-    .cform__row {
-      grid-template-columns: 1fr 1fr;
-    }
-  }
-</style>
+<!-- styles .cform : dans global.css (partagés avec les formulaires inline des pages) -->

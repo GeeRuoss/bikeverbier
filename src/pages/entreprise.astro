@@ -35,26 +35,36 @@ const faq = [
   <section class="hero">
     <img class="hero__bg" src={IMG.heroEntreprise} alt="Sortie d'entreprise en VTT à Verbier" />
     <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Teambuilding</p>
       <h1 class="h1" data-wipe>On s'occupe de tout, <span class="teal">vous profitez</span>.</h1>
       <p class="lead">Faites respirer votre équipe, vivez une journée hors du temps à deux pas de chez vous.</p>
+      <CtaButton href="#contact" label="Organiser une sortie" variant="light" />
     </div>
   </section>
 
   <div class="sheet">
     <section class="section container">
-      <p class="eyebrow">Ce qu'on gère</p>
-      <h2 class="h2">Une journée <span class="teal">clé en main</span></h2>
-      <ul class="card" style="display:grid; gap:.6rem; margin-top:1.5rem">
-        {gere.map((g) => <li style="position:relative; padding-left:1.6rem"><span style="position:absolute;left:0;color:var(--teal);font-weight:700">✓</span>{g}</li>)}
-      </ul>
+      <article class="card">
+        <img class="card__img" src={IMG.contactVisual} alt="Sortie d'entreprise à Verbier" loading="lazy" data-reveal="left" />
+        <div class="card__body" data-reveal>
+          <p class="eyebrow">Ce qu'on gère</p>
+          <h2 class="h2">Une journée <span class="teal">clé en main</span></h2>
+          <ul>{gere.map((g) => <li>{g}</li>)}</ul>
+        </div>
+      </article>
     </section>
 
     <section class="section section--alt">
-      <div class="container center">
-        <p class="eyebrow">Formulaire</p>
-        <h2 class="h2">Téléchargez et envoyez-nous le <span class="teal">formulaire rempli</span> !</h2>
-        <p class="lead measure" style="margin:1rem auto 2rem">On s'occupe du reste.</p>
-        <CtaButton href={formUrl} label="Vers le Formulaire" variant="dark" external />
+      <div class="container">
+        <article class="card card--reverse">
+          <img class="card__img" src={IMG.entrepriseForm} alt="Formulaire sortie d'entreprise" loading="lazy" data-reveal="right" />
+          <div class="card__body" data-reveal>
+            <p class="eyebrow">Formulaire</p>
+            <h2 class="h2">Téléchargez le <span class="teal">formulaire</span></h2>
+            <p style="color:var(--gray-text)">Remplissez-le et renvoyez-le nous : on s'occupe du reste. Tout est prêt pour organiser votre journée d'équipe.</p>
+            <CtaButton href={formUrl} label="Télécharger le PDF" variant="dark" external />
+          </div>
+        </article>
       </div>
     </section>
 
@@ -73,11 +83,11 @@ const faq = [
       </div>
     </section>
 
-    <section class="section section--alt">
+    <section class="section section--alt" id="contact">
       <div class="container">
         <p class="eyebrow">Contact</p>
         <h2 class="h2" style="margin-bottom:1.5rem">Une demande pour votre équipe ?</h2>
-        <ContactForm lang={lang} subject="Demande Teambuilding — Bikeverbier.ch" />
+        <ContactForm lang={lang} subject="Demande Teambuilding — Bikeverbier.ch" card />
       </div>
     </section>
   </div>
