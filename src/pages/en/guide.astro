@@ -1,0 +1,82 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import { IMG } from '../../data/images';
+import { SITE } from '../../data/site';
+
+const lang = 'en' as const;
+
+// CHF prices — IDENTICAL to FR (do not reproduce the Framer auto-translation bug).
+const rows = [
+  ['1 person', '320.-', '550.-'],
+  ['2 people', '195.-', '290.-'],
+  ['3 people', '160.-', '220.-'],
+  ['4 people', '120.-', '175.-'],
+  ['5 people', '95.-', '145.-'],
+  ['6 people', '80.-', '120.-'],
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="guide"
+  title="Guided Mountain Biking Tours in Verbier | Bike Verbier"
+  description="Guided mountain biking tours and private coaching in Verbier with local guides. Suitable for all skill levels, on e-bikes or traditional bikes. Alpine trails, local culture, technique and enjoyment. Authentic, tailor-made experience, including rental and organisation."
+  ogImage={IMG.heroGuide}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroGuide} alt="Guided mountain bike tour in Verbier" />
+    <div class="hero__inner container">
+      <h1 class="h1" data-wipe>Discover the most beautiful <span class="teal">trails of Verbier</span>!</h1>
+      <p class="lead">Enjoy the clean air of Verbier at your own pace!</p>
+      <CtaButton href={SITE.whatsapp} label="Let's get started!" variant="light" external />
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <p class="eyebrow">Prices</p>
+      <h2 class="h2">Drive at your <span class="teal">level</span>!</h2>
+      <p class="lead measure" style="margin-top:.5rem">Price per person, in CHF.</p>
+
+      <div style="overflow-x:auto; margin-top:2rem">
+        <table class="price-table">
+          <thead>
+            <tr><th>People</th><th>Half-Day</th><th>Full Day</th></tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="stack" style="margin-top:1.5rem; color:var(--gray-text)">
+        <li>E-Bike rental, full day: <strong>120.-</strong></li>
+        <li>E-Bike rental, half day: <strong>95.-</strong></li>
+        <li>Helmet: <strong>Offered</strong></li>
+      </ul>
+
+      <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Let's get started!" variant="dark" external /></div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container measure center" style="margin-inline:auto">
+        <p class="eyebrow">Testimonial</p>
+        <blockquote class="lead">“An incredible experience! A professional, passionate, and very patient guide. Whether you are a beginner or experienced, I highly recommend this course to perfect the basics, build confidence, and fully enjoy your bike outings. And the fact that he knows the region perfectly is a great asset.”</blockquote>
+        <p style="margin-top:1rem; color:var(--gray-text)">— Norma, Verbier</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="card" data-reveal>
+        <img class="card__img" src={IMG.guideVideos} alt="Technical mountain biking videos" loading="lazy" />
+        <div class="card__body">
+          <p class="eyebrow">Lessons & technique</p>
+          <h2 class="h3">The pleasure of mountain biking comes from <span class="teal">mastery</span>.</h2>
+          <p>Whether you are an adult or a child, <strong>private lessons</strong> are available upon request, to progress at your own pace with personalised support. Meanwhile, discover a selection of useful <strong>technical videos</strong> to refine your driving skills.</p>
+          <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Watch the Videos" variant="dark" external />
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

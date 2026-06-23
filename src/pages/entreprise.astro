@@ -1,0 +1,84 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { IMG } from '../data/images';
+
+const lang = 'fr' as const;
+const formUrl = 'https://drive.google.com/file/d/1o7FxvvT7HaUrccjagdOiSMTiWC_D0vx_/view?usp=sharing';
+
+const gere = [
+  "Planification d'un tour adapté au groupe",
+  'Réservation des E-bikes auprès de nos partenaires',
+  'Coordination avec votre responsable',
+  'Réservation des restaurants et apéritifs',
+];
+
+// ⚠ Réponses FAQ à RÉCUPÉRER auprès de Guillermo (accordéon, non visible dans le HTML Framer).
+const faq = [
+  'Faut-il avoir un bon niveau en VTT pour participer ?',
+  "Fournissez-vous les e-bikes et l'équipement nécessaire ?",
+  'Proposez-vous des formules tout compris avec repas et activités ?',
+  'Peut-on organiser une sortie pour un grand groupe ?',
+  'Comment se passe la coordination avec notre entreprise ?',
+  'La sortie est-elle maintenue en cas de mauvais temps ?',
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="entreprise"
+  title="Team Building VTT à Verbier | Bike Verbier"
+  description="Guide VTT à Verbier avec des locaux : sorties E-bike, enduro, rando gourmande et semaine guidée en chalet. Sentiers secrets du Valais avec des guides nés à Verbier."
+  ogImage={IMG.heroEntreprise}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroEntreprise} alt="Sortie d'entreprise en VTT à Verbier" />
+    <div class="hero__inner container">
+      <h1 class="h1" data-wipe>On s'occupe de tout, <span class="teal">vous profitez</span>.</h1>
+      <p class="lead">Faites respirer votre équipe, vivez une journée hors du temps à deux pas de chez vous.</p>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <p class="eyebrow">Ce qu'on gère</p>
+      <h2 class="h2">Une journée <span class="teal">clé en main</span></h2>
+      <ul class="card" style="display:grid; gap:.6rem; margin-top:1.5rem">
+        {gere.map((g) => <li style="position:relative; padding-left:1.6rem"><span style="position:absolute;left:0;color:var(--teal);font-weight:700">✓</span>{g}</li>)}
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container center">
+        <p class="eyebrow">Formulaire</p>
+        <h2 class="h2">Téléchargez et envoyez-nous le <span class="teal">formulaire rempli</span> !</h2>
+        <p class="lead measure" style="margin:1rem auto 2rem">On s'occupe du reste.</p>
+        <CtaButton href={formUrl} label="Vers le Formulaire" variant="dark" external />
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Questions ?</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ</h2>
+      <div class="faq">
+        {
+          faq.map((q) => (
+            <details>
+              <summary>{q}</summary>
+              <p>Réponse à compléter — à récupérer auprès de Guillermo.</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">Une demande pour votre équipe ?</h2>
+        <ContactForm lang={lang} subject="Demande Teambuilding — Bikeverbier.ch" />
+      </div>
+    </section>
+  </div>
+</Layout>

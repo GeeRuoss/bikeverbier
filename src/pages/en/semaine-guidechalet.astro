@@ -1,0 +1,109 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import { IMG } from '../../data/images';
+import { SITE } from '../../data/site';
+
+const lang = 'en' as const;
+
+const atouts = [
+  ['Full chalet experience.', '6 nights in a well-equipped mountain chalet for small groups. 1 minute from the lift.'],
+  ['5 guided days', '5 days of epic riding with a Swiss Cycling certified local guide.'],
+  ['Lift pass included.', '5-day lift pass and custom tours adapted to the group.'],
+];
+
+const tarifs = [
+  ['9 riders', "CHF 1'290.–"],
+  ['8 riders', "CHF 1'390.–"],
+  ['7 riders', "CHF 1'540.–"],
+  ['6 riders', "CHF 1'760.–"],
+  ['5 riders', "CHF 1'990.–"],
+];
+
+// ⚠ 2026 season dates to CONFIRM with Guillermo.
+const semaines = [
+  'Aug 3 – 9', 'Aug 10 – 16', 'Aug 17 – 23', 'Aug 24 – 30',
+  'Aug 31 – Sep 6', 'Sep 7 – 13', 'Sep 14 – 20', 'Sep 21 – 27',
+  'Sep 28 – Oct 4', 'Oct 5 – 11', 'Oct 12 – 18', 'Oct 19 – 25',
+];
+const action = `https://formsubmit.co/${SITE.contactEmail}`;
+---
+
+<Layout
+  lang={lang}
+  routeKey="semaine"
+  title="Guided MTB Week + Chalet in Verbier – Bikeverbier.ch"
+  description="Guided 1-week riding trips in Verbier with chalet accommodation, local guide, small groups, and breathtaking Valais scenery. Organised by Bikeverbier.ch."
+  ogImage={IMG.heroSemaine}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroSemaine} alt="Guided MTB week with chalet in Verbier" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
+      <h1 class="h1" data-wipe>1 Riding Week in Verbier with <span class="teal">Local guide</span></h1>
+      <p class="lead">Chalet Stay, Local guide, Lift.</p>
+      <CtaButton href="#reservation" label="Let's go!" variant="light" />
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <div class="feature-grid">
+        {atouts.map(([t, d]) => (
+          <div class="feature" data-reveal>
+            <h2 class="h3 teal">{t}</h2>
+            <p style="color:var(--gray-text)">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Price per person</p>
+        <h2 class="h2">The more, <span class="teal">the merrier</span></h2>
+        <p class="measure" style="margin:1rem 0 2rem; color:var(--gray-text)">Included: 6 nights in a private chalet (30 sec. from the Médran lift) · 5 days guided by a certified Swiss Cycling guide · lift pass or shuttle on all riding days.</p>
+        <div style="overflow-x:auto">
+          <table class="price-table">
+            <thead><tr><th>Riders</th><th>Price / person</th></tr></thead>
+            <tbody>{tarifs.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td></tr>)}</tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="reservation">
+      <p class="eyebrow">Reservation</p>
+      <h2 class="h2" style="margin-bottom:1rem">Request your week</h2>
+      <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">Fill out the form to request your preferred week. We'll get back to you shortly to confirm the details. Have a great day and see you on the trails!</p>
+
+      <form class="cform" action={action} method="POST">
+        <input type="hidden" name="_subject" value="Week + Chalet reservation — Bikeverbier.ch" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+        <div class="cform__row">
+          <label><span>Name</span><input type="text" name="name" required /></label>
+          <label><span>Email</span><input type="email" name="email" required /></label>
+        </div>
+        <div class="cform__row">
+          <label><span>Phone Number</span><input type="tel" name="phone" /></label>
+          <label><span>Number of riders</span>
+            <select name="riders">{['1','2','3','4','5','6','7','8','9','More'].map((n) => <option>{n}</option>)}</select>
+          </label>
+        </div>
+        <div class="cform__row">
+          <label><span>Number of couples</span>
+            <select name="couples">{['0','1','2','3','4'].map((n) => <option>{n}</option>)}</select>
+          </label>
+          <label><span>Preferred week</span>
+            <select name="week">{semaines.map((s) => <option>{s}</option>)}</select>
+          </label>
+        </div>
+        <label><span>Message</span><textarea name="message" rows="5"></textarea></label>
+        <button type="submit" class="btn btn--dark cform__submit"><span>Reserve Now</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+      </form>
+    </section>
+  </div>
+</Layout>

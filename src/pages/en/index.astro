@@ -1,0 +1,122 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import { IMG } from '../../data/images';
+import { pathFor } from '../../data/site';
+
+const lang = 'en' as const;
+
+const offers = [
+  {
+    img: IMG.cardEntreprise,
+    eyebrow: 'Turnkey',
+    title: 'Teambuilding',
+    items: ['Corporate outing on an E-bike', 'Exploration of local produce', 'Visit of local restaurateurs'],
+    cta: 'Information and Prices',
+    href: pathFor('entreprise', lang),
+  },
+  {
+    img: IMG.cardGuide,
+    eyebrow: 'Starting from CHF 120.-',
+    title: 'Private Guide / Gourmet Hike',
+    items: ['From beginner to expert', 'Ideal for families', 'On an E-bike or Enduro'],
+    cta: 'Discover',
+    href: pathFor('guide', lang),
+  },
+  {
+    img: IMG.cardSemaine,
+    eyebrow: 'Starting from CHF 1290.-',
+    title: 'Guided Week + Chalet',
+    items: ['6 nights in a chalet', '5 days guided with a Swiss Cycling guide', 'Included Verbier subscription and shuttle'],
+    cta: 'Discover',
+    href: pathFor('semaine', lang),
+  },
+  {
+    img: IMG.cardNepal,
+    eyebrow: 'Journey of a Lifetime',
+    title: '10 Days of Enduro in Nepal',
+    items: ['Local reception', 'Private shuttle', 'Domestic flights'],
+    cta: 'Discover',
+    href: pathFor('nepal', lang),
+  },
+];
+
+// ⚠ Counter values to CONFIRM with Guillermo (0 on the current Framer site).
+const counters = [
+  { n: 15, label: 'Mountain-top restaurants' },
+  { n: 400, label: 'km of marked trails' },
+  { n: 150, label: 'Bicycle days per year' },
+  { n: 30, label: 'Ski lifts' },
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="home"
+  title="Bikeverbier - Ride local."
+  description="Day trips, exploration of local heritage, a week in a chalet with a private guide and lift pass. Local trails, authentic and bespoke alpine experience."
+  ogImage={IMG.ogHome}
+  jsonLd={true}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroHome} alt="Mountain biking down the trails of Verbier" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
+      <h1 class="h1" data-wipe>Discover the <span class="teal">hidden Verbier</span></h1>
+      <p class="lead">From secret trails to the flavours of Valais, allow yourself to be guided by the authenticity of our local guides.</p>
+      <CtaButton href={pathFor('contact', lang)} label="Let's go!" variant="light" />
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <div class="cards">
+        {
+          offers.map((o, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`} data-reveal>
+              <img class="card__img" src={o.img} alt={o.title} loading="lazy" />
+              <div class="card__body">
+                <p class="eyebrow">{o.eyebrow}</p>
+                <h2 class="h3 teal">{o.title}</h2>
+                <ul>{o.items.map((it) => <li>{it}</li>)}</ul>
+                <CtaButton href={o.href} label={o.cta} variant="dark" />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container counters">
+        {
+          counters.map((c) => (
+            <div data-reveal>
+              <div class="counter__num"><span data-count={c.n}>0</span></div>
+              <div class="counter__label">{c.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="card" data-reveal>
+        <img class="card__img" src={IMG.welcome} alt="Bikeverbier guide in Verbier" loading="lazy" />
+        <div class="card__body">
+          <p class="eyebrow">Welcome</p>
+          <h2 class="h2">Welcome to <span class="teal">Bikeverbier.ch</span>!</h2>
+          <p class="lead">We are guides all born in Verbier, ready to introduce you to our local trails and traditions!</p>
+          <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Our Guides" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container center">
+        <p class="eyebrow">Our partners</p>
+        <p class="lead measure" style="margin-inline:auto">Partner logos to be added.</p>
+      </div>
+    </section>
+  </div>
+</Layout>

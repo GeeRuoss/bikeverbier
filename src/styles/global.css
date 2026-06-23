@@ -1,0 +1,424 @@
+/* ============================================================
+   Design system bikeverbier.ch  (cf. DESIGN.md)
+   ============================================================ */
+
+:root {
+  /* Polices — voir public/fonts/README pour Phonk Contrast (signature, payante).
+     Tant que le woff2 Phonk n'est pas posé, Archivo sert de fallback display. */
+  --font-display: 'Phonk Contrast', 'Archivo Variable', system-ui, sans-serif;
+  --font-lead: 'Inter Variable', system-ui, sans-serif;
+  --font-body: 'Manrope Variable', system-ui, sans-serif;
+
+  /* Couleurs */
+  --ink: #000000;
+  --white: #ffffff;
+  --teal: #54b8b3;
+  --teal-dark: #3d9a95;
+  --gray-bg: #f2f2f2;
+  --gray-text: #555555;
+  --gray-soft: #999999;
+  --veil: rgba(34, 34, 34, 0.55);
+
+  /* Rayons */
+  --radius-card: 10px;
+  --radius-pill: 999px;
+  --radius-sheet: 28px;
+
+  /* Layout */
+  --container: 1200px;
+  --nav-h: 80px;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+}
+
+/* ---------- Reset léger ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img,
+picture,
+svg {
+  display: block;
+  max-width: 100%;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+}
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+/* ---------- Typographie ---------- */
+.h1,
+.h2,
+.h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.h1 {
+  font-size: clamp(2.6rem, 6vw, 5rem);
+}
+.h2 {
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+}
+.h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+}
+.lead {
+  font-family: var(--font-lead);
+  font-weight: 500;
+  font-size: clamp(1.05rem, 2vw, 1.5rem);
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+}
+.eyebrow {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gray-soft);
+}
+.teal {
+  color: var(--teal);
+}
+
+/* ---------- Layout ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+.section {
+  padding-block: clamp(3.5rem, 8vw, 7rem);
+}
+.section--alt {
+  background: var(--gray-bg);
+}
+.section--dark {
+  background: var(--ink);
+  color: var(--white);
+}
+.section--dark .eyebrow {
+  color: var(--teal);
+}
+
+/* ---------- Boutons pilule (CTA signature) ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.55rem 0.6rem 0.55rem 1.4rem;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-pill);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+.btn__dot {
+  display: grid;
+  place-items: center;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--white);
+  flex: none;
+}
+.btn--dark {
+  background: var(--ink);
+  color: var(--white);
+}
+.btn--dark .btn__dot {
+  background: var(--white);
+  color: var(--ink);
+}
+.btn--teal {
+  background: var(--teal);
+  color: var(--white);
+}
+.btn--teal .btn__dot {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  min-height: clamp(480px, 80vh, 760px);
+  display: grid;
+  align-items: center;
+  color: var(--white);
+  isolation: isolate;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.25), var(--veil));
+  z-index: -1;
+}
+.hero__inner {
+  padding-top: var(--nav-h);
+  padding-bottom: clamp(4rem, 10vw, 7rem);
+  max-width: 760px;
+}
+.hero .lead {
+  margin-top: 1rem;
+  max-width: 38ch;
+}
+.hero .btn {
+  margin-top: 2rem;
+}
+
+/* Feuille blanche arrondie qui chevauche le bas du hero */
+.sheet {
+  position: relative;
+  background: var(--white);
+  border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
+  margin-top: clamp(-4rem, -6vw, -2.5rem);
+  z-index: 1;
+}
+
+/* ---------- Cartes d'offre ---------- */
+.cards {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+.card {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+  border-radius: var(--radius-card);
+}
+.card__img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+.card__body {
+  display: grid;
+  gap: 0.75rem;
+  justify-items: start;
+}
+.card ul {
+  display: grid;
+  gap: 0.4rem;
+}
+.card li {
+  position: relative;
+  padding-left: 1.6rem;
+}
+.card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+@media (min-width: 768px) {
+  .card {
+    grid-template-columns: 1fr 1fr;
+  }
+  .card--reverse .card__img {
+    order: 2;
+  }
+}
+
+/* ---------- Compteurs ---------- */
+.counters {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem 1rem;
+  text-align: center;
+}
+.counter__num {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 6vw, 3.25rem);
+  line-height: 1;
+  color: var(--teal);
+}
+.counter__label {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: var(--gray-text);
+}
+@media (min-width: 768px) {
+  .counters {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* ---------- Tableau de tarifs ---------- */
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;
+}
+.price-table th,
+.price-table td {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.price-table thead th {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.8rem;
+  color: var(--gray-text);
+}
+.price-table td + td,
+.price-table th + th {
+  text-align: right;
+}
+
+/* ---------- FAQ ---------- */
+.faq details {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  padding: 1rem 0;
+}
+.faq summary {
+  font-family: var(--font-lead);
+  font-weight: 500;
+  font-size: 1.15rem;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+.faq summary::after {
+  content: '+';
+  color: var(--teal);
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.faq details[open] summary::after {
+  content: '–';
+}
+.faq details p {
+  margin-top: 0.75rem;
+  color: var(--gray-text);
+}
+
+/* ---------- Grille de cartes simples (atouts) ---------- */
+.feature-grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) {
+  .feature-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+.feature {
+  display: grid;
+  gap: 0.5rem;
+}
+
+/* ---------- Utilitaires ---------- */
+.stack > * + * {
+  margin-top: 1rem;
+}
+.center {
+  text-align: center;
+}
+.measure {
+  max-width: 62ch;
+}
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--ink);
+  color: var(--white);
+  padding: 0.75rem 1rem;
+  z-index: 1000;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---------- Animations (cf. DESIGN.md) ---------- */
+/* Reveal au scroll : fade + montée légère */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+[data-reveal].in {
+  opacity: 1;
+  transform: none;
+}
+/* Reveal du H1 par balayage horizontal au chargement */
+[data-wipe] {
+  clip-path: inset(0 100% 0 0);
+  animation: wipe 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s forwards;
+}
+@keyframes wipe {
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  [data-reveal],
+  [data-wipe] {
+    opacity: 1;
+    transform: none;
+    clip-path: none;
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,107 @@
+---
+import { SITE, type Lang } from '../data/site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  // Sujet de l'email (ex. "Demande Teambuilding"), pour s'y retrouver dans la boîte mail.
+  subject?: string;
+}
+const { lang, subject } = Astro.props;
+const c = t(lang).contact;
+// Formsubmit : gratuit, sans backend. ⚠ Première soumission = email d'activation à valider.
+const action = `https://formsubmit.co/${SITE.contactEmail}`;
+---
+
+<form class="cform" action={action} method="POST">
+  <!-- Réglages Formsubmit -->
+  <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch — nouveau message'} />
+  <input type="hidden" name="_captcha" value="false" />
+  <input type="hidden" name="_template" value="table" />
+  <!-- Honeypot anti-bot : doit rester vide -->
+  <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+
+  <div class="cform__row">
+    <label>
+      <span>{c.name}</span>
+      <input type="text" name="name" required autocomplete="name" />
+    </label>
+    <label>
+      <span>{c.email}</span>
+      <input type="email" name="email" required autocomplete="email" />
+    </label>
+  </div>
+
+  <div class="cform__row">
+    <label>
+      <span>{c.phone}</span>
+      <input type="tel" name="phone" autocomplete="tel" />
+    </label>
+    <label>
+      <span>{c.request}</span>
+      <select name="request">
+        <option value="">—</option>
+        {c.requestOptions.map((o) => <option value={o}>{o}</option>)}
+      </select>
+    </label>
+  </div>
+
+  <label>
+    <span>{c.message}</span>
+    <textarea name="message" rows="5" required></textarea>
+  </label>
+
+  <button type="submit" class="btn btn--dark cform__submit">
+    <span>{c.submit}</span>
+    <span class="btn__dot" aria-hidden="true">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+    </span>
+  </button>
+</form>
+
+<style>
+  .cform {
+    display: grid;
+    gap: 1.1rem;
+    max-width: 620px;
+  }
+  .cform__row {
+    display: grid;
+    gap: 1.1rem;
+  }
+  .cform label {
+    display: grid;
+    gap: 0.4rem;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+  }
+  .cform input,
+  .cform select,
+  .cform textarea {
+    font: inherit;
+    color: var(--ink);
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-card);
+    background: var(--white);
+    width: 100%;
+  }
+  .cform input:focus,
+  .cform select:focus,
+  .cform textarea:focus {
+    outline: 2px solid var(--teal);
+    outline-offset: 1px;
+    border-color: var(--teal);
+  }
+  .cform__submit {
+    justify-self: start;
+    margin-top: 0.5rem;
+  }
+  @media (min-width: 600px) {
+    .cform__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

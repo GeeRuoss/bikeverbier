@@ -1,0 +1,85 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { IMG } from '../../data/images';
+import { SITE } from '../../data/site';
+
+const lang = 'en' as const;
+const action = `https://formsubmit.co/${SITE.contactEmail}`;
+
+const atouts = [
+  ["Experience the world's deepest valley.", 'Surrounded by two 8,000-meter peaks, the Mustang Valley is the deepest valley in the world.'],
+  ['10 guided days', 'Experience enduro from the streets of Kathmandu to the Upper Mustang Valley.'],
+  ['Private shuttle', 'Experience the warm welcome of young, dynamic Nepali teams.'],
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="nepal"
+  title="Enduro MTB Trip in Nepal – 10 Days with Bikeverbier.ch"
+  description="Ride enduro in Nepal, from the streets of Kathmandu to the Upper Mustang Valley. Discover a magical country shaped by local culture, Himalayan landscapes and deep valleys, through a unique high-altitude mountain biking adventure."
+  ogImage={IMG.ogNepal}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro mountain biking in Mustang, Nepal" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
+      <h1 class="h1" data-wipe>10 days of enduro in <span class="teal">Mustang, Nepal</span></h1>
+      <p class="lead">Local culture in a truly magical land.</p>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <p class="lead measure">Ride enduro in Nepal, from the streets of Kathmandu to the Upper Mustang Valley. Discover a magical country shaped by local culture, Himalayan landscapes and deep valleys, through a unique high-altitude mountain biking adventure.</p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container feature-grid">
+        {atouts.map(([t, d]) => (
+          <div class="feature" data-reveal>
+            <h2 class="h3 teal">{t}</h2>
+            <p style="color:var(--gray-text)">{d}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Pricing & period</p>
+      <h2 class="h2">October – November</h2>
+      <p class="lead measure" style="margin-top:1rem">Pricing is on demand, depending on group size. We do our best to match your expectations.</p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Inquiry</p>
+        <h2 class="h2" style="margin-bottom:1rem">Write to us</h2>
+        <p class="measure" style="margin-bottom:2rem; color:var(--gray-text)">To match your expectations, write to us and we'll do our best for you.</p>
+
+        <form class="cform" action={action} method="POST">
+          <input type="hidden" name="_subject" value="Nepal inquiry — Bikeverbier.ch" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="cform__row">
+            <label><span>Name</span><input type="text" name="name" required /></label>
+            <label><span>Email</span><input type="email" name="email" required /></label>
+          </div>
+          <div class="cform__row">
+            <label><span>Phone Number</span><input type="tel" name="phone" /></label>
+            <label><span>Number of riders</span>
+              <select name="riders">{['1','2','3','4','5','6','7','8','9','More'].map((n) => <option>{n}</option>)}</select>
+            </label>
+          </div>
+          <label><span>Message</span><textarea name="message" rows="5"></textarea></label>
+          <button type="submit" class="btn btn--dark cform__submit"><span>Send</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section container center">
+      <p class="eyebrow">Photos: Soren Rickards</p>
+    </section>
+  </div>
+</Layout>

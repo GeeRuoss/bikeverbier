@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { IMG } from '../data/images';
+import { SITE } from '../data/site';
+
+const lang = 'fr' as const;
+
+const guides = [
+  {
+    img: IMG.guideGuillermo,
+    name: 'Guillermo Ruoss',
+    role: 'Directeur · Guide Swiss Cycling',
+    bio: "Directeur de Bikeverbier.ch certifié Swiss Cycling et graphiste indépendant, Guillermo est né à Verbier en 2001. Curieux et passionné de rencontres, il a créé Bikeverbier pour partager son amour de la montagne avec des gens venus de tous horizons.",
+    quote: 'Il existe un Verbier caché.',
+  },
+  {
+    img: IMG.guideJoshua,
+    name: 'Joshua Ruoss',
+    role: 'Tandem pilot',
+    bio: 'Guide de montagne diplômé et pilote de parapente passionné, « Josh » Ruoss est né à Verbier en 1998. Ancré dans les Alpes valaisannes, il partage aujourd\'hui son temps entre les sommets, les sentiers et les airs, avec l\'envie de transmettre sa passion et son regard sur la montagne à ceux qui l\'accompagnent.',
+  },
+  {
+    img: IMG.guideGilles,
+    name: 'Gilles Ammann',
+    role: 'Tandem pilot',
+    bio: "Directeur de Flyverbier.ch et passionné de parapente, Gilles Ammann partage son ancrage à Verbier entre les vents thermiques et les chemins alpins. Quand le ciel se ferme aux ailes, il enfourche son vélo pour explorer les reliefs, savourant chaque montée comme un vol en attente. Son regard affûté sur la montagne, forgé par l'expérience, se transmet naturellement à ceux qu'il guide dans les airs.",
+  },
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="contact"
+  title="Réserver une Sortie VTT à Verbier – Contact Bikeverbier.ch"
+  description="Guide VTT à Verbier avec des locaux : sorties E-bike, enduro, rando gourmande et semaine guidée en chalet. Sentiers secrets du Valais avec des guides nés à Verbier."
+>
+  <section class="section" style="padding-top:calc(var(--nav-h) + 3rem); background:var(--ink); color:#fff">
+    <div class="container">
+      <p class="eyebrow" style="color:var(--teal)">Contact</p>
+      <h1 class="h1">Découvrez Verbier avec les <span class="teal">locaux</span> !</h1>
+      <p class="lead" style="margin-top:1rem; max-width:46ch">N'hésitez pas à nous appeler même en cas de demandes ou de conseils pour la région !</p>
+      <p style="margin-top:1rem; color:rgba(255,255,255,.75)">Nous parlons : Français · Deutsch · English · Español</p>
+      <p style="margin-top:1.5rem"><a class="lead teal" href={SITE.phoneHref}>{SITE.phoneDisplay}</a></p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <ContactForm lang={lang} subject="Message — Bikeverbier.ch" />
+  </section>
+
+  <section class="section section--alt" id="guides">
+    <div class="container">
+      <p class="eyebrow">Rencontrez nos guides</p>
+      <h2 class="h2" style="margin-bottom:.75rem">Tous nés à <span class="teal">Verbier</span></h2>
+      <p class="measure" style="margin-bottom:2.5rem; color:var(--gray-text)">Ils sauront vous emmener sur les plus beaux chemins et dans les meilleurs restaurants.</p>
+
+      <div class="cards">
+        {
+          guides.map((g) => (
+            <article class="card" data-reveal>
+              <img class="card__img" src={g.img} alt={g.name} loading="lazy" />
+              <div class="card__body">
+                <h3 class="h3">{g.name}</h3>
+                <p class="eyebrow">{g.role}</p>
+                <p style="color:var(--gray-text)">{g.bio}</p>
+                {g.quote && <p class="lead teal">« {g.quote} »</p>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Layout>

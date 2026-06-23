@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import { IMG } from '../../data/images';
+
+const lang = 'en' as const;
+const formUrl = 'https://drive.google.com/file/d/1o7FxvvT7HaUrccjagdOiSMTiWC_D0vx_/view?usp=sharing';
+
+const gere = [
+  'Planning a tour tailored for the group',
+  'Reservation of E-bikes with our partners',
+  'Coordination with your supervisor',
+  'Restaurant reservations and appetizers',
+];
+
+// ⚠ FAQ answers to RECOVER from Guillermo (accordion, not visible in the Framer HTML).
+const faq = [
+  'Is a good level of mountain biking required to participate?',
+  'Do you provide e-bikes and the necessary equipment?',
+  'Do you offer all-inclusive packages with meals and activities?',
+  'Is it possible to arrange an outing for a large group?',
+  'How is the coordination with our company managed?',
+  'Is the excursion still on in case of bad weather?',
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="entreprise"
+  title="Mountain Biking Team Building in Verbier | Bike Verbier"
+  description="Day trips, exploration of local heritage, a week in a chalet with a private guide and lift pass. Local trails, authentic and bespoke alpine experience."
+  ogImage={IMG.heroEntreprise}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroEntreprise} alt="Corporate mountain biking outing in Verbier" />
+    <div class="hero__inner container">
+      <h1 class="h1" data-wipe>We take care of everything, <span class="teal">you enjoy</span>.</h1>
+      <p class="lead">Let your team breathe, experience a timeless day right on your doorstep.</p>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <p class="eyebrow">What we handle</p>
+      <h2 class="h2">A <span class="teal">turnkey</span> day</h2>
+      <ul class="card" style="display:grid; gap:.6rem; margin-top:1.5rem">
+        {gere.map((g) => <li style="position:relative; padding-left:1.6rem"><span style="position:absolute;left:0;color:var(--teal);font-weight:700">✓</span>{g}</li>)}
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container center">
+        <p class="eyebrow">Form</p>
+        <h2 class="h2">Download and send us the <span class="teal">completed form</span>!</h2>
+        <p class="lead measure" style="margin:1rem auto 2rem">We take care of the rest.</p>
+        <CtaButton href={formUrl} label="To the Form" variant="dark" external />
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Inquiries?</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ</h2>
+      <div class="faq">
+        {
+          faq.map((q) => (
+            <details>
+              <summary>{q}</summary>
+              <p>Answer to be completed — to be provided by Guillermo.</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Contact</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">An inquiry for your team?</h2>
+        <ContactForm lang={lang} subject="Teambuilding inquiry — Bikeverbier.ch" />
+      </div>
+    </section>
+  </div>
+</Layout>

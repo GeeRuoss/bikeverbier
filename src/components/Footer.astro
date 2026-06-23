@@ -1,0 +1,111 @@
+---
+import { SITE, pathFor, type Lang } from '../data/site';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const ui = t(lang);
+const links: { key: Parameters<typeof pathFor>[0]; label: string }[] = [
+  { key: 'entreprise', label: ui.footer.links.entreprise },
+  { key: 'guide', label: ui.footer.links.guide },
+  { key: 'semaine', label: ui.footer.links.semaine },
+  { key: 'nepal', label: ui.footer.links.nepal },
+  { key: 'contact', label: ui.footer.links.contact },
+];
+const year = 2026;
+---
+
+<footer class="footer">
+  <div class="container footer__grid">
+    <div>
+      <p class="footer__brand">BIKE VERBIER<span class="teal">.CH</span></p>
+      <p class="footer__tag">{ui.footer.tagline}</p>
+    </div>
+
+    <nav aria-label={ui.footer.sections}>
+      <ul class="footer__links">
+        {links.map((l) => <li><a href={pathFor(l.key, lang)}>{l.label}</a></li>)}
+      </ul>
+    </nav>
+
+    <div>
+      <p class="footer__social-title">{ui.footer.social}</p>
+      <a class="footer__social" href={SITE.instagram} target="_blank" rel="noopener noreferrer"
+        >@bikeverbier.ch</a
+      >
+      <p class="footer__contact">
+        <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="container footer__legal">
+    <span>© {year} Bikeverbier.ch</span>
+    <span>
+      Created by {SITE.credits.by} · Photos by
+      <a href={SITE.credits.photosUrl} target="_blank" rel="noopener noreferrer">{SITE.credits.photos}</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--ink);
+    color: var(--white);
+    padding-block: clamp(3rem, 6vw, 5rem) 1.5rem;
+  }
+  .footer__grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  .footer__brand {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.3rem;
+  }
+  .footer__tag {
+    margin-top: 0.75rem;
+    max-width: 32ch;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .footer__links {
+    display: grid;
+    gap: 0.6rem;
+  }
+  .footer__links a:hover {
+    color: var(--teal);
+  }
+  .footer__social-title {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.4rem;
+  }
+  .footer__social {
+    color: var(--teal);
+    font-weight: 600;
+  }
+  .footer__contact {
+    margin-top: 0.75rem;
+  }
+  .footer__legal {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+  }
+  .footer__legal a:hover {
+    color: var(--teal);
+  }
+  @media (min-width: 768px) {
+    .footer__grid {
+      grid-template-columns: 2fr 1fr 1fr;
+    }
+  }
+</style>

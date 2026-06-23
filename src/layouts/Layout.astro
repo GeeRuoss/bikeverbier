@@ -1,0 +1,142 @@
+---
+import '@fontsource-variable/inter';
+import '@fontsource-variable/manrope';
+import '@fontsource-variable/archivo';
+import '../styles/global.css';
+
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { SITE, ROUTES, type Lang, type RouteKey } from '../data/site';
+import { IMG } from '../data/images';
+import { t } from '../i18n/ui';
+
+interface Props {
+  lang: Lang;
+  routeKey: RouteKey;
+  title: string;
+  description: string;
+  ogImage?: string;
+  jsonLd?: boolean;
+}
+const { lang, routeKey, title, description, ogImage = IMG.ogDefault, jsonLd = false } = Astro.props;
+
+const htmlLang = lang === 'fr' ? 'fr-FR' : 'en-GB';
+const route = ROUTES.find((r) => r.key === routeKey)!;
+const canonical = SITE.domain + route[lang];
+const frUrl = SITE.domain + route.fr;
+const enUrl = SITE.domain + route.en;
+const ui = t(lang);
+
+const businessLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SportsActivityLocation',
+  name: 'Bikeverbier.ch',
+  description:
+    'Guide VTT et mountain bike Verbier : e-bike, enduro MTB, rando gourmande, semaine chalet, voyage MTB Nepal. Guides locaux nés à Verbier.',
+  url: SITE.domain,
+  telephone: '+41774506726',
+  priceRange: 'CHF 120-1290',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Verbier',
+    postalCode: '1936',
+    addressRegion: 'Valais',
+    addressCountry: 'CH',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 46.0979, longitude: 7.227 },
+  sameAs: [SITE.instagram],
+};
+---
+
+<!doctype html>
+<html lang={htmlLang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+
+    <!-- hreflang FR / EN / x-default (cf. SEO.md) -->
+    <link rel="alternate" hreflang="fr-FR" href={frUrl} />
+    <link rel="alternate" hreflang="en-GB" href={enUrl} />
+    <link rel="alternate" hreflang="x-default" href={frUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bikeverbier.ch" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={htmlLang.replace('-', '_')} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(businessLd)} />}
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">{ui.skip}</a>
+    <Nav lang={lang} routeKey={routeKey} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer lang={lang} />
+    <WhatsAppButton lang={lang} />
+
+    <script>
+      // Reveal au scroll (fade-up) — IntersectionObserver vanilla.
+      const els = document.querySelectorAll('[data-reveal]');
+      if (els.length) {
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' }
+        );
+        els.forEach((el) => io.observe(el));
+      }
+
+      // Compteurs animés (montent depuis 0 à l'entrée dans le viewport).
+      const counters = document.querySelectorAll<HTMLElement>('[data-count]');
+      if (counters.length) {
+        const run = (el: HTMLElement) => {
+          const target = Number(el.dataset.count || '0');
+          const dur = 1400;
+          const start = performance.now();
+          const step = (now: number) => {
+            const p = Math.min((now - start) / dur, 1);
+            el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3))).toString();
+            if (p < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+        const cio = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                run(e.target as HTMLElement);
+                cio.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.4 }
+        );
+        counters.forEach((el) => cio.observe(el));
+      }
+    </script>
+  </body>
+</html>

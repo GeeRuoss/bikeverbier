@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import { IMG } from '../data/images';
+import { pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+
+const offers = [
+  {
+    img: IMG.cardEntreprise,
+    eyebrow: 'Clé en main',
+    title: "Sortie d'Entreprise",
+    items: ['Sortie d’entreprise en E-bike', 'Découverte des produits du terroir', 'Visite des restaurateurs locaux'],
+    cta: 'Info et Tarifs',
+    href: pathFor('entreprise', lang),
+  },
+  {
+    img: IMG.cardGuide,
+    eyebrow: 'À partir de 120.-',
+    title: 'Guide Privé / Rando Gourmande',
+    items: ['De débutant à expert', 'Parfait pour les familles', 'En E-bike ou Enduro'],
+    cta: 'Découvrir',
+    href: pathFor('guide', lang),
+  },
+  {
+    img: IMG.cardSemaine,
+    eyebrow: 'À partir de 1290.-',
+    title: 'Semaine Guidée + Chalet',
+    items: ['6 nuits dans un chalet', '5 jours guidés avec un guide Swiss Cycling', 'Abonnement Verbier inclus et shuttle'],
+    cta: 'Découvrir',
+    href: pathFor('semaine', lang),
+  },
+  {
+    img: IMG.cardNepal,
+    eyebrow: 'Voyage d’une vie',
+    title: '10 Jours d’enduro au Népal',
+    items: ['Accueil local', 'Shuttle privé', 'Vols internes'],
+    cta: 'Découvrir',
+    href: pathFor('nepal', lang),
+  },
+];
+
+// ⚠ Valeurs des compteurs à CONFIRMER avec Guillermo (0 sur le site Framer actuel).
+const counters = [
+  { n: 15, label: "Restaurants d’altitude" },
+  { n: 400, label: 'km de sentiers balisés' },
+  { n: 150, label: 'Jours de vélo par an' },
+  { n: 30, label: 'Remontées mécaniques' },
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="home"
+  title="#1 Guide VTT Verbier | E-bike, Enduro & Rando – Bikeverbier.ch"
+  description="Guide VTT local à Verbier : sorties E-bike & enduro, rando gourmande, semaine guidée en chalet avec lift pass. Vos guides nés à Verbier vous font découvrir les meilleurs sentiers du Valais."
+  ogImage={IMG.ogHome}
+  jsonLd={true}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroHome} alt="VTT en descente sur les sentiers de Verbier" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Bienvenue au paradis</p>
+      <h1 class="h1" data-wipe>Découvrez le <span class="teal">Verbier caché</span></h1>
+      <p class="lead">Des sentiers secrets aux saveurs du terroir valaisan, laissez-vous porter par l'authenticité de nos guides locaux.</p>
+      <CtaButton href={pathFor('contact', lang)} label="Let's go !" variant="light" />
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <div class="cards">
+        {
+          offers.map((o, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`} data-reveal>
+              <img class="card__img" src={o.img} alt={o.title} loading="lazy" />
+              <div class="card__body">
+                <p class="eyebrow">{o.eyebrow}</p>
+                <h2 class="h3 teal">{o.title}</h2>
+                <ul>{o.items.map((it) => <li>{it}</li>)}</ul>
+                <CtaButton href={o.href} label={o.cta} variant="dark" />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container counters">
+        {
+          counters.map((c) => (
+            <div data-reveal>
+              <div class="counter__num"><span data-count={c.n}>0</span></div>
+              <div class="counter__label">{c.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="card" data-reveal>
+        <img class="card__img" src={IMG.welcome} alt="Guide Bikeverbier à Verbier" loading="lazy" />
+        <div class="card__body">
+          <p class="eyebrow">Bienvenue</p>
+          <h2 class="h2">Bienvenue chez <span class="teal">Bikeverbier.ch</span> !</h2>
+          <p class="lead">Nous sommes des guides tous nés à Verbier prêts à vous faire découvrir nos chemins et traditions locales !</p>
+          <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Nos Guides" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container center">
+        <p class="eyebrow">Nos partenaires</p>
+        <p class="lead measure" style="margin-inline:auto">Logos partenaires à intégrer.</p>
+      </div>
+    </section>
+  </div>
+</Layout>

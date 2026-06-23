@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import { IMG } from '../data/images';
+import { SITE } from '../data/site';
+
+const lang = 'fr' as const;
+
+// Prix CHF — IDENTIQUES en FR et EN (cf. README : bug de traduction Framer à ne pas reproduire).
+const rows = [
+  ['1 personne', '320.-', '550.-'],
+  ['2 personnes', '195.-', '290.-'],
+  ['3 personnes', '160.-', '220.-'],
+  ['4 personnes', '120.-', '175.-'],
+  ['5 personnes', '95.-', '145.-'],
+  ['6 personnes', '80.-', '120.-'],
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="guide"
+  title="Sorties guidées VTT à Verbier | Bike Verbier"
+  description="Sorties VTT guidées et coaching privé à Verbier avec guides locaux. Pour tous niveaux, en e-bike ou vélo classique. Sentiers alpins, terroir, technique et plaisir. Expérience authentique, sur-mesure, avec location et organisation incluse."
+  ogImage={IMG.heroGuide}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroGuide} alt="Sortie VTT guidée à Verbier" />
+    <div class="hero__inner container">
+      <h1 class="h1" data-wipe>Découvrez les plus beaux <span class="teal">chemins de Verbier</span> !</h1>
+      <p class="lead">Profitez de l'air pur de Verbier à votre niveau !</p>
+      <CtaButton href={SITE.whatsapp} label="C'est parti !" variant="light" external />
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <p class="eyebrow">Tarifs</p>
+      <h2 class="h2">Roulez à votre <span class="teal">niveau</span> !</h2>
+      <p class="lead measure" style="margin-top:.5rem">Prix par personne, en CHF.</p>
+
+      <div style="overflow-x:auto; margin-top:2rem">
+        <table class="price-table">
+          <thead>
+            <tr><th>Personnes</th><th>1/2 journée</th><th>Journée</th></tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => <tr><td>{r[0]}</td><td>{r[1]}</td><td>{r[2]}</td></tr>)}
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="stack" style="margin-top:1.5rem; color:var(--gray-text)">
+        <li>E-Bike location 1 jour : <strong>120.-</strong></li>
+        <li>E-Bike location 1/2 journée : <strong>95.-</strong></li>
+        <li>Casque : <strong>Offert</strong></li>
+      </ul>
+
+      <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="C'est parti !" variant="dark" external /></div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container measure center" style="margin-inline:auto">
+        <p class="eyebrow">Témoignage</p>
+        <blockquote class="lead">« Une expérience incroyable ! Un guide professionnel, passionné et très patient. Que vous soyez débutant ou expérimenté, je recommande vivement ce cours afin de perfectionner les bases, prendre confiance et savourer pleinement vos sorties bike. Et le fait qu'il connaisse parfaitement la région est un bel atout. »</blockquote>
+        <p style="margin-top:1rem; color:var(--gray-text)">— Norma, Verbier</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="card" data-reveal>
+        <img class="card__img" src={IMG.guideVideos} alt="Vidéos techniques VTT" loading="lazy" />
+        <div class="card__body">
+          <p class="eyebrow">Cours & technique</p>
+          <h2 class="h3">Le plaisir en VTT passe par la <span class="teal">maîtrise</span>.</h2>
+          <p>Que vous soyez adulte ou enfant, des <strong>cours privés</strong> sont proposés sur demande, pour progresser à votre rythme, avec un accompagnement personnalisé. En attendant, découvrez une sélection de <strong>vidéos techniques</strong> utiles pour affiner votre pilotage.</p>
+          <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Voir les Vidéos" variant="dark" external />
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
