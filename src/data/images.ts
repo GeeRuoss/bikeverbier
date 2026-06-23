@@ -21,7 +21,7 @@ export const IMG = {
   guideVideos: '/img/guide-videos.jpg',
 
   // Entreprise
-  contactVisual: '/img/contact-visual.png',
+  contactVisual: '/img/contact-visual.jpg',
   entrepriseForm: '/img/entreprise-form.jpg',
 
   // Semaine + chalet
@@ -31,8 +31,8 @@ export const IMG = {
 
   // Nepal
   nepalMustang: '/img/nepal-mustang.jpg',
-  nepalDays: '/img/nepal-days.png',
-  nepalShuttle: '/img/nepal-shuttle.png',
+  nepalDays: '/img/nepal-days.jpg',
+  nepalShuttle: '/img/nepal-shuttle.jpg',
   nepalGallery: ['/img/nepal-gallery-1.jpg', '/img/nepal-gallery-2.jpg', '/img/nepal-gallery-3.jpg'],
 
   // Guides (contact)
