@@ -454,6 +454,44 @@ button {
   gap: 0.5rem;
 }
 
+/* ---------- Avis clients ---------- */
+.reviews {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+.review {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-card);
+  padding: clamp(1.5rem, 3vw, 2rem);
+}
+.review__stars {
+  display: flex;
+  gap: 0.2rem;
+  color: #f5b301;
+}
+.review__quote {
+  font-family: var(--font-lead);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+.review__author {
+  margin-top: auto;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--gray-text);
+}
+@media (min-width: 768px) {
+  .reviews {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
 /* ---------- Logos partenaires ---------- */
 .partners {
   display: grid;

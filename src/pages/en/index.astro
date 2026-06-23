@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
 import { IMG, PARTNERS } from '../../data/images';
 import { pathFor } from '../../data/site';
 
@@ -116,7 +117,9 @@ const counters = [
       </div>
     </section>
 
-    <section class="section section--alt">
+    <Reviews lang={lang} alt />
+
+    <section class="section">
       <div class="container">
         <p class="eyebrow center">Our partners</p>
         <div class="partners" style="margin-top:2.5rem">

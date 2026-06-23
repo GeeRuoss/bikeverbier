@@ -1,0 +1,32 @@
+---
+import Icon from './Icon.astro';
+import { REVIEWS } from '../data/reviews';
+import { type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  alt?: boolean;
+}
+const { lang, alt = false } = Astro.props;
+const reviews = REVIEWS[lang];
+const heading = lang === 'fr' ? 'Ils ont roulé avec nous' : 'They rode with us';
+const eyebrow = lang === 'fr' ? 'Avis' : 'Reviews';
+---
+
+<section class={`section ${alt ? 'section--alt' : ''}`}>
+  <div class="container">
+    <p class="eyebrow center">{eyebrow}</p>
+    <h2 class="h2 center" style="margin-bottom:2.5rem">{heading}</h2>
+    <div class="reviews">
+      {
+        reviews.map((r) => (
+          <figure class="review" data-reveal>
+            <div class="review__stars">{[0, 1, 2, 3, 4].map(() => <Icon name="star" size={18} class="star-filled" />)}</div>
+            <blockquote class="review__quote">{r.quote}</blockquote>
+            <figcaption class="review__author">{r.author}</figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+</section>

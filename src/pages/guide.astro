@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import Icon from '../components/Icon.astro';
+import Reviews from '../components/Reviews.astro';
 import { IMG } from '../data/images';
 import { SITE } from '../data/site';
 
@@ -106,15 +107,8 @@ const features = [
       </div>
     </section>
 
-    <section class="section container">
-      <div class="measure center" style="margin-inline:auto">
-        <div style="display:flex; justify-content:center; gap:.25rem; color:#f5b301; margin-bottom:1rem">
-          {[0, 1, 2, 3, 4].map(() => <Icon name="star" size={26} class="star-filled" />)}
-        </div>
-        <blockquote class="lead">« Une expérience incroyable ! Un guide professionnel, passionné et très patient. Que vous soyez débutant ou expérimenté, je recommande vivement ce cours afin de perfectionner les bases, prendre confiance et savourer pleinement vos sorties bike. Et le fait qu'il connaisse parfaitement la région est un bel atout. »</blockquote>
-        <p style="margin-top:1rem; color:var(--gray-text)">Norma, Verbier</p>
-      </div>
-    </section>
+    <Reviews lang={lang} />
+
 
     <section class="section section--alt">
       <div class="container">
