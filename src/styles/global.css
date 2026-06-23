@@ -2,12 +2,19 @@
    Design system bikeverbier.ch  (cf. DESIGN.md)
    ============================================================ */
 
+/* Police signature, récupérée du site live et auto-hébergée */
+@font-face {
+  font-family: 'Phonk Contrast';
+  src: url('/fonts/PhonkContrast.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+}
+
 :root {
-  /* Polices — voir public/fonts/README pour Phonk Contrast (signature, payante).
-     Tant que le woff2 Phonk n'est pas posé, Archivo sert de fallback display. */
-  --font-display: 'Phonk Contrast', 'Archivo Variable', system-ui, sans-serif;
+  /* Deux familles : Phonk Contrast (titres) + Inter (tout le reste, police secondaire). */
+  --font-display: 'Phonk Contrast', system-ui, sans-serif;
   --font-lead: 'Inter Variable', system-ui, sans-serif;
-  --font-body: 'Manrope Variable', system-ui, sans-serif;
+  --font-body: 'Inter Variable', system-ui, sans-serif;
 
   /* Couleurs */
   --ink: #000000;
