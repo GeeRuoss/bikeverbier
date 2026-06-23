@@ -1,0 +1,26 @@
+# Dépendances
+node_modules/
+.pnpm-store/
+
+# Build Astro
+dist/
+.astro/
+
+# Env & secrets (jamais versionnés)
+.env
+.env.*
+!.env.example
+*.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Sources HD lourdes (garder hors du repo, voir IMAGES.md)
+/sources-hd/
