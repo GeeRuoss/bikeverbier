@@ -182,14 +182,18 @@ button {
   color: var(--white);
 }
 
-/* ---------- Hero ---------- */
+/* ---------- Hero (figé : il se fait recouvrir par la feuille blanche au scroll) ---------- */
 .hero {
-  position: relative;
-  min-height: clamp(480px, 80vh, 760px);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  min-height: 540px;
   display: grid;
   align-items: center;
   color: var(--white);
   isolation: isolate;
+  overflow: hidden;
 }
 .hero__bg {
   position: absolute;
@@ -198,6 +202,16 @@ button {
   height: 100%;
   object-fit: cover;
   z-index: -2;
+  /* léger zoom au chargement (Ken Burns) */
+  animation: heroZoom 16s ease-out forwards;
+}
+@keyframes heroZoom {
+  from {
+    transform: scale(1.08);
+  }
+  to {
+    transform: scale(1);
+  }
 }
 .hero::after {
   content: '';
@@ -219,13 +233,14 @@ button {
   margin-top: 2rem;
 }
 
-/* Feuille blanche arrondie qui chevauche le bas du hero */
+/* Feuille blanche arrondie qui monte et recouvre le hero figé */
 .sheet {
   position: relative;
+  z-index: 1;
   background: var(--white);
   border-radius: var(--radius-sheet) var(--radius-sheet) 0 0;
-  margin-top: clamp(-4rem, -6vw, -2.5rem);
-  z-index: 1;
+  margin-top: -3rem;
+  box-shadow: 0 -24px 50px rgba(0, 0, 0, 0.25);
 }
 
 /* ---------- Cartes d'offre ---------- */
@@ -490,7 +505,8 @@ button {
     scroll-behavior: auto;
   }
   [data-reveal],
-  [data-wipe] {
+  [data-wipe],
+  .hero__bg {
     opacity: 1;
     transform: none;
     clip-path: none;

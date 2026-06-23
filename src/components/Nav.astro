@@ -1,5 +1,5 @@
 ---
-import { ROUTES, pathFor, type Lang, type RouteKey } from '../data/site';
+import { pathFor, type Lang, type RouteKey } from '../data/site';
 import { t } from '../i18n/ui';
 
 interface Props {
@@ -8,14 +8,15 @@ interface Props {
 }
 const { lang, routeKey } = Astro.props;
 const ui = t(lang);
-const otherLang: Lang = lang === 'fr' ? 'en' : 'fr';
 const homeHref = pathFor('home', lang);
+const cta = lang === 'fr' ? 'Réserver' : 'Book';
 
-const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contact'];
+// Contact passe en bouton CTA → on le retire des liens.
+const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal'];
 ---
 
 <header class="nav" data-nav>
-  <div class="nav__inner container">
+  <div class="nav__inner">
     <a class="brand" href={homeHref} aria-label="Bikeverbier.ch — accueil">
       <svg class="brand__star" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
         <path
@@ -42,35 +43,45 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
           ))
         }
       </ul>
-      <div class="lang" role="group" aria-label="Language">
-        <a href={pathFor(routeKey, 'fr')} aria-current={lang === 'fr' ? 'true' : undefined}>FR</a>
-        <span aria-hidden="true">/</span>
-        <a href={pathFor(routeKey, 'en')} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+      <div class="nav__right">
+        <div class="lang" role="group" aria-label="Language">
+          <a href={pathFor(routeKey, 'fr')} aria-current={lang === 'fr' ? 'true' : undefined}>FR</a>
+          <span aria-hidden="true">/</span>
+          <a href={pathFor(routeKey, 'en')} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+        </div>
+        <a class="nav__cta" href={pathFor('contact', lang)}>{cta}</a>
       </div>
     </nav>
   </div>
 </header>
 
 <style>
+  /* Barre flottante en pilule, translucide + flou (style moderne). */
   .nav {
     position: fixed;
-    inset: 0 0 auto 0;
+    top: clamp(0.6rem, 1.5vw, 1.1rem);
+    left: 50%;
+    transform: translateX(-50%);
     z-index: 100;
-    min-height: var(--nav-h);
-    display: flex;
-    align-items: center;
+    width: min(1180px, calc(100% - 1.4rem));
+    border-radius: var(--radius-pill);
+    background: rgba(18, 20, 22, 0.5);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    backdrop-filter: blur(16px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
     transition: background 0.3s ease, box-shadow 0.3s ease;
   }
   .nav.is-solid {
-    background: var(--ink);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.25);
+    background: rgba(10, 11, 12, 0.82);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.3);
   }
   .nav__inner {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    width: 100%;
+    padding: 0.5rem 0.55rem 0.5rem 1.4rem;
   }
   .brand {
     display: inline-flex;
@@ -82,9 +93,6 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
     letter-spacing: 0.02em;
     font-size: 1.05rem;
   }
-  .brand__star {
-    color: var(--teal);
-  }
   .nav__menu {
     display: flex;
     align-items: center;
@@ -93,10 +101,10 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
   .nav__links {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1.4rem;
   }
   .nav__links a {
-    color: var(--white);
+    color: rgba(255, 255, 255, 0.92);
     font-size: 0.95rem;
     transition: color 0.2s ease;
   }
@@ -104,22 +112,44 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
   .nav__links a[aria-current='page'] {
     color: var(--teal);
   }
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
   .lang {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     color: var(--white);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: var(--radius-pill);
-    padding: 0.3rem 0.9rem;
     font-size: 0.85rem;
   }
   .lang a {
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.2s ease;
+  }
+  .lang a:hover {
+    color: var(--white);
   }
   .lang a[aria-current='true'] {
     color: var(--white);
     font-weight: 700;
+  }
+  .nav__cta {
+    display: inline-flex;
+    align-items: center;
+    background: var(--white);
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.6rem 1.25rem;
+    border-radius: var(--radius-pill);
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .nav__cta:hover {
+    background: var(--teal);
+    color: var(--white);
+    transform: translateY(-1px);
   }
   .burger {
     display: none;
@@ -127,13 +157,23 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
     gap: 5px;
     background: none;
     border: 0;
-    padding: 0.5rem;
+    padding: 0.5rem 0.7rem;
   }
   .burger span {
     width: 26px;
     height: 2px;
     background: var(--white);
+    border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .nav[data-open] .burger span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .nav[data-open] .burger span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav[data-open] .burger span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   @media (max-width: 900px) {
@@ -141,26 +181,38 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
       display: flex;
     }
     .nav__menu {
-      position: fixed;
-      inset: var(--nav-h) 0 auto 0;
+      position: absolute;
+      inset: calc(100% + 0.6rem) 0 auto 0;
       flex-direction: column;
+      align-items: stretch;
       gap: 1.25rem;
-      background: var(--ink);
-      padding: 1.5rem var(--gutter) 2rem;
-      transform: translateY(-120%);
-      transition: transform 0.35s ease;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+      background: rgba(12, 13, 14, 0.92);
+      -webkit-backdrop-filter: blur(16px);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 24px;
+      padding: 1.5rem;
+      transform: translateY(-10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s ease, opacity 0.3s ease;
     }
     .nav[data-open] .nav__menu {
-      transform: translateY(0);
-    }
-    .nav[data-open] {
-      background: var(--ink);
+      transform: none;
+      opacity: 1;
+      pointer-events: auto;
     }
     .nav__links {
       flex-direction: column;
       gap: 1.1rem;
       align-items: flex-start;
+    }
+    .nav__right {
+      justify-content: space-between;
+    }
+    .nav__cta {
+      flex: 1;
+      justify-content: center;
     }
   }
 </style>
@@ -174,8 +226,7 @@ const navItems: RouteKey[] = ['guide', 'entreprise', 'semaine', 'nepal', 'contac
     window.addEventListener('scroll', onScroll, { passive: true });
     burger.addEventListener('click', () => {
       const open = nav.hasAttribute('data-open');
-      if (open) nav.removeAttribute('data-open');
-      else nav.setAttribute('data-open', '');
+      nav.toggleAttribute('data-open');
       burger.setAttribute('aria-expanded', String(!open));
     });
   }
