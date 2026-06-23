@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import Icon from '../../components/Icon.astro';
 import { IMG } from '../../data/images';
@@ -39,7 +40,7 @@ const faq = [
       <p class="eyebrow" style="color:#fff">Teambuilding</p>
       <h1 class="h1" data-wipe>We take care of everything, <span class="teal">you enjoy</span>.</h1>
       <p class="lead">Let your team breathe, experience a timeless day right on your doorstep.</p>
-      <CtaButton href="#contact" label="Plan an outing" variant="light" />
+      <div class="hero-actions"><CtaButton href="#contact" label="Plan an outing" variant="light" /><CallLink /></div>
     </div>
   </section>
 

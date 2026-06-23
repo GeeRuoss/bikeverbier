@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CallLink from '../components/CallLink.astro';
 import { IMG, BADGES } from '../data/images';
-import { SITE } from '../data/site';
 
 const lang = 'fr' as const;
 
@@ -38,18 +38,19 @@ const guides = [
   title="Réserver une Sortie VTT à Verbier | Contact Bikeverbier.ch"
   description="Guide VTT à Verbier avec des locaux : sorties E-bike, enduro, rando gourmande et semaine guidée en chalet. Sentiers secrets du Valais avec des guides nés à Verbier."
 >
-  <section class="section" style="padding-top:calc(var(--nav-h) + 3rem); background:var(--ink); color:#fff">
-    <div class="container">
-      <p class="eyebrow" style="color:var(--teal)">Contact</p>
-      <h1 class="h1">Découvrez Verbier avec les <span class="teal">locaux</span> !</h1>
-      <p class="lead" style="margin-top:1rem; max-width:46ch">N'hésitez pas à nous appeler même en cas de demandes ou de conseils pour la région !</p>
-      <p style="margin-top:1rem; color:rgba(255,255,255,.75); display:flex; align-items:center; gap:.7rem; flex-wrap:wrap">Nous parlons <img class="flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
-      <p style="margin-top:1.5rem"><a class="lead teal" href={SITE.phoneHref}>{SITE.phoneDisplay}</a></p>
+  <section class="section contact-hero">
+    <div class="container contact-split">
+      <div>
+        <img class="contact-avatar" src={IMG.guideGuillermo} alt="Guide Bikeverbier" loading="lazy" />
+        <h1 class="h1" style="color:#fff">Découvrez Verbier avec les locaux !</h1>
+        <p class="lead" style="margin-top:1.25rem; max-width:42ch">N'hésitez pas à nous appeler même en cas de demandes ou de conseils pour la région !</p>
+        <p style="margin-top:1.5rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-weight:600">Nous parlons <img class="contact-flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
+        <p style="margin-top:1.75rem"><CallLink /></p>
+      </div>
+      <div>
+        <ContactForm lang={lang} subject="Message · Bikeverbier.ch" card />
+      </div>
     </div>
-  </section>
-
-  <section class="section container">
-    <ContactForm lang={lang} subject="Message · Bikeverbier.ch" />
   </section>
 
   <section class="section section--alt" id="guides">

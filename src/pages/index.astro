@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
 import Icon from '../components/Icon.astro';
 import { IMG, PARTNERS } from '../data/images';
 import { pathFor } from '../data/site';
@@ -65,7 +66,7 @@ const counters = [
       <p class="eyebrow" style="color:#fff">Bienvenue au paradis</p>
       <h1 class="h1" data-wipe>Découvrez le <span class="teal">Verbier caché</span></h1>
       <p class="lead">Des sentiers secrets aux saveurs du terroir valaisan, laissez-vous porter par l'authenticité de nos guides locaux.</p>
-      <CtaButton href={pathFor('contact', lang)} label="Let's go !" variant="light" />
+      <div class="hero-actions"><CtaButton href={pathFor('contact', lang)} label="Let's go !" variant="light" /><CallLink /></div>
     </div>
   </section>
 

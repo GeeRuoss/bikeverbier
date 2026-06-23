@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
 import Icon from '../../components/Icon.astro';
 import { IMG } from '../../data/images';
 import { SITE } from '../../data/site';
@@ -46,7 +47,7 @@ const features = [
       <p class="eyebrow" style="color:#fff">The journey of a lifetime</p>
       <h1 class="h1" data-wipe>10 days of enduro in <span class="teal">Mustang, Nepal</span></h1>
       <p class="lead">Local culture in a truly magical land.</p>
-      <CtaButton href="#demande" label="Book the adventure" variant="light" />
+      <div class="hero-actions"><CtaButton href="#demande" label="Book the adventure" variant="light" /><CallLink /></div>
     </div>
   </section>
 

@@ -1,0 +1,13 @@
+---
+import { SITE } from '../data/site';
+import Icon from './Icon.astro';
+interface Props {
+  class?: string;
+}
+const { class: cls = '' } = Astro.props;
+---
+
+<a class={`call-link ${cls}`} href={SITE.phoneHref}>
+  <Icon name="phone" size={18} />
+  <span>{SITE.phoneDisplay}</span>
+</a>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
 import { IMG } from '../data/images';
 import { SITE } from '../data/site';
 
@@ -42,7 +43,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
       <p class="eyebrow" style="color:#fff">Bienvenue au paradis</p>
       <h1 class="h1" data-wipe>Une semaine de ride à Verbier avec <span class="teal">guide local</span></h1>
       <p class="lead">Séjour en chalet, guide local, remontées incluses.</p>
-      <CtaButton href="#reservation" label="Let's go !" variant="light" />
+      <div class="hero-actions"><CtaButton href="#reservation" label="Let's go !" variant="light" /><CallLink /></div>
     </div>
   </section>
 
