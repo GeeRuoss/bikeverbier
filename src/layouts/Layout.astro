@@ -82,6 +82,20 @@ const breadcrumbLd =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {/* Google tag (gtag.js) — Analytics GA4. Uniquement en prod (pas de pollution depuis le dev). */}
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-7G9DCF9XTC"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-7G9DCF9XTC');
+        </script>
+      </>
+    )}
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
