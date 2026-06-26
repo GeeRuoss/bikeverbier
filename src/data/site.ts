@@ -7,8 +7,8 @@ export const SITE = {
   phoneHref: 'tel:+41774506726',
   whatsapp: 'https://wa.me/41774506726',
   instagram: 'https://www.instagram.com/bikeverbier.ch',
-  // ⚠ À CONFIRMER avec Guillermo : adresse qui reçoit les formulaires (Formsubmit).
-  contactEmail: 'ruosscommunication@gmail.com',
+  // Adresse qui reçoit les formulaires (Formsubmit). ⚠ Activation requise au 1er envoi (voir README).
+  contactEmail: 'info@bikeverbier.ch',
   credits: {
     by: 'Ruoss! Communication',
     photos: 'Tiffany Troillet Photography',
