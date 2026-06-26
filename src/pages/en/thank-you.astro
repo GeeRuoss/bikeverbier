@@ -1,0 +1,137 @@
+---
+// "Thank you" landing after a form submission (Formsubmit _next target, EN).
+// Standalone page (no nav/footer): full focus. Not indexed.
+import '@fontsource-variable/inter';
+import '../../styles/global.css';
+import { IMG } from '../../data/images';
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thank you! · Bikeverbier.ch</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#54B8B3" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+
+  <body>
+    <main class="ty">
+      <img class="ty__bg" src={IMG.heroHome} alt="" fetchpriority="high" />
+      <span class="ty__veil"></span>
+
+      <div class="ty__inner">
+        <a class="ty__brand" href="/en/" aria-label="Bikeverbier.ch, home">
+          <img src="/brand/logo.svg" alt="Bikeverbier.ch" width="210" height="80" />
+        </a>
+
+        <p class="ty__eyebrow">Message received</p>
+        <h1 class="ty__title">Thank you!<br /><span class="teal">See you on the trails.</span></h1>
+        <p class="ty__lead">
+          We've got your message — we usually reply within 24&nbsp;h. In the meantime, get your helmet ready&nbsp;🚵
+        </p>
+
+        <a class="ty__btn" href="/en/">
+          Back to home
+          <span class="ty__dot" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+        </a>
+      </div>
+    </main>
+
+    <style>
+      .ty {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        place-items: center;
+        text-align: center;
+        overflow: hidden;
+        padding: 2.5rem 1.25rem;
+        color: var(--white);
+      }
+      .ty__bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .ty__veil {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.68));
+      }
+      .ty__inner {
+        position: relative;
+        z-index: 1;
+        max-width: 640px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.25rem;
+      }
+      .ty__brand img {
+        height: 76px;
+        width: auto;
+        margin-bottom: 0.5rem;
+      }
+      .ty__eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--teal);
+      }
+      .ty__title {
+        font-family: var(--font-display);
+        font-weight: 700;
+        line-height: 1.08;
+        letter-spacing: -0.02em;
+        font-size: clamp(2.4rem, 6vw, 4.5rem);
+        text-wrap: balance;
+      }
+      .ty__lead {
+        font-size: clamp(1rem, 1.6vw, 1.2rem);
+        color: rgba(255, 255, 255, 0.88);
+        max-width: 30rem;
+      }
+      .ty__btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin-top: 0.75rem;
+        padding: 0.55rem 0.6rem 0.55rem 1.5rem;
+        background: var(--white);
+        color: var(--ink);
+        font-weight: 600;
+        border-radius: var(--radius-pill);
+        transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      }
+      .ty__btn:hover {
+        background: var(--teal);
+        color: var(--white);
+        transform: translateY(-1px);
+      }
+      .ty__dot {
+        display: inline-grid;
+        place-items: center;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        background: var(--ink);
+        color: var(--white);
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      .ty__btn:hover .ty__dot {
+        background: var(--white);
+        color: var(--teal);
+      }
+    </style>
+  </body>
+</html>

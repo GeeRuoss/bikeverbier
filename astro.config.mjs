@@ -13,6 +13,8 @@ export default defineConfig({
         defaultLocale: 'fr',
         locales: { fr: 'fr-FR', en: 'en-GB' },
       },
+      // Pages de remerciement (post-formulaire) : hors sitemap, elles sont en noindex.
+      filter: (page) => !page.includes('/merci') && !page.includes('/thank-you'),
       changefreq: 'monthly',
       priority: 0.7,
       lastmod: new Date(),

@@ -13,6 +13,8 @@ const { lang, subject, card = false } = Astro.props;
 const c = t(lang).contact;
 // Formsubmit : gratuit, sans backend. ⚠ Première soumission = email d'activation à valider.
 const action = `https://formsubmit.co/${SITE.contactEmail}`;
+// Redirection après envoi → page de remerciement à notre marque (selon la langue).
+const nextUrl = SITE.domain + (lang === 'fr' ? '/merci' : '/en/thank-you');
 ---
 
 <form class={`cform ${card ? 'cform--card' : ''}`} action={action} method="POST">
@@ -20,6 +22,7 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
   <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch · nouveau message'} />
   <input type="hidden" name="_captcha" value="false" />
   <input type="hidden" name="_template" value="table" />
+  <input type="hidden" name="_next" value={nextUrl} />
   <!-- Honeypot anti-bot : doit rester vide -->
   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
