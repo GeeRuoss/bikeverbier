@@ -17,6 +17,7 @@ export const UI = {
         "Découvrez l'histoire de Verbier et profitez de vous ressourcer dans le calme de la montagne !",
       sections: 'Liens',
       social: 'Suivez-nous sur Insta !',
+      cgv: 'CGV',
       links: {
         entreprise: 'Entreprises',
         guide: 'Guiding',
@@ -54,6 +55,7 @@ export const UI = {
         'Discover the history of Verbier and enjoy reenergising in the tranquillity of the mountains!',
       sections: 'Links',
       social: 'Follow us on Insta!',
+      cgv: 'Terms & Conditions',
       links: {
         entreprise: 'Businesses',
         guide: 'Guidance',
