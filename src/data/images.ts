@@ -19,6 +19,7 @@ export const IMG = {
 
   // Guide privé
   guideVideos: '/img/guide-videos.jpg',
+  guideGourmande: '/img/rando-gourmande.jpg',
 
   // Entreprise
   contactVisual: '/img/contact-visual.jpg',
