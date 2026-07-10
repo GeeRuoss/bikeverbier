@@ -4,47 +4,50 @@ import { t } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
-  // Sujet de l'email (ex. "Demande Teambuilding"), pour s'y retrouver dans la boîte mail.
+  // Sujet de la demande (ex. "Demande Teambuilding"), pour s'y retrouver dans la boîte mail.
   subject?: string;
   // Affiche le formulaire dans une carte blanche surélevée.
   card?: boolean;
 }
 const { lang, subject, card = false } = Astro.props;
 const c = t(lang).contact;
-// Formsubmit : gratuit, sans backend. ⚠ Première soumission = email d'activation à valider.
-const action = `https://formsubmit.co/${SITE.contactEmail}`;
+// Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
+const G = SITE.gform;
 // Redirection après envoi → page de remerciement à notre marque (selon la langue).
-const nextUrl = SITE.domain + (lang === 'fr' ? '/merci' : '/en/thank-you');
+const nextUrl = lang === 'fr' ? '/merci' : '/en/thank-you';
 ---
 
-<form class={`cform ${card ? 'cform--card' : ''}`} action={action} method="POST">
-  <!-- Réglages Formsubmit -->
-  <input type="hidden" name="_subject" value={subject ?? 'Bikeverbier.ch · nouveau message'} />
-  <input type="hidden" name="_captcha" value="false" />
-  <input type="hidden" name="_template" value="table" />
-  <input type="hidden" name="_next" value={nextUrl} />
+<form
+  class={`cform ${card ? 'cform--card' : ''}`}
+  action={G.action}
+  method="POST"
+  data-next={nextUrl}
+  data-message={G.message}
+>
+  <!-- Sujet de la page : fusionné dans le message par le script global -->
+  {subject && <input type="hidden" name="_context" data-label="Sujet" value={subject} />}
   <!-- Honeypot anti-bot : doit rester vide -->
   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
   <div class="cform__row">
     <label>
       <span>{c.name}</span>
-      <input type="text" name="name" required autocomplete="name" />
+      <input type="text" name={G.name} required autocomplete="name" />
     </label>
     <label>
       <span>{c.email}</span>
-      <input type="email" name="email" required autocomplete="email" />
+      <input type="email" name={G.email} required autocomplete="email" />
     </label>
   </div>
 
   <div class="cform__row">
     <label>
       <span>{c.phone}</span>
-      <input type="tel" name="phone" autocomplete="tel" />
+      <input type="tel" name={G.phone} autocomplete="tel" />
     </label>
     <label>
       <span>{c.request}</span>
-      <select name="request">
+      <select name={G.request}>
         <option value=""></option>
         {c.requestOptions.map((o) => <option value={o}>{o}</option>)}
       </select>
@@ -53,7 +56,7 @@ const nextUrl = SITE.domain + (lang === 'fr' ? '/merci' : '/en/thank-you');
 
   <label>
     <span>{c.message}</span>
-    <textarea name="message" rows="5" required></textarea>
+    <textarea name={G.message} rows="5" required></textarea>
   </label>
 
   <button type="submit" class="btn btn--dark cform__submit">

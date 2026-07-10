@@ -191,6 +191,34 @@ const breadcrumbLd =
         );
         counters.forEach((el) => cio.observe(el));
       }
+
+      // Formulaires de contact → Google Form (voir site.ts). Les champs annexes (nom sans
+      // « entry.* » : riders, couples, week, _context…) sont fusionnés en tête du message,
+      // puis redirection vers la page merci de la bonne langue (data-next).
+      document.querySelectorAll<HTMLFormElement>('form.cform[data-next]').forEach((form) => {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          if (form.querySelector<HTMLInputElement>('input[name="_honey"]')?.value) return; // anti-bot
+          const msgKey = form.dataset.message || '';
+          const fd = new FormData(form);
+          fd.delete('_honey');
+          const extras: string[] = [];
+          for (const el of Array.from(form.elements) as (HTMLInputElement | HTMLSelectElement)[]) {
+            if (!el.name || el.name.startsWith('entry.') || el.name === '_honey') continue;
+            if (el.value) extras.push(`${el.dataset.label || el.name} : ${el.value}`);
+            fd.delete(el.name);
+          }
+          if (extras.length) {
+            fd.set(msgKey, [extras.join('\n'), fd.get(msgKey)].filter(Boolean).join('\n\n'));
+          }
+          try {
+            await fetch(form.action, { method: 'POST', mode: 'no-cors', body: fd });
+            window.location.assign(form.dataset.next || '/');
+          } catch {
+            form.submit(); // secours si fetch échoue : envoi natif (page de confirmation Google)
+          }
+        });
+      });
     </script>
   </body>
 </html>

@@ -8,7 +8,8 @@ import { IMG } from '../data/images';
 import { SITE } from '../data/site';
 
 const lang = 'fr' as const;
-const action = `https://formsubmit.co/${SITE.contactEmail}`;
+// Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
+const G = SITE.gform;
 
 const features = [
   {
@@ -117,23 +118,20 @@ const features = [
     </section>
 
     <ContactBand lang={lang} eyebrow="Demande" title="Écrivez-nous" lead="Pour répondre à vos attentes, écrivez-nous et nous ferons de notre mieux pour vous." id="demande">
-      <form class="cform cform--card" action={action} method="POST">
-          <input type="hidden" name="_subject" value="Demande Nepal · Bikeverbier.ch" />
-          <input type="hidden" name="_captcha" value="false" />
-          <input type="hidden" name="_template" value="table" />
-          <input type="hidden" name="_next" value={`${SITE.domain}/merci`} />
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
+          <input type="hidden" name={G.request} value="Demande Nepal" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="cform__row">
-            <label><span>Nom</span><input type="text" name="name" required /></label>
-            <label><span>Email</span><input type="email" name="email" required /></label>
+            <label><span>Nom</span><input type="text" name={G.name} required /></label>
+            <label><span>Email</span><input type="email" name={G.email} required /></label>
           </div>
           <div class="cform__row">
-            <label><span>Téléphone</span><input type="tel" name="phone" /></label>
+            <label><span>Téléphone</span><input type="tel" name={G.phone} /></label>
             <label><span>Nombre de riders</span>
-              <select name="riders">{['1','2','3','4','5','6','7','8','9','Plus'].map((n) => <option>{n}</option>)}</select>
+              <select name="riders" data-label="Nombre de riders">{['1','2','3','4','5','6','7','8','9','Plus'].map((n) => <option>{n}</option>)}</select>
             </label>
           </div>
-          <label><span>Message</span><textarea name="message" rows="5"></textarea></label>
+          <label><span>Message</span><textarea name={G.message} rows="5"></textarea></label>
           <button type="submit" class="btn btn--dark cform__submit"><span>Envoyer</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </form>
     </ContactBand>

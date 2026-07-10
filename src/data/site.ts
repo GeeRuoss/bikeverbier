@@ -7,8 +7,22 @@ export const SITE = {
   phoneHref: 'tel:+41774506726',
   whatsapp: 'https://wa.me/41774506726',
   instagram: 'https://www.instagram.com/bikeverbier.ch',
-  // Adresse qui reçoit les formulaires (Formsubmit). ⚠ Activation requise au 1er envoi (voir README).
+  // Adresse de contact « publique » (non affichée sur le site actuellement).
   contactEmail: 'info@bikeverbier.ch',
+  // Réception des formulaires : Google Form « Messages du site bikeverbier.ch »
+  // (compte ruosscommunication@gmail.com — notification e-mail à chaque envoi, réponses archivées dans le Form).
+  // Remplace Formsubmit qui ne livrait plus aucun e-mail (constat du 10.07.2026).
+  gform: {
+    action:
+      'https://docs.google.com/forms/d/e/1FAIpQLSeo0alF7RVWsZicCxORhdwGnJn-NHTStzOk7FtO10VwlLGLJg/formResponse',
+    // Identifiants des questions du Google Form.
+    name: 'entry.2005620554',
+    email: 'entry.1045781291',
+    message: 'entry.1065046570',
+    phone: 'entry.1166974658',
+    // « Demande » : type de demande choisi, ou sujet fixe de la page (ex-_subject Formsubmit).
+    request: 'entry.839337160',
+  },
   credits: {
     by: 'Ruoss! Communication',
     photos: 'Tiffany Troillet Photography',

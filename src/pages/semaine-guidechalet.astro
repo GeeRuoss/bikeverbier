@@ -28,7 +28,8 @@ const semaines = [
   '31 août au 6 sept.', '7 au 13 sept.', '14 au 20 sept.', '21 au 27 sept.',
   '28 sept. au 4 oct.', '5 au 11 oct.', '12 au 18 oct.', '19 au 25 oct.',
 ];
-const action = `https://formsubmit.co/${SITE.contactEmail}`;
+// Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
+const G = SITE.gform;
 ---
 
 <Layout
@@ -91,32 +92,29 @@ const action = `https://formsubmit.co/${SITE.contactEmail}`;
     </section>
 
     <ContactBand lang={lang} eyebrow="Réservation" title="Demandez votre semaine" lead="Remplissez le formulaire pour demander la semaine de votre choix. Nous reviendrons vers vous rapidement pour confirmer les détails. À bientôt sur les sentiers !" id="reservation">
-      <form class="cform cform--card" action={action} method="POST">
-        <input type="hidden" name="_subject" value="Réservation Semaine + Chalet · Bikeverbier.ch" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_next" value={`${SITE.domain}/merci`} />
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
+        <input type="hidden" name={G.request} value="Réservation Semaine + Chalet" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
 
         <div class="cform__row">
-          <label><span>Nom</span><input type="text" name="name" required /></label>
-          <label><span>Email</span><input type="email" name="email" required /></label>
+          <label><span>Nom</span><input type="text" name={G.name} required /></label>
+          <label><span>Email</span><input type="email" name={G.email} required /></label>
         </div>
         <div class="cform__row">
-          <label><span>Téléphone</span><input type="tel" name="phone" /></label>
+          <label><span>Téléphone</span><input type="tel" name={G.phone} /></label>
           <label><span>Nombre de riders</span>
-            <select name="riders">{['1','2','3','4','5','6','7','8','9','Plus'].map((n) => <option>{n}</option>)}</select>
+            <select name="riders" data-label="Nombre de riders">{['1','2','3','4','5','6','7','8','9','Plus'].map((n) => <option>{n}</option>)}</select>
           </label>
         </div>
         <div class="cform__row">
           <label><span>Nombre de couples</span>
-            <select name="couples">{['0','1','2','3','4'].map((n) => <option>{n}</option>)}</select>
+            <select name="couples" data-label="Nombre de couples">{['0','1','2','3','4'].map((n) => <option>{n}</option>)}</select>
           </label>
           <label><span>Semaine souhaitée</span>
-            <select name="week">{semaines.map((s) => <option>{s}</option>)}</select>
+            <select name="week" data-label="Semaine souhaitée">{semaines.map((s) => <option>{s}</option>)}</select>
           </label>
         </div>
-        <label><span>Message</span><textarea name="message" rows="5"></textarea></label>
+        <label><span>Message</span><textarea name={G.message} rows="5"></textarea></label>
         <button type="submit" class="btn btn--dark cform__submit"><span>Réserver</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       </form>
     </ContactBand>
