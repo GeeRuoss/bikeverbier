@@ -22,6 +22,11 @@ export const SITE = {
     phone: 'entry.1166974658',
     // « Demande » : type de demande choisi, ou sujet fixe de la page (ex-_subject Formsubmit).
     request: 'entry.839337160',
+    // Question obligatoire ajoutée le 25.07.2026 contre le spam de bots qui postent
+    // directement sur l'URL Google (sans passer par le site) : ils ignorent ce champ,
+    // Google rejette leur envoi côté serveur (question obligatoire manquante).
+    antibot: 'entry.493290698',
+    antibotValue: 'Envoyé depuis le site',
   },
   credits: {
     by: 'Ruoss! Communication',

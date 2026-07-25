@@ -95,6 +95,7 @@ const G = SITE.gform;
       <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
         <input type="hidden" name={G.request} value="Réservation Semaine + Chalet" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+        <input type="hidden" name={G.antibot} value={G.antibotValue} />
 
         <div class="cform__row">
           <label><span>Nom</span><input type="text" name={G.name} required /></label>

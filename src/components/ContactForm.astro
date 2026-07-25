@@ -28,6 +28,8 @@ const nextUrl = lang === 'fr' ? '/merci' : '/en/thank-you';
   {subject && <input type="hidden" name="_context" data-label="Sujet" value={subject} />}
   <!-- Honeypot anti-bot : doit rester vide -->
   <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+  <!-- Question obligatoire côté Google Form : rejette les bots qui postent sans passer par le site -->
+  <input type="hidden" name={G.antibot} value={G.antibotValue} />
 
   <div class="cform__row">
     <label>
