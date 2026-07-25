@@ -121,6 +121,7 @@ const features = [
       <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
           <input type="hidden" name={G.request} value="Demande Nepal" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name={G.antibot} value={G.antibotValue} />
           <div class="cform__row">
             <label><span>Nom</span><input type="text" name={G.name} required /></label>
             <label><span>Email</span><input type="email" name={G.email} required /></label>
