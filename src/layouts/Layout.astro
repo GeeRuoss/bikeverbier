@@ -196,9 +196,11 @@ const breadcrumbLd =
       // « entry.* » : riders, couples, week, _context…) sont fusionnés en tête du message,
       // puis redirection vers la page merci de la bonne langue (data-next).
       document.querySelectorAll<HTMLFormElement>('form.cform[data-next]').forEach((form) => {
+        const loadedAt = Date.now();
         form.addEventListener('submit', async (e) => {
           e.preventDefault();
           if (form.querySelector<HTMLInputElement>('input[name="_honey"]')?.value) return; // anti-bot
+          if (Date.now() - loadedAt < 3000) return; // anti-bot : soumission trop rapide (bot)
           const msgKey = form.dataset.message || '';
           const fd = new FormData(form);
           fd.delete('_honey');
