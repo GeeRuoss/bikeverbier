@@ -1,0 +1,149 @@
+---
+// Page dédiée « cours VTT Verbier » : cible les requêtes cours privé / moniteur /
+// école VTT Verbier, en face de l'École Suisse de Ski et VTT (objectif : passer devant).
+// Positionnement honnête : pas une école de masse, du 100 % privé avec des locaux.
+// PRIX : sur demande pour l'instant ; grille des sorties privées en repère.
+// Dès que Guillermo fixe des tarifs cours, les afficher ici (les leaders montrent leurs prix).
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Icon from '../components/Icon.astro';
+import Reviews from '../components/Reviews.astro';
+import { IMG } from '../data/images';
+import { SITE, pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+
+const themes = [
+  { icon: 'shield', title: 'Les bases solides', text: 'Position sur le vélo, équilibre, regard, freinage dosé : les fondamentaux qui changent tout, dès la première heure.' },
+  { icon: 'route', title: 'Virages et trajectoires', text: 'Virages relevés, épingles, choix de trajectoire : on travaille là où se gagne le plaisir en descente.' },
+  { icon: 'mountain', title: 'Franchissements', text: 'Marches, racines, passages techniques et, selon votre niveau, les premiers sauts. Toujours progressif, jamais forcé.' },
+  { icon: 'leaf', title: 'La confiance', text: "Le vrai objectif : redescendre avec le sourire. On choisit le terrain adapté et on monte la difficulté à votre rythme." },
+];
+
+const faq = [
+  {
+    q: 'Combien coûte un cours de VTT privé à Verbier ?',
+    a: "Sur demande, selon vos objectifs et la durée. Pour vous situer, nos sorties privées vont de 320 CHF la demi-journée (1 personne) à des tarifs dégressifs en groupe : un cours se construit sur la même base, avec le coaching en plus. Devis rapide par WhatsApp ou téléphone.",
+  },
+  {
+    q: 'Les cours sont-ils adaptés aux enfants ?',
+    a: "Oui. Les enfants et les ados sont les bienvenus, avec un moniteur rien que pour eux ou pour la famille. On adapte le terrain, la durée et le vocabulaire à l'âge, et le casque est offert.",
+  },
+  {
+    q: 'Faut-il son propre vélo pour un cours ?',
+    a: 'Non. Nous réservons pour vous un e-bike ou un VTT à 125 CHF la journée chez nos partenaires de Verbier, réglé à votre taille et prêt au départ du cours.',
+  },
+  {
+    q: 'Quelle est la différence avec une sortie guidée ?',
+    a: "La sortie guidée fait découvrir les plus beaux sentiers de Verbier. Le cours privé vise la progression : on choisit un terrain d'exercice, on répète, on corrige, on filme si utile. Beaucoup combinent les deux : cours le matin, sortie l'après-midi.",
+  },
+  {
+    q: 'En quelles langues enseignez-vous ?',
+    a: 'Français, anglais, espagnol et allemand. Nos moniteurs sont certifiés Swiss Cycling et tous nés à Verbier.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="cours"
+  title="Cours de VTT Privés à Verbier | Adultes & Enfants, Moniteur Local | Bikeverbier.ch"
+  description="Cours de VTT privés à Verbier pour adultes et enfants : position, virages, freinage, franchissements. Moniteurs certifiés Swiss Cycling nés à Verbier, en français, anglais, espagnol et allemand. Vélo de location possible."
+  ogImage={IMG.heroCours}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroCours} alt="Cours de VTT sur un virage relevé en forêt à Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Cours privés VTT à Verbier</p>
+      <h1 class="h1" data-wipe>Progressez avec un moniteur <span class="teal">né à Verbier</span></h1>
+      <p class="lead">Adultes et enfants, du premier virage relevé aux passages techniques. 100 % privé, 100 % à votre rythme.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Réserver un cours" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Une école à taille humaine</p>
+      <h2 class="h2">Pas de groupe de dix, <span class="teal">un moniteur pour vous</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Chez nous, un cours de VTT est toujours privé : vous, votre famille ou vos amis, et un moniteur certifié Swiss Cycling qui connaît chaque terrain d'exercice de Verbier pour l'avoir appris enfant.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Envie de découvrir plutôt que de travailler la technique ? Regardez nos <a href={pathFor('guide', lang)}>sorties VTT guidées à Verbier</a>, ou combinez les deux dans la même journée.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Ce qu'on travaille</p>
+        <h2 class="h2">La technique qui libère le <span class="teal">plaisir</span></h2>
+      </div>
+      <div class="feature-grid">
+        {themes.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Infos pratiques</p>
+        <h2 class="h2">Simple comme un <span class="teal">message</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>Cours 100 % privés : solo, famille ou petit groupe d'amis</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>Demi-journée ou journée, sur le terrain adapté à votre niveau</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Vélo de location</a>&nbsp;: 125.- la journée, casque offert</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>Tarifs sur demande, réponse rapide par WhatsApp</li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Demander un cours" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} />
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ : cours de VTT à <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
+        { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
+        { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
+        { href: pathFor('contact', lang), label: 'Rencontrer nos moniteurs' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

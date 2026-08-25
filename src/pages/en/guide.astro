@@ -166,8 +166,8 @@ const faqLd = {
           <div class="card__body" data-reveal>
             <p class="eyebrow">Lessons &amp; technique</p>
             <h2 class="h3">The pleasure of mountain biking comes from <span class="teal">mastery</span>.</h2>
-            <p style="color:var(--gray-text)">Adult or child, <strong>private lessons</strong> are available upon request, to progress at your own pace with personalised support. Meanwhile, discover a selection of useful <strong>technical videos</strong> to refine your riding skills.</p>
-            <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Watch the Videos" variant="dark" external />
+            <p style="color:var(--gray-text)">Adult or child, our <a href={pathFor('cours', lang)}>private MTB lessons</a> help you progress at your own pace with personalised coaching: position, cornering, braking, confidence. Meanwhile, a selection of useful <a href="https://www.mobilesport.ch/vtt/mtb-f/" target="_blank" rel="noopener">technical videos</a> to refine your riding skills.</p>
+            <CtaButton href={pathFor('cours', lang)} label="Discover Private Lessons" variant="dark" />
           </div>
         </article>
       </div>
@@ -192,7 +192,7 @@ const faqLd = {
       lang={lang}
       links={[
         { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
-        { href: pathFor('semaine', lang), label: 'Guided MTB week with chalet' },
+        { href: pathFor('cours', lang), label: 'Private MTB lessons, adults and kids' },
         { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
         { href: pathFor('entreprise', lang), label: 'Corporate e-bike team building' },
       ]}

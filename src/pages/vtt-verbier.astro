@@ -71,7 +71,7 @@ const faq = [
   },
   {
     q: 'Combien coûte une sortie VTT guidée à Verbier ?',
-    a: "De 80 à 320 CHF par personne la demi-journée et de 120 à 550 CHF la journée selon la taille du groupe. Une semaine guidée avec chalet et forfait remontées coûte de 1290 à 1990 CHF par personne.",
+    a: "De 80 à 320 CHF par personne la demi-journée et de 120 à 550 CHF la journée selon la taille du groupe. Les cours privés et le voyage au Népal sont sur demande.",
   },
 ];
 
@@ -111,7 +111,7 @@ const faqLd = {
         Verbier, à 1500 m d'altitude dans le Val de Bagnes en Valais, c'est environ 400 km de sentiers balisés au cœur du domaine des 4 Vallées, un bike park desservi par la télécabine de Médran, une trentaine de remontées mécaniques en été et une quinzaine de restaurants d'altitude. La saison s'étend en général de mai à octobre.
       </p>
       <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
-        Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a> et notre <a href={pathFor('semaine', lang)}>semaine VTT avec chalet</a>.
+        Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a> et nos <a href={pathFor('cours', lang)}>cours privés</a>.
       </p>
     </section>
 
@@ -159,7 +159,7 @@ const faqLd = {
       <ul class="icon-list" style="margin-top:1.75rem">
         <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Sortie guidée privée</a>&nbsp;: de 80.- à 550.- par personne selon le groupe et la durée</li>
         <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Location e-bike ou VTT</a>&nbsp;: 125.- la journée, casque offert</li>
-        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('semaine', lang)} style="text-decoration:underline; text-underline-offset:2px">Semaine guidée + chalet</a>&nbsp;: de 1290.- à 1990.- par personne, forfait remontées inclus</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('cours', lang)} style="text-decoration:underline; text-underline-offset:2px">Cours privé VTT</a>&nbsp;: sur demande, adultes et enfants</li>
       </ul>
     </section>
 
@@ -199,7 +199,7 @@ const faqLd = {
       links={[
         { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
         { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
-        { href: pathFor('semaine', lang), label: 'Semaine VTT guidée avec chalet' },
+        { href: pathFor('cours', lang), label: 'Cours privés VTT à Verbier' },
         { href: pathFor('nepal', lang), label: 'Voyage enduro au Népal' },
       ]}
     />

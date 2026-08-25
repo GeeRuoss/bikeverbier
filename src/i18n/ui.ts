@@ -7,7 +7,7 @@ export const UI = {
     nav: {
       guide: 'Guide Privé',
       entreprise: "Sortie d'entreprise",
-      semaine: 'Semaine Guide + Chalet',
+      cours: 'Cours Privés',
       nepal: 'Nepal',
       contact: 'Contact',
       location: 'Location e-bike',
@@ -24,7 +24,7 @@ export const UI = {
       links: {
         entreprise: 'Entreprises',
         guide: 'Guide VTT Verbier',
-        semaine: 'Semaine + chalet',
+        cours: 'Cours privés VTT',
         contact: 'Contact',
         nepal: 'Nepal',
         location: 'Location e-bike Verbier',
@@ -38,7 +38,7 @@ export const UI = {
       email: 'Email',
       phone: 'Téléphone (optionnel)',
       request: 'Demande (optionnel)',
-      requestOptions: ['Teambuilding', 'Rando Gourmande', 'Tour Guidé', 'Nepal'],
+      requestOptions: ['Teambuilding', 'Rando Gourmande', 'Tour Guidé', 'Cours Privé', 'Nepal'],
       message: 'Message',
       submit: 'Ça roule !',
       sent: 'Merci ! Votre message a bien été envoyé.',
@@ -50,7 +50,7 @@ export const UI = {
     nav: {
       guide: 'Private Guide',
       entreprise: 'Teambuilding',
-      semaine: 'Week Guide + Chalet',
+      cours: 'Private Lessons',
       nepal: 'Nepal',
       contact: 'Contact',
       location: 'E-bike rental',
@@ -67,7 +67,7 @@ export const UI = {
       links: {
         entreprise: 'Businesses',
         guide: 'MTB guide Verbier',
-        semaine: 'Week in a chalet',
+        cours: 'Private MTB lessons',
         contact: 'Contact',
         nepal: 'Nepal',
         location: 'E-bike rental Verbier',
@@ -81,7 +81,7 @@ export const UI = {
       email: 'Email',
       phone: 'Telephone (optional)',
       request: 'Request (optional)',
-      requestOptions: ['Team Building', 'Gourmet Hiking', 'Guided Tour', 'Nepal'],
+      requestOptions: ['Team Building', 'Gourmet Hiking', 'Guided Tour', 'Private Lesson', 'Nepal'],
       message: 'Message',
       submit: "Let's roll!",
       sent: 'Thank you! Your message has been sent.',

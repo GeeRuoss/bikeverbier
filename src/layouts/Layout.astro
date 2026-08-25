@@ -36,8 +36,8 @@ const homeUrl = lang === 'fr' ? SITE.domain + '/' : SITE.domain + '/en/';
 // Description dans la langue de la page : les moteurs et les IA lisent les deux versions.
 const businessDescription =
   lang === 'fr'
-    ? 'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, location e-bike, semaine guidée en chalet et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.'
-    : 'Local mountain bike guides in Verbier (Valais, Switzerland): guided e-bike and enduro tours, gourmet rides, e-bike rental, guided chalet weeks and an enduro trip to Nepal. Guides born in Verbier, Swiss Cycling certified, all levels welcome.';
+    ? 'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, cours privés adultes et enfants, location e-bike et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.'
+    : 'Local mountain bike guides in Verbier (Valais, Switzerland): guided e-bike and enduro tours, gourmet rides, private lessons for adults and kids, e-bike rental and an enduro trip to Nepal. Guides born in Verbier, Swiss Cycling certified, all levels welcome.';
 
 // Avis clients (reviews.ts) exposés en JSON-LD : Google n'affiche plus d'étoiles pour les
 // avis hébergés sur son propre site, mais les autres moteurs et les IA les lisent.
@@ -60,7 +60,7 @@ const businessLd = {
   email: SITE.contactEmail,
   image: SITE.domain + '/img/og-home.jpg',
   logo: SITE.domain + '/brand/logo-mark.png',
-  priceRange: 'CHF 80-1990',
+  priceRange: 'CHF 80-550',
   currenciesAccepted: 'CHF',
   knowsLanguage: ['fr', 'en', 'es', 'de'],
   address: {
@@ -95,8 +95,7 @@ const businessLd = {
     {
       '@type': 'Offer',
       priceCurrency: 'CHF',
-      price: 1290,
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Semaine guidée VTT + chalet (dès 1290 CHF par personne)' : 'Guided MTB week + chalet (from CHF 1290 per person)', url: SITE.domain + pathFor('semaine', lang) },
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Cours privés de VTT, adultes et enfants' : 'Private MTB lessons, adults and kids', url: SITE.domain + pathFor('cours', lang) },
     },
     {
       '@type': 'Offer',

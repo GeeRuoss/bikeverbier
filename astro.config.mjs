@@ -6,6 +6,12 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://www.bikeverbier.ch',
   trailingSlash: 'ignore',
+  // Offre « Semaine guide + chalet » retirée le 25.08.2026 (décision Guillermo).
+  // Redirections meta-refresh générées par Astro : zéro 404, le jus SEO suit.
+  redirects: {
+    '/semaine-guidechalet': '/guide/',
+    '/en/semaine-guidechalet': '/en/guide/',
+  },
   integrations: [
     sitemap({
       // FR à la racine (défaut), EN sous /en/ : génère les hreflang dans le sitemap.

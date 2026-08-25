@@ -30,12 +30,12 @@ const offers = [
   },
   {
     img: IMG.cardSemaine,
-    alt: 'Rider dans un virage relevé pendant la semaine VTT à Verbier',
-    eyebrow: 'À partir de 1290.-',
-    title: 'Semaine Guidée + Chalet',
-    items: ['6 nuits dans un chalet', '5 jours guidés avec un guide Swiss Cycling', 'Abonnement Verbier inclus et shuttle'],
+    alt: 'Rider en plein virage relevé pendant un cours de VTT à Verbier',
+    eyebrow: 'Adultes & enfants',
+    title: 'Cours Privés VTT',
+    items: ['Position, virages, freinage', 'Du débutant au pilote confirmé', 'Avec un moniteur né à Verbier'],
     cta: 'Découvrir',
-    href: pathFor('semaine', lang),
+    href: pathFor('cours', lang),
   },
   {
     img: IMG.cardNepal,
@@ -61,7 +61,7 @@ const counters = [
   lang={lang}
   routeKey="home"
   title="#1 Guide VTT Verbier | E-bike, Enduro & Rando | Bikeverbier.ch"
-  description="Guide VTT local à Verbier : sorties E-bike & enduro, rando gourmande, semaine guidée en chalet avec lift pass. Vos guides nés à Verbier vous font découvrir les meilleurs sentiers du Valais."
+  description="Guide VTT local à Verbier : sorties E-bike & enduro, rando gourmande, cours privés adultes et enfants, location e-bike. Vos guides nés à Verbier vous font découvrir les meilleurs sentiers du Valais."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
@@ -119,7 +119,7 @@ const counters = [
           <p class="eyebrow">Bienvenue</p>
           <h2 class="h2">Bienvenue chez <span class="teal">Bikeverbier.ch</span> !</h2>
           <p class="lead">Nous sommes des guides tous nés à Verbier prêts à vous faire découvrir nos chemins et traditions locales !</p>
-          <p style="color:var(--gray-text)">Votre <a href={pathFor('guide', lang)}>guide VTT local à Verbier</a> : sorties e-bike et enduro, randos gourmandes et semaines guidées en chalet, avec <a href={pathFor('location', lang)}>location e-bike</a> possible pour chaque sortie. Des sentiers secrets du Valais aux meilleures tables d'altitude, on partage notre montagne avec ceux qui veulent la vivre autrement. Envie de préparer votre séjour ? Parcourez notre <a href={pathFor('itineraires', lang)}>guide complet du VTT à Verbier</a>.</p>
+          <p style="color:var(--gray-text)">Votre <a href={pathFor('guide', lang)}>guide VTT local à Verbier</a> : sorties e-bike et enduro, randos gourmandes et <a href={pathFor('cours', lang)}>cours privés</a>, avec <a href={pathFor('location', lang)}>location e-bike</a> possible pour chaque sortie. Des sentiers secrets du Valais aux meilleures tables d'altitude, on partage notre montagne avec ceux qui veulent la vivre autrement. Envie de préparer votre séjour ? Parcourez notre <a href={pathFor('itineraires', lang)}>guide complet du VTT à Verbier</a>.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Nos Guides" variant="teal" />
         </div>
       </div>

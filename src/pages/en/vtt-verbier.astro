@@ -69,7 +69,7 @@ const faq = [
   },
   {
     q: 'How much does a guided mountain bike tour cost in Verbier?',
-    a: 'From CHF 80 to 320 per person for a half day and from CHF 120 to 550 for a full day, depending on group size. A guided week with chalet and lift pass costs from CHF 1290 to 1990 per person.',
+    a: 'From CHF 80 to 320 per person for a half day and from CHF 120 to 550 for a full day, depending on group size. Private lessons and the Nepal trip are priced on request.',
   },
 ];
 
@@ -109,7 +109,7 @@ const faqLd = {
         Verbier, at 1500 m in the Val de Bagnes in Valais, offers around 400 km of marked trails in the heart of the 4 Vallées area, a bike park served by the Médran gondola, some thirty lifts in summer and about fifteen high-altitude restaurants. The season generally runs from May to October.
       </p>
       <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
-        This page is our local guide: what we answer when people ask us where, when and how to ride in Verbier. To live it on the trails, there are our <a href={pathFor('guide', lang)}>guided tours</a> and our <a href={pathFor('semaine', lang)}>guided MTB week with chalet</a>.
+        This page is our local guide: what we answer when people ask us where, when and how to ride in Verbier. To live it on the trails, there are our <a href={pathFor('guide', lang)}>guided tours</a> and our <a href={pathFor('cours', lang)}>private lessons</a>.
       </p>
     </section>
 
@@ -157,7 +157,7 @@ const faqLd = {
       <ul class="icon-list" style="margin-top:1.75rem">
         <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Private guided tour</a>: CHF 80 to 550 per person depending on group and duration</li>
         <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">E-bike or MTB rental</a>: CHF 125 per day, helmet included</li>
-        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('semaine', lang)} style="text-decoration:underline; text-underline-offset:2px">Guided week + chalet</a>: CHF 1290 to 1990 per person, lift pass included</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('cours', lang)} style="text-decoration:underline; text-underline-offset:2px">Private MTB lesson</a>: on request, adults and kids</li>
       </ul>
     </section>
 
@@ -197,7 +197,7 @@ const faqLd = {
       links={[
         { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
         { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
-        { href: pathFor('semaine', lang), label: 'Guided MTB week with chalet' },
+        { href: pathFor('cours', lang), label: 'Private MTB lessons in Verbier' },
         { href: pathFor('nepal', lang), label: 'Enduro trip to Nepal' },
       ]}
     />

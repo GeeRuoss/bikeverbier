@@ -10,6 +10,7 @@ export const IMG = {
   heroSemaine: '/img/hero-semaine.webp',
   heroNepal: '/img/hero-nepal.webp',
   heroLocation: '/img/hero-location.webp',
+  heroCours: '/img/hero-cours.webp',
   heroVtt: '/img/hero-vtt.webp',
 
   // Cartes offres (accueil)

@@ -30,12 +30,12 @@ const offers = [
   },
   {
     img: IMG.cardSemaine,
-    alt: 'Rider on a bermed turn during the MTB week in Verbier',
-    eyebrow: 'Starting from CHF 1290.-',
-    title: 'Guided Week + Chalet',
-    items: ['6 nights in a chalet', '5 days guided with a Swiss Cycling guide', 'Included Verbier subscription and shuttle'],
+    alt: 'Rider on a bermed turn during an MTB lesson in Verbier',
+    eyebrow: 'Adults & kids',
+    title: 'Private MTB Lessons',
+    items: ['Position, cornering, braking', 'From beginner to confident rider', 'With an instructor born in Verbier'],
     cta: 'Discover',
-    href: pathFor('semaine', lang),
+    href: pathFor('cours', lang),
   },
   {
     img: IMG.cardNepal,
@@ -61,7 +61,7 @@ const counters = [
   lang={lang}
   routeKey="home"
   title="Mountain Bike Guide Verbier | E-bike & Enduro Tours | Bikeverbier.ch"
-  description="Local mountain bike guides in Verbier, Switzerland: guided e-bike and enduro tours, gourmet rides, e-bike rental and guided chalet weeks with lift pass. Guides born in Verbier, all levels welcome."
+  description="Local mountain bike guides in Verbier, Switzerland: guided e-bike and enduro tours, gourmet rides, private MTB lessons for adults and kids, e-bike rental. Guides born in Verbier, all levels welcome."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
@@ -119,7 +119,7 @@ const counters = [
           <p class="eyebrow">Welcome</p>
           <h2 class="h2">Welcome to <span class="teal">Bikeverbier.ch</span>!</h2>
           <p class="lead">We are guides all born in Verbier, ready to introduce you to our local trails and traditions!</p>
-          <p style="color:var(--gray-text)">Your local <a href={pathFor('guide', lang)}>mountain bike guide in Verbier</a>: e-bike and enduro outings, gourmet rides and guided weeks in a chalet, with <a href={pathFor('location', lang)}>e-bike rental</a> available for every tour. From the secret trails of Valais to the finest mountain-top restaurants, we share our mountains with those who want to experience them differently. Planning your trip? Browse our <a href={pathFor('itineraires', lang)}>complete guide to mountain biking in Verbier</a>.</p>
+          <p style="color:var(--gray-text)">Your local <a href={pathFor('guide', lang)}>mountain bike guide in Verbier</a>: e-bike and enduro outings, gourmet rides and <a href={pathFor('cours', lang)}>private lessons</a>, with <a href={pathFor('location', lang)}>e-bike rental</a> available for every tour. From the secret trails of Valais to the finest mountain-top restaurants, we share our mountains with those who want to experience them differently. Planning your trip? Browse our <a href={pathFor('itineraires', lang)}>complete guide to mountain biking in Verbier</a>.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Our Guides" variant="teal" />
         </div>
       </div>

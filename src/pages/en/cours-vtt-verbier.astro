@@ -1,0 +1,147 @@
+---
+// Dedicated "MTB lessons Verbier" page (EN). Same FR slug, per site convention.
+// Targets private lesson / instructor / bike school Verbier queries.
+// PRICES: on request for now; private-tour grid as a reference point.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'en' as const;
+
+const themes = [
+  { icon: 'shield', title: 'Solid basics', text: 'Body position, balance, vision, controlled braking: the fundamentals that change everything, from the very first hour.' },
+  { icon: 'route', title: 'Cornering and lines', text: 'Berms, switchbacks, line choice: we work where the fun in descending is won.' },
+  { icon: 'mountain', title: 'Technical features', text: 'Steps, roots, technical sections and, depending on your level, your first jumps. Always progressive, never forced.' },
+  { icon: 'leaf', title: 'Confidence', text: 'The real goal: riding back down with a smile. We pick the right terrain and raise the difficulty at your pace.' },
+];
+
+const faq = [
+  {
+    q: 'How much does a private MTB lesson cost in Verbier?',
+    a: 'On request, depending on your goals and the duration. As a reference, our private tours range from CHF 320 for a half day (1 person) with decreasing group rates: a lesson is built on the same basis, with coaching on top. Quick quote by WhatsApp or phone.',
+  },
+  {
+    q: 'Are the lessons suitable for children?',
+    a: 'Yes. Kids and teenagers are welcome, with an instructor dedicated to them or to the whole family. We adapt the terrain, the duration and the vocabulary to their age, and helmets are included.',
+  },
+  {
+    q: 'Do I need my own bike for a lesson?',
+    a: 'No. We book an e-bike or a mountain bike for you at CHF 125 per day with our Verbier partners, adjusted to your size and ready at the start of the lesson.',
+  },
+  {
+    q: 'What is the difference with a guided tour?',
+    a: 'A guided tour is about discovering the most beautiful trails of Verbier. A private lesson is about progression: we pick a practice area, repeat, correct, and film when useful. Many riders combine both: lesson in the morning, tour in the afternoon.',
+  },
+  {
+    q: 'What languages do you teach in?',
+    a: 'English, French, Spanish and German. Our instructors are Swiss Cycling certified and all born in Verbier.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="cours"
+  title="Private MTB Lessons in Verbier | Adults & Kids, Local Instructor | Bikeverbier.ch"
+  description="Private mountain bike lessons in Verbier for adults and kids: position, cornering, braking, technical features. Swiss Cycling certified instructors born in Verbier, teaching in English, French, Spanish and German. Rental bikes available."
+  ogImage={IMG.heroCours}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroCours} alt="MTB lesson on a bermed forest trail in Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Private MTB lessons in Verbier</p>
+      <h1 class="h1" data-wipe>Progress with an instructor <span class="teal">born in Verbier</span></h1>
+      <p class="lead">Adults and kids, from your first berm to technical sections. 100 % private, 100 % at your pace.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Book a lesson" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">A human-sized school</p>
+      <h2 class="h2">No groups of ten, <span class="teal">an instructor just for you</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        With us, an MTB lesson is always private: you, your family or your friends, and a Swiss Cycling certified instructor who knows every practice spot in Verbier from learning there as a kid.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Rather discover than drill? Have a look at our <a href={pathFor('guide', lang)}>guided mountain bike tours in Verbier</a>, or combine both in the same day.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">What we work on</p>
+        <h2 class="h2">The technique that unlocks the <span class="teal">fun</span></h2>
+      </div>
+      <div class="feature-grid">
+        {themes.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Practical info</p>
+        <h2 class="h2">As simple as a <span class="teal">message</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>100 % private lessons: solo, family or a small group of friends</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>Half day or full day, on terrain that matches your level</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Rental bike</a>: CHF 125 per day, helmet included</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>Prices on request, quick reply on WhatsApp</li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Ask about a lesson" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} />
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Frequently asked questions</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: MTB lessons in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+        { href: pathFor('contact', lang), label: 'Meet our instructors' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

@@ -166,8 +166,8 @@ const faqLd = {
           <div class="card__body" data-reveal>
             <p class="eyebrow">Cours &amp; technique</p>
             <h2 class="h3">Le plaisir en VTT passe par la <span class="teal">maîtrise</span>.</h2>
-            <p style="color:var(--gray-text)">Adulte ou enfant, des <strong>cours privés</strong> sont proposés sur demande, pour progresser à votre rythme avec un accompagnement personnalisé. En attendant, découvrez une sélection de <strong>vidéos techniques</strong> pour affiner votre pilotage.</p>
-            <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Voir les Vidéos" variant="dark" external />
+            <p style="color:var(--gray-text)">Adulte ou enfant, nos <a href={pathFor('cours', lang)}>cours privés de VTT</a> vous font progresser à votre rythme avec un accompagnement personnalisé : position, virages, freinage, confiance. En attendant, une sélection de <a href="https://www.mobilesport.ch/vtt/mtb-f/" target="_blank" rel="noopener">vidéos techniques</a> pour affiner votre pilotage.</p>
+            <CtaButton href={pathFor('cours', lang)} label="Découvrir les Cours Privés" variant="dark" />
           </div>
         </article>
       </div>
@@ -192,7 +192,7 @@ const faqLd = {
       lang={lang}
       links={[
         { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
-        { href: pathFor('semaine', lang), label: 'Semaine VTT guidée avec chalet' },
+        { href: pathFor('cours', lang), label: 'Cours privés VTT, adultes et enfants' },
         { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
         { href: pathFor('entreprise', lang), label: "Sortie d'entreprise en e-bike" },
       ]}
