@@ -3,8 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import ContactBand from '../../components/ContactBand.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
 import { IMG } from '../../data/images';
-import { SITE } from '../../data/site';
+import { SITE, pathFor } from '../../data/site';
 
 const lang = 'en' as const;
 
@@ -40,7 +41,7 @@ const G = SITE.gform;
   ogImage={IMG.heroSemaine}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroSemaine} alt="Guided MTB week with chalet in Verbier" />
+    <img class="hero__bg" src={IMG.heroSemaine} alt="Guided MTB week with chalet in Verbier" width="1920" height="1305" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
       <h1 class="h1" data-wipe>1 Riding Week in Verbier with <span class="teal">Local guide</span></h1>
@@ -87,12 +88,12 @@ const G = SITE.gform;
       <div class="gallery" data-reveal>
         <img src={IMG.semaineChalet} alt="Mountain chalet in Verbier" loading="lazy" />
         <img src={IMG.semaineLift} alt="Lift pass" loading="lazy" />
-        {IMG.semaineGallery.map((src) => <img src={src} alt="MTB week in Verbier" loading="lazy" />)}
+        {IMG.semaineGallery.map((src, i) => <img src={src} alt={['Rider on a bermed forest trail near Verbier', 'Three riders above Verbier village during the guided week', 'Descent on a built forest trail in Verbier'][i]} loading="lazy" />)}
       </div>
     </section>
 
     <ContactBand lang={lang} eyebrow="Reservation" title="Request your week" lead="Fill out the form to request your preferred week. We'll get back to you shortly to confirm the details. See you on the trails!" id="reservation">
-      <form class="cform cform--card" action={G.action} method="POST" data-next="/en/thank-you" data-message={G.message}>
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/en/thank-you/" data-message={G.message}>
         <input type="hidden" name={G.request} value="Week + Chalet reservation" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <input type="hidden" name={G.antibot} value={G.antibotValue} />
@@ -119,5 +120,14 @@ const G = SITE.gform;
         <button type="submit" class="btn btn--dark cform__submit"><span>Reserve Now</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       </form>
     </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+      ]}
+    />
   </div>
 </Layout>

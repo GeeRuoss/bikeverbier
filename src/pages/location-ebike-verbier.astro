@@ -1,0 +1,133 @@
+---
+// Page dédiée « location e-bike Verbier » : requête transactionnelle locale majeure
+// qui n'avait aucune page cible (cf. audit SEO 08.2026). On ne loue pas nous-mêmes :
+// on réserve chez nos partenaires de Verbier, et on le dit honnêtement.
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Icon from '../components/Icon.astro';
+import { IMG } from '../data/images';
+import { SITE, pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+
+const avantages = [
+  { icon: 'bike', text: 'Le bon vélo à la bonne taille, choisi selon votre sortie et votre niveau' },
+  { icon: 'pin', text: 'Vélo prêt au départ de la sortie : zéro logistique, zéro file au magasin' },
+  { icon: 'shield', text: 'Casque offert avec chaque location' },
+  { icon: 'users', text: 'Conseils de guides nés à Verbier, même pour rouler sans nous' },
+];
+
+const faq = [
+  {
+    q: 'Combien coûte la location d’un e-bike à Verbier ?',
+    a: "125 CHF la journée, e-bike ou VTT classique, casque offert. Le prix est le même si vous combinez la location avec une sortie guidée.",
+  },
+  {
+    q: 'Faut-il réserver à l’avance ?',
+    a: "Oui, idéalement 24 à 48 heures à l'avance, surtout en été. Un message WhatsApp ou un appel suffit : on confirme rapidement la disponibilité auprès de nos partenaires.",
+  },
+  {
+    q: 'Peut-on louer un vélo sans sortie guidée ?',
+    a: "Oui. On vous réserve le bon vélo et on vous conseille volontiers un itinéraire adapté à votre niveau. Mais le vrai plus, c'est de combiner la location avec un guide local : sentiers secrets, rythme adapté et aucune hésitation sur le chemin.",
+  },
+  {
+    q: 'Quels vélos proposez-vous ?',
+    a: "Des e-bikes et des VTT récents et bien entretenus, réservés chez nos partenaires de Verbier : Médran Sports, Backside et Philippe Roux Sports. On choisit le modèle et la taille selon votre gabarit et le terrain prévu.",
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="location"
+  title="Location E-bike & VTT à Verbier | 125.- la journée, casque offert | Bikeverbier.ch"
+  description="Location d'e-bike et de VTT à Verbier : 125 CHF la journée, casque offert, vélo réservé chez nos partenaires locaux et prêt au départ de votre sortie. Seul ou avec un guide né à Verbier."
+  ogImage={IMG.heroLocation}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroLocation} alt="Rider en VTT sur un singletrack en forêt près de Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Location e-bike et VTT à Verbier</p>
+      <h1 class="h1" data-wipe>Votre e-bike vous attend, <span class="teal">on s'occupe du reste</span></h1>
+      <p class="lead">125.- la journée, casque offert, vélo prêt au départ de votre sortie.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Réserver un vélo" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Comment ça marche</p>
+      <h2 class="h2">La location, version <span class="teal">guides locaux</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Nous ne sommes pas un magasin : nous sommes des guides. Pour chaque location, on réserve le bon vélo chez nos partenaires de Verbier et il vous attend au départ de la sortie, réglé à votre taille.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Envie de rouler accompagné ? Ajoutez un <a href={pathFor('guide', lang)}>guide VTT privé à Verbier</a> dès 80.- par personne, ou inspirez-vous de notre <a href={pathFor('itineraires', lang)}>guide du VTT à Verbier</a>.
+      </p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Tarif</p>
+        <h2 class="h2">Simple et <span class="teal">tout compris</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span>E-bike ou VTT : <strong style="margin-left:.3rem">125.- la journée</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Casque : <strong style="margin-left:.3rem">offert</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>Sortie guidée en plus : <strong style="margin-left:.3rem">dès 80.- par personne</strong></li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Réserver un vélo" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Pourquoi passer par nous</p>
+      <h2 class="h2">Des guides, pas un <span class="teal">comptoir</span></h2>
+      <ul class="icon-list" style="margin-top:1.75rem">
+        {avantages.map((a) => (
+          <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ : location e-bike à <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
+        { href: pathFor('entreprise', lang), label: "Sortie d'entreprise en e-bike" },
+        { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
+        { href: pathFor('contact', lang), label: 'Nous contacter' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

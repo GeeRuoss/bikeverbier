@@ -71,6 +71,15 @@ a {
   color: inherit;
   text-decoration: none;
 }
+/* Liens dans le texte courant (maillage interne) : visibles, dans la couleur de la marque. */
+p a:not([class]) {
+  color: var(--teal-dark);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+p a:not([class]):hover {
+  color: var(--teal);
+}
 ul {
   list-style: none;
   padding: 0;

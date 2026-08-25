@@ -10,6 +10,8 @@ export const UI = {
       semaine: 'Semaine Guide + Chalet',
       nepal: 'Nepal',
       contact: 'Contact',
+      location: 'Location e-bike',
+      itineraires: 'VTT à Verbier',
       langLabel: 'Français',
     },
     footer: {
@@ -18,12 +20,15 @@ export const UI = {
       sections: 'Liens',
       social: 'Suivez-nous sur Insta !',
       cgv: 'CGV',
+      location: 'Verbier · Valais · Suisse',
       links: {
         entreprise: 'Entreprises',
-        guide: 'Guiding',
-        semaine: 'Week in chalet',
+        guide: 'Guide VTT Verbier',
+        semaine: 'Semaine + chalet',
         contact: 'Contact',
         nepal: 'Nepal',
+        location: 'Location e-bike Verbier',
+        itineraires: 'VTT à Verbier : le guide',
       },
     },
     contact: {
@@ -48,6 +53,8 @@ export const UI = {
       semaine: 'Week Guide + Chalet',
       nepal: 'Nepal',
       contact: 'Contact',
+      location: 'E-bike rental',
+      itineraires: 'MTB in Verbier',
       langLabel: 'English',
     },
     footer: {
@@ -56,12 +63,15 @@ export const UI = {
       sections: 'Links',
       social: 'Follow us on Insta!',
       cgv: 'Terms & Conditions',
+      location: 'Verbier · Valais · Switzerland',
       links: {
         entreprise: 'Businesses',
-        guide: 'Guidance',
+        guide: 'MTB guide Verbier',
         semaine: 'Week in a chalet',
         contact: 'Contact',
         nepal: 'Nepal',
+        location: 'E-bike rental Verbier',
+        itineraires: 'Mountain biking in Verbier',
       },
     },
     contact: {

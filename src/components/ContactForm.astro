@@ -14,7 +14,7 @@ const c = t(lang).contact;
 // Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
 const G = SITE.gform;
 // Redirection après envoi → page de remerciement à notre marque (selon la langue).
-const nextUrl = lang === 'fr' ? '/merci' : '/en/thank-you';
+const nextUrl = lang === 'fr' ? '/merci/' : '/en/thank-you/';
 ---
 
 <form

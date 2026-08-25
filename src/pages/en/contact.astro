@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import CallLink from '../../components/CallLink.astro';
 import { IMG, BADGES } from '../../data/images';
+import { SITE } from '../../data/site';
 
 const lang = 'en' as const;
 
@@ -38,19 +39,35 @@ const guides = [
     ],
   },
 ];
+
+// Person cards (Schema.org) for the guides: identity, credentials, languages.
+// A strong E-E-A-T signal that search engines and AI assistants can read.
+const personsLd = {
+  '@context': 'https://schema.org',
+  '@graph': guides.map((g) => ({
+    '@type': 'Person',
+    name: g.name,
+    jobTitle: g.role,
+    description: g.bio,
+    image: SITE.domain + g.img,
+    worksFor: { '@id': SITE.domain + '/#business' },
+    knowsLanguage: ['fr', 'en', 'es', 'de'],
+    hasCredential: g.badges.map((b) => ({ '@type': 'EducationalOccupationalCredential', name: b.label })),
+  })),
+};
 ---
 
 <Layout
   lang={lang}
   routeKey="contact"
-  title="Contact - Bikeverbier.ch"
-  description="Day trips, exploration of local heritage, a week in a chalet with a private guide and lift pass. Local trails, authentic and bespoke alpine experience."
+  title="Book a Mountain Bike Guide in Verbier | Contact Bikeverbier.ch"
+  description="Book your mountain bike guide in Verbier by phone, WhatsApp or form, reply within 24 hours. We speak English, French, Spanish and German. Swiss Cycling certified guides, all born in Verbier."
 >
   <section class="section contact-hero contact-hero--top">
     <div class="container contact-split">
       <div>
         <img class="contact-avatar" src={IMG.guideGuillermo} alt="Bikeverbier guide" loading="lazy" />
-        <h1 class="h1" style="color:#fff">Discover Verbier with the locals!</h1>
+        <h1 class="h1" style="color:#fff">Book your mountain bike guide: discover Verbier with the locals!</h1>
         <p class="lead" style="margin-top:1.25rem; max-width:42ch">Feel free to call us even for inquiries or advice about the region!</p>
         <p style="margin-top:1.5rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-weight:600">We speak <img class="contact-flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
         <p style="margin-top:1.75rem"><CallLink /></p>
@@ -87,4 +104,6 @@ const guides = [
       </div>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(personsLd)} />
 </Layout>

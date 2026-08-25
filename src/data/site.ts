@@ -7,6 +7,8 @@ export const SITE = {
   phoneHref: 'tel:+41774506726',
   whatsapp: 'https://wa.me/41774506726',
   instagram: 'https://www.instagram.com/bikeverbier.ch',
+  // Fiche Google Maps (Google Business Profile « Bikeverbier.ch », 5,0 étoiles).
+  googleMaps: 'https://www.google.com/maps/place/Bikeverbier.ch',
   // Adresse de contact « publique » (non affichée sur le site actuellement).
   contactEmail: 'info@bikeverbier.ch',
   // Réception des formulaires : Google Form « Messages du site bikeverbier.ch »
@@ -39,13 +41,17 @@ export type Lang = 'fr' | 'en';
 
 // Routes équivalentes FR <-> EN. Sert au routage, aux hreflang et au sélecteur de langue.
 // On garde les slugs FR même en EN (cf. README : zéro redirection, zéro perte SEO).
+// Slash final OBLIGATOIRE : GitHub Pages sert /guide/ (301 depuis /guide), et le sitemap
+// liste les URLs avec slash. Canonical, hreflang et liens internes doivent correspondre.
 export const ROUTES = [
   { key: 'home', fr: '/', en: '/en/' },
-  { key: 'guide', fr: '/guide', en: '/en/guide' },
-  { key: 'entreprise', fr: '/entreprise', en: '/en/entreprise' },
-  { key: 'semaine', fr: '/semaine-guidechalet', en: '/en/semaine-guidechalet' },
-  { key: 'nepal', fr: '/nepal', en: '/en/nepal' },
-  { key: 'contact', fr: '/contact', en: '/en/contact' },
+  { key: 'guide', fr: '/guide/', en: '/en/guide/' },
+  { key: 'entreprise', fr: '/entreprise/', en: '/en/entreprise/' },
+  { key: 'semaine', fr: '/semaine-guidechalet/', en: '/en/semaine-guidechalet/' },
+  { key: 'nepal', fr: '/nepal/', en: '/en/nepal/' },
+  { key: 'location', fr: '/location-ebike-verbier/', en: '/en/location-ebike-verbier/' },
+  { key: 'itineraires', fr: '/vtt-verbier/', en: '/en/vtt-verbier/' },
+  { key: 'contact', fr: '/contact/', en: '/en/contact/' },
 ] as const;
 
 export type RouteKey = (typeof ROUTES)[number]['key'];

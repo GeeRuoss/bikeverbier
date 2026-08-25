@@ -1,0 +1,132 @@
+---
+// Dedicated "e-bike rental Verbier" page (EN). Same FR slug, per site convention.
+// We are not a shop: we book with our Verbier partners, and we say so honestly.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'en' as const;
+
+const perks = [
+  { icon: 'bike', text: 'The right bike in the right size, picked for your ride and your level' },
+  { icon: 'pin', text: 'Bike ready at the start of the ride: no logistics, no queuing at the shop' },
+  { icon: 'shield', text: 'Helmet included with every rental' },
+  { icon: 'users', text: 'Advice from guides born in Verbier, even if you ride without us' },
+];
+
+const faq = [
+  {
+    q: 'How much does it cost to rent an e-bike in Verbier?',
+    a: 'CHF 125 per day, e-bike or regular mountain bike, helmet included. The price is the same if you combine the rental with a guided tour.',
+  },
+  {
+    q: 'Do I need to book in advance?',
+    a: 'Yes, ideally 24 to 48 hours ahead, especially in summer. A WhatsApp message or a call is enough: we quickly confirm availability with our partner shops.',
+  },
+  {
+    q: 'Can I rent a bike without a guided tour?',
+    a: "Yes. We book the right bike for you and gladly suggest a route that matches your level. But the real bonus is combining the rental with a local guide: secret trails, the right pace and no wrong turns.",
+  },
+  {
+    q: 'Which bikes do you offer?',
+    a: 'Recent, well-maintained e-bikes and mountain bikes, booked with our Verbier partners: Médran Sports, Backside and Philippe Roux Sports. We pick the model and size based on your build and the planned terrain.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="location"
+  title="E-bike Rental Verbier | CHF 125 per day, helmet included | Bikeverbier.ch"
+  description="E-bike and mountain bike rental in Verbier: CHF 125 per day, helmet included, bike booked with our local partners and ready at the start of your ride. Solo or with a guide born in Verbier."
+  ogImage={IMG.heroLocation}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroLocation} alt="Mountain biker on a forest singletrack near Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">E-bike and MTB rental in Verbier</p>
+      <h1 class="h1" data-wipe>Your e-bike is waiting, <span class="teal">we handle the rest</span></h1>
+      <p class="lead">CHF 125 per day, helmet included, bike ready at the start of your ride.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Book a bike" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Bike rental, the <span class="teal">local guides'</span> way</h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        We are not a shop: we are guides. For every rental, we book the right bike with our Verbier partners and it is waiting for you at the start of the ride, adjusted to your size.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Want company on the trails? Add a <a href={pathFor('guide', lang)}>private mountain bike guide in Verbier</a> from CHF 80 per person, or browse our <a href={pathFor('itineraires', lang)}>guide to mountain biking in Verbier</a>.
+      </p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Price</p>
+        <h2 class="h2">Simple and <span class="teal">all included</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span>E-bike or mountain bike: <strong style="margin-left:.3rem">CHF 125 per day</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Helmet: <strong style="margin-left:.3rem">included</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>Add a guided tour: <strong style="margin-left:.3rem">from CHF 80 per person</strong></li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Book a bike" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Why book through us</p>
+      <h2 class="h2">Guides, not a <span class="teal">counter</span></h2>
+      <ul class="icon-list" style="margin-top:1.75rem">
+        {perks.map((a) => (
+          <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Frequently asked questions</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: e-bike rental in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Corporate e-bike team building' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+        { href: pathFor('contact', lang), label: 'Contact us' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

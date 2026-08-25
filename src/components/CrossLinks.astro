@@ -1,0 +1,55 @@
+---
+// Maillage interne SEO : bloc « À découvrir aussi » en bas des pages produits.
+// Ancres descriptives (mots-clés) plutôt que « Découvrir » : les moteurs lisent le texte du lien.
+import { type Lang } from '../data/site';
+
+interface Props {
+  lang: Lang;
+  links: { href: string; label: string }[];
+}
+const { lang, links } = Astro.props;
+const eyebrow = lang === 'fr' ? 'À découvrir aussi' : 'Also worth a look';
+---
+
+<section class="section section--alt">
+  <div class="container">
+    <p class="eyebrow">{eyebrow}</p>
+    <ul class="crosslinks">
+      {links.map((l) => (
+        <li>
+          <a href={l.href}>
+            {l.label}
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .crosslinks {
+    margin-top: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1rem;
+  }
+  .crosslinks a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1.15rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--ink);
+    background: var(--white);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .crosslinks a:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+    transform: translateY(-1px);
+  }
+</style>

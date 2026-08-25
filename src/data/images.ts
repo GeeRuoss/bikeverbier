@@ -3,43 +3,45 @@
 // Originaux HD conservés (jusqu'à 6048×8064). Crédits photos : Tiffany Troillet / Soren Rickards (Nepal).
 
 export const IMG = {
-  // Héros
-  heroHome: '/img/hero-home.jpg',
-  heroGuide: '/img/hero-guide.jpg',
-  heroEntreprise: '/img/hero-entreprise.jpg',
-  heroSemaine: '/img/hero-semaine.jpg',
-  heroNepal: '/img/hero-nepal.jpg',
+  // Héros (WebP compressées ~1920px : Core Web Vitals. Les .jpg HD restent dans /img.)
+  heroHome: '/img/hero-home.webp',
+  heroGuide: '/img/hero-guide.webp',
+  heroEntreprise: '/img/hero-entreprise.webp',
+  heroSemaine: '/img/hero-semaine.webp',
+  heroNepal: '/img/hero-nepal.webp',
+  heroLocation: '/img/hero-location.webp',
+  heroVtt: '/img/hero-vtt.webp',
 
   // Cartes offres (accueil)
-  cardEntreprise: '/img/card-entreprise.jpg',
-  cardGuide: '/img/card-guide.jpg',
-  cardSemaine: '/img/card-semaine.jpg',
-  cardNepal: '/img/hero-nepal.jpg',
-  welcome: '/img/guillermo.jpg',
+  cardEntreprise: '/img/card-entreprise.webp',
+  cardGuide: '/img/card-guide.webp',
+  cardSemaine: '/img/card-semaine.webp',
+  cardNepal: '/img/hero-nepal.webp',
+  welcome: '/img/guillermo.webp',
 
   // Guide privé
-  guideVideos: '/img/guide-videos.jpg',
-  guideGourmande: '/img/rando-gourmande.jpg',
+  guideVideos: '/img/guide-videos.webp',
+  guideGourmande: '/img/rando-gourmande.webp',
 
   // Entreprise
-  contactVisual: '/img/contact-visual.jpg',
-  entrepriseForm: '/img/entreprise-form.jpg',
+  contactVisual: '/img/contact-visual.webp',
+  entrepriseForm: '/img/entreprise-form.webp',
 
   // Semaine + chalet
-  semaineChalet: '/img/semaine-chalet.jpg',
-  semaineLift: '/img/semaine-lift.jpg',
-  semaineGallery: ['/img/semaine-gallery-1.jpg', '/img/semaine-gallery-2.jpg', '/img/semaine-gallery-3.jpg'],
+  semaineChalet: '/img/semaine-chalet.webp',
+  semaineLift: '/img/semaine-lift.webp',
+  semaineGallery: ['/img/semaine-gallery-1.webp', '/img/semaine-gallery-2.webp', '/img/semaine-gallery-3.webp'],
 
   // Nepal
-  nepalMustang: '/img/nepal-mustang.jpg',
-  nepalDays: '/img/nepal-days.jpg',
-  nepalShuttle: '/img/nepal-shuttle.jpg',
-  nepalGallery: ['/img/nepal-gallery-1.jpg', '/img/nepal-gallery-2.jpg', '/img/nepal-gallery-3.jpg'],
+  nepalMustang: '/img/nepal-mustang.webp',
+  nepalDays: '/img/nepal-days.webp',
+  nepalShuttle: '/img/nepal-shuttle.webp',
+  nepalGallery: ['/img/nepal-gallery-1.webp', '/img/nepal-gallery-2.webp', '/img/nepal-gallery-3.webp'],
 
   // Guides (contact)
-  guideGuillermo: '/img/guillermo.jpg',
-  guideJoshua: '/img/joshua.jpeg',
-  guideGilles: '/img/gilles.jpeg',
+  guideGuillermo: '/img/guillermo.webp',
+  guideJoshua: '/img/joshua.webp',
+  guideGilles: '/img/gilles.webp',
 
   // Marque
   logoMark: '/brand/logo-mark.png',

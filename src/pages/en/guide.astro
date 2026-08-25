@@ -2,10 +2,11 @@
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
 import Icon from '../../components/Icon.astro';
 import Reviews from '../../components/Reviews.astro';
 import { IMG } from '../../data/images';
-import { SITE } from '../../data/site';
+import { SITE, pathFor } from '../../data/site';
 
 const lang = 'en' as const;
 
@@ -42,6 +43,44 @@ const features = [
     desc: "We take you along Verbier's most beautiful trails, then stop at a mountain hut or alpine restaurant to taste the local dishes. Valais platter, alpine cheese, rye bread: the Valais terroir is earned, and it tastes even better after the ride!",
   },
 ];
+
+// Visible FAQ + FAQPage markup: the questions people actually ask Google and AI assistants.
+const faq = [
+  {
+    q: 'How much does a mountain bike guide cost in Verbier?',
+    a: 'From CHF 80 to 320 per person for a half day and from CHF 120 to 550 for a full day, depending on group size (1 to 6 people): the bigger the group, the cheaper it gets. Helmets are included and every tour is private and tailor-made.',
+  },
+  {
+    q: 'Can I rent an e-bike or a mountain bike for the tour?',
+    a: 'Yes. Rental costs CHF 125 per day: we book the right bike for you with our partner shops in Verbier and it is waiting for you at the start of the ride. All details are on our e-bike rental Verbier page.',
+  },
+  {
+    q: 'What riding level do I need for a guided tour?',
+    a: 'None. From complete beginner to seasoned rider, on an e-bike or an enduro bike, we adapt the route and the pace to your level. Families with children are welcome.',
+  },
+  {
+    q: 'When is the mountain biking season in Verbier?',
+    a: 'The season usually runs from May to October depending on snow conditions, with the lifts open in summer. With around 150 riding days a year, there is almost always a rideable trail: our guides know where.',
+  },
+  {
+    q: 'What is the gourmet ride?',
+    a: 'A mountain bike or e-bike tour that ends in a mountain hut or alpine restaurant: Valais platter, alpine cheese, rye bread. We pedal first, then feast on local Valais produce.',
+  },
+  {
+    q: 'What languages do the guides speak?',
+    a: 'Our guides speak English, French, Spanish and German. All of them were born in Verbier and are Swiss Cycling certified.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <Layout
@@ -52,10 +91,10 @@ const features = [
   ogImage={IMG.heroGuide}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroGuide} alt="Guided mountain bike tour in Verbier with a local guide" />
+    <img class="hero__bg" src={IMG.heroGuide} alt="Guided mountain bike tour in Verbier with a local guide" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Private guide · Gourmet hike</p>
-      <h1 class="h1" data-wipe>Discover the most beautiful <span class="teal">trails of Verbier</span>!</h1>
+      <h1 class="h1" data-wipe>Your mountain bike guide on the most beautiful <span class="teal">trails of Verbier</span>!</h1>
       <p class="lead">Enjoy the clean air of Verbier at your own pace, with local guides.</p>
       <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Let's get started!" variant="light" external /><CallLink /></div>
     </div>
@@ -67,6 +106,9 @@ const features = [
       <h2 class="h2">The <span class="teal">locals'</span> Verbier, on two wheels</h2>
       <p class="lead measure" style="margin:1.25rem auto 0">
         Born and raised in Verbier, we know every trail in Valais, from secret paths to breathtaking descents. On an e-bike or enduro, for beginners and experts alike, we share our mountains with respect and enjoyment.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Meet <a href={`${pathFor('contact', lang)}#guides`}>our Swiss Cycling certified guides</a> or plan your trip with our <a href={pathFor('itineraires', lang)}>guide to mountain biking in Verbier</a>.
       </p>
     </section>
 
@@ -106,8 +148,8 @@ const features = [
         </div>
 
         <ul class="icon-list" style="margin-top:1.75rem">
-          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span>E-Bike & bike rental: 125.- full day</li>
-          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Helmet: <strong style="margin-left:.3rem">offered</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">E-Bike &amp; bike rental</a>: 125.- full day</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Helmet: <strong style="margin-left:.3rem">included</strong></li>
         </ul>
 
         <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Let's get started!" variant="dark" external /></div>
@@ -124,11 +166,38 @@ const features = [
           <div class="card__body" data-reveal>
             <p class="eyebrow">Lessons &amp; technique</p>
             <h2 class="h3">The pleasure of mountain biking comes from <span class="teal">mastery</span>.</h2>
-            <p style="color:var(--gray-text)">Adult or child, <strong>private lessons</strong> are available upon request, to progress at your own pace with personalised support. Meanwhile, discover a selection of useful <strong>technical videos</strong> to refine your driving skills.</p>
+            <p style="color:var(--gray-text)">Adult or child, <strong>private lessons</strong> are available upon request, to progress at your own pace with personalised support. Meanwhile, discover a selection of useful <strong>technical videos</strong> to refine your riding skills.</p>
             <CtaButton href="https://www.mobilesport.ch/vtt/mtb-f/" label="Watch the Videos" variant="dark" external />
           </div>
         </article>
       </div>
     </section>
+
+    <section class="section container">
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ: mountain bike guide in <span class="teal">Verbier</span></h2>
+      <div class="faq">
+        {
+          faq.map((item) => (
+            <details>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('semaine', lang), label: 'Guided MTB week with chalet' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+        { href: pathFor('entreprise', lang), label: 'Corporate e-bike team building' },
+      ]}
+    />
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 </Layout>

@@ -1,0 +1,68 @@
+---
+// Page 404 personnalisée (GitHub Pages sert automatiquement /404.html).
+// Remplace la page GitHub par défaut : design du site, bilingue, liens de sortie.
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import { IMG } from '../data/images';
+import { pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+---
+
+<Layout
+  lang={lang}
+  routeKey="home"
+  title="Page introuvable · Bikeverbier.ch"
+  description="Cette page n'existe pas ou a changé d'adresse. Retrouvez nos sorties VTT guidées à Verbier depuis l'accueil."
+  noindex={true}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroHome} alt="" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Erreur 404 · Page not found</p>
+      <h1 class="h1" data-wipe>Ce sentier ne mène <span class="teal">nulle part</span></h1>
+      <p class="lead">La page que vous cherchez n'existe pas ou a changé d'adresse.<br />The page you are looking for does not exist or has moved.</p>
+      <div class="hero-actions">
+        <CtaButton href="/" label="Retour à l'accueil" variant="light" />
+        <CtaButton href="/en/" label="Back to home (EN)" variant="teal" />
+      </div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container center">
+      <p class="eyebrow">On vous remet en selle ?</p>
+      <h2 class="h2">Les pages les plus <span class="teal">utiles</span></h2>
+      <ul class="notfound-links">
+        <li><a href={pathFor('guide', lang)}>Guide VTT privé à Verbier</a></li>
+        <li><a href={pathFor('location', lang)}>Location e-bike à Verbier</a></li>
+        <li><a href={pathFor('itineraires', lang)}>VTT à Verbier : le guide complet</a></li>
+        <li><a href={pathFor('semaine', lang)}>Semaine VTT guidée + chalet</a></li>
+        <li><a href={pathFor('contact', lang)}>Contact</a></li>
+      </ul>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .notfound-links {
+    margin-top: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem 1rem;
+  }
+  .notfound-links a {
+    display: inline-flex;
+    padding: 0.65rem 1.15rem;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, color 0.2s ease;
+  }
+  .notfound-links a:hover {
+    border-color: var(--teal);
+    color: var(--teal-dark);
+  }
+</style>

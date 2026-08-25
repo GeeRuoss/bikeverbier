@@ -3,9 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import ContactBand from '../../components/ContactBand.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
 import Icon from '../../components/Icon.astro';
 import { IMG } from '../../data/images';
-import { SITE } from '../../data/site';
+import { SITE, pathFor } from '../../data/site';
 
 const lang = 'en' as const;
 // Google Form (see site.ts): the global script in Layout.astro intercepts submit and redirects.
@@ -44,7 +45,7 @@ const features = [
   ogImage={IMG.ogNepal}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro mountain biking in Mustang, Nepal" />
+    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro mountain biking in Mustang, Nepal" width="1920" height="1080" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">The journey of a lifetime</p>
       <h1 class="h1" data-wipe>10 days of enduro in <span class="teal">Mustang, Nepal</span></h1>
@@ -98,7 +99,7 @@ const features = [
       <div class="container">
         <p class="eyebrow center">Gallery</p>
         <div class="gallery" style="margin-top:2rem" data-reveal>
-          {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro mountain biking in Nepal" loading="lazy" />)}
+          {IMG.nepalGallery.map((src, i) => <img src={src} alt={['Three riders at sunset on a Nepalese ridge', 'Enduro descent facing the snowy Himalayan peaks, Nepal', 'Enduro riding through a mossy forest in Nepal'][i]} loading="lazy" />)}
         </div>
         <p class="center" style="margin-top:1.5rem; color:var(--gray-soft); font-size:.85rem">Photos: Soren Rickards</p>
       </div>
@@ -118,7 +119,7 @@ const features = [
     </section>
 
     <ContactBand lang={lang} eyebrow="Inquiry" title="Write to us" lead="To match your expectations, write to us and we'll do our best for you." id="demande">
-      <form class="cform cform--card" action={G.action} method="POST" data-next="/en/thank-you" data-message={G.message}>
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/en/thank-you/" data-message={G.message}>
           <input type="hidden" name={G.request} value="Nepal inquiry" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <input type="hidden" name={G.antibot} value={G.antibotValue} />
@@ -136,5 +137,13 @@ const features = [
           <button type="submit" class="btn btn--dark cform__submit"><span>Send</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </form>
     </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
+        { href: pathFor('semaine', lang), label: 'Guided MTB week with chalet in Verbier' },
+      ]}
+    />
   </div>
 </Layout>

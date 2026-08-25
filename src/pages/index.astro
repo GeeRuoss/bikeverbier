@@ -12,6 +12,7 @@ const lang = 'fr' as const;
 const offers = [
   {
     img: IMG.cardEntreprise,
+    alt: "Groupe en sortie guidée sur un sentier fleuri au-dessus de Verbier",
     eyebrow: 'Clé en main',
     title: "Sortie d'Entreprise",
     items: ['Sortie d’entreprise en E-bike', 'Découverte des produits du terroir', 'Visite des restaurateurs locaux'],
@@ -20,6 +21,7 @@ const offers = [
   },
   {
     img: IMG.cardGuide,
+    alt: 'Sortie VTT guidée sur une piste aménagée à Verbier',
     eyebrow: 'À partir de 120.-',
     title: 'Guide Privé / Rando Gourmande',
     items: ['De débutant à expert', 'Parfait pour les familles', 'En E-bike ou Enduro'],
@@ -28,6 +30,7 @@ const offers = [
   },
   {
     img: IMG.cardSemaine,
+    alt: 'Rider dans un virage relevé pendant la semaine VTT à Verbier',
     eyebrow: 'À partir de 1290.-',
     title: 'Semaine Guidée + Chalet',
     items: ['6 nuits dans un chalet', '5 jours guidés avec un guide Swiss Cycling', 'Abonnement Verbier inclus et shuttle'],
@@ -36,6 +39,7 @@ const offers = [
   },
   {
     img: IMG.cardNepal,
+    alt: 'Rider portant son vélo face aux sommets himalayens, Népal',
     eyebrow: 'Voyage d’une vie',
     title: '10 Jours d’enduro au Népal',
     items: ['Accueil local', 'Shuttle privé', 'Vols internes'],
@@ -62,25 +66,29 @@ const counters = [
   jsonLd={true}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroHome} alt="VTT en descente sur les sentiers de Verbier" />
+    <img class="hero__bg" src={IMG.heroHome} alt="VTT en descente sur les sentiers de Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">Bienvenue au paradis</p>
+      <p class="eyebrow" style="color:#fff">Guides VTT à Verbier</p>
       <h1 class="h1" data-wipe>Découvrez le <span class="teal">Verbier caché</span></h1>
-      <p class="lead">Des sentiers secrets aux saveurs du terroir valaisan, laissez-vous porter par l'authenticité de nos guides locaux.</p>
+      <p class="lead">Guides VTT locaux, sorties e-bike et enduro : des sentiers secrets aux saveurs du terroir valaisan, laissez-vous porter par l'authenticité de nos guides nés à Verbier.</p>
       <div class="hero-actions"><CtaButton href={pathFor('contact', lang)} label="Let's go !" variant="light" /><CallLink /></div>
     </div>
   </section>
 
   <div class="sheet">
     <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Nos offres</p>
+        <h2 class="h2">Sorties VTT et e-bike guidées à <span class="teal">Verbier</span></h2>
+      </div>
       <div class="cards">
         {
           offers.map((o, i) => (
             <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`} data-reveal>
-              <img class="card__img" src={o.img} alt={o.title} loading="lazy" />
+              <img class="card__img" src={o.img} alt={o.alt} loading="lazy" />
               <div class="card__body">
                 <p class="eyebrow">{o.eyebrow}</p>
-                <h2 class="h3 teal">{o.title}</h2>
+                <h3 class="h3 teal">{o.title}</h3>
                 <ul>{o.items.map((it) => <li>{it}</li>)}</ul>
                 <CtaButton href={o.href} label={o.cta} variant="dark" />
               </div>
@@ -111,7 +119,7 @@ const counters = [
           <p class="eyebrow">Bienvenue</p>
           <h2 class="h2">Bienvenue chez <span class="teal">Bikeverbier.ch</span> !</h2>
           <p class="lead">Nous sommes des guides tous nés à Verbier prêts à vous faire découvrir nos chemins et traditions locales !</p>
-          <p style="color:var(--gray-text)">Votre guide VTT local à Verbier : sorties e-bike et enduro, randos gourmandes et semaines guidées en chalet. Des sentiers secrets du Valais aux meilleures tables d'altitude, on partage notre montagne avec ceux qui veulent la vivre autrement.</p>
+          <p style="color:var(--gray-text)">Votre <a href={pathFor('guide', lang)}>guide VTT local à Verbier</a> : sorties e-bike et enduro, randos gourmandes et semaines guidées en chalet, avec <a href={pathFor('location', lang)}>location e-bike</a> possible pour chaque sortie. Des sentiers secrets du Valais aux meilleures tables d'altitude, on partage notre montagne avec ceux qui veulent la vivre autrement. Envie de préparer votre séjour ? Parcourez notre <a href={pathFor('itineraires', lang)}>guide complet du VTT à Verbier</a>.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Nos Guides" variant="teal" />
         </div>
       </div>

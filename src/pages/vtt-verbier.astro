@@ -1,0 +1,209 @@
+---
+// Page ressource « VTT à Verbier » : le guide complet par des locaux.
+// Objectif SEO + GEO (cf. audit 08.2026) : capter les requêtes informationnelles
+// (vtt verbier, itinéraires, bike park, saison) et donner aux IA une page riche en
+// faits extractibles à citer. À rafraîchir chaque saison (les pages non mises à
+// jour perdent leurs citations IA).
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Icon from '../components/Icon.astro';
+import { IMG } from '../data/images';
+import { SITE, pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+
+const terrains = [
+  {
+    img: IMG.cardGuide,
+    alt: 'Groupe de riders VTT sur une piste aménagée à Verbier',
+    icon: 'mountain',
+    eyebrow: 'Enduro & singletracks',
+    title: 'Les sentiers au-dessus de la station',
+    desc: "C'est le cœur du jeu à Verbier : des singletracks à flanc de montagne, des épingles, des passages en forêt et des panoramas sur les combins. L'itinéraire emblématique reste la descente depuis le Mont-Fort, un dénivelé énorme accessible en remontées. C'est aussi là que nos guides font la différence : les plus beaux sentiers ne sont pas sur les cartes.",
+  },
+  {
+    img: IMG.heroHome,
+    alt: 'VTT en descente sur les sentiers de Verbier',
+    icon: 'gondola',
+    eyebrow: 'Bike park',
+    title: 'Le bike park de Verbier',
+    desc: "Accessible par la télécabine de Médran, le bike park de Verbier propose des pistes aménagées de la bleue à la noire, entretenues tout l'été. Idéal pour progresser en descente en enchaînant les runs. Les dates d'ouverture exactes sont publiées chaque saison par Téléverbier, en général de juin à octobre.",
+  },
+  {
+    img: IMG.guideGourmande,
+    alt: 'Assiette valaisanne : viande séchée, fromage et pain de seigle',
+    icon: 'utensils',
+    eyebrow: 'E-bike & terroir',
+    title: 'Les chemins d’alpage du Val de Bagnes',
+    desc: "En e-bike, le Val de Bagnes s'ouvre à tous : chemins d'alpage, villages, cabanes et une quinzaine de restaurants d'altitude où goûter l'assiette valaisanne et le fromage de Bagnes. C'est le terrain de notre rando gourmande, accessible dès le premier coup de pédale.",
+  },
+];
+
+const conseils = [
+  { icon: 'sun', title: 'La saison', text: "De mai à octobre selon l'enneigement, avec environ 150 jours de vélo par an. Juillet et août pour l'ambiance et toutes les remontées ouvertes, septembre et octobre pour les couleurs et les sentiers tranquilles." },
+  { icon: 'route', title: 'Le terrain de jeu', text: 'Environ 400 km de sentiers balisés autour de Verbier et du Val de Bagnes, au cœur du domaine des 4 Vallées, avec une trentaine de remontées mécaniques en été.' },
+  { icon: 'bike', title: 'Le matériel', text: "E-bike pour monter sans souffrir, enduro pour jouer dans les descentes. Location possible à 125.- la journée, casque offert, vélo réservé chez nos partenaires et prêt au départ." },
+  { icon: 'shield', title: 'La sécurité', text: 'Casque obligatoire dans notre esprit, protections conseillées en descente, et respect des randonneurs et des alpages : on partage la montagne. En cas de doute sur un sentier, demandez à un local.' },
+];
+
+const faq = [
+  {
+    q: 'Faut-il un guide pour faire du VTT à Verbier ?',
+    a: "Ce n'est pas obligatoire, mais ça change tout : les plus beaux sentiers de Verbier ne sont pas balisés et un guide local vous emmène au bon endroit selon votre niveau, la météo et l'état des sentiers. Nos guides sont nés à Verbier et certifiés Swiss Cycling, dès 80 CHF par personne.",
+  },
+  {
+    q: 'Quel est le meilleur itinéraire VTT à Verbier ?',
+    a: "Tout dépend de votre niveau. Pour les panoramas, la descente depuis le Mont-Fort est l'itinéraire emblématique de la région. Pour l'enduro, les singletracks au-dessus de la station. Pour une sortie plaisir en famille, les chemins d'alpage du Val de Bagnes en e-bike avec une pause dans un restaurant d'altitude.",
+  },
+  {
+    q: 'Verbier convient-il aux débutants en VTT ?',
+    a: "Oui. Grâce à l'e-bike et aux chemins doux du Val de Bagnes, un débutant profite dès la première sortie. Nos sorties guidées s'adaptent à tous les niveaux, familles et enfants compris.",
+  },
+  {
+    q: 'Quand ouvre le bike park de Verbier ?',
+    a: "En été, généralement de juin à octobre selon les conditions. Les dates exactes d'ouverture des remontées sont publiées chaque saison par Téléverbier.",
+  },
+  {
+    q: 'Peut-on louer un e-bike ou un VTT à Verbier ?',
+    a: 'Oui : 125 CHF la journée, casque offert. Nous réservons le vélo pour vous chez nos partenaires de Verbier et il vous attend au départ de votre sortie.',
+  },
+  {
+    q: 'Combien coûte une sortie VTT guidée à Verbier ?',
+    a: "De 80 à 320 CHF par personne la demi-journée et de 120 à 550 CHF la journée selon la taille du groupe. Une semaine guidée avec chalet et forfait remontées coûte de 1290 à 1990 CHF par personne.",
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="itineraires"
+  title="VTT à Verbier : le Guide Complet des Locaux | Sentiers, Bike Park, Saison"
+  description="Tout le VTT à Verbier par des guides nés ici : 400 km de sentiers, bike park de Médran, itinéraires enduro et e-bike dans le Val de Bagnes, saison de mai à octobre, tarifs et conseils de locaux."
+  ogImage={IMG.heroVtt}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroVtt} alt="VTT sur un singletrack au-dessus de Verbier, Valais" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Le guide des locaux</p>
+      <h1 class="h1" data-wipe>Le VTT à Verbier, raconté par <span class="teal">ceux qui y sont nés</span></h1>
+      <p class="lead">Sentiers, bike park, saison, tarifs : tout ce qu'il faut savoir avant de rouler ici.</p>
+      <div class="hero-actions"><CtaButton href={pathFor('guide', lang)} label="Rouler avec un guide" variant="light" /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Verbier, Val de Bagnes, Valais</p>
+      <h2 class="h2">Une des plus grandes destinations VTT <span class="teal">de Suisse</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Verbier, à 1500 m d'altitude dans le Val de Bagnes en Valais, c'est environ 400 km de sentiers balisés au cœur du domaine des 4 Vallées, un bike park desservi par la télécabine de Médran, une trentaine de remontées mécaniques en été et une quinzaine de restaurants d'altitude. La saison s'étend en général de mai à octobre.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a> et notre <a href={pathFor('semaine', lang)}>semaine VTT avec chalet</a>.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Les terrains</p>
+        <h2 class="h2">Trois façons de rouler à <span class="teal">Verbier</span></h2>
+      </div>
+      <div class="cards">
+        {
+          terrains.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h3 class="h3 teal">{f.title}</h3>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Conseils de locaux</p>
+        <h2 class="h2">Bien préparer sa venue à <span class="teal">Verbier</span></h2>
+        <div class="feature-grid" style="margin-top:2rem">
+          {conseils.map((c) => (
+            <div class="feature" data-reveal>
+              <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+              <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+              <p style="color:var(--gray-text)">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Budget</p>
+      <h2 class="h2">Combien ça coûte, <span class="teal">concrètement</span> ?</h2>
+      <ul class="icon-list" style="margin-top:1.75rem">
+        <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Sortie guidée privée</a>&nbsp;: de 80.- à 550.- par personne selon le groupe et la durée</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Location e-bike ou VTT</a>&nbsp;: 125.- la journée, casque offert</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('semaine', lang)} style="text-decoration:underline; text-underline-offset:2px">Semaine guidée + chalet</a>&nbsp;: de 1290.- à 1990.- par personne, forfait remontées inclus</li>
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ : le VTT à <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container center">
+        <p class="eyebrow">Envie de rouler ?</p>
+        <h2 class="h2">Le Verbier caché se visite <span class="teal">avec un local</span></h2>
+        <p class="lead measure" style="margin:1.25rem auto 0">
+          Guides nés à Verbier, certifiés Swiss Cycling. On parle français, anglais, espagnol et allemand.
+        </p>
+        <div style="margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap">
+          <CtaButton href={pathFor('guide', lang)} label="Voir les sorties guidées" variant="teal" />
+          <CtaButton href={pathFor('contact', lang)} label="Nous contacter" variant="light" />
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
+        { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
+        { href: pathFor('semaine', lang), label: 'Semaine VTT guidée avec chalet' },
+        { href: pathFor('nepal', lang), label: 'Voyage enduro au Népal' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

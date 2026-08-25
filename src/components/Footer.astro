@@ -8,10 +8,12 @@ interface Props {
 const { lang } = Astro.props;
 const ui = t(lang);
 const links: { key: Parameters<typeof pathFor>[0]; label: string }[] = [
-  { key: 'entreprise', label: ui.footer.links.entreprise },
   { key: 'guide', label: ui.footer.links.guide },
+  { key: 'entreprise', label: ui.footer.links.entreprise },
   { key: 'semaine', label: ui.footer.links.semaine },
   { key: 'nepal', label: ui.footer.links.nepal },
+  { key: 'location', label: ui.footer.links.location },
+  { key: 'itineraires', label: ui.footer.links.itineraires },
   { key: 'contact', label: ui.footer.links.contact },
 ];
 const year = 2026;
@@ -38,6 +40,7 @@ const year = 2026;
       <p class="footer__contact">
         <a href={SITE.phoneHref}>{SITE.phoneDisplay}</a>
       </p>
+      <p class="footer__place">{ui.footer.location}</p>
     </div>
   </div>
 
@@ -88,6 +91,11 @@ const year = 2026;
   }
   .footer__contact {
     margin-top: 0.75rem;
+  }
+  .footer__place {
+    margin-top: 0.35rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.9rem;
   }
   .footer__legal {
     margin-top: 3rem;

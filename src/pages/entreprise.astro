@@ -43,19 +43,29 @@ const faq = [
     a: "En cas de météo défavorable, plusieurs options sont envisagées : adaptation de l'itinéraire, changement de date, ou repli vers une activité alternative. Notre priorité reste la sécurité et le plaisir de tous les participants.",
   },
 ];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
 ---
 
 <Layout
   lang={lang}
   routeKey="entreprise"
-  title="Team Building VTT à Verbier | Bike Verbier"
-  description="Guide VTT à Verbier avec des locaux : sorties E-bike, enduro, rando gourmande et semaine guidée en chalet. Sentiers secrets du Valais avec des guides nés à Verbier."
+  title="Team Building VTT & E-bike à Verbier | Sortie d'Entreprise | Bike Verbier"
+  description="Sortie d'entreprise et team building en e-bike à Verbier : journée clé en main avec vélos réservés, restaurants d'altitude et apéritifs du terroir. Guides locaux, tous niveaux, grands groupes bienvenus."
   ogImage={IMG.heroEntreprise}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroEntreprise} alt="Sortie d'entreprise en VTT à Verbier" />
+    <img class="hero__bg" src={IMG.heroEntreprise} alt="Sortie d'entreprise en VTT à Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">Teambuilding</p>
+      <p class="eyebrow" style="color:#fff">Team building VTT et e-bike à Verbier</p>
       <h1 class="h1" data-wipe>On s'occupe de tout, <span class="teal">vous profitez</span>.</h1>
       <p class="lead">Faites respirer votre équipe, vivez une journée hors du temps à deux pas de chez vous.</p>
       <div class="hero-actions"><CtaButton href="#contact" label="Organiser une sortie" variant="light" /><CallLink /></div>
@@ -94,7 +104,7 @@ const faq = [
 
     <section class="section container">
       <p class="eyebrow">Questions ?</p>
-      <h2 class="h2" style="margin-bottom:1.5rem">FAQ</h2>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ : sortie d'entreprise en VTT à <span class="teal">Verbier</span></h2>
       <div class="faq">
         {
           faq.map((item) => (
@@ -117,4 +127,6 @@ const faq = [
       <ContactForm lang={lang} subject="Demande Teambuilding · Bikeverbier.ch" card />
     </ContactBand>
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 </Layout>

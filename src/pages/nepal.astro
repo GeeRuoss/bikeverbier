@@ -3,9 +3,10 @@ import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import ContactBand from '../components/ContactBand.astro';
+import CrossLinks from '../components/CrossLinks.astro';
 import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
-import { SITE } from '../data/site';
+import { SITE, pathFor } from '../data/site';
 
 const lang = 'fr' as const;
 // Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
@@ -44,7 +45,7 @@ const features = [
   ogImage={IMG.ogNepal}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro VTT au Mustang, Népal" />
+    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro VTT au Mustang, Népal" width="1920" height="1080" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Le voyage d'une vie</p>
       <h1 class="h1" data-wipe>10 jours d'enduro au <span class="teal">Mustang, Népal</span></h1>
@@ -98,7 +99,7 @@ const features = [
       <div class="container">
         <p class="eyebrow center">Galerie</p>
         <div class="gallery" style="margin-top:2rem" data-reveal>
-          {IMG.nepalGallery.map((src) => <img src={src} alt="Enduro VTT au Népal" loading="lazy" />)}
+          {IMG.nepalGallery.map((src, i) => <img src={src} alt={['Trois riders au coucher du soleil sur une crête du Népal', 'Descente enduro face aux sommets himalayens du Népal', 'Enduro dans une forêt moussue au Népal'][i]} loading="lazy" />)}
         </div>
         <p class="center" style="margin-top:1.5rem; color:var(--gray-soft); font-size:.85rem">Photos : Soren Rickards</p>
       </div>
@@ -118,7 +119,7 @@ const features = [
     </section>
 
     <ContactBand lang={lang} eyebrow="Demande" title="Écrivez-nous" lead="Pour répondre à vos attentes, écrivez-nous et nous ferons de notre mieux pour vous." id="demande">
-      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci/" data-message={G.message}>
           <input type="hidden" name={G.request} value="Demande Nepal" />
           <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
           <input type="hidden" name={G.antibot} value={G.antibotValue} />
@@ -136,5 +137,13 @@ const features = [
           <button type="submit" class="btn btn--dark cform__submit"><span>Envoyer</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
         </form>
     </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
+        { href: pathFor('semaine', lang), label: 'Semaine VTT guidée avec chalet à Verbier' },
+      ]}
+    />
   </div>
 </Layout>

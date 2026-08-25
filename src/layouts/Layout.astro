@@ -5,8 +5,9 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { SITE, ROUTES, type Lang, type RouteKey } from '../data/site';
+import { SITE, ROUTES, pathFor, type Lang, type RouteKey } from '../data/site';
 import { IMG } from '../data/images';
+import { REVIEWS } from '../data/reviews';
 import { t } from '../i18n/ui';
 
 interface Props {
@@ -16,8 +17,9 @@ interface Props {
   description: string;
   ogImage?: string;
   jsonLd?: boolean;
+  noindex?: boolean;
 }
-const { lang, routeKey, title, description, ogImage = IMG.ogDefault, jsonLd = false } = Astro.props;
+const { lang, routeKey, title, description, ogImage = IMG.ogDefault, jsonLd = false, noindex = false } = Astro.props;
 
 const htmlLang = lang === 'fr' ? 'fr-FR' : 'en-GB';
 const route = ROUTES.find((r) => r.key === routeKey)!;
@@ -31,18 +33,34 @@ const ui = t(lang);
 const homeUrl = lang === 'fr' ? SITE.domain + '/' : SITE.domain + '/en/';
 
 // Entité business, riche, partagée sur toutes les pages (@id stable).
+// Description dans la langue de la page : les moteurs et les IA lisent les deux versions.
+const businessDescription =
+  lang === 'fr'
+    ? 'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, location e-bike, semaine guidée en chalet et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.'
+    : 'Local mountain bike guides in Verbier (Valais, Switzerland): guided e-bike and enduro tours, gourmet rides, e-bike rental, guided chalet weeks and an enduro trip to Nepal. Guides born in Verbier, Swiss Cycling certified, all levels welcome.';
+
+// Avis clients (reviews.ts) exposés en JSON-LD : Google n'affiche plus d'étoiles pour les
+// avis hébergés sur son propre site, mais les autres moteurs et les IA les lisent.
+const reviewsLd = REVIEWS[lang].map((r) => ({
+  '@type': 'Review',
+  reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5 },
+  author: { '@type': 'Person', name: r.author.split(',')[0].trim() },
+  reviewBody: r.quote,
+}));
+
 const businessLd = {
   '@context': 'https://schema.org',
   '@type': ['SportsActivityLocation', 'LocalBusiness'],
   '@id': SITE.domain + '/#business',
   name: 'Bikeverbier.ch',
-  description:
-    'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, semaine guidée en chalet et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.',
+  alternateName: 'Bike Verbier',
+  description: businessDescription,
   url: SITE.domain,
   telephone: '+41774506726',
+  email: SITE.contactEmail,
   image: SITE.domain + '/img/og-home.jpg',
   logo: SITE.domain + '/brand/logo-mark.png',
-  priceRange: 'CHF 120-1290',
+  priceRange: 'CHF 80-1990',
   currenciesAccepted: 'CHF',
   knowsLanguage: ['fr', 'en', 'es', 'de'],
   address: {
@@ -54,12 +72,42 @@ const businessLd = {
   },
   geo: { '@type': 'GeoCoordinates', latitude: 46.0979, longitude: 7.227 },
   areaServed: { '@type': 'Place', name: 'Verbier, Val de Bagnes, Valais, Suisse' },
-  sameAs: [SITE.instagram],
+  sameAs: [SITE.instagram, SITE.googleMaps],
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 5,
+    bestRating: 5,
+    reviewCount: REVIEWS[lang].length,
+  },
+  review: reviewsLd,
   makesOffer: [
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Guide privé VTT et rando gourmande', url: SITE.domain + '/guide' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Teambuilding et sortie VTT entreprise', url: SITE.domain + '/entreprise' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Semaine guidée VTT + chalet', url: SITE.domain + '/semaine-guidechalet' } },
-    { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Voyage enduro VTT au Népal', url: SITE.domain + '/nepal' } },
+    {
+      '@type': 'Offer',
+      priceCurrency: 'CHF',
+      price: 80,
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Guide privé VTT et rando gourmande (dès 80 CHF par personne)' : 'Private MTB guide and gourmet ride (from CHF 80 per person)', url: SITE.domain + pathFor('guide', lang) },
+    },
+    {
+      '@type': 'Offer',
+      priceCurrency: 'CHF',
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Teambuilding et sortie VTT entreprise' : 'MTB and e-bike corporate team building', url: SITE.domain + pathFor('entreprise', lang) },
+    },
+    {
+      '@type': 'Offer',
+      priceCurrency: 'CHF',
+      price: 1290,
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Semaine guidée VTT + chalet (dès 1290 CHF par personne)' : 'Guided MTB week + chalet (from CHF 1290 per person)', url: SITE.domain + pathFor('semaine', lang) },
+    },
+    {
+      '@type': 'Offer',
+      priceCurrency: 'CHF',
+      price: 125,
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Location e-bike et VTT à Verbier (125 CHF par jour)' : 'E-bike and mountain bike rental in Verbier (CHF 125 per day)', url: SITE.domain + pathFor('location', lang) },
+    },
+    {
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Voyage enduro VTT au Népal' : 'Enduro MTB trip to Nepal', url: SITE.domain + pathFor('nepal', lang) },
+    },
   ],
 };
 
@@ -98,7 +146,7 @@ const breadcrumbLd =
 
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
     <meta name="author" content="Bikeverbier.ch" />
     <meta name="theme-color" content="#54B8B3" />
     <link rel="canonical" href={canonical} />

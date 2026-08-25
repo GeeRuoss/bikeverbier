@@ -1,0 +1,207 @@
+---
+// Resource page "Mountain biking in Verbier" (EN). Same FR slug, per site convention.
+// SEO + GEO goal: rank for informational queries (verbier mountain biking, mtb verbier,
+// bike park, season) and give AI assistants a fact-rich page to cite. Refresh every season.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'en' as const;
+
+const terrains = [
+  {
+    img: IMG.cardGuide,
+    alt: 'Group of MTB riders on a built trail in Verbier',
+    icon: 'mountain',
+    eyebrow: 'Enduro & singletracks',
+    title: 'The trails above the resort',
+    desc: "This is the heart of riding in Verbier: mountainside singletracks, switchbacks, forest sections and views over the Combins. The signature route is the descent from Mont-Fort, a huge vertical drop served by lifts. It is also where our guides make the difference: the best trails are not on the maps.",
+  },
+  {
+    img: IMG.heroHome,
+    alt: 'Mountain biking down the trails of Verbier',
+    icon: 'gondola',
+    eyebrow: 'Bike park',
+    title: 'The Verbier bike park',
+    desc: 'Reached via the Médran gondola, the Verbier bike park offers built trails from blue to black, maintained all summer. Ideal for progressing in downhill by stacking up runs. Exact opening dates are published each season by Téléverbier, generally from June to October.',
+  },
+  {
+    img: IMG.guideGourmande,
+    alt: 'Valais platter: dried meat, cheese and rye bread',
+    icon: 'utensils',
+    eyebrow: 'E-bike & terroir',
+    title: 'The alpine paths of the Val de Bagnes',
+    desc: "On an e-bike, the Val de Bagnes opens up to everyone: alpine paths, villages, mountain huts and some fifteen high-altitude restaurants serving the Valais platter and Bagnes cheese. This is the terrain of our gourmet ride, enjoyable from the very first pedal stroke.",
+  },
+];
+
+const tips = [
+  { icon: 'sun', title: 'The season', text: 'From May to October depending on snow, with around 150 riding days a year. July and August for the buzz and all lifts open, September and October for the colours and quiet trails.' },
+  { icon: 'route', title: 'The playground', text: 'Around 400 km of marked trails around Verbier and the Val de Bagnes, in the heart of the 4 Vallées area, with some thirty lifts running in summer.' },
+  { icon: 'bike', title: 'The gear', text: 'E-bike to climb without suffering, enduro bike to play on the descents. Rental available at CHF 125 per day, helmet included, bike booked with our partners and ready at the start.' },
+  { icon: 'shield', title: 'Safety', text: 'Helmet always, protection recommended for downhill, and respect for hikers and alpine pastures: we share the mountain. When in doubt about a trail, ask a local.' },
+];
+
+const faq = [
+  {
+    q: 'Do I need a guide to mountain bike in Verbier?',
+    a: 'It is not mandatory, but it changes everything: the most beautiful trails in Verbier are unmarked, and a local guide takes you to the right place for your level, the weather and trail conditions. Our guides were born in Verbier and are Swiss Cycling certified, from CHF 80 per person.',
+  },
+  {
+    q: 'What is the best mountain bike route in Verbier?',
+    a: 'It depends on your level. For the views, the descent from Mont-Fort is the signature route of the region. For enduro, the singletracks above the resort. For a relaxed family outing, the alpine paths of the Val de Bagnes by e-bike with a stop at a mountain restaurant.',
+  },
+  {
+    q: 'Is Verbier suitable for beginner mountain bikers?',
+    a: 'Yes. Thanks to e-bikes and the gentle paths of the Val de Bagnes, a beginner can enjoy it from the first ride. Our guided tours adapt to every level, families and children included.',
+  },
+  {
+    q: 'When does the Verbier bike park open?',
+    a: 'In summer, generally from June to October depending on conditions. Exact lift opening dates are published each season by Téléverbier.',
+  },
+  {
+    q: 'Can I rent an e-bike or a mountain bike in Verbier?',
+    a: 'Yes: CHF 125 per day, helmet included. We book the bike for you with our Verbier partners and it is waiting for you at the start of your ride.',
+  },
+  {
+    q: 'How much does a guided mountain bike tour cost in Verbier?',
+    a: 'From CHF 80 to 320 per person for a half day and from CHF 120 to 550 for a full day, depending on group size. A guided week with chalet and lift pass costs from CHF 1290 to 1990 per person.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="itineraires"
+  title="Mountain Biking in Verbier: The Locals' Complete Guide | Trails, Bike Park, Season"
+  description="Everything about mountain biking in Verbier by guides born here: 400 km of trails, the Médran bike park, enduro and e-bike routes in the Val de Bagnes, season from May to October, prices and local tips."
+  ogImage={IMG.heroVtt}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroVtt} alt="Mountain biking on a singletrack above Verbier, Valais" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">The locals' guide</p>
+      <h1 class="h1" data-wipe>Mountain biking in Verbier, told by <span class="teal">those born here</span></h1>
+      <p class="lead">Trails, bike park, season, prices: everything you should know before riding here.</p>
+      <div class="hero-actions"><CtaButton href={pathFor('guide', lang)} label="Ride with a guide" variant="light" /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Verbier, Val de Bagnes, Valais</p>
+      <h2 class="h2">One of Switzerland's greatest <span class="teal">MTB destinations</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Verbier, at 1500 m in the Val de Bagnes in Valais, offers around 400 km of marked trails in the heart of the 4 Vallées area, a bike park served by the Médran gondola, some thirty lifts in summer and about fifteen high-altitude restaurants. The season generally runs from May to October.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        This page is our local guide: what we answer when people ask us where, when and how to ride in Verbier. To live it on the trails, there are our <a href={pathFor('guide', lang)}>guided tours</a> and our <a href={pathFor('semaine', lang)}>guided MTB week with chalet</a>.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">The terrain</p>
+        <h2 class="h2">Three ways to ride in <span class="teal">Verbier</span></h2>
+      </div>
+      <div class="cards">
+        {
+          terrains.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h3 class="h3 teal">{f.title}</h3>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Local tips</p>
+        <h2 class="h2">Getting ready for <span class="teal">Verbier</span></h2>
+        <div class="feature-grid" style="margin-top:2rem">
+          {tips.map((c) => (
+            <div class="feature" data-reveal>
+              <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+              <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+              <p style="color:var(--gray-text)">{c.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Budget</p>
+      <h2 class="h2">What does it actually <span class="teal">cost</span>?</h2>
+      <ul class="icon-list" style="margin-top:1.75rem">
+        <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Private guided tour</a>: CHF 80 to 550 per person depending on group and duration</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">E-bike or MTB rental</a>: CHF 125 per day, helmet included</li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('semaine', lang)} style="text-decoration:underline; text-underline-offset:2px">Guided week + chalet</a>: CHF 1290 to 1990 per person, lift pass included</li>
+      </ul>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Frequently asked questions</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: mountain biking in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container center">
+        <p class="eyebrow">Ready to ride?</p>
+        <h2 class="h2">The hidden Verbier is best visited <span class="teal">with a local</span></h2>
+        <p class="lead measure" style="margin:1.25rem auto 0">
+          Guides born in Verbier, Swiss Cycling certified. We speak English, French, Spanish and German.
+        </p>
+        <div style="margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap">
+          <CtaButton href={pathFor('guide', lang)} label="See the guided tours" variant="teal" />
+          <CtaButton href={pathFor('contact', lang)} label="Contact us" variant="light" />
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('semaine', lang), label: 'Guided MTB week with chalet' },
+        { href: pathFor('nepal', lang), label: 'Enduro trip to Nepal' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

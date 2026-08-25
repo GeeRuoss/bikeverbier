@@ -3,8 +3,9 @@ import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import ContactBand from '../components/ContactBand.astro';
+import CrossLinks from '../components/CrossLinks.astro';
 import { IMG } from '../data/images';
-import { SITE } from '../data/site';
+import { SITE, pathFor } from '../data/site';
 
 const lang = 'fr' as const;
 
@@ -40,7 +41,7 @@ const G = SITE.gform;
   ogImage={IMG.heroSemaine}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroSemaine} alt="Semaine VTT guidée avec chalet à Verbier" />
+    <img class="hero__bg" src={IMG.heroSemaine} alt="Semaine VTT guidée avec chalet à Verbier" width="1920" height="1305" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Bienvenue au paradis</p>
       <h1 class="h1" data-wipe>Une semaine de ride à Verbier avec <span class="teal">guide local</span></h1>
@@ -85,14 +86,14 @@ const G = SITE.gform;
 
     <section class="section container">
       <div class="gallery" data-reveal>
-        <img src={IMG.semaineChalet} alt="Chalet de montagne à Verbier" loading="lazy" />
-        <img src={IMG.semaineLift} alt="Forfait remontées mécaniques" loading="lazy" />
-        {IMG.semaineGallery.map((src) => <img src={src} alt="Semaine VTT à Verbier" loading="lazy" />)}
+        <img src={IMG.semaineChalet} alt="Intérieur du chalet à Verbier : salon en bois avec vue sur les montagnes" loading="lazy" />
+        <img src={IMG.semaineLift} alt="Vaches d'alpage croisées sur les chemins du Val de Bagnes" loading="lazy" />
+        {IMG.semaineGallery.map((src, i) => <img src={src} alt={['Rider dans un virage relevé en forêt près de Verbier', 'Trois riders au-dessus du village de Verbier pendant la semaine guidée', 'Descente sur un sentier aménagé en forêt à Verbier'][i]} loading="lazy" />)}
       </div>
     </section>
 
     <ContactBand lang={lang} eyebrow="Réservation" title="Demandez votre semaine" lead="Remplissez le formulaire pour demander la semaine de votre choix. Nous reviendrons vers vous rapidement pour confirmer les détails. À bientôt sur les sentiers !" id="reservation">
-      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci" data-message={G.message}>
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/merci/" data-message={G.message}>
         <input type="hidden" name={G.request} value="Réservation Semaine + Chalet" />
         <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
         <input type="hidden" name={G.antibot} value={G.antibotValue} />
@@ -119,5 +120,14 @@ const G = SITE.gform;
         <button type="submit" class="btn btn--dark cform__submit"><span>Réserver</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
       </form>
     </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
+        { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
+        { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
+      ]}
+    />
   </div>
 </Layout>

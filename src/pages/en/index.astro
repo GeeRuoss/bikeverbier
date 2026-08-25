@@ -12,6 +12,7 @@ const lang = 'en' as const;
 const offers = [
   {
     img: IMG.cardEntreprise,
+    alt: 'Group on a guided ride on a flower-lined trail above Verbier',
     eyebrow: 'Turnkey',
     title: 'Teambuilding',
     items: ['Corporate outing on an E-bike', 'Exploration of local produce', 'Visit of local restaurateurs'],
@@ -20,6 +21,7 @@ const offers = [
   },
   {
     img: IMG.cardGuide,
+    alt: 'Guided MTB ride on a built trail in Verbier',
     eyebrow: 'Starting from CHF 120.-',
     title: 'Private Guide / Gourmet Hike',
     items: ['From beginner to expert', 'Ideal for families', 'On an E-bike or Enduro'],
@@ -28,6 +30,7 @@ const offers = [
   },
   {
     img: IMG.cardSemaine,
+    alt: 'Rider on a bermed turn during the MTB week in Verbier',
     eyebrow: 'Starting from CHF 1290.-',
     title: 'Guided Week + Chalet',
     items: ['6 nights in a chalet', '5 days guided with a Swiss Cycling guide', 'Included Verbier subscription and shuttle'],
@@ -36,6 +39,7 @@ const offers = [
   },
   {
     img: IMG.cardNepal,
+    alt: 'Rider carrying his bike in front of the Himalayan peaks, Nepal',
     eyebrow: 'Journey of a Lifetime',
     title: '10 Days of Enduro in Nepal',
     items: ['Local reception', 'Private shuttle', 'Domestic flights'],
@@ -56,31 +60,35 @@ const counters = [
 <Layout
   lang={lang}
   routeKey="home"
-  title="Bikeverbier - Ride local."
-  description="Day trips, exploration of local heritage, a week in a chalet with a private guide and lift pass. Local trails, authentic and bespoke alpine experience."
+  title="Mountain Bike Guide Verbier | E-bike & Enduro Tours | Bikeverbier.ch"
+  description="Local mountain bike guides in Verbier, Switzerland: guided e-bike and enduro tours, gourmet rides, e-bike rental and guided chalet weeks with lift pass. Guides born in Verbier, all levels welcome."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroHome} alt="Mountain biking down the trails of Verbier" />
+    <img class="hero__bg" src={IMG.heroHome} alt="Mountain biking down the trails of Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">Welcome to paradise</p>
+      <p class="eyebrow" style="color:#fff">Mountain bike guides in Verbier</p>
       <h1 class="h1" data-wipe>Discover the <span class="teal">hidden Verbier</span></h1>
-      <p class="lead">From secret trails to the flavours of Valais, allow yourself to be guided by the authenticity of our local guides.</p>
+      <p class="lead">Local mountain bike guides, e-bike and enduro tours: from secret trails to the flavours of Valais, let yourself be guided by locals born in Verbier.</p>
       <div class="hero-actions"><CtaButton href={pathFor('contact', lang)} label="Let's go!" variant="light" /><CallLink /></div>
     </div>
   </section>
 
   <div class="sheet">
     <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Our offers</p>
+        <h2 class="h2">Guided MTB and e-bike tours in <span class="teal">Verbier</span></h2>
+      </div>
       <div class="cards">
         {
           offers.map((o, i) => (
             <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`} data-reveal>
-              <img class="card__img" src={o.img} alt={o.title} loading="lazy" />
+              <img class="card__img" src={o.img} alt={o.alt} loading="lazy" />
               <div class="card__body">
                 <p class="eyebrow">{o.eyebrow}</p>
-                <h2 class="h3 teal">{o.title}</h2>
+                <h3 class="h3 teal">{o.title}</h3>
                 <ul>{o.items.map((it) => <li>{it}</li>)}</ul>
                 <CtaButton href={o.href} label={o.cta} variant="dark" />
               </div>
@@ -111,7 +119,7 @@ const counters = [
           <p class="eyebrow">Welcome</p>
           <h2 class="h2">Welcome to <span class="teal">Bikeverbier.ch</span>!</h2>
           <p class="lead">We are guides all born in Verbier, ready to introduce you to our local trails and traditions!</p>
-          <p style="color:var(--gray-text)">Your local mountain biking guide in Verbier: e-bike and enduro outings, gourmet rides and guided weeks in a chalet. From the secret trails of Valais to the finest mountain-top restaurants, we share our mountains with those who want to experience them differently.</p>
+          <p style="color:var(--gray-text)">Your local <a href={pathFor('guide', lang)}>mountain bike guide in Verbier</a>: e-bike and enduro outings, gourmet rides and guided weeks in a chalet, with <a href={pathFor('location', lang)}>e-bike rental</a> available for every tour. From the secret trails of Valais to the finest mountain-top restaurants, we share our mountains with those who want to experience them differently. Planning your trip? Browse our <a href={pathFor('itineraires', lang)}>complete guide to mountain biking in Verbier</a>.</p>
           <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Our Guides" variant="teal" />
         </div>
       </div>

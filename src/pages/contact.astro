@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ContactForm from '../components/ContactForm.astro';
 import CallLink from '../components/CallLink.astro';
 import { IMG, BADGES } from '../data/images';
+import { SITE } from '../data/site';
 
 const lang = 'fr' as const;
 
@@ -38,19 +39,35 @@ const guides = [
     ],
   },
 ];
+
+// Fiches Person (Schema.org) des guides : identité, certifications, langues.
+// Signal E-E-A-T lisible par les moteurs et les assistants IA.
+const personsLd = {
+  '@context': 'https://schema.org',
+  '@graph': guides.map((g) => ({
+    '@type': 'Person',
+    name: g.name,
+    jobTitle: g.role,
+    description: g.bio,
+    image: SITE.domain + g.img,
+    worksFor: { '@id': SITE.domain + '/#business' },
+    knowsLanguage: ['fr', 'en', 'es', 'de'],
+    hasCredential: g.badges.map((b) => ({ '@type': 'EducationalOccupationalCredential', name: b.label })),
+  })),
+};
 ---
 
 <Layout
   lang={lang}
   routeKey="contact"
-  title="Réserver une Sortie VTT à Verbier | Contact Bikeverbier.ch"
-  description="Guide VTT à Verbier avec des locaux : sorties E-bike, enduro, rando gourmande et semaine guidée en chalet. Sentiers secrets du Valais avec des guides nés à Verbier."
+  title="Réserver un Guide VTT à Verbier | Contact Bikeverbier.ch"
+  description="Réservez votre guide VTT à Verbier par téléphone, WhatsApp ou formulaire, réponse sous 24 h. On parle français, anglais, espagnol et allemand. Guides certifiés Swiss Cycling, tous nés à Verbier."
 >
   <section class="section contact-hero contact-hero--top">
     <div class="container contact-split">
       <div>
         <img class="contact-avatar" src={IMG.guideGuillermo} alt="Guide Bikeverbier" loading="lazy" />
-        <h1 class="h1" style="color:#fff">Découvrez Verbier avec les locaux !</h1>
+        <h1 class="h1" style="color:#fff">Réservez votre guide VTT : découvrez Verbier avec les locaux !</h1>
         <p class="lead" style="margin-top:1.25rem; max-width:42ch">N'hésitez pas à nous appeler même en cas de demandes ou de conseils pour la région !</p>
         <p style="margin-top:1.5rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-weight:600">Nous parlons <img class="contact-flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
         <p style="margin-top:1.75rem"><CallLink /></p>
@@ -87,4 +104,6 @@ const guides = [
       </div>
     </div>
   </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(personsLd)} />
 </Layout>
