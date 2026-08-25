@@ -1,5 +1,7 @@
 # Plan SEO bikeverbier.ch : passer devant tout le monde en 2027
 
+> Mise à jour 25.08.2026 (2e vague) : l'offre « Semaine guide + chalet » est retirée (décision Guillermo), remplacée par une page « Cours privés VTT » (/cours-vtt-verbier/ FR + EN). Anciennes URLs redirigées vers /guide/. Objectif prioritaire confirmé : passer devant l'École Suisse de Ski et VTT (ESV) sur le guiding et les cours privés. Voir la section dédiée en bas.
+
 Audit complet réalisé le 25.08.2026 (7 analyses : SERP FR, SERP EN, technique, contenu, concurrents, IA/GEO, local). Constat : le site était techniquement sain mais invisible sur toutes les requêtes hors marque, en FR comme en EN. Les corrections on-site sont faites (voir le commit « SEO : refonte complète on-site »). Ce fichier liste ce qui reste : les actions hors-site, que seul Guillermo peut faire.
 
 ## Le diagnostic en une phrase
@@ -72,6 +74,21 @@ Les IA citent ceux dont les tiers parlent. L'angle est en or : « des guides né
 - **bikeverbier.com** (l'ancien domaine de la société anglaise devenue MTB Verbier) est aujourd'hui un site de jeux d'argent indonésien, et leur ancienne page Facebook « Bike Verbier » sort première sur la requête « bike verbier ». Ne rien acheter, mais multiplier les citations « Bikeverbier.ch » et sécuriser les réseaux restants à ce nom (une vraie page Facebook Bikeverbier.ch aiderait).
 - **Mesure mensuelle** (1er du mois, 10 minutes) : googler « guide vtt verbier », « mountain bike guide verbier », « e-bike rental verbier », « vtt verbier », et poser les mêmes questions à ChatGPT et Perplexity. Noter qui sort. C'est le tableau de bord du progrès.
 - **Rafraîchir /vtt-verbier/ chaque saison** (dates, nouveautés) : les pages non mises à jour perdent leurs citations IA 3 fois plus vite.
+
+## Objectif prioritaire : devant l'ESV sur le guiding et les cours privés
+
+Ce que l'audit sait de l'École Suisse de Ski et VTT (essverbier.ch) :
+- Fiche Google : 4,5 étoiles, 15 avis seulement. Toi : 5,0 avec 10. C'est le duel le plus gagnable du marché.
+- Leurs forces : la marque « École Suisse de Ski », la réservation via swisskischool.ch, l'inscription sur verbier.ch, et des tarifs publics affichés (privé demi-journée 200 CHF, journée 350 CHF, Downhill Academy 370 CHF la semaine).
+- Leurs faiblesses : le VTT est une activité annexe à côté du ski, peu d'avis, pas de storytelling, pas de guides mis en avant.
+
+Le plan pour les doubler :
+1. **Avis Google** : à 20 avis et plus (toujours 5,0), tu passes devant leur 4,5/15 dans le pack local sur « cours vtt verbier » et « moniteur vtt verbier ». C'est mathématique et rapide.
+2. **La page /cours-vtt-verbier/ est en ligne** (FR + EN) avec FAQ balisée. Elle cible « cours vtt verbier », « cours privé vtt », « moniteur vtt verbier », « mtb lessons verbier ». L'ESV n'a pas de page aussi ciblée côté VTT.
+3. **Afficher de vrais tarifs cours** dès que possible : l'ESV affiche les siens (200/350 CHF), la transparence gagne le clic. Pour l'instant la page dit « sur demande » avec la grille des sorties privées en repère. Donne-moi tes prix et je les mets en ligne.
+4. **L'inscription verbier.ch** vaut double ici : l'ESV y est, toi pas encore.
+5. **Catégories de la fiche Google** : ajouter une catégorie secondaire type « École de sport » ou « Moniteur » si disponible, et créer un produit « Cours privé VTT » sur la fiche (et retirer le produit Semaine si présent).
+6. Plus tard, pour attaquer leur Downhill Academy côté enfants : un produit nommé pour les kids (idée en réserve, à valider).
 
 ## Ce qui a été fait dans le code (25.08.2026)
 
