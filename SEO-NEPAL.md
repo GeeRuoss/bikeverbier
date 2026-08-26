@@ -86,13 +86,46 @@ L'angle différenciant que personne n'occupe : des guides suisses de Verbier qui
 
 Être numéro 1 mondial sur « nepal mountain bike tour » : non, pas contre TripAdvisor, Viator et 20 ans d'ancienneté des locaux. Mais ce n'est pas le besoin : il y a 3 places à vendre pour novembre 2026. Une page complète qui ranke sur le créneau Mustang/enduro + le marché FR vide + une candidature 57hours + le relais presse et Instagram suffisent largement à remplir un groupe de cette taille, et construisent l'actif pour les éditions suivantes.
 
-## Décisions à prendre (Guillermo)
+## Ce qui a été fait dans le code (26.08.2026, à valider avant déploiement)
 
-1. **Afficher le prix 5 400 CHF sur la page ?** Recommandation : oui, décomposé. Le prix caché coûte plus cher qu'il ne protège, et la fiche Google (4 900) et le reel (5 400) l'affichent déjà de toute façon.
-2. **Trancher le wording du « tout compris »** : la décision du 11.08 est « hors vol international », le reel dit « all inclusive ». La page doit dire précisément ce qui est inclus (sur place tout compris, permis, vols intérieurs, hors vol international et assurance).
-3. **Upper ou Lower Mustang exactement ?** Le devis partenaire mentionne « Permis Mustang 7 jours » + ACAP et le vol Pokhara-Jomsom : à confirmer si l'itinéraire entre en zone restreinte Upper Mustang (et jusqu'où), ça fixe le discours permis et les mots-clés.
-4. **Me fournir l'itinéraire jour par jour** (étapes, km, dénivelés, altitudes, nuits) : la structure connue (10 jours = 7 de ride + 2 de voyage + 1 à Kathmandu, via Pokhara et Jomsom) est un début, il me faut le détail du partenaire. C'est la matière première du bloc central de la page.
-5. **Feu vert sur la refonte** : dès que j'ai 1 à 4, je code la nouvelle page FR + EN avec FAQ et schema, sur une branche à valider avant déploiement.
+La refonte des deux pages est codée et commitée sur la branche, rien n'est déployé.
+
+- **Volume** : 280 mots, 2 350 mots par langue. Au-dessus du plancher constaté chez les concurrents qui rankent (4 500 mots pour les plus gros, mais eux ont le roadbook détaillé, voir la limite plus bas).
+- **Titles** : « Voyage VTT Enduro au Népal | 10 Jours dans le Haut-Mustang » (FR) et « Upper Mustang Mountain Bike Tour | 10-Day Enduro MTB Trip in Nepal » (EN), calés sur les deux requêtes gagnables.
+- **Blocs ajoutés** : repères clés sous le hero (dates, lieu, groupe, prix), déroulé des 10 jours, prix affiché avec les deux listes inclus et à prévoir, six cartes niveau technique, niveau physique, altitude, permis, vélo et groupe, bloc « pourquoi avec nous », FAQ de 12 questions.
+- **Données structurées** : schema Product + Offer à 5400 CHF et FAQPage sur les deux pages. C'est le pattern des opérateurs qui dominent le SERP Upper Mustang, et ce que H+I et World Ride n'ont pas.
+- **Cohérence prix** : prix, dates et places centralisés dans `src/data/nepal.ts`. Le JSON-LD global du site et le `llms.txt` (celui que lisent les IA) reprennent la même valeur. Un seul fichier à modifier quand une place part ou que le prix bouge.
+- **Vérifié** : build OK, aucune erreur console, layout correct en desktop et en mobile, liens et images internes tous résolus, zéro tiret long.
+
+Les FAQ sont écrites pour être reprises telles quelles par les IA (une question, une réponse complète et autonome), c'est le format qui se fait citer.
+
+### La limite à connaître
+
+Le seul bloc encore incomplet est l'itinéraire jour par jour chiffré (km, dénivelé négatif, altitude et nuit par étape), que les concurrents affichent tous. Je l'ai écrit au niveau que je connais avec certitude, la trame des 10 jours et la chaîne logistique (Katmandou, Pokhara, Jomsom, 7 jours de ride, navette). Le détail chiffré viendra du roadbook du partenaire : c'est ce qui fera passer la page de bonne à imbattable sur ce créneau.
+
+### Les deux formulations à relire
+
+Elles sont plausibles et cohérentes avec le devis partenaire, mais je ne les ai pas vérifiées auprès de lui :
+1. **Le vélo** : la page dit que la plupart des riders viennent avec leur vélo et que la location est possible sur demande. Le devis partenaire ne contient aucune ligne vélo, d'où cette formulation.
+2. **L'e-bike** : la page répond que ce n'est pas le format prévu (recharge incertaine en haute vallée). À confirmer.
+
+## Décisions prises pour toi le 26.08 (à confirmer)
+
+1. **Prix affiché** : oui, 5400 CHF en clair, décomposé en deux listes.
+2. **Wording** : « tout compris sur place », avec « hors vol international » visible partout, plutôt que « all inclusive » qui prêtait à confusion. La mention de l'acompte de 30 % est sur la page.
+3. **Haut-Mustang** assumé comme destination principale (c'est ce que dit tout ton matériel), avec un bloc dédié qui explique la différence Haut et Bas-Mustang, une des questions les plus posées sur les forums.
+4. **Places** : « 3 places » plutôt que « 3 places restantes », pour que la page ne devienne pas fausse toute seule.
+
+## Ce qui reste à faire côté Guillermo
+
+1. **Relire les deux pages et valider le déploiement.** Rien n'est en ligne : la branche attend ton feu vert.
+2. **Demander au partenaire l'itinéraire jour par jour** (étapes, km, dénivelé négatif, altitudes, nuits) et me le passer : je remplace la trame par le vrai roadbook, c'est le dernier gros bloc SEO qui manque.
+3. **Confirmer avec lui les deux points vélo et e-bike** listés plus haut, et l'entrée réelle en zone restreinte Haut-Mustang.
+4. **Harmoniser la fiche Google Business** : elle affiche encore 4 900 CHF alors que le site et le reel disent 5 400. Ajouter un post avec les dates.
+5. **Candidater sur 57hours** (57hours.com/get-listed/) et **Much Better Adventures**, avec le dossier Mustang et les photos Soren Rickards.
+6. **Publier le reel** et répondre sur le fil TripAdvisor « Upper or Lower Mustang », puis pitcher Le Nouvelliste et Pinkbike avec l'angle TIME et Ratnange.
+
+Quand une place se vend, une seule ligne à changer : `spots` dans `src/data/nepal.ts`.
 
 ## Sources principales
 
