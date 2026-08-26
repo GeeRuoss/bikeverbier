@@ -176,7 +176,12 @@ const breadcrumbLd =
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImageAbs} />
 
+    <!-- Favicon : pictogramme du logo (étoile + croix suisse) sur tuile teal.
+         .ico 16/32/48 pour les vieux navigateurs et Google, SVG pour les modernes. -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
 
     <!-- Données structurées (Schema.org) sur chaque page -->
