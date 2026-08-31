@@ -1,4 +1,10 @@
 ---
+// Page voyage Népal, refonte SEO du 26.08.2026 (voir SEO-NEPAL.md).
+// Cible : « voyage vtt népal », « séjour vtt népal », « vtt mustang », « trip enduro népal »
+// (créneau francophone quasi vide) et, côté EN, « upper mustang mountain bike tour ».
+// Blocs ajoutés parce que TOUS les concurrents qui rankent les ont : déroulé des 10 jours,
+// prix affiché et décomposé, niveau requis, altitude, permis, vélo, FAQ, schema Product.
+// ⚠ Le détail jour par jour chiffré (km, D-, altitudes) attend le roadbook du partenaire.
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
@@ -7,6 +13,7 @@ import CrossLinks from '../components/CrossLinks.astro';
 import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
 import { SITE, pathFor } from '../data/site';
+import { TRIP } from '../data/nepal';
 
 const lang = 'fr' as const;
 // Google Form (voir site.ts) : le script global de Layout.astro intercepte l'envoi et redirige.
@@ -18,14 +25,14 @@ const features = [
     icon: 'mountain',
     eyebrow: 'La vallée',
     title: 'La vallée la plus profonde du monde',
-    desc: 'Entourée de deux sommets de 8000 m, la vallée du Mustang est la plus profonde du monde. Des paysages himalayens à couper le souffle, à parcourir en vélo.',
+    desc: 'Entourée de deux sommets de 8000 m, la vallée de la Kali Gandaki est la plus profonde du monde. Des paysages himalayens à couper le souffle, à parcourir en vélo.',
   },
   {
     img: IMG.nepalDays,
     icon: 'route',
-    eyebrow: '10 jours guidés',
+    eyebrow: '7 jours de ride',
     title: 'De Katmandou au Haut-Mustang',
-    desc: 'Vivez l’enduro des rues animées de Katmandou jusqu’aux pistes isolées du Haut-Mustang, accompagnés du début à la fin.',
+    desc: 'Vivez l’enduro des rues animées de Katmandou jusqu’aux pistes isolées du Haut-Mustang, un ancien royaume tibétain resté fermé au monde jusqu’en 1992.',
   },
   {
     img: IMG.nepalShuttle,
@@ -35,21 +42,133 @@ const features = [
     desc: 'Découvrez l’accueil de jeunes équipes népalaises dynamiques. Shuttle privé, logistique gérée : vous n’avez qu’à rouler.',
   },
 ];
+
+const days = [
+  { d: 'Jours 1 et 2', t: 'Katmandou', x: 'Accueil à l’aéroport, installation à l’hôtel et dîner de bienvenue. Une journée pour découvrir la ville, ses temples et son énergie, et laisser le décalage horaire se dissiper avant de rouler.' },
+  { d: 'Jour 3', t: 'Vol vers Pokhara', x: 'Vol intérieur jusqu’à Pokhara, au pied des Annapurnas. Nuit sur place, dernier check des vélos avant de monter en altitude.' },
+  { d: 'Jour 4', t: 'Envol pour Jomsom, entrée dans le Mustang', x: 'Le vol Pokhara-Jomsom traverse la Kali Gandaki entre les Annapurnas et le Dhaulagiri, deux sommets de plus de 8000 m. Atterrissage à 2700 m, premiers tours de roue.' },
+  { d: 'Jours 4 à 10', t: '7 jours de ride dans le Mustang', x: 'Le cœur du voyage. Singletracks, anciennes routes caravanières vers le Tibet, villages de terre et monastères. La navette privée remonte le groupe : on garde l’énergie pour la descente, pas pour la piste.' },
+  { d: 'Jour 10', t: 'Retour et dîner d’adieu', x: 'Vol retour sur Katmandou, dîner d’adieu avec l’équipe, transfert à l’aéroport. Il ne reste qu’à trier les photos.' },
+];
+
+const included = [
+  'Les vols intérieurs : Katmandou-Pokhara aller-retour et Pokhara-Jomsom',
+  'Les permis Haut-Mustang et ACAP, gérés de bout en bout par notre agence partenaire',
+  'L’hébergement et tous les repas pendant les 7 jours en montagne',
+  '2 nuits à Katmandou et 1 nuit à Pokhara, petit-déjeuner inclus',
+  'La navette privée et le véhicule d’assistance sur toute la partie ride',
+  'Le guide local népalais pendant les 10 jours, et un guide Bikeverbier avec vous depuis la Suisse',
+  'Les transferts aéroport, le dîner de bienvenue et le dîner d’adieu',
+];
+
+const notIncluded = [
+  'Le vol international depuis et vers la Suisse',
+  'L’assurance voyage, obligatoire, incluant le VTT et l’évacuation héliportée en altitude',
+  'Le visa népalais, à obtenir à l’arrivée à Katmandou',
+  'Votre vélo et son transport en avion (location possible sur place, à demander à l’inscription)',
+  'Les boissons, pourboires et dépenses personnelles',
+];
+
+const faq = [
+  {
+    q: 'Quel niveau faut-il pour ce voyage VTT au Népal ?',
+    a: 'Un bon niveau intermédiaire suffit. Techniquement, il faut être à l’aise sur du sentier de montagne et savoir enchaîner une longue descente sans se crisper : ce sont des trails naturels, pas du bike park. Physiquement, l’enjeu est l’enchaînement de 7 jours de ride en altitude plutôt que le dénivelé positif, car la navette privée remonte le groupe. Si vous roulez régulièrement en enduro à Verbier ou ailleurs, vous avez le niveau. Dans le doute, appelez-nous : on préfère une réponse honnête avant le départ.',
+  },
+  {
+    q: 'Combien coûte le voyage et qu’est-ce qui est compris ?',
+    a: `${TRIP.priceLabel} par personne. Tout est compris sur place : vols intérieurs, permis, hébergement, repas en montagne, navette, guides et transferts. Le vol international depuis la Suisse, l’assurance, le visa et votre vélo restent à votre charge. Une réservation se confirme avec un acompte de 30 %, le solde avant le départ.`,
+  },
+  {
+    q: 'Faut-il amener son vélo ou peut-on louer sur place ?',
+    a: 'La plupart des riders viennent avec leur vélo, c’est ce qu’on recommande : sur 7 jours de ride, on est toujours mieux sur sa propre machine, réglée à ses habitudes. Un enduro tout-suspendu de 150 à 170 mm est l’outil idéal. Si vous préférez voyager léger, dites-le nous à l’inscription et nous organisons la location avec l’équipe népalaise.',
+  },
+  {
+    q: 'Peut-on faire le voyage en e-bike ?',
+    a: 'Ce n’est pas le format prévu : la recharge est incertaine dans les lodges de haute vallée et l’autonomie en altitude est difficile à garantir. C’est justement pour ça que la navette privée fait partie du voyage. Parlez-nous en si c’est important pour vous, on regardera ce qui est faisable.',
+  },
+  {
+    q: 'À quelle altitude roule-t-on, et faut-il s’acclimater ?',
+    a: 'Le Mustang est une haute vallée : on démarre à Jomsom vers 2700 m et on progresse plus haut dans l’ancien royaume de Lo, dont la capitale Lo Manthang se situe vers 3800 m. L’itinéraire est construit pour monter progressivement, et les deux premiers jours au Népal servent aussi à ça. Votre guide surveille le groupe chaque jour, et le rythme s’adapte : boire beaucoup, manger, ne jamais forcer. Aucune expérience de la haute altitude n’est nécessaire, mais signalez-nous tout antécédent médical.',
+  },
+  {
+    q: 'Pourquoi partir en novembre ?',
+    a: 'C’est la meilleure fenêtre de l’année. Après la mousson, le ciel se dégage, l’air devient limpide et les sentiers sont secs. Le Mustang, protégé par les Annapurnas, reste par ailleurs l’une des régions les plus sèches du Népal. Notre départ est fixé du 5 au 14 novembre 2026.',
+  },
+  {
+    q: 'Le permis pour le Haut-Mustang, comment ça marche ?',
+    a: 'Le Haut-Mustang est une zone restreinte : on n’y entre qu’avec un permis spécial, un guide et une agence népalaise enregistrée, et au minimum à deux voyageurs. Nous nous occupons de tout : le permis Haut-Mustang et le permis ACAP de la zone de conservation des Annapurnas sont compris dans le prix. Vous n’avez qu’à nous envoyer une copie de votre passeport et vos photos d’identité.',
+  },
+  {
+    q: 'Haut-Mustang ou Bas-Mustang, quelle différence ?',
+    a: 'Le Bas-Mustang, autour de Jomsom et Kagbeni, est accessible sans permis spécial et se visite facilement. Le Haut-Mustang, au nord, est l’ancien royaume de Lo : fermé aux étrangers jusqu’en 1992, encore soumis à permis, avec ses falaises ocre, ses grottes troglodytes et une culture tibétaine restée intacte. C’est là que nous allons, et c’est ce qui change tout.',
+  },
+  {
+    q: 'Qui porte les bagages et que se passe-t-il en cas de pépin ?',
+    a: 'Un véhicule d’assistance suit le groupe avec les bagages : vous roulez léger, avec votre sac de la journée. En cas de casse mécanique ou de coup de fatigue, la navette est là. Votre guide Bikeverbier et l’équipe locale gèrent la logistique, les nuits et les repas du premier au dernier jour.',
+  },
+  {
+    q: 'Quelle assurance faut-il prévoir ?',
+    a: 'Une assurance voyage couvrant explicitement la pratique du VTT et l’évacuation héliportée en altitude est obligatoire. C’est la seule ligne du dossier sur laquelle nous ne transigeons pas : au Mustang, un rapatriement se fait en hélicoptère et coûte cher sans couverture. Nous vous indiquons ce qu’il faut vérifier dans votre contrat.',
+  },
+  {
+    q: 'Combien de riders dans le groupe ?',
+    a: `${TRIP.spotsLabel}. C’est un choix : un petit groupe roule à son rythme, s’arrête quand la lumière est belle et ne perd pas une heure à se regrouper. Vous n’êtes pas un dossier dans un départ de vingt personnes.`,
+  },
+  {
+    q: 'Faut-il parler anglais ?',
+    a: 'Non. Votre guide Bikeverbier est suisse et parle français, anglais, espagnol et allemand. Il fait le lien avec l’équipe népalaise du début à la fin, y compris pour les questions pratiques du quotidien.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Schema Product + Offer : c'est le format des concurrents qui dominent le SERP « upper
+// mustang mountain bike tour », et que les grosses agences internationales n'ont pas.
+const tripLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  '@id': SITE.domain + pathFor('nepal', lang) + '#trip',
+  name: 'Voyage VTT enduro au Népal : 10 jours dans le Haut-Mustang',
+  description:
+    'Voyage VTT enduro de 10 jours au Népal, de Katmandou au Haut-Mustang, guidé par Bikeverbier.ch. 7 jours de ride avec navette privée, permis et vols intérieurs compris, petit groupe accompagné depuis la Suisse.',
+  image: SITE.domain + IMG.ogNepal,
+  brand: { '@id': SITE.domain + '/#business' },
+  category: 'Voyage VTT',
+  offers: {
+    '@type': 'Offer',
+    price: TRIP.price,
+    priceCurrency: TRIP.currency,
+    availability: 'https://schema.org/InStock',
+    url: SITE.domain + pathFor('nepal', lang),
+    validFrom: TRIP.validFrom,
+    priceValidUntil: TRIP.priceValidUntil,
+    seller: { '@id': SITE.domain + '/#business' },
+  },
+};
 ---
 
 <Layout
   lang={lang}
   routeKey="nepal"
-  title="Voyage Enduro VTT au Népal, 10 Jours avec Bikeverbier.ch"
-  description="Roulez l'enduro au Népal, des rues de Katmandou à la vallée du Haut-Mustang. Un pays magique façonné par la culture locale, les paysages himalayens et des vallées profondes, à travers une aventure VTT d'altitude unique."
+  title="Voyage VTT Enduro au Népal | 10 Jours dans le Haut-Mustang | Bikeverbier.ch"
+  description="Voyage VTT enduro au Népal, 10 jours de Katmandou au Haut-Mustang avec des guides suisses. 7 jours de ride, navette privée, permis et vols intérieurs compris. Départ du 5 au 14 novembre 2026, petit groupe, 5400 CHF."
   ogImage={IMG.ogNepal}
 >
   <section class="hero">
-    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro VTT au Mustang, Népal" width="1920" height="1080" fetchpriority="high" />
+    <img class="hero__bg" src={IMG.heroNepal} alt="Rider enduro sur un sentier du Haut-Mustang face aux sommets himalayens, Népal" width="1920" height="1080" fetchpriority="high" />
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Le voyage d'une vie</p>
-      <h1 class="h1" data-wipe>10 jours d'enduro au <span class="teal">Mustang, Népal</span></h1>
-      <p class="lead">Une culture locale dans une terre véritablement magique.</p>
+      <h1 class="h1" data-wipe>10 jours d'enduro VTT au <span class="teal">Haut-Mustang, Népal</span></h1>
+      <p class="lead">Une culture locale dans une terre véritablement magique, avec des guides de Verbier du départ au retour.</p>
+      <p class="hero-facts">{TRIP.datesLabel} · {TRIP.priceLabel} · {TRIP.spotsLabel}</p>
       <div class="hero-actions"><CtaButton href="#demande" label="Réserver l'aventure" variant="light" /><CallLink /></div>
     </div>
   </section>
@@ -57,8 +176,14 @@ const features = [
   <div class="sheet">
     <section class="section section--intro container center">
       <p class="lead measure" style="margin-inline:auto">
-        Roulez l'enduro au Népal, des rues de Katmandou à la vallée du Haut-Mustang. Découvrez un pays magique façonné par la culture locale, les paysages himalayens et des vallées profondes, une aventure VTT d'altitude unique.
+        Roulez l'enduro au Népal, des rues de Katmandou aux pistes du Haut-Mustang. Dix jours dans un pays magique façonné par la culture tibétaine, les paysages himalayens et la vallée la plus profonde du monde : une aventure VTT d'altitude que vous ne referez pas deux fois.
       </p>
+      <ul class="tripfacts" data-reveal>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><strong>{TRIP.datesLabel}</strong><em>10 jours, 7 de ride</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="pin" size={20} /></span><strong>Haut-Mustang</strong><em>Katmandou, Pokhara, Jomsom</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><strong>{TRIP.spotsLabel}</strong><em>Guide suisse et équipe locale</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="check" size={20} /></span><strong>{TRIP.priceLabel}</strong><em>Hors vol international</em></li>
+      </ul>
     </section>
 
     <section class="section container">
@@ -76,6 +201,97 @@ const features = [
             </article>
           ))
         }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Le déroulé</p>
+        <h2 class="h2">Comment s'organisent les <span class="teal">10 jours</span></h2>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Deux jours de voyage, une journée à Katmandou et sept jours de ride dans le Mustang. Voici la trame, le détail des étapes vous est envoyé avec le dossier d'inscription.
+        </p>
+        <ol class="days" style="margin-top:2rem">
+          {days.map((day) => (
+            <li data-reveal>
+              <span class="days__num">{day.d}</span>
+              <h3 class="h3 teal">{day.t}</h3>
+              <p style="color:var(--gray-text)">{day.x}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Le prix</p>
+        <h2 class="h2">{TRIP.priceLabel}, <span class="teal">tout compris sur place</span></h2>
+        <p class="measure" style="margin:1.25rem auto 0; color:var(--gray-text)">
+          Un seul prix, annoncé d'avance, sans supplément qui tombe à l'arrivée. La réservation se confirme avec un acompte de 30 %, le solde avant le départ.
+        </p>
+      </div>
+      <div class="incl">
+        <div data-reveal>
+          <h3 class="h3 teal">Compris dans le prix</h3>
+          <ul class="icon-list" style="margin-top:1.25rem">
+            {included.map((item) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name="check" size={20} /></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div data-reveal="right">
+          <h3 class="h3">À prévoir en plus</h3>
+          <ul class="icon-list icon-list--muted" style="margin-top:1.25rem">
+            {notIncluded.map((item) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name="sparkles" size={20} /></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem; display:flex; justify-content:center">
+        <CtaButton href="#demande" label="Demander le dossier complet" variant="teal" />
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="center" style="margin-bottom:2.5rem">
+          <p class="eyebrow">Pour qui</p>
+          <h2 class="h2">Le niveau, l'altitude, <span class="teal">le vélo</span></h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="bike" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Niveau technique</h3>
+            <p style="color:var(--gray-text)">Intermédiaire à confirmé. Du sentier de montagne naturel, parfois exposé, jamais du bike park lissé. Si vous descendez les trails de Verbier sans vous crisper, vous êtes à votre place.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="sun" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Niveau physique</h3>
+            <p style="color:var(--gray-text)">L'enjeu n'est pas le dénivelé positif, la navette privée remonte le groupe. C'est l'enchaînement : sept jours de ride d'affilée, en altitude, loin de tout. Il faut de la caisse et de l'envie.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="mountain" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Altitude</h3>
+            <p style="color:var(--gray-text)">On démarre à Jomsom vers 2700 m et on progresse dans l'ancien royaume de Lo, dont la capitale culmine vers 3800 m. La montée est progressive et le rythme s'adapte au groupe.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="shield" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Permis et formalités</h3>
+            <p style="color:var(--gray-text)">Le Haut-Mustang est une zone restreinte : permis spécial, guide et agence enregistrée obligatoires. Tout est géré et compris. Vous vous occupez du visa et de l'assurance.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="van" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Votre vélo</h3>
+            <p style="color:var(--gray-text)">Un enduro tout-suspendu de 150 à 170 mm, en bon état, avec plaquettes et pneus neufs. Venez avec le vôtre, ou dites-nous à l'inscription si vous préférez louer sur place.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="users" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Le groupe</h3>
+            <p style="color:var(--gray-text)">{TRIP.spotsLabel}, un guide de Verbier qui part avec vous depuis la Suisse, et l'équipe népalaise sur place. Personne ne se perd dans la masse.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -107,13 +323,30 @@ const features = [
 
     <section class="section section--dark">
       <div class="container center">
-        <p class="eyebrow">Prix &amp; période</p>
-        <h2 class="h2">Octobre à <span class="teal">Novembre</span></h2>
+        <p class="eyebrow">Pourquoi avec nous</p>
+        <h2 class="h2">Des guides de Verbier, <span class="teal">jusqu'au Mustang</span></h2>
         <p class="lead measure" style="margin:1.25rem auto 0">
-          Les tarifs sont sur demande, selon la taille du groupe. Nous faisons de notre mieux pour répondre à vos attentes.
+          Nous ne revendons pas un voyage sur catalogue. Un guide Bikeverbier, né à Verbier et certifié Swiss Cycling, part avec vous depuis la Suisse et roule à vos côtés les sept jours. Sur place, nous travaillons avec une équipe népalaise que nous connaissons, qui gère les permis, les lodges et la navette. Le résultat : un groupe de trois riders, une organisation locale solide, et personne pour vous rappeler que vous êtes un client.
         </p>
         <div style="margin-top:2rem; display:flex; justify-content:center">
           <CtaButton href="#demande" label="Demander un devis" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Questions fréquentes</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ : voyage VTT au <span class="teal">Népal</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
         </div>
       </div>
     </section>
@@ -143,7 +376,104 @@ const features = [
       links={[
         { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
         { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
+        { href: pathFor('contact', lang), label: 'Rencontrer nos guides' },
       ]}
     />
   </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(tripLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
 </Layout>
+
+<style>
+  /* Bandeau de repères sous le H1 du hero */
+  .hero-facts {
+    margin-top: 0.85rem;
+    color: #fff;
+    font-family: var(--font-lead);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    opacity: 0.92;
+  }
+
+  /* Repères clés du voyage (dates, lieu, groupe, prix) */
+  .tripfacts {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem auto 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .tripfacts li {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    padding-left: 0;
+  }
+  .tripfacts li::before {
+    content: none;
+  }
+  .tripfacts strong {
+    font-family: var(--font-lead);
+    font-weight: 600;
+  }
+  .tripfacts em {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+  }
+  @media (min-width: 768px) {
+    .tripfacts {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Déroulé des 10 jours */
+  .days {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 2rem;
+    counter-reset: none;
+  }
+  .days li {
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(84, 184, 179, 0.35);
+  }
+  .days li::before {
+    content: none;
+  }
+  .days__num {
+    display: block;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--gray-soft);
+    margin-bottom: 0.35rem;
+  }
+  .days p {
+    margin-top: 0.5rem;
+    max-width: 62ch;
+  }
+
+  /* Inclus / non inclus */
+  .incl {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .incl {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+  .icon-list--muted .icon-badge {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--gray-text);
+  }
+</style>

@@ -8,6 +8,7 @@ import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { SITE, ROUTES, pathFor, type Lang, type RouteKey } from '../data/site';
 import { IMG } from '../data/images';
 import { REVIEWS } from '../data/reviews';
+import { TRIP } from '../data/nepal';
 import { t } from '../i18n/ui';
 
 interface Props {
@@ -105,7 +106,16 @@ const businessLd = {
     },
     {
       '@type': 'Offer',
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Voyage enduro VTT au Népal' : 'Enduro MTB trip to Nepal', url: SITE.domain + pathFor('nepal', lang) },
+      priceCurrency: TRIP.currency,
+      price: TRIP.price,
+      itemOffered: {
+        '@type': 'Service',
+        name:
+          lang === 'fr'
+            ? 'Voyage VTT enduro au Népal, 10 jours dans le Haut-Mustang (5400 CHF)'
+            : 'Upper Mustang enduro MTB trip in Nepal, 10 days (CHF 5,400)',
+        url: SITE.domain + pathFor('nepal', lang),
+      },
     },
   ],
 };
