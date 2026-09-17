@@ -19,6 +19,8 @@ const guides = [
   {
     img: IMG.guideJoshua,
     name: 'Joshua Ruoss',
+    website: 'https://joshruoss.ch/',
+    websiteLabel: 'Discover his mountain guiding and paragliding trips',
     role: 'Swiss Cycling guide · Mountain guide · Tandem pilot',
     bio: 'Certified mountain guide and enthusiastic paragliding pilot, "Josh" Ruoss was born in Verbier in 1998. Rooted in the Valais Alps, he now divides his time between the summits, the trails and the skies, eager to pass on his passion and his view of the mountains to those who join him.',
     badges: [
@@ -49,6 +51,7 @@ const personsLd = {
     name: g.name,
     jobTitle: g.role,
     description: g.bio,
+    ...(g.website ? { url: g.website, sameAs: [g.website] } : {}),
     image: SITE.domain + g.img,
     worksFor: { '@id': SITE.domain + '/#business' },
     knowsLanguage: ['fr', 'en', 'es', 'de'],
@@ -93,6 +96,7 @@ const personsLd = {
                 <h3 class="h3">{g.name}</h3>
                 <p class="eyebrow">{g.role}</p>
                 <p style="color:var(--gray-text)">{g.bio}</p>
+                {g.website && <p><a href={g.website} class="teal" style="text-decoration:underline; text-underline-offset:.2em">{g.websiteLabel} ↗</a></p>}
                 {g.badges.length > 0 && (
                   <div class="badges">{g.badges.map((b) => <img src={b.src} alt={b.label} title={b.label} />)}</div>
                 )}
