@@ -2,6 +2,7 @@ import type { Lang } from '../data/site';
 
 // Chaînes de la "coque" partagée (nav, footer, formulaire, boutons récurrents).
 // Le contenu propre à chaque page reste dans le fichier de la page.
+// DE : orthographe suisse (ss, jamais ß), vouvoiement.
 export const UI = {
   fr: {
     nav: {
@@ -13,6 +14,7 @@ export const UI = {
       location: 'Location e-bike',
       itineraires: 'VTT à Verbier',
       langLabel: 'Français',
+      cta: 'Réserver',
     },
     footer: {
       tagline:
@@ -20,6 +22,7 @@ export const UI = {
       sections: 'Liens',
       social: 'Suivez-nous sur Insta !',
       cgv: 'CGV',
+      credits: 'Crédits photos',
       location: 'Verbier · Valais · Suisse',
       links: {
         entreprise: 'Entreprises',
@@ -43,6 +46,13 @@ export const UI = {
       submit: 'Ça roule !',
       sent: 'Merci ! Votre message a bien été envoyé.',
     },
+    shared: {
+      speak: 'Nous parlons',
+      reviewsEyebrow: 'Avis',
+      reviewsTitle: 'Ils ont roulé avec nous',
+      alsoSee: 'À découvrir aussi',
+      home: 'Accueil',
+    },
     whatsapp: 'Nous écrire sur WhatsApp',
     skip: 'Aller au contenu',
   },
@@ -56,6 +66,7 @@ export const UI = {
       location: 'E-bike rental',
       itineraires: 'MTB in Verbier',
       langLabel: 'English',
+      cta: 'Book',
     },
     footer: {
       tagline:
@@ -63,6 +74,7 @@ export const UI = {
       sections: 'Links',
       social: 'Follow us on Insta!',
       cgv: 'Terms & Conditions',
+      credits: 'Photo credits',
       location: 'Verbier · Valais · Switzerland',
       links: {
         entreprise: 'Businesses',
@@ -86,8 +98,67 @@ export const UI = {
       submit: "Let's roll!",
       sent: 'Thank you! Your message has been sent.',
     },
+    shared: {
+      speak: 'We speak',
+      reviewsEyebrow: 'Reviews',
+      reviewsTitle: 'They rode with us',
+      alsoSee: 'Also worth a look',
+      home: 'Home',
+    },
     whatsapp: 'Message us on WhatsApp',
     skip: 'Skip to content',
+  },
+  de: {
+    nav: {
+      guide: 'Privater Guide',
+      entreprise: 'Teambuilding',
+      cours: 'Privatkurse',
+      nepal: 'Nepal',
+      contact: 'Kontakt',
+      location: 'E-Bike-Verleih',
+      itineraires: 'Biken in Verbier',
+      langLabel: 'Deutsch',
+      cta: 'Buchen',
+    },
+    footer: {
+      tagline:
+        'Entdecken Sie die Geschichte von Verbier und tanken Sie neue Energie in der Ruhe der Berge!',
+      sections: 'Links',
+      social: 'Folgen Sie uns auf Insta!',
+      cgv: 'AGB',
+      credits: 'Bildnachweis',
+      location: 'Verbier · Wallis · Schweiz',
+      links: {
+        entreprise: 'Firmen',
+        guide: 'MTB-Guide Verbier',
+        cours: 'Private MTB-Kurse',
+        contact: 'Kontakt',
+        nepal: 'Nepal',
+        location: 'Bikeverleih Verbier',
+        itineraires: 'Mountainbiken in Verbier',
+      },
+    },
+    contact: {
+      title: 'Entdecken Sie Verbier mit Einheimischen!',
+      lead: 'Rufen Sie uns gerne an, auch für Fragen oder Tipps zur Region!',
+      name: 'Name',
+      email: 'E-Mail',
+      phone: 'Telefon (optional)',
+      request: 'Anfrage (optional)',
+      requestOptions: ['Teambuilding', 'Genusstour', 'Geführte Tour', 'Privatkurs', 'Nepal'],
+      message: 'Nachricht',
+      submit: 'Los geht’s!',
+      sent: 'Danke! Ihre Nachricht wurde gesendet.',
+    },
+    shared: {
+      speak: 'Wir sprechen',
+      reviewsEyebrow: 'Bewertungen',
+      reviewsTitle: 'Sie sind mit uns gefahren',
+      alsoSee: 'Auch interessant',
+      home: 'Startseite',
+    },
+    whatsapp: 'Schreiben Sie uns auf WhatsApp',
+    skip: 'Zum Inhalt springen',
   },
 } as const;
 

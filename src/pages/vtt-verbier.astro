@@ -1,27 +1,29 @@
 ---
 // Page ressource « VTT à Verbier » : le guide complet par des locaux.
-// Objectif SEO + GEO (cf. audit 08.2026) : capter les requêtes informationnelles
-// (vtt verbier, itinéraires, bike park, saison) et donner aux IA une page riche en
-// faits extractibles à citer. À rafraîchir chaque saison (les pages non mises à
-// jour perdent leurs citations IA).
+// Objectif SEO + GEO : capter les requêtes informationnelles (vtt verbier, verbier vtt,
+// bike park verbier, saison) et donner aux IA une page riche en faits vérifiés à citer.
+// Refonte du 22.09.2026 : section « Bike park de Verbier, mode d'emploi » (accès, saison,
+// horaires, forfaits, pistes, règles), chiffres réalignés sur les sources officielles
+// (verbier4vallees.ch, verbierbikepark.ch, verbier.ch), FAQ étendue. À rafraîchir chaque
+// saison : dates, tarifs et pistes changent (les pages non mises à jour perdent leurs citations IA).
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import CrossLinks from '../components/CrossLinks.astro';
 import Icon from '../components/Icon.astro';
 import { IMG } from '../data/images';
-import { SITE, pathFor } from '../data/site';
+import { pathFor } from '../data/site';
 
 const lang = 'fr' as const;
 
 const terrains = [
   {
-    img: IMG.cardGuide,
-    alt: 'Groupe de riders VTT sur une piste aménagée à Verbier',
+    img: IMG.libreVttVerbier,
+    alt: 'Vététiste sur un singletrack au-dessus de la vallée du Rhône, à Verbier',
     icon: 'mountain',
     eyebrow: 'Enduro & singletracks',
     title: 'Les sentiers au-dessus de la station',
-    desc: "C'est le cœur du jeu à Verbier : des singletracks à flanc de montagne, des épingles, des passages en forêt et des panoramas sur les combins. L'itinéraire emblématique reste la descente depuis le Mont-Fort, un dénivelé énorme accessible en remontées. C'est aussi là que nos guides font la différence : les plus beaux sentiers ne sont pas sur les cartes.",
+    desc: "C'est le cœur du jeu à Verbier : singletracks à flanc de montagne, épingles, forêt, panoramas sur les Combins. 23 itinéraires enduro balisés, de La Chaux au Châble, avec plus de 1500 m de descente. Et c'est là que nos guides font la différence : les plus beaux sentiers ne sont pas sur les cartes.",
   },
   {
     img: IMG.heroHome,
@@ -29,7 +31,7 @@ const terrains = [
     icon: 'gondola',
     eyebrow: 'Bike park',
     title: 'Le bike park de Verbier',
-    desc: "Accessible par la télécabine de Médran, le bike park de Verbier propose des pistes aménagées de la bleue à la noire, entretenues tout l'été. Idéal pour progresser en descente en enchaînant les runs. Les dates d'ouverture exactes sont publiées chaque saison par Téléverbier, en général de juin à octobre.",
+    desc: "Télécabine de Médran, puis 9 pistes et 19 km de descente, de la verte d'apprentissage à la piste de course Tire's Fire, entretenues tout l'été. Parfait pour progresser en enchaînant les runs. Le mode d'emploi est un peu plus bas.",
   },
   {
     img: IMG.guideGourmande,
@@ -37,15 +39,28 @@ const terrains = [
     icon: 'utensils',
     eyebrow: 'E-bike & terroir',
     title: 'Les chemins d’alpage du Val de Bagnes',
-    desc: "En e-bike, le Val de Bagnes s'ouvre à tous : chemins d'alpage, villages, cabanes et une quinzaine de restaurants d'altitude où goûter l'assiette valaisanne et le fromage de Bagnes. C'est le terrain de notre rando gourmande, accessible dès le premier coup de pédale.",
+    desc: "En e-bike, le Val de Bagnes s'ouvre à tous : chemins d'alpage, villages, cabanes et une douzaine de restaurants d'altitude pour l'assiette valaisanne et le fromage de Bagnes. C'est le terrain de notre rando gourmande.",
   },
 ];
 
 const conseils = [
-  { icon: 'sun', title: 'La saison', text: "De mai à octobre selon l'enneigement, avec environ 150 jours de vélo par an. Juillet et août pour l'ambiance et toutes les remontées ouvertes, septembre et octobre pour les couleurs et les sentiers tranquilles." },
-  { icon: 'route', title: 'Le terrain de jeu', text: 'Environ 400 km de sentiers balisés autour de Verbier et du Val de Bagnes, au cœur du domaine des 4 Vallées, avec une trentaine de remontées mécaniques en été.' },
-  { icon: 'bike', title: 'Le matériel', text: "E-bike pour monter sans souffrir, enduro pour jouer dans les descentes. Location possible à 125.- la journée, casque offert, vélo réservé chez nos partenaires et prêt au départ." },
-  { icon: 'shield', title: 'La sécurité', text: 'Casque obligatoire dans notre esprit, protections conseillées en descente, et respect des randonneurs et des alpages : on partage la montagne. En cas de doute sur un sentier, demandez à un local.' },
+  { icon: 'sun', title: 'La saison', text: "Remontées ouvertes aux vélos de juin à fin octobre (bike park 2026 : du 4 juin au 25 octobre), sentiers praticables de mai à novembre selon l'enneigement. Juillet et août pour l'ambiance et toutes les installations ouvertes, septembre et octobre pour les couleurs et les sentiers tranquilles." },
+  { icon: 'route', title: 'Le terrain de jeu', text: 'Environ 500 km de parcours VTT autour de Verbier et du Val de Bagnes, 23 itinéraires enduro balisés et 9 pistes de descente au bike park, au cœur du domaine des 4 Vallées.' },
+  { icon: 'bike', title: 'Le matériel', text: "E-bike pour monter sans souffrir, enduro pour jouer dans les descentes. Location possible à 125.- la journée, casque offert, vélo réservé chez nos partenaires et prêt au départ. Borne de recharge e-VTT gratuite à Médran." },
+  { icon: 'shield', title: 'La sécurité', text: 'Casque toujours, protections en descente (gants, genouillères, dorsale), et respect des randonneurs, prioritaires sur les sentiers partagés. On partage la montagne. En cas de doute sur un sentier, demandez à un local.' },
+];
+
+// Pistes du bike park de Verbier, saison 2026 (verbierbikepark.ch et verbier.ch, relevé le 22.09.2026).
+const pistes = [
+  { n: '09', nom: 'Tsenelle', niveau: 'Verte', type: 'Apprentissage, flow', km: '1,9 km', d: '187 m' },
+  { n: '08', nom: 'Chôtatai', niveau: 'Bleue', type: 'Flow, 5 km jusqu’à La Tzoumaz', km: '5 km', d: '680 m' },
+  { n: '02', nom: 'Tsopu', niveau: 'Bleue', type: 'Flow', km: '2,4 km', d: '389 m' },
+  { n: '04', nom: 'Wouaiy', niveau: 'Rouge', type: 'Flow et trail', km: '2,2 km', d: '529 m' },
+  { n: '03', nom: 'Tû çuci', niveau: 'Rouge', type: 'Freeride, sauts', km: '1,1 km', d: '527 m' },
+  { n: '07', nom: 'Rôdze', niveau: 'Rouge', type: 'Sauts, 65 modules', km: '2,1 km', d: '307 m' },
+  { n: '06', nom: 'Bortabitche', niveau: 'Rouge à noire', type: 'Freeride, sauts', km: '1,3 km', d: '227 m' },
+  { n: '01', nom: "Tire's Fire", niveau: 'Compétition', type: 'Piste de course, Coupe d’Europe DH', km: '2,3 km', d: '573 m' },
+  { n: '05', nom: 'Woooohhh', niveau: 'Noire', type: 'Technique', km: '0,6 km', d: '130 m' },
 ];
 
 const faq = [
@@ -55,15 +70,23 @@ const faq = [
   },
   {
     q: 'Quel est le meilleur itinéraire VTT à Verbier ?',
-    a: "Tout dépend de votre niveau. Pour les panoramas, la descente depuis le Mont-Fort est l'itinéraire emblématique de la région. Pour l'enduro, les singletracks au-dessus de la station. Pour une sortie plaisir en famille, les chemins d'alpage du Val de Bagnes en e-bike avec une pause dans un restaurant d'altitude.",
+    a: "Tout dépend de votre niveau. Pour les panoramas, la descente depuis les hauts du domaine vers Le Châble, plus de 1500 m de dénivelé. Pour l'enduro, les singletracks au-dessus de la station. Pour une sortie plaisir en famille, les chemins d'alpage du Val de Bagnes en e-bike avec une pause dans un restaurant d'altitude.",
   },
   {
     q: 'Verbier convient-il aux débutants en VTT ?',
-    a: "Oui. Grâce à l'e-bike et aux chemins doux du Val de Bagnes, un débutant profite dès la première sortie. Nos sorties guidées s'adaptent à tous les niveaux, familles et enfants compris.",
+    a: "Oui. Grâce à l'e-bike et aux chemins doux du Val de Bagnes, un débutant profite dès la première sortie. Au bike park, la piste verte Tsenelle et les bleues Chôtatai et Tsopu sont faites pour apprendre. Nos sorties guidées et nos cours privés s'adaptent à tous les niveaux, familles et enfants compris.",
   },
   {
     q: 'Quand ouvre le bike park de Verbier ?',
-    a: "En été, généralement de juin à octobre selon les conditions. Les dates exactes d'ouverture des remontées sont publiées chaque saison par Téléverbier.",
+    a: "En 2026, le bike park est ouvert du 4 juin au 25 octobre. La télécabine Verbier-Les Ruinettes tourne de 8 h 30 à 17 h du 27 juin au 21 septembre, puis de 9 h à 17 h jusqu'à fin octobre, avec des ouvertures partielles en juin. Les dates de chaque saison sont publiées par Téléverbier sur verbier4vallees.ch.",
+  },
+  {
+    q: 'Combien coûte le forfait VTT au bike park de Verbier ?',
+    a: "En 2026, le Pass Bike Verbier (Verbier, Bruson, La Tzoumaz) coûte 47.- la journée pour un adulte, 40.- pour un jeune et 24.- pour un enfant ; le Pass Bike 4 Vallées coûte 57.-. Les hôtes qui paient la taxe de séjour reçoivent le VIP Pass, qui offre 50 % sur le forfait journalier bike 4 Vallées. Achat en ligne sur verbier4vallees.ch, avec 10 % de réduction dix jours à l'avance.",
+  },
+  {
+    q: 'Peut-on monter son e-bike dans la télécabine de Médran ?',
+    a: "Oui. Les cabines de dix places de la télécabine Médran-Les Ruinettes transportent les vélos, e-bikes compris, en six minutes de montée pour 666 m de dénivelé. Une borne de recharge gratuite pour e-VTT est installée à Médran.",
   },
   {
     q: 'Peut-on louer un e-bike ou un VTT à Verbier ?',
@@ -71,7 +94,11 @@ const faq = [
   },
   {
     q: 'Combien coûte une sortie VTT guidée à Verbier ?',
-    a: "De 80 à 320 CHF par personne la demi-journée et de 120 à 550 CHF la journée selon la taille du groupe. Les cours privés et le voyage au Népal sont sur demande.",
+    a: 'De 80 à 320 CHF par personne la demi-journée et de 120 à 550 CHF la journée selon la taille du groupe. Les cours privés et le voyage au Népal sont sur demande.',
+  },
+  {
+    q: 'Comment venir à Verbier avec son vélo ?',
+    a: "En voiture, Verbier est à 30 minutes de Martigny, 50 minutes de Sion, 1 h 20 de Lausanne et 2 h de Genève. En train, descendez au Châble (25 minutes depuis Martigny), puis la télécabine Le Châble-Verbier vous monte en une dizaine de minutes, vélo compris.",
   },
 ];
 
@@ -89,8 +116,8 @@ const faqLd = {
 <Layout
   lang={lang}
   routeKey="itineraires"
-  title="VTT à Verbier : le Guide Complet des Locaux | Sentiers, Bike Park, Saison"
-  description="Tout le VTT à Verbier par des guides nés ici : 400 km de sentiers, bike park de Médran, itinéraires enduro et e-bike dans le Val de Bagnes, saison de mai à octobre, tarifs et conseils de locaux."
+  title="VTT à Verbier : le Guide Complet des Locaux | Sentiers, Bike Park, Saison, Forfaits"
+  description="Tout le VTT à Verbier par des guides nés ici : 500 km de parcours, 23 itinéraires enduro, le bike park de Médran expliqué (9 pistes, accès, horaires, forfaits 2026), le Val de Bagnes en e-bike, saison, tarifs et conseils de locaux."
   ogImage={IMG.heroVtt}
 >
   <section class="hero">
@@ -98,7 +125,7 @@ const faqLd = {
     <div class="hero__inner container">
       <p class="eyebrow" style="color:#fff">Le guide des locaux</p>
       <h1 class="h1" data-wipe>Le VTT à Verbier, raconté par <span class="teal">ceux qui y sont nés</span></h1>
-      <p class="lead">Sentiers, bike park, saison, tarifs : tout ce qu'il faut savoir avant de rouler ici.</p>
+      <p class="lead">Sentiers, bike park, saison, forfaits, tarifs : tout ce qu'il faut savoir avant de rouler ici.</p>
       <div class="hero-actions"><CtaButton href={pathFor('guide', lang)} label="Rouler avec un guide" variant="light" /><CallLink /></div>
     </div>
   </section>
@@ -108,10 +135,10 @@ const faqLd = {
       <p class="eyebrow">Verbier, Val de Bagnes, Valais</p>
       <h2 class="h2">Une des plus grandes destinations VTT <span class="teal">de Suisse</span></h2>
       <p class="lead measure" style="margin:1.25rem auto 0">
-        Verbier, à 1500 m d'altitude dans le Val de Bagnes en Valais, c'est environ 400 km de sentiers balisés au cœur du domaine des 4 Vallées, un bike park desservi par la télécabine de Médran, une trentaine de remontées mécaniques en été et une quinzaine de restaurants d'altitude. La saison s'étend en général de mai à octobre.
+        Verbier, à 1500 m d'altitude dans le Val de Bagnes en Valais, c'est environ 500 km de parcours VTT au cœur du domaine des 4 Vallées, 23 itinéraires enduro balisés, un bike park de 9 pistes desservi par la télécabine de Médran et une douzaine de restaurants d'altitude. Les remontées accueillent les vélos de juin à fin octobre.
       </p>
       <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
-        Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a> et nos <a href={pathFor('cours', lang)}>cours privés</a>.
+        Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a>, nos <a href={pathFor('cours', lang)}>cours privés</a> et la <a href={pathFor('location', lang)}>location d'e-bike</a>.
       </p>
     </section>
 
@@ -137,46 +164,104 @@ const faqLd = {
       </div>
     </section>
 
-    <section class="section section--alt">
+    <section class="section section--alt" id="bike-park">
       <div class="container">
-        <p class="eyebrow">Conseils de locaux</p>
-        <h2 class="h2">Bien préparer sa venue à <span class="teal">Verbier</span></h2>
-        <div class="feature-grid" style="margin-top:2rem">
-          {conseils.map((c) => (
-            <div class="feature" data-reveal>
-              <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
-              <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
-              <p style="color:var(--gray-text)">{c.text}</p>
-            </div>
-          ))}
+        <p class="eyebrow">Mode d'emploi</p>
+        <h2 class="h2">Le bike park de Verbier, <span class="teal">expliqué par des locaux</span></h2>
+        <p class="lead measure" style="margin-top:.75rem">
+          Neuf pistes, 19 km de descente, jusqu'à 880 m de dénivelé entre Les Ruinettes et Verbier. Comment ça marche, avec les chiffres 2026.
+        </p>
+        <figure class="figure" data-reveal>
+          <img src={IMG.libreRuinettes} alt="Les Ruinettes et leurs sentiers au-dessus de Verbier, en été" width="1600" height="1067" loading="lazy" />
+        </figure>
+
+        <div class="infobox-grid">
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="gondola" size={20} /></span>
+            <h3 style="margin-top:.75rem">Accès</h3>
+            <p style="color:var(--gray-text)">Départ à Médran, en plein centre de Verbier. La télécabine Médran-Les Ruinettes (cabines de dix places, vélos à l'intérieur) monte de 1531 m à 2198 m en six minutes. Le télésiège Chaux Express ajoute 275 m pour les pistes du haut. Borne de recharge e-VTT gratuite à Médran.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>
+            <h3 style="margin-top:.75rem">Saison et horaires 2026</h3>
+            <p style="color:var(--gray-text)">Bike park ouvert du 4 juin au 25 octobre. Verbier-Les Ruinettes de 8 h 30 à 17 h du 27 juin au 21 septembre, puis de 9 h à 17 h jusqu'au 25 octobre ; en juin, week-ends et navettes pendant les révisions. Les pistes du haut (Ruinettes-La Chaux) tournent du 4 juillet au 21 septembre.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>
+            <h3 style="margin-top:.75rem">Forfaits 2026</h3>
+            <p style="color:var(--gray-text)">Pass Bike Verbier (Verbier, Bruson, La Tzoumaz) : 47.- la journée adulte, 40.- jeune, 24.- enfant. Pass Bike 4 Vallées : 57.-. Le VIP Pass des hôtes offre 50 % sur le forfait journalier 4 Vallées. Réduction de 10 % en ligne dix jours à l'avance, 15 % dès 15 personnes. Télécabine Le Châble-Verbier : 6.40 le trajet.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>
+            <h3 style="margin-top:.75rem">Équipement et règles</h3>
+            <p style="color:var(--gray-text)">Casque, gants, genouillères et dorsale fortement recommandés, casque intégral en descente. Les piétons sont prioritaires sur les sentiers partagés : on ralentit et on s'arrête avant chaque croisement. On reste sur les pistes balisées, on referme les barrières des alpages, on ramasse ses déchets.</p>
+          </div>
         </div>
+
+        <h3 class="h3" style="margin-top:3rem">Les neuf pistes, de la verte à la <span class="teal">compétition</span></h3>
+        <div style="overflow-x:auto; margin-top:1.25rem">
+          <table class="price-table">
+            <thead>
+              <tr><th>Piste</th><th>Niveau</th><th>Type</th><th>Longueur</th><th>Dénivelé</th></tr>
+            </thead>
+            <tbody>
+              {pistes.map((p) => <tr><td>{p.nom}</td><td>{p.niveau}</td><td>{p.type}</td><td>{p.km}</td><td>{p.d}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <p class="measure" style="margin-top:1.25rem; color:var(--gray-text)">
+          Débutant ? Tsenelle d'abord, puis Chôtatai, cinq kilomètres de flow jusqu'à La Tzoumaz, et Tsopu. Confirmé ? Wouaiy et Rôdze, 65 sauts. Tire's Fire, c'est la piste de course de la Coupe d'Europe de descente. Pump track, skill park et dirt park au pied des pistes.
+        </p>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Envie d'apprendre dans le bon ordre ? Nos <a href={pathFor('cours', lang)}>cours privés</a> commencent sur les vertes et les bleues, adultes et enfants. Pour l'enduro hors du park, un <a href={pathFor('guide', lang)}>guide né à Verbier</a> connaît les 23 itinéraires balisés, et ceux qui ne le sont pas.
+        </p>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Le rendez-vous de l'été : le Verbier Bike Festival, du 13 au 16 août 2026, du 12 au 15 août 2027. Chiffres relevés le 22 septembre 2026 sur <a href="https://www.verbierbikepark.ch/" target="_blank" rel="noopener">verbierbikepark.ch</a> et <a href="https://verbier4vallees.ch/" target="_blank" rel="noopener">verbier4vallees.ch</a> : vérifiez les horaires du jour avant de monter.
+        </p>
       </div>
     </section>
 
     <section class="section container">
-      <p class="eyebrow">Budget</p>
-      <h2 class="h2">Combien ça coûte, <span class="teal">concrètement</span> ?</h2>
-      <ul class="icon-list" style="margin-top:1.75rem">
-        <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Sortie guidée privée</a>&nbsp;: de 80.- à 550.- par personne selon le groupe et la durée</li>
-        <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Location e-bike ou VTT</a>&nbsp;: 125.- la journée, casque offert</li>
-        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('cours', lang)} style="text-decoration:underline; text-underline-offset:2px">Cours privé VTT</a>&nbsp;: sur demande, adultes et enfants</li>
-      </ul>
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Conseils de locaux</p>
+        <h2 class="h2">Bien préparer sa venue à <span class="teal">Verbier</span></h2>
+      </div>
+      <div class="feature-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))">
+        {conseils.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="section section--alt">
       <div class="container">
-        <p class="eyebrow">Questions fréquentes</p>
-        <h2 class="h2" style="margin-bottom:1.5rem">FAQ : le VTT à <span class="teal">Verbier</span></h2>
-        <div class="faq">
-          {
-            faq.map((item) => (
-              <details>
-                <summary>{item.q}</summary>
-                <p>{item.a}</p>
-              </details>
-            ))
-          }
-        </div>
+        <p class="eyebrow">Budget</p>
+        <h2 class="h2">Combien ça coûte, <span class="teal">concrètement</span> ?</h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Sortie guidée privée</a>&nbsp;: de 80.- à 550.- par personne selon le groupe et la durée</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Location e-bike ou VTT</a>&nbsp;: 125.- la journée, casque offert</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="gondola" size={20} /></span>Forfait bike park&nbsp;: 47.- la journée adulte en 2026 (Pass Bike Verbier), 57.- pour les 4 Vallées</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('cours', lang)} style="text-decoration:underline; text-underline-offset:2px">Cours privé VTT</a>&nbsp;: sur demande, adultes et enfants</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ : le VTT à <span class="teal">Verbier</span></h2>
+      <div class="faq">
+        {
+          faq.map((item) => (
+            <details>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
       </div>
     </section>
 
@@ -200,6 +285,7 @@ const faqLd = {
         { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
         { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
         { href: pathFor('cours', lang), label: 'Cours privés VTT à Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Team building VTT et e-bike' },
         { href: pathFor('nepal', lang), label: 'Voyage enduro au Népal' },
       ]}
     />

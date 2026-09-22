@@ -1,21 +1,55 @@
 ---
 // Dedicated "e-bike rental Verbier" page (EN). Same FR slug, per site convention.
 // We are not a shop: we book with our Verbier partners, and we say so honestly.
+// SEO rewrite of 22.09.2026: "ebike verbier" (102 impressions) had this page in 55th
+// position. Added: steps, bike choice, where to ride, extended FAQ, reviews, links.
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import CrossLinks from '../../components/CrossLinks.astro';
 import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
 import { IMG } from '../../data/images';
 import { SITE, pathFor } from '../../data/site';
 
 const lang = 'en' as const;
 
-const perks = [
+const etapes = [
+  { t: 'You message us', x: 'A WhatsApp or a call: your dates, your height, the kind of ride. We reply the same day.' },
+  { t: 'We book the right bike', x: 'E-bike or enduro, right model, right size, with Médran Sports, Backside or Philippe Roux Sports, our partner shops in Verbier.' },
+  { t: 'The bike is waiting for you', x: 'With a guide, it is adjusted and ready at the start. Without a guide, you pick it up at the partner shop we indicate, with our route tips.' },
+];
+
+const velos = [
+  {
+    img: IMG.libreEbike,
+    alt: 'Full-suspension electric mountain bike lying on a mountain path',
+    icon: 'bike',
+    eyebrow: 'E-bike',
+    title: 'The e-bike, to climb without suffering',
+    desc: 'Full-suspension electric mountain bike: the bike for the alpine paths of the Val de Bagnes, the gourmet ride and big days of climbing. Beginners, families, mixed groups: everyone rides together, everyone sets their own assistance.',
+  },
+  {
+    img: IMG.cardGuide,
+    alt: 'Guided MTB ride on a built trail in Verbier',
+    icon: 'mountain',
+    eyebrow: 'Enduro MTB',
+    title: 'The enduro bike, to play on the descents',
+    desc: 'Light, playful full-suspension mountain bike without a motor, for the singletracks above the resort and the bike park trails, with the lifts doing the climbing. For those who want technical terrain.',
+  },
+];
+
+const avantages = [
   { icon: 'bike', text: 'The right bike in the right size, picked for your ride and your level' },
   { icon: 'pin', text: 'Bike ready at the start of the ride: no logistics, no queuing at the shop' },
   { icon: 'shield', text: 'Helmet included with every rental' },
   { icon: 'users', text: 'Advice from guides born in Verbier, even if you ride without us' },
+];
+
+const ouRouler = [
+  { icon: 'leaf', title: 'The Val de Bagnes by e-bike', text: 'Alpine paths, villages, mountain restaurants: the easiest terrain in the area, perfect for a first electric ride.' },
+  { icon: 'gondola', title: 'Les Ruinettes and the bike park', text: 'Médran gondola, bike in the cabin, then down the built trails or the panoramic singletracks. How the bike park works is in our guide to mountain biking in Verbier.' },
+  { icon: 'users', title: 'With a local guide', text: 'Quieter trails, the right pace, no wrong turns. From CHF 80 per person, a rental becomes a real day of discovery.' },
 ];
 
 const faq = [
@@ -29,11 +63,31 @@ const faq = [
   },
   {
     q: 'Can I rent a bike without a guided tour?',
-    a: "Yes. We book the right bike for you and gladly suggest a route that matches your level. But the real bonus is combining the rental with a local guide: quieter trails, the right pace and no wrong turns.",
+    a: 'Yes. We book the right bike for you and gladly suggest a route that matches your level. But the real bonus is combining the rental with a local guide: quieter trails, the right pace and no wrong turns.',
   },
   {
     q: 'Which bikes do you offer?',
     a: 'Recent, well-maintained e-bikes and mountain bikes, booked with our Verbier partners: Médran Sports, Backside and Philippe Roux Sports. We pick the model and size based on your build and the planned terrain.',
+  },
+  {
+    q: 'Where do I collect the bike?',
+    a: 'With a guide, the bike is waiting at the start, adjusted to your size. Without a guide, you pick it up at the partner shop we indicate when booking, a short walk from the Médran gondola.',
+  },
+  {
+    q: 'Can I rent for half a day or for several days?',
+    a: 'The base price is CHF 125 per day. Half day or several days: message us, we make you an offer based on availability with our partners.',
+  },
+  {
+    q: 'Are there bikes for children?',
+    a: 'On request, depending on the child’s height and availability with our partners. Tell us their age and height, we find the right bike. We also give private lessons to kids.',
+  },
+  {
+    q: 'How far does an e-bike go in the mountains?',
+    a: 'A full battery usually lasts a day in the mountains, around 1,000 to 1,500 m of climbing depending on the assistance, the rider’s weight and the terrain. With a guide, we manage the assistance so everyone gets home with battery to spare.',
+  },
+  {
+    q: 'Are helmets and protection included?',
+    a: 'A helmet comes with every rental. For the bike park or enduro, knee and elbow pads are recommended: ask for them when booking.',
   },
 ];
 
@@ -51,14 +105,14 @@ const faqLd = {
 <Layout
   lang={lang}
   routeKey="location"
-  title="E-bike Rental Verbier | CHF 125 per day, helmet included | Bikeverbier.ch"
-  description="E-bike and mountain bike rental in Verbier: CHF 125 per day, helmet included, bike booked with our local partners and ready at the start of your ride. Solo or with a guide born in Verbier."
+  title="E-bike Rental Verbier | Bike Hire from CHF 125 per day, helmet included | Bikeverbier.ch"
+  description="E-bike and mountain bike rental in Verbier, Switzerland: CHF 125 per day, helmet included, bike booked with our local partner shops and ready at the start of your ride. Solo or with a guide born in Verbier, in the Val de Bagnes or at the bike park."
   ogImage={IMG.heroLocation}
 >
   <section class="hero">
     <img class="hero__bg" src={IMG.heroLocation} alt="Mountain biker on a forest singletrack near Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">E-bike and MTB rental in Verbier</p>
+      <p class="eyebrow" style="color:#fff">E-bike and mountain bike rental in Verbier</p>
       <h1 class="h1" data-wipe>Your e-bike is waiting, <span class="teal">we handle the rest</span></h1>
       <p class="lead">CHF 125 per day, helmet included, bike ready at the start of your ride.</p>
       <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Book a bike" variant="light" external /><CallLink /></div>
@@ -77,6 +131,22 @@ const faqLd = {
       </p>
     </section>
 
+    <section class="section container">
+      <p class="eyebrow">Three steps</p>
+      <h2 class="h2">Hiring a bike in Verbier, <span class="teal">without the hassle</span></h2>
+      <ol class="timeline timeline--steps">
+        {etapes.map((e, i) => (
+          <li data-reveal>
+            <span class="timeline__time">{i + 1}</span>
+            <div class="timeline__body">
+              <h3>{e.t}</h3>
+              <p>{e.x}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
     <section class="section section--alt">
       <div class="container">
         <p class="eyebrow">Price</p>
@@ -91,13 +161,59 @@ const faqLd = {
     </section>
 
     <section class="section container">
-      <p class="eyebrow">Why book through us</p>
-      <h2 class="h2">Guides, not a <span class="teal">counter</span></h2>
-      <ul class="icon-list" style="margin-top:1.75rem">
-        {perks.map((a) => (
-          <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Which bike for which ride</p>
+        <h2 class="h2">E-bike or <span class="teal">enduro</span>?</h2>
+      </div>
+      <div class="cards">
+        {velos.map((v, i) => (
+          <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+            <img class="card__img" src={v.img} alt={v.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+            <div class="card__body" data-reveal>
+              <span class="icon-badge icon-badge--lg"><Icon name={v.icon} size={30} /></span>
+              <p class="eyebrow">{v.eyebrow}</p>
+              <h3 class="h3 teal">{v.title}</h3>
+              <p style="color:var(--gray-text)">{v.desc}</p>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
+      <p class="measure" style="margin-top:2rem; color:var(--gray-text)">Kids' bikes and special sizes on request, depending on availability with our partners.</p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Why book through us</p>
+        <h2 class="h2">Guides, not a <span class="teal">counter</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          {avantages.map((a) => (
+            <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Where to ride</p>
+        <h2 class="h2">Three ideas for your <span class="teal">rental day</span></h2>
+      </div>
+      <div class="feature-grid">
+        {ouRouler.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+      <figure class="figure" data-reveal>
+        <img src={IMG.libreLourtier} alt="Lourtier, a village in the Val de Bagnes, in the morning sun" width="1600" height="1087" loading="lazy" />
+      </figure>
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap">
+        <CtaButton href={`${pathFor('itineraires', lang)}#bike-park`} label="Bike park: how it works" variant="dark" />
+        <CtaButton href={pathFor('guide', lang)} label="Ride with a guide" variant="teal" />
+      </div>
     </section>
 
     <section class="section section--alt">
@@ -117,13 +233,15 @@ const faqLd = {
       </div>
     </section>
 
+    <Reviews lang={lang} />
+
     <CrossLinks
       lang={lang}
       links={[
         { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
-        { href: pathFor('entreprise', lang), label: 'Corporate e-bike team building' },
+        { href: pathFor('entreprise', lang), label: 'E-bike team building in Verbier' },
         { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
-        { href: pathFor('contact', lang), label: 'Contact us' },
+        { href: pathFor('cours', lang), label: 'Private MTB lessons, adults and kids' },
       ]}
     />
   </div>

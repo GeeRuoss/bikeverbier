@@ -8,14 +8,21 @@ Site bilingue FR/EN. Règle d'atelier : multilingue = Astro (HTML statique en so
 ## Règle d'or SEO : ne rien casser
 On reprend **les URLs à l'identique**. Zéro redirection nécessaire, zéro perte de référencement.
 
-| FR (racine) | EN (/en/) |
-|---|---|
-| `/` | `/en/` |
-| `/guide` | `/en/guide` |
-| `/entreprise` | `/en/entreprise` |
-| `/semaine-guidechalet` | `/en/semaine-guidechalet` |
-| `/nepal` | `/en/nepal` |
-| `/contact` | `/en/contact` |
+| FR (racine) | EN (/en/) | DE (/de/, depuis le 22.09.2026) |
+|---|---|---|
+| `/` | `/en/` | `/de/` |
+| `/guide/` | `/en/guide/` | `/de/mtb-guide-verbier/` |
+| `/entreprise/` | `/en/entreprise/` | `/de/teambuilding-verbier/` |
+| `/cours-vtt-verbier/` | `/en/cours-vtt-verbier/` | `/de/mtb-kurse-verbier/` |
+| `/location-ebike-verbier/` | `/en/location-ebike-verbier/` | `/de/fahrradverleih-verbier/` |
+| `/vtt-verbier/` | `/en/vtt-verbier/` | `/de/mountainbike-verbier/` |
+| `/nepal/` | `/en/nepal/` | `/de/nepal/` |
+| `/contact/` | `/en/contact/` | `/de/kontakt/` |
+| `/merci/` | `/en/thank-you/` | `/de/danke/` |
+
+Les routes vivent dans `src/data/site.ts` (ROUTES, THANKS). Les textes de la coque (nav, footer, formulaire) dans `src/i18n/ui.ts`, les avis dans `src/data/reviews.ts`. Ajouter une page = un fichier par langue + une ligne dans ROUTES.
+
+Photos libres de droits (Wikimedia Commons, 22.09.2026) : `public/img/libre/` en WebP, copies 2000 px dans `src/assets/photos-libres/`, registre et page de crédits obligatoire (`src/data/credits.ts`, `/credits/`). Anciennes URLs `/semaine-guidechalet` (FR/EN) redirigées vers les pages guide (meta refresh Astro).
 
 - Canonical sur `www` → garder `www.bikeverbier.ch`.
 - Reprendre `<title>` + `meta description` + OG/Twitter de chaque page (déjà dans `CONTENU.md`).

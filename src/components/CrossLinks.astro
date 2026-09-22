@@ -2,13 +2,14 @@
 // Maillage interne SEO : bloc « À découvrir aussi » en bas des pages produits.
 // Ancres descriptives (mots-clés) plutôt que « Découvrir » : les moteurs lisent le texte du lien.
 import { type Lang } from '../data/site';
+import { t } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
   links: { href: string; label: string }[];
 }
 const { lang, links } = Astro.props;
-const eyebrow = lang === 'fr' ? 'À découvrir aussi' : 'Also worth a look';
+const eyebrow = t(lang).shared.alsoSee;
 ---
 
 <section class="section section--alt">

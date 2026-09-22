@@ -764,3 +764,162 @@ button {
     transition: none;
   }
 }
+
+/* ---------- Déroulé d'une journée / étapes numérotées ---------- */
+.timeline {
+  display: grid;
+  gap: 1.35rem;
+  margin-top: 2rem;
+}
+.timeline li {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding-left: 0;
+}
+.timeline li::before {
+  content: none;
+}
+.timeline__time {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--teal);
+  padding-top: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+.timeline__body h3 {
+  font-family: var(--font-lead);
+  font-weight: 600;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+.timeline__body p {
+  color: var(--gray-text);
+}
+.timeline--steps .timeline__time {
+  display: inline-grid;
+  place-items: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background: rgba(84, 184, 179, 0.14);
+  padding: 0;
+}
+.timeline--steps li {
+  grid-template-columns: 3.2rem 1fr;
+}
+@media (max-width: 480px) {
+  .timeline li {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+  .timeline--steps li {
+    grid-template-columns: 3.2rem 1fr;
+  }
+}
+
+/* ---------- Liste à coches (hors carte d'offre) ---------- */
+.checks {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.75rem;
+}
+.checks li {
+  position: relative;
+  padding-left: 1.6rem;
+  color: var(--gray-text);
+}
+.checks li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-weight: 700;
+}
+
+/* ---------- Encadré pratique (bike park, infos clés) ---------- */
+.infobox {
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-sheet);
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
+}
+.infobox h3 {
+  font-family: var(--font-lead);
+  font-weight: 600;
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+.infobox + .infobox {
+  margin-top: 1.25rem;
+}
+.infobox-grid {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+@media (min-width: 900px) {
+  .infobox-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .infobox-grid .infobox + .infobox {
+    margin-top: 0;
+  }
+}
+
+/* ---------- Figure photo avec légende courte ---------- */
+.figure {
+  margin-top: 2.5rem;
+}
+.figure img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-card);
+}
+.figure figcaption {
+  margin-top: 0.6rem;
+  font-size: 0.95rem;
+  color: var(--gray-soft);
+}
+
+/* ---------- Bandeau saison (photo pleine largeur + très grand titre) ---------- */
+.season {
+  position: relative;
+  isolation: isolate;
+  color: var(--white);
+  padding-block: clamp(5rem, 14vw, 11rem);
+  overflow: hidden;
+}
+.season__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+.season::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.62));
+  z-index: -1;
+}
+.season__big {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(3.2rem, 11vw, 8rem);
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+  margin-top: 0.75rem;
+}
+.season .lead {
+  max-width: 40ch;
+  margin-top: 1.25rem;
+  font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+}

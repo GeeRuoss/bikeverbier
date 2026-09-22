@@ -1,5 +1,7 @@
 # Plan SEO bikeverbier.ch : passer devant tout le monde en 2027
 
+> Mise à jour 22.09.2026 (3e vague) : rapport Search Console sur 3 mois (147 clics, 4 260 impressions). Trous comblés côté site : pages EN renforcées (VTT, location, entreprise, accueil), version allemande complète (/de/), section « Bike park de Verbier, mode d'emploi » avec chiffres 2026 sourcés, page entreprise réécrite autour de « mai à octobre », photos libres de droits, page crédits. Reste hors-site : voir ci-dessous (inscriptions locales, avis, backlinks), inchangé.
+
 > Mise à jour 25.08.2026 (2e vague) : l'offre « Semaine guide + chalet » est retirée (décision Guillermo), remplacée par une page « Cours privés VTT » (/cours-vtt-verbier/ FR + EN). Anciennes URLs redirigées vers /guide/. Objectif prioritaire confirmé : passer devant l'École Suisse de Ski et VTT (ESV) sur le guiding et les cours privés. Voir la section dédiée en bas.
 
 Audit complet réalisé le 25.08.2026 (7 analyses : SERP FR, SERP EN, technique, contenu, concurrents, IA/GEO, local). Constat : le site était techniquement sain mais invisible sur toutes les requêtes hors marque, en FR comme en EN. Les corrections on-site sont faites (voir le commit « SEO : refonte complète on-site »). Ce fichier liste ce qui reste : les actions hors-site, que seul Guillermo peut faire.

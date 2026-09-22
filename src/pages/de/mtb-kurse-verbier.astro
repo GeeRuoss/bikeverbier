@@ -1,0 +1,153 @@
+---
+// Seite « MTB-Kurse Verbier » (DE). Eigener DE-Slug, siehe ROUTES in site.ts.
+// Zielt auf Suchanfragen Privatkurs / Instruktor / Bikeschule Verbier.
+// PREISE: vorerst auf Anfrage; die Tarife der privaten Touren dienen als Orientierung.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'de' as const;
+
+const themes = [
+  { icon: 'shield', title: 'Solide Grundlagen', text: 'Position auf dem Bike, Gleichgewicht, Blickführung, dosiertes Bremsen: die Grundlagen, die alles verändern, ab der ersten Stunde.' },
+  { icon: 'route', title: 'Kurven und Linienwahl', text: 'Anlieger, Spitzkehren, Linienwahl: Wir arbeiten dort, wo in der Abfahrt der Spass entsteht.' },
+  { icon: 'mountain', title: 'Hindernisse', text: 'Stufen, Wurzeln, technische Passagen und, je nach Ihrem Niveau, die ersten Sprünge. Immer schrittweise, nie erzwungen.' },
+  { icon: 'leaf', title: 'Selbstvertrauen', text: 'Das eigentliche Ziel: mit einem Lächeln wieder hinunterfahren. Wir wählen das passende Gelände und steigern die Schwierigkeit in Ihrem Tempo.' },
+];
+
+const faq = [
+  {
+    q: 'Was kostet ein privater MTB-Kurs in Verbier?',
+    a: 'Auf Anfrage, je nach Ihren Zielen und der Dauer. Zur Orientierung: Unsere privaten Touren beginnen bei CHF 320.- für einen halben Tag (1 Person), mit degressiven Gruppentarifen. Ein Kurs baut auf derselben Basis auf, dazu kommt das Coaching. Schnelle Offerte per WhatsApp oder Telefon.',
+  },
+  {
+    q: 'Sind die Kurse für Kinder geeignet?',
+    a: 'Ja. Kinder und Jugendliche sind willkommen, mit einem Instruktor nur für sie oder für die ganze Familie. Wir passen Gelände, Dauer und Wortwahl dem Alter an, und der Helm ist inklusive.',
+  },
+  {
+    q: 'Brauche ich ein eigenes Bike für den Kurs?',
+    a: 'Nein. Wir reservieren für Sie ein E-Bike oder ein Mountainbike für CHF 125.- pro Tag bei unseren Partnern in Verbier, auf Ihre Grösse eingestellt und bereit zum Kursstart.',
+  },
+  {
+    q: 'Was ist der Unterschied zu einer geführten Tour?',
+    a: 'Geführte Touren zeigen Ihnen die schönsten Trails von Verbier. Im privaten Kurs geht es um den Fortschritt: Wir wählen ein Übungsgelände, wiederholen, korrigieren und filmen, wenn es hilft. Viele kombinieren beides: Kurs am Morgen, Tour am Nachmittag.',
+  },
+  {
+    q: 'In welchen Sprachen unterrichten Sie?',
+    a: 'Deutsch, Französisch, Englisch und Spanisch. Unsere Instruktoren sind von Swiss Cycling zertifiziert und alle in Verbier geboren.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="cours"
+  title="Private MTB-Kurse in Verbier | Erwachsene & Kinder, Bikeschule | Bikeverbier.ch"
+  description="Private MTB-Kurse in Verbier (Wallis), Erwachsene & Kinder: Fahrtechnik, Kurven, Bremsen. Swiss Cycling Instruktoren aus Verbier, Kurs auf Deutsch. Mietbike möglich."
+  ogImage={IMG.heroCours}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroCours} alt="MTB-Kurs auf einem Anlieger im Wald in Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Private MTB-Kurse in Verbier</p>
+      <h1 class="h1" data-wipe>Machen Sie Fortschritte mit einem Instruktor, <span class="teal">geboren in Verbier</span></h1>
+      <p class="lead">Erwachsene und Kinder, vom ersten Anlieger bis zu technischen Passagen. 100 % privat, 100 % in Ihrem Tempo.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Kurs buchen" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Eine Bikeschule im kleinen Rahmen</p>
+      <h2 class="h2">Keine Zehnergruppen, <span class="teal">ein Instruktor nur für Sie</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Bei uns ist ein MTB-Kurs immer privat: Sie, Ihre Familie oder Ihre Freunde, und ein von Swiss Cycling zertifizierter Instruktor, der jedes Übungsgelände in Verbier kennt, seit er hier als Kind das Biken gelernt hat.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Lieber entdecken als Fahrtechnik üben? Schauen Sie sich unsere <a href={pathFor('guide', lang)}>geführten MTB-Touren in Verbier</a> an, oder kombinieren Sie beides am selben Tag.
+      </p>
+    </section>
+
+    <section class="container" style="padding-top:2.5rem">
+      <figure class="figure" style="margin-top:0" data-reveal>
+        <img src={IMG.libreSentierAlpin} alt="Mountainbiker auf einem Bergpfad in den Schweizer Alpen" width="1600" height="905" loading="lazy" />
+      </figure>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Woran wir arbeiten</p>
+        <h2 class="h2">Die Fahrtechnik, die den <span class="teal">Spass</span> erst möglich macht</h2>
+      </div>
+      <div class="feature-grid">
+        {themes.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Praktische Infos</p>
+        <h2 class="h2">So einfach wie eine <span class="teal">Nachricht</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>100 % private Kurse: allein, mit der Familie oder in einer kleinen Freundesgruppe</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>Halber oder ganzer Tag, im Gelände, das zu Ihrem Niveau passt</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">Mietbike</a>: CHF 125.- pro Tag, Helm inklusive</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>Preise auf Anfrage, schnelle Antwort per WhatsApp</li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Kurs anfragen" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} />
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Häufige Fragen</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: MTB-Kurse in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Privater MTB-Guide in Verbier' },
+        { href: pathFor('location', lang), label: 'E-Bike mieten in Verbier' },
+        { href: pathFor('itineraires', lang), label: 'Mountainbike Verbier: der komplette Guide' },
+        { href: pathFor('contact', lang), label: 'Unsere Instruktoren kennenlernen' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

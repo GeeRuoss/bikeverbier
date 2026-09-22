@@ -4,6 +4,7 @@ import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import Icon from '../components/Icon.astro';
 import Reviews from '../components/Reviews.astro';
+import CrossLinks from '../components/CrossLinks.astro';
 import { IMG, PARTNERS } from '../data/images';
 import { pathFor } from '../data/site';
 
@@ -13,7 +14,7 @@ const offers = [
   {
     img: IMG.cardEntreprise,
     alt: "Groupe en sortie guidée sur un sentier fleuri au-dessus de Verbier",
-    eyebrow: 'Clé en main',
+    eyebrow: 'De mai à octobre · clé en main',
     title: "Sortie d'Entreprise",
     items: ['Sortie d’entreprise en E-bike', 'Découverte des produits du terroir', 'Visite des restaurateurs locaux'],
     cta: 'Info et Tarifs',
@@ -48,20 +49,20 @@ const offers = [
   },
 ];
 
-// ⚠ Valeurs des compteurs à CONFIRMER avec Guillermo (0 sur le site Framer actuel).
+// Compteurs : sources verbier4vallees.ch (500 km de parcours VTT, installations été 2026) et verbier.ch (restaurants d'altitude), relevées le 22.09.2026.
 const counters = [
-  { n: 15, label: "Restaurants d’altitude", icon: 'utensils' },
-  { n: 400, label: 'km de sentiers balisés', icon: 'route' },
+  { n: 15, label: "Restaurants et cabanes d’altitude", icon: 'utensils' },
+  { n: 500, label: 'km de parcours VTT', icon: 'route' },
   { n: 150, label: 'Jours de vélo par an', icon: 'sun' },
-  { n: 30, label: 'Remontées mécaniques', icon: 'gondola' },
+  { n: 18, label: 'Remontées ouvertes en été', icon: 'gondola' },
 ];
 ---
 
 <Layout
   lang={lang}
   routeKey="home"
-  title="#1 Guide VTT Verbier | E-bike, Enduro & Rando | Bikeverbier.ch"
-  description="Guide VTT local à Verbier : sorties E-bike & enduro, rando gourmande, cours privés adultes et enfants, location e-bike. Vos guides nés à Verbier vous font découvrir les meilleurs sentiers du Valais."
+  title="Guide VTT Verbier | E-bike, Enduro, Location & Bike Park | Bikeverbier.ch"
+  description="Guide VTT local à Verbier : sorties e-bike et enduro, rando gourmande, cours privés adultes et enfants, location e-bike à 125.- la journée, team building. Vos guides nés à Verbier vous font découvrir les sentiers du Valais et le bike park."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
@@ -126,6 +127,17 @@ const counters = [
     </section>
 
     <Reviews lang={lang} alt />
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('itineraires', lang), label: 'VTT à Verbier : sentiers, bike park, saison' },
+        { href: `${pathFor('itineraires', lang)}#bike-park`, label: "Bike park de Verbier : mode d'emploi" },
+        { href: pathFor('location', lang), label: 'Location e-bike et VTT à Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Team building VTT et e-bike' },
+        { href: pathFor('nepal', lang), label: 'Voyage enduro au Népal' },
+      ]}
+    />
 
     <section class="section">
       <div class="container">

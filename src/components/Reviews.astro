@@ -2,6 +2,7 @@
 import Icon from './Icon.astro';
 import { REVIEWS } from '../data/reviews';
 import { type Lang } from '../data/site';
+import { t } from '../i18n/ui';
 
 interface Props {
   lang: Lang;
@@ -9,8 +10,8 @@ interface Props {
 }
 const { lang, alt = false } = Astro.props;
 const reviews = REVIEWS[lang];
-const heading = lang === 'fr' ? 'Ils ont roulé avec nous' : 'They rode with us';
-const eyebrow = lang === 'fr' ? 'Avis' : 'Reviews';
+const heading = t(lang).shared.reviewsTitle;
+const eyebrow = t(lang).shared.reviewsEyebrow;
 ---
 
 <section class={`section ${alt ? 'section--alt' : ''}`}>

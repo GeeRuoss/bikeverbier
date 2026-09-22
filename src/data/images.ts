@@ -44,6 +44,16 @@ export const IMG = {
   guideJoshua: '/img/joshua.webp',
   guideGilles: '/img/gilles.webp',
 
+  // Photos libres de droits (Wikimedia Commons). Crédits : src/data/credits.ts et /credits/.
+  libreRuinettes: '/img/libre/verbier-ruinettes-sentiers.webp',
+  libreVerbierVillage: '/img/libre/verbier-village-ete.webp',
+  libreVttVerbier: '/img/libre/vtt-verbier-singletrack.webp',
+  libreEbike: '/img/libre/ebike-tout-suspendu.webp',
+  libreGrandCombin: '/img/libre/grand-combin-la-chaux.webp',
+  libreSentierAlpin: '/img/libre/vtt-sentier-alpin.webp',
+  libreLourtier: '/img/libre/lourtier-val-de-bagnes.webp',
+  libreAutomne: '/img/libre/melezes-automne-valais.webp',
+
   // Marque
   logoMark: '/brand/logo-mark.png',
   flags: '/flags/flags.svg',

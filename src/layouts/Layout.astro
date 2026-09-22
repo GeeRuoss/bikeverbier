@@ -5,7 +5,7 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
-import { SITE, ROUTES, pathFor, type Lang, type RouteKey } from '../data/site';
+import { SITE, ROUTES, LOCALES, pathFor, type Lang, type RouteKey } from '../data/site';
 import { IMG } from '../data/images';
 import { REVIEWS } from '../data/reviews';
 import { TRIP } from '../data/nepal';
@@ -22,23 +22,27 @@ interface Props {
 }
 const { lang, routeKey, title, description, ogImage = IMG.ogDefault, jsonLd = false, noindex = false } = Astro.props;
 
-const htmlLang = lang === 'fr' ? 'fr-FR' : 'en-GB';
+const htmlLang = LOCALES[lang];
+// Petit sélecteur de texte par langue pour les libellés partagés.
+const tr = (fr: string, en: string, de: string) => ({ fr, en, de })[lang];
 const route = ROUTES.find((r) => r.key === routeKey)!;
 const canonical = SITE.domain + route[lang];
 // og:image doit être une URL absolue.
 const ogImageAbs = ogImage.startsWith('http') ? ogImage : SITE.domain + ogImage;
 const frUrl = SITE.domain + route.fr;
 const enUrl = SITE.domain + route.en;
+const deUrl = SITE.domain + route.de;
 const ui = t(lang);
 
-const homeUrl = lang === 'fr' ? SITE.domain + '/' : SITE.domain + '/en/';
+const homeUrl = SITE.domain + pathFor('home', lang);
 
 // Entité business, riche, partagée sur toutes les pages (@id stable).
 // Description dans la langue de la page : les moteurs et les IA lisent les deux versions.
-const businessDescription =
-  lang === 'fr'
-    ? 'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, cours privés adultes et enfants, location e-bike et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.'
-    : 'Local mountain bike guides in Verbier (Valais, Switzerland): guided e-bike and enduro tours, gourmet rides, private lessons for adults and kids, e-bike rental and an enduro trip to Nepal. Guides born in Verbier, Swiss Cycling certified, all levels welcome.';
+const businessDescription = tr(
+  'Guide VTT local à Verbier (Valais, Suisse) : sorties e-bike et enduro, rando gourmande, cours privés adultes et enfants, location e-bike et voyage enduro au Népal. Guides nés à Verbier, certifiés Swiss Cycling, pour tous les niveaux.',
+  'Local mountain bike guides in Verbier (Valais, Switzerland): guided e-bike and enduro tours, gourmet rides, private lessons for adults and kids, e-bike rental and an enduro trip to Nepal. Guides born in Verbier, Swiss Cycling certified, all levels welcome.',
+  'Lokale Mountainbike-Guides in Verbier (Wallis, Schweiz): geführte E-Bike- und Enduro-Touren, Genusstouren, Privatkurse für Erwachsene und Kinder, E-Bike-Verleih und eine Enduro-Reise nach Nepal. In Verbier geborene Guides, Swiss Cycling zertifiziert, für alle Niveaus.'
+);
 
 // Avis clients (reviews.ts) exposés en JSON-LD : Google n'affiche plus d'étoiles pour les
 // avis hébergés sur son propre site, mais les autres moteurs et les IA les lisent.
@@ -86,23 +90,23 @@ const businessLd = {
       '@type': 'Offer',
       priceCurrency: 'CHF',
       price: 80,
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Guide privé VTT et rando gourmande (dès 80 CHF par personne)' : 'Private MTB guide and gourmet ride (from CHF 80 per person)', url: SITE.domain + pathFor('guide', lang) },
+      itemOffered: { '@type': 'Service', name: tr('Guide privé VTT et rando gourmande (dès 80 CHF par personne)', 'Private MTB guide and gourmet ride (from CHF 80 per person)', 'Privater MTB-Guide und Genusstour (ab CHF 80 pro Person)'), url: SITE.domain + pathFor('guide', lang) },
     },
     {
       '@type': 'Offer',
       priceCurrency: 'CHF',
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Teambuilding et sortie VTT entreprise' : 'MTB and e-bike corporate team building', url: SITE.domain + pathFor('entreprise', lang) },
+      itemOffered: { '@type': 'Service', name: tr('Teambuilding et sortie VTT entreprise', 'MTB and e-bike corporate team building', 'Teambuilding und Firmenausflug mit MTB und E-Bike'), url: SITE.domain + pathFor('entreprise', lang) },
     },
     {
       '@type': 'Offer',
       priceCurrency: 'CHF',
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Cours privés de VTT, adultes et enfants' : 'Private MTB lessons, adults and kids', url: SITE.domain + pathFor('cours', lang) },
+      itemOffered: { '@type': 'Service', name: tr('Cours privés de VTT, adultes et enfants', 'Private MTB lessons, adults and kids', 'Private MTB-Kurse für Erwachsene und Kinder'), url: SITE.domain + pathFor('cours', lang) },
     },
     {
       '@type': 'Offer',
       priceCurrency: 'CHF',
       price: 125,
-      itemOffered: { '@type': 'Service', name: lang === 'fr' ? 'Location e-bike et VTT à Verbier (125 CHF par jour)' : 'E-bike and mountain bike rental in Verbier (CHF 125 per day)', url: SITE.domain + pathFor('location', lang) },
+      itemOffered: { '@type': 'Service', name: tr('Location e-bike et VTT à Verbier (125 CHF par jour)', 'E-bike and mountain bike rental in Verbier (CHF 125 per day)', 'E-Bike- und Mountainbike-Verleih in Verbier (CHF 125 pro Tag)'), url: SITE.domain + pathFor('location', lang) },
     },
     {
       '@type': 'Offer',
@@ -110,10 +114,7 @@ const businessLd = {
       price: TRIP.price,
       itemOffered: {
         '@type': 'Service',
-        name:
-          lang === 'fr'
-            ? 'Voyage VTT enduro au Népal, 10 jours dans le Haut-Mustang (5400 CHF)'
-            : 'Upper Mustang enduro MTB trip in Nepal, 10 days (CHF 5,400)',
+        name: tr('Voyage VTT enduro au Népal, 10 jours dans le Haut-Mustang (5400 CHF)', 'Upper Mustang enduro MTB trip in Nepal, 10 days (CHF 5,400)', 'Enduro-MTB-Reise nach Nepal, 10 Tage im Upper Mustang (CHF 5400)'),
         url: SITE.domain + pathFor('nepal', lang),
       },
     },
@@ -128,7 +129,7 @@ const breadcrumbLd =
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: lang === 'fr' ? 'Accueil' : 'Home', item: homeUrl },
+          { '@type': 'ListItem', position: 1, name: ui.shared.home, item: homeUrl },
           { '@type': 'ListItem', position: 2, name: (ui.nav as Record<string, string>)[routeKey] ?? title, item: canonical },
         ],
       };
@@ -166,9 +167,11 @@ const breadcrumbLd =
     <meta name="geo.position" content="46.0979;7.227" />
     <meta name="ICBM" content="46.0979, 7.227" />
 
-    <!-- hreflang FR / EN / x-default (cf. SEO.md) -->
+    <!-- hreflang FR / EN / DE / x-default (cf. SEO.md). DE : code régional et code langue seul. -->
     <link rel="alternate" hreflang="fr-FR" href={frUrl} />
     <link rel="alternate" hreflang="en-GB" href={enUrl} />
+    <link rel="alternate" hreflang="de-CH" href={deUrl} />
+    <link rel="alternate" hreflang="de" href={deUrl} />
     <link rel="alternate" hreflang="x-default" href={frUrl} />
 
     <!-- Open Graph -->
