@@ -52,15 +52,15 @@ const conseils = [
 
 // Pistes du bike park de Verbier, saison 2026 (verbierbikepark.ch et verbier.ch, relevé le 22.09.2026).
 const pistes = [
-  { n: '09', nom: 'Tsenelle', niveau: 'Verte', type: 'Apprentissage, flow', km: '1,9 km', d: '187 m' },
-  { n: '08', nom: 'Chôtatai', niveau: 'Bleue', type: 'Flow, 5 km jusqu’à La Tzoumaz', km: '5 km', d: '680 m' },
-  { n: '02', nom: 'Tsopu', niveau: 'Bleue', type: 'Flow', km: '2,4 km', d: '389 m' },
-  { n: '04', nom: 'Wouaiy', niveau: 'Rouge', type: 'Flow et trail', km: '2,2 km', d: '529 m' },
-  { n: '03', nom: 'Tû çuci', niveau: 'Rouge', type: 'Freeride, sauts', km: '1,1 km', d: '527 m' },
-  { n: '07', nom: 'Rôdze', niveau: 'Rouge', type: 'Sauts, 65 modules', km: '2,1 km', d: '307 m' },
-  { n: '06', nom: 'Bortabitche', niveau: 'Rouge à noire', type: 'Freeride, sauts', km: '1,3 km', d: '227 m' },
-  { n: '01', nom: "Tire's Fire", niveau: 'Compétition', type: 'Piste de course, Coupe d’Europe DH', km: '2,3 km', d: '573 m' },
-  { n: '05', nom: 'Woooohhh', niveau: 'Noire', type: 'Technique', km: '0,6 km', d: '130 m' },
+  { n: '09', nom: 'Tsenelle', color: 'green', niveau: 'Verte', type: 'Apprentissage, flow', km: '1,9 km', d: '187 m' },
+  { n: '08', nom: 'Chôtatai', color: 'blue', niveau: 'Bleue', type: 'Flow, 5 km jusqu’à La Tzoumaz', km: '5 km', d: '680 m' },
+  { n: '02', nom: 'Tsopu', color: 'blue', niveau: 'Bleue', type: 'Flow', km: '2,4 km', d: '389 m' },
+  { n: '04', nom: 'Wouaiy', color: 'red', niveau: 'Rouge', type: 'Flow et trail', km: '2,2 km', d: '529 m' },
+  { n: '03', nom: 'Tû çuci', color: 'red', niveau: 'Rouge', type: 'Freeride, sauts', km: '1,1 km', d: '527 m' },
+  { n: '07', nom: 'Rôdze', color: 'red', niveau: 'Rouge', type: 'Sauts, 65 modules', km: '2,1 km', d: '307 m' },
+  { n: '06', nom: 'Bortabitche', color: 'red', niveau: 'Rouge à noire', type: 'Freeride, sauts', km: '1,3 km', d: '227 m' },
+  { n: '01', nom: "Tire's Fire", color: 'race', niveau: 'Compétition', type: 'Piste de course, Coupe d’Europe DH', km: '2,3 km', d: '573 m' },
+  { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Noire', type: 'Technique', km: '0,6 km', d: '130 m' },
 ];
 
 const faq = [
@@ -199,16 +199,18 @@ const faqLd = {
         </div>
 
         <h3 class="h3" style="margin-top:3rem">Les neuf pistes, de la verte à la <span class="teal">compétition</span></h3>
-        <div style="overflow-x:auto; margin-top:1.25rem">
-          <table class="price-table">
-            <thead>
-              <tr><th>Piste</th><th>Niveau</th><th>Type</th><th>Longueur</th><th>Dénivelé</th></tr>
-            </thead>
-            <tbody>
-              {pistes.map((p) => <tr><td>{p.nom}</td><td>{p.niveau}</td><td>{p.type}</td><td>{p.km}</td><td>{p.d}</td></tr>)}
-            </tbody>
-          </table>
-        </div>
+        <ul class="trails">
+          {pistes.map((p) => (
+            <li class={`trail trail--${p.color}`} data-reveal>
+              <span class="trail__dot" aria-hidden="true"></span>
+              <span class="trail__name">{p.nom}</span>
+              <span class="trail__level">{p.niveau}</span>
+              <span class="trail__type">{p.type}</span>
+              <span class="trail__num">{p.km}</span>
+              <span class="trail__num">{p.d}</span>
+            </li>
+          ))}
+        </ul>
         <p class="measure" style="margin-top:1.25rem; color:var(--gray-text)">
           Débutant ? Tsenelle d'abord, puis Chôtatai, cinq kilomètres de flow jusqu'à La Tzoumaz, et Tsopu. Confirmé ? Wouaiy et Rôdze, 65 sauts. Tire's Fire, c'est la piste de course de la Coupe d'Europe de descente. Pump track, skill park et dirt park au pied des pistes.
         </p>
@@ -282,6 +284,7 @@ const faqLd = {
     <CrossLinks
       lang={lang}
       links={[
+        { href: pathFor('ebike', lang), label: 'Sorties e-bike guidées à Verbier' },
         { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
         { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
         { href: pathFor('cours', lang), label: 'Cours privés VTT à Verbier' },

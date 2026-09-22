@@ -25,11 +25,11 @@ const gere = [
 
 // Beispiel für den Ablauf: wird jedem Team angepasst (Zeiten, Dauer, Optionen).
 const journee = [
-  { h: '9:00', t: 'Empfang und Einstellungen', x: "Kaffee in Verbier, E-Bikes auf Ihre Grösse eingestellt, zehn Minuten Briefing. Und los geht's." },
-  { h: '9:45', t: 'Start mit dem E-Bike', x: 'Alpwege im Val de Bagnes, Dörfer, Blick auf die Combins. Der Guide gibt das Tempo vor: niemand hetzt, niemand wartet.' },
-  { h: '12:30', t: 'Mittagessen auf dem Berg', x: 'Reservierter Tisch in einer Hütte oder im Restaurant: Walliser Teller, Käse aus Bagnes, Terrasse mit Blick auf die Gipfel.' },
-  { h: '14:30', t: 'Zweite Runde oder Aktivität', x: 'Panorama-Abfahrt, Einführung in die Fahrtechnik oder Tandem-Gleitschirmflug mit FlyVerbier, um die Trails von oben zu sehen.' },
-  { h: '16:30', t: 'Regionaler Apéro', x: 'Walliser Wein, Trockenfleisch, Roggenbrot: das Debriefing findet auf der Terrasse statt. Wir kümmern uns um die Velos.' },
+  { h: '9:00', icon: 'coffee', t: 'Empfang und Einstellungen', x: "Kaffee in Verbier, E-Bikes auf Ihre Grösse eingestellt, zehn Minuten Briefing. Und los geht's." },
+  { h: '9:45', icon: 'bike', t: 'Start mit dem E-Bike', x: 'Alpwege im Val de Bagnes, Dörfer, Blick auf die Combins. Der Guide gibt das Tempo vor: niemand hetzt, niemand wartet.' },
+  { h: '12:30', icon: 'utensils', t: 'Mittagessen auf dem Berg', x: 'Reservierter Tisch in einer Hütte oder im Restaurant: Walliser Teller, Käse aus Bagnes, Terrasse mit Blick auf die Gipfel.' },
+  { h: '14:30', icon: 'mountain', t: 'Zweite Runde oder Aktivität', x: 'Panorama-Abfahrt, Einführung in die Fahrtechnik oder Tandem-Gleitschirmflug mit FlyVerbier, um die Trails von oben zu sehen.' },
+  { h: '16:30', icon: 'wine', t: 'Regionaler Apéro', x: 'Walliser Wein, Trockenfleisch, Roggenbrot: das Debriefing findet auf der Terrasse statt. Wir kümmern uns um die Velos.' },
 ];
 
 const formules = [
@@ -171,7 +171,7 @@ const faqLd = {
             <li data-reveal>
               <span class="timeline__time">{j.h}</span>
               <div class="timeline__body">
-                <h3>{j.t}</h3>
+                <h3><span class="icon-badge icon-badge--sm"><Icon name={j.icon} size={18} /></span>{j.t}</h3>
                 <p>{j.x}</p>
               </div>
             </li>

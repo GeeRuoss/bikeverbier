@@ -27,11 +27,11 @@ const gere = [
 
 // Exemple de déroulé : adapté à chaque équipe (horaires, durée, options).
 const journee = [
-  { h: '9 h 00', t: 'Accueil et réglages', x: 'Café à Verbier, e-bikes réglés à votre taille, dix minutes de briefing. Et on y va.' },
-  { h: '9 h 45', t: 'Départ en e-bike', x: "Chemins d'alpage du Val de Bagnes, villages, vue sur les Combins. Le guide règle le rythme : personne ne court, personne n'attend." },
-  { h: '12 h 30', t: "Repas d'altitude", x: 'Table réservée en cabane ou en restaurant : assiette valaisanne, fromage de Bagnes, terrasse face aux sommets.' },
-  { h: '14 h 30', t: 'Deuxième boucle ou activité', x: 'Descente panoramique, initiation au pilotage, ou parapente biplace avec FlyVerbier pour voir les sentiers d’en haut.' },
-  { h: '16 h 30', t: 'Apéro du terroir', x: 'Vin du Valais, viande séchée, pain de seigle : le débrief se fait en terrasse. On s’occupe des vélos.' },
+  { h: '9 h 00', icon: 'coffee', t: 'Accueil et réglages', x: 'Café à Verbier, e-bikes réglés à votre taille, dix minutes de briefing. Et on y va.' },
+  { h: '9 h 45', icon: 'bike', t: 'Départ en e-bike', x: "Chemins d'alpage du Val de Bagnes, villages, vue sur les Combins. Le guide règle le rythme : personne ne court, personne n'attend." },
+  { h: '12 h 30', icon: 'utensils', t: "Repas d'altitude", x: 'Table réservée en cabane ou en restaurant : assiette valaisanne, fromage de Bagnes, terrasse face aux sommets.' },
+  { h: '14 h 30', icon: 'mountain', t: 'Deuxième boucle ou activité', x: 'Descente panoramique, initiation au pilotage, ou parapente biplace avec FlyVerbier pour voir les sentiers d’en haut.' },
+  { h: '16 h 30', icon: 'wine', t: 'Apéro du terroir', x: 'Vin du Valais, viande séchée, pain de seigle : le débrief se fait en terrasse. On s’occupe des vélos.' },
 ];
 
 const formules = [
@@ -173,7 +173,7 @@ const faqLd = {
             <li data-reveal>
               <span class="timeline__time">{j.h}</span>
               <div class="timeline__body">
-                <h3>{j.t}</h3>
+                <h3><span class="icon-badge icon-badge--sm"><Icon name={j.icon} size={18} /></span>{j.t}</h3>
                 <p>{j.x}</p>
               </div>
             </li>

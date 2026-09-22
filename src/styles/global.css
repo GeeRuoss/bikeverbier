@@ -923,3 +923,161 @@ button {
   margin-top: 1.25rem;
   font-size: clamp(1.1rem, 1.9vw, 1.5rem);
 }
+
+/* ---------- Liste des pistes du bike park (pastilles de couleur, sans tableau) ---------- */
+.trails {
+  display: grid;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+}
+.trail {
+  --trail: var(--teal);
+  display: grid;
+  grid-template-columns: 1.1rem 1.3fr 0.9fr 1.8fr 0.6fr 0.7fr;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-left: 5px solid var(--trail);
+  border-radius: var(--radius-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.trail:hover {
+  transform: translateX(6px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+.trail__dot {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+  background: var(--trail);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--trail) 22%, transparent);
+}
+.trail__name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+.trail__level {
+  font-weight: 600;
+  color: var(--trail);
+}
+.trail__type,
+.trail__num {
+  color: var(--gray-text);
+  font-variant-numeric: tabular-nums;
+}
+.trail__num {
+  text-align: right;
+  white-space: nowrap;
+}
+.trail--green { --trail: #2e9e4f; }
+.trail--blue { --trail: #2f7fd1; }
+.trail--red { --trail: #d63b2f; }
+.trail--black { --trail: #111111; }
+.trail--race { --trail: #e0a800; }
+@media (max-width: 720px) {
+  .trail {
+    grid-template-columns: 1.1rem 1fr auto;
+    gap: 0.35rem 0.75rem;
+  }
+  .trail__type {
+    grid-column: 2 / 4;
+    font-size: 0.95rem;
+  }
+  .trail__num {
+    grid-column: auto;
+    text-align: left;
+    font-size: 0.95rem;
+  }
+  .trail__num + .trail__num {
+    grid-column: 3;
+  }
+}
+
+/* ---------- Sélecteur « Quelle sortie pour vous ? » (grands boutons, une réponse) ---------- */
+.picker__btns {
+  display: grid;
+  gap: 0.9rem;
+  margin-top: 2rem;
+}
+.picker__btn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.1rem 1.3rem;
+  background: var(--white);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: var(--radius-card);
+  font-family: var(--font-lead);
+  font-weight: 600;
+  font-size: 1.15rem;
+  text-align: left;
+  color: var(--ink);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.picker__btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--teal);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.08);
+}
+.picker__btn[aria-pressed='true'] {
+  border-color: var(--teal);
+  background: rgba(84, 184, 179, 0.1);
+}
+.picker__btn[aria-pressed='true'] .icon-badge {
+  background: var(--teal);
+  color: var(--white);
+  transform: rotate(-6deg) scale(1.08);
+}
+.picker__panel {
+  margin-top: 1.5rem;
+  background: var(--white);
+  border-radius: var(--radius-sheet);
+  padding: clamp(1.5rem, 3.5vw, 2.5rem);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+  animation: panelIn 0.4s ease;
+}
+.picker__panel[hidden] {
+  display: none;
+}
+@keyframes panelIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.picker__facts {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.picker__facts li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--gray-text);
+}
+.picker__facts strong {
+  color: var(--ink);
+}
+@media (min-width: 720px) {
+  .picker__btns {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .picker__facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Timeline : icône devant le titre de l'étape */
+.timeline__body h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}

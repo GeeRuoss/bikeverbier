@@ -52,6 +52,7 @@ export const LOCALES: Record<Lang, string> = { fr: 'fr-FR', en: 'en-GB', de: 'de
 export const ROUTES = [
   { key: 'home', fr: '/', en: '/en/', de: '/de/' },
   { key: 'guide', fr: '/guide/', en: '/en/guide/', de: '/de/mtb-guide-verbier/' },
+  { key: 'ebike', fr: '/ebike-verbier/', en: '/en/ebike-verbier/', de: '/de/e-bike-verbier/' },
   { key: 'entreprise', fr: '/entreprise/', en: '/en/entreprise/', de: '/de/teambuilding-verbier/' },
   { key: 'nepal', fr: '/nepal/', en: '/en/nepal/', de: '/de/nepal/' },
   { key: 'cours', fr: '/cours-vtt-verbier/', en: '/en/cours-vtt-verbier/', de: '/de/mtb-kurse-verbier/' },

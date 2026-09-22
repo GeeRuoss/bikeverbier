@@ -12,6 +12,7 @@ On reprend **les URLs à l'identique**. Zéro redirection nécessaire, zéro per
 |---|---|---|
 | `/` | `/en/` | `/de/` |
 | `/guide/` | `/en/guide/` | `/de/mtb-guide-verbier/` |
+| `/ebike-verbier/` | `/en/ebike-verbier/` | `/de/e-bike-verbier/` |
 | `/entreprise/` | `/en/entreprise/` | `/de/teambuilding-verbier/` |
 | `/cours-vtt-verbier/` | `/en/cours-vtt-verbier/` | `/de/mtb-kurse-verbier/` |
 | `/location-ebike-verbier/` | `/en/location-ebike-verbier/` | `/de/fahrradverleih-verbier/` |
