@@ -25,17 +25,10 @@ const gere = [
 
 // Beispiel für den Ablauf: wird jedem Team angepasst (Zeiten, Dauer, Optionen).
 const journee = [
-  { h: '9:00', icon: 'coffee', t: 'Empfang und Einstellungen', x: "Kaffee in Verbier, E-Bikes auf Ihre Grösse eingestellt, zehn Minuten Briefing. Und los geht's." },
-  { h: '9:45', icon: 'bike', t: 'Start mit dem E-Bike', x: 'Alpwege im Val de Bagnes, Dörfer, Blick auf die Combins. Der Guide gibt das Tempo vor: niemand hetzt, niemand wartet.' },
-  { h: '12:30', icon: 'utensils', t: 'Mittagessen auf dem Berg', x: 'Reservierter Tisch in einer Hütte oder im Restaurant: Walliser Teller, Käse aus Bagnes, Terrasse mit Blick auf die Gipfel.' },
-  { h: '14:30', icon: 'mountain', t: 'Zweite Runde oder Aktivität', x: 'Panorama-Abfahrt, Einführung in die Fahrtechnik oder Tandem-Gleitschirmflug mit FlyVerbier, um die Trails von oben zu sehen.' },
-  { h: '16:30', icon: 'wine', t: 'Regionaler Apéro', x: 'Walliser Wein, Trockenfleisch, Roggenbrot: das Debriefing findet auf der Terrasse statt. Wir kümmern uns um die Velos.' },
-];
-
-const formules = [
-  { icon: 'sun', title: 'Halber Tag', items: ['Rund 3 Stunden mit dem E-Bike und einem Guide', 'Regionaler Apéro auf der Terrasse', 'Ideal zum Abschluss eines Seminars'] },
-  { icon: 'utensils', title: 'Ganzer Tag', items: ['E-Bike-Tour am Morgen', 'Mittagessen im Bergrestaurant', 'Zweite Runde und Apéro'] },
-  { icon: 'mountain', title: 'Ganzer Tag + Aktivität', items: ['Tandem-Gleitschirmflug mit FlyVerbier', 'Genusstour oder Einführung in die Fahrtechnik', 'Massgeschneidert für Ihr Team'] },
+  { icon: 'coffee', t: "Empfang und Einstellen", x: "Kaffee in Verbier, E-Bikes auf Ihre Grösse eingestellt, zehn Minuten Briefing." },
+  { icon: 'users', t: "2 bis 3 Gruppen, 3 Touren", x: "Jede Gruppe fährt mit ihrem Guide eine Tour auf ihrem Niveau: gemütlich, mittel oder sportlich. Niemand hetzt, niemand wartet." },
+  { icon: 'utensils', t: "Mittagessen auf der Alp", x: "Alle treffen sich in der Hütte oder im Restaurant: Walliser Teller, Bagnes-Käse, Terrasse mit Blick auf die Gipfel." },
+  { icon: 'wine', t: "Apéro mit regionalen Produkten", x: "Walliser Wein, Trockenfleisch, Roggenbrot. Wir kümmern uns um die Bikes, Sie geniessen." },
 ];
 
 const pourquoi = [
@@ -163,13 +156,13 @@ const faqLd = {
 
     <section class="section section--alt">
       <div class="container">
-        <p class="eyebrow">Ein typischer Tag</p>
-        <h2 class="h2">So läuft ein <span class="teal">Firmenausflug</span> ab</h2>
-        <p class="lead measure" style="margin-top:.5rem">Beispiel für einen ganzen Tag. Zeiten, Dauer und Optionen passen sich Ihrem Team an.</p>
-        <ol class="timeline">
-          {journee.map((j) => (
+        <p class="eyebrow">So läuft der Tag</p>
+        <h2 class="h2">Eine Idee vom <span class="teal">Ablauf</span></h2>
+        <p class="lead measure" style="margin-top:.5rem">Keine fixen Zeiten: Wir passen uns Ihrem Team an. In der Regel 2 bis 3 Niveaugruppen und 3 verschiedene Touren, und alle treffen sich am Tisch.</p>
+        <ol class="timeline timeline--steps">
+          {journee.map((j, i) => (
             <li data-reveal>
-              <span class="timeline__time">{j.h}</span>
+              <span class="timeline__time">{i + 1}</span>
               <div class="timeline__body">
                 <h3><span class="icon-badge icon-badge--sm"><Icon name={j.icon} size={18} /></span>{j.t}</h3>
                 <p>{j.x}</p>
@@ -181,22 +174,10 @@ const faqLd = {
     </section>
 
     <section class="section container">
-      <div class="center" style="margin-bottom:2.5rem">
-        <p class="eyebrow">Angebote</p>
-        <h2 class="h2">Drei Arten, <span class="teal">Verbier im Team</span> zu erleben</h2>
-      </div>
-      <div class="feature-grid">
-        {formules.map((f) => (
-          <div class="feature" data-reveal>
-            <span class="icon-badge"><Icon name={f.icon} size={24} /></span>
-            <h3 class="h3 teal" style="margin-top:.75rem">{f.title}</h3>
-            <ul class="checks">{f.items.map((it) => <li>{it}</li>)}</ul>
-          </div>
-        ))}
-      </div>
-      <p class="measure" style="margin-top:2.5rem; color:var(--gray-text)">
-        Jedes Angebot auf Anfrage, je nach Gruppengrösse und Optionen. Zur Orientierung: Guide-Tarif, der mit der Gruppengrösse sinkt, <a href={pathFor('location', lang)}>E-Bike</a> für CHF 125.- pro Person und Tag, Helm inklusive.
-      </p>
+      <p class="eyebrow">Nach Ihrem Timing</p>
+      <h2 class="h2">Halber Tag oder <span class="teal">ganzer Tag</span>, auf Anfrage</h2>
+      <p class="lead measure" style="margin-top:1rem">Wir passen den Ausflug an Ihr Timing und Ihr Team an. Sie nennen uns Datum und Personenzahl, wir machen Ihnen ein Angebot. Zur Orientierung: Der Guide-Tarif sinkt mit der Gruppengrösse, <a href={pathFor('location', lang)}>E-Bike</a> CHF 125.- pro Person und Tag, Helm inklusive.</p>
+      <div style="margin-top:2rem"><CtaButton href="#contact" label="Ausflug planen" variant="dark" /></div>
     </section>
 
     <section class="section section--alt">
