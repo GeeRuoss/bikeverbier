@@ -23,11 +23,20 @@ const offers = [
   {
     img: IMG.cardGuide,
     alt: 'Guided MTB ride on a built trail in Verbier',
-    eyebrow: 'Starting from CHF 120.-',
+    eyebrow: 'From CHF 80 per person',
     title: 'Private Guide / Gourmet Hike',
     items: ['From beginner to expert', 'Ideal for families', 'On an E-bike or Enduro'],
     cta: 'Discover',
     href: pathFor('guide', lang),
+  },
+  {
+    img: IMG.heroEbike,
+    alt: 'Three e-bike riders above Verbier',
+    eyebrow: 'All levels',
+    title: 'E-bike Tours',
+    items: ['Alpine paths of the Val de Bagnes', 'Gourmet ride to a mountain hut', 'From easy to sporty'],
+    cta: 'Discover',
+    href: pathFor('ebike', lang),
   },
   {
     img: IMG.cardSemaine,
@@ -51,9 +60,9 @@ const offers = [
 
 // Counters: sources verbier4vallees.ch (500 km of MTB routes, summer 2026 lifts) and verbier.ch (mountain restaurants), checked on 22.09.2026.
 const counters = [
-  { n: 15, label: 'Mountain restaurants and huts', icon: 'utensils' },
+  { n: 12, label: 'Mountain restaurants', icon: 'utensils' },
   { n: 500, label: 'km of MTB routes', icon: 'route' },
-  { n: 150, label: 'Bicycle days per year', icon: 'sun' },
+  { n: 23, label: 'Signposted enduro routes', icon: 'flag' },
   { n: 18, label: 'Lifts open in summer', icon: 'gondola' },
 ];
 ---
@@ -62,7 +71,7 @@ const counters = [
   lang={lang}
   routeKey="home"
   title="Mountain Bike & E-bike Guides in Verbier | Tours, Rental, Lessons, Team Building | Bikeverbier.ch"
-  description="Local mountain bike and e-bike guides in Verbier, Switzerland: guided e-bike and enduro tours, gourmet rides, private MTB lessons, e-bike rental at CHF 125 per day and team building. Guides born in Verbier, all levels welcome."
+  description="Mountain bike and e-bike guides born in Verbier: guided tours, gourmet rides, private lessons, e-bike rental at CHF 125 per day, team building May to October."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
@@ -105,7 +114,7 @@ const counters = [
           counters.map((c) => (
             <div data-reveal>
               <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-              <div class="counter__num"><span data-count={c.n}>0</span></div>
+              <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
               <div class="counter__label">{c.label}</div>
             </div>
           ))

@@ -16,18 +16,18 @@ import { SITE, pathFor } from '../../data/site';
 const lang = 'de' as const;
 
 const etapes = [
-  { t: 'Sie schreiben uns', x: 'Eine WhatsApp-Nachricht oder ein Anruf: Ihre Wunschdaten, Ihre Körpergrösse, die Art der Tour. Wir antworten noch am selben Tag.' },
+  { t: 'Sie schreiben uns', x: 'Eine WhatsApp-Nachricht oder ein Anruf: Ihre Wunschdaten, Ihre Körpergrösse, die Art der Tour. Wir antworten innert 24 Stunden.' },
   { t: 'Wir reservieren das richtige Bike', x: 'E-Bike oder Enduro, richtiges Modell, richtige Grösse, bei Médran Sports, Backside oder Philippe Roux Sports, unseren Partnershops in Verbier.' },
   { t: 'Das Bike wartet auf Sie', x: 'Mit Guide steht es fertig eingestellt am Start der Tour bereit. Ohne Guide holen Sie es im angegebenen Partnershop ab, mit unseren Routentipps.' },
 ];
 
 const velos = [
   {
-    img: IMG.libreEbike,
-    alt: 'Vollgefedertes E-Mountainbike, abgestellt auf einem Bergweg',
+    img: IMG.heroEbike,
+    alt: 'Drei E-Bike-Fahrer oberhalb von Verbier, das Dorf im Hintergrund',
     icon: 'bike',
     eyebrow: 'E-Bike',
-    title: 'Das E-Bike, bergauf ohne zu leiden',
+    title: 'Das E-Bike: mühelos bergauf',
     desc: 'Vollgefedertes E-Mountainbike: das Bike für die Alpwege des Val de Bagnes, die Genusstour und grosse Tage mit vielen Höhenmetern. Anfänger, Familien, gemischte Gruppen: Alle fahren zusammen, jeder dosiert seine Unterstützung selbst.',
   },
   {
@@ -84,7 +84,7 @@ const faq = [
   },
   {
     q: 'Wie weit kommt man mit einem E-Bike in den Bergen?',
-    a: 'Ein voller Akku reicht in den Bergen in der Regel für einen Tag, also 1000 bis 1500 Höhenmeter je nach Unterstützung, Gewicht des Fahrers und Gelände. Mit Guide dosieren wir die Unterstützung so, dass alle mit Restakku nach Hause kommen.',
+    a: "Ein voller Akku reicht in den Bergen in der Regel für einen Tag, je nach Unterstützung, Gewicht des Fahrers und Gelände. Mit Guide dosieren wir die Unterstützung so, dass alle mit Restakku nach Hause kommen.",
   },
   {
     q: 'Sind Helm und Protektoren inklusive?',
@@ -106,8 +106,8 @@ const faqLd = {
 <Layout
   lang={lang}
   routeKey="location"
-  title="E-Bike & Velo mieten in Verbier | Bikeverleih CHF 125.- pro Tag, Helm inklusive | Bikeverbier.ch"
-  description="E-Bike und Mountainbike mieten in Verbier (Wallis): CHF 125.- pro Tag, Helm inklusive, Bike bei unseren lokalen Partnershops reserviert und bereit am Start Ihrer Tour. Allein oder mit einem in Verbier geborenen Guide, im Val de Bagnes oder im Bikepark."
+  title="Fahrradverleih Verbier | E-Bike & Bike mieten ab CHF 125.- pro Tag | Bikeverbier.ch"
+  description="Bikemiete in Verbier: E-Bike und Mountainbike für CHF 125.- pro Tag, Helm inklusive, bereit am Start Ihrer Tour. Allein oder mit einem Guide aus Verbier."
   ogImage={IMG.heroLocation}
 >
   <section class="hero">

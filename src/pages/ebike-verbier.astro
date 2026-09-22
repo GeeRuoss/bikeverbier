@@ -28,10 +28,10 @@ const sorties = [
     title: 'La découverte du Val de Bagnes',
     text: "Chemins d'alpage, villages, vue sur les Combins. On roule, on s'arrête, on regarde. Parfait pour une première fois.",
     facts: [
-      { icon: 'clock', k: 'Durée', v: '2 à 3 heures' },
-      { icon: 'trending', k: 'Dénivelé', v: "environ 300 m, l'e-bike fait le reste" },
+      { icon: 'clock', k: 'Durée', v: 'une demi-journée' },
+      { icon: 'trending', k: 'Dénivelé', v: "léger, l'e-bike fait le reste" },
       { icon: 'users', k: 'Pour qui', v: 'familles, débutants, couples' },
-      { icon: 'flag', k: 'Repère prix', v: 'guide dès 80.- par personne, e-bike 125.-' },
+      { icon: 'flag', k: 'Repère prix', v: 'guide 195.- par personne à deux, 80.- dès six ; e-bike 125.-' },
     ],
   },
   {
@@ -40,9 +40,9 @@ const sorties = [
     text: "On pédale le matin, on déguste à midi : assiette valaisanne, fromage de Bagnes, terrasse face aux sommets. C'est notre rando gourmande.",
     facts: [
       { icon: 'clock', k: 'Durée', v: 'la journée' },
-      { icon: 'trending', k: 'Dénivelé', v: '500 à 800 m' },
-      { icon: 'users', k: 'Pour qui', v: 'tout le monde, dès 16 ans avec un e-bike de location' },
-      { icon: 'flag', k: 'Repère prix', v: 'guide dès 120.- par personne, repas en plus' },
+      { icon: 'trending', k: 'Dénivelé', v: 'moyen' },
+      { icon: 'users', k: 'Pour qui', v: 'tout le monde, familles comprises (e-bike de location dès 16 ans)' },
+      { icon: 'flag', k: 'Repère prix', v: 'guide 290.- par personne à deux, 120.- dès six ; repas en plus' },
     ],
   },
   {
@@ -51,9 +51,9 @@ const sorties = [
     text: 'Cols, crêtes, panoramas sur les Combins et le Mont-Blanc, singletracks en descente. Pour ceux qui veulent du dénivelé et de la vue.',
     facts: [
       { icon: 'clock', k: 'Durée', v: 'la journée' },
-      { icon: 'trending', k: 'Dénivelé', v: '1000 m et plus' },
+      { icon: 'trending', k: 'Dénivelé', v: 'soutenu, pour les jambes entraînées' },
       { icon: 'users', k: 'Pour qui', v: "riders à l'aise, e-bike ou enduro" },
-      { icon: 'flag', k: 'Repère prix', v: 'guide dès 120.- par personne' },
+      { icon: 'flag', k: 'Repère prix', v: 'guide 290.- par personne à deux, 120.- dès six' },
     ],
   },
 ];
@@ -66,14 +66,14 @@ const pourquoi = [
 ];
 
 const etapes = [
-  { t: 'Vous nous écrivez', x: 'WhatsApp ou téléphone : vos dates, votre niveau, vos envies. On répond dans la journée.' },
+  { t: 'Vous nous écrivez', x: 'WhatsApp ou téléphone : vos dates, votre niveau, vos envies. On répond sous 24 h.' },
   { t: "On prépare tout", x: "E-bikes réservés chez nos partenaires, itinéraire choisi selon la météo et le groupe, cabane réservée si vous voulez manger là-haut." },
   { t: 'On roule', x: 'Rendez-vous à Verbier, réglages, dix minutes de briefing. Et on y va.' },
 ];
 
 const faq = [
   { q: 'Faut-il savoir faire du VTT pour une sortie e-bike ?', a: "Non. Si vous savez faire du vélo, vous savez faire de l'e-bike. On commence sur des chemins larges, et on ne va sur les sentiers que si le groupe en a envie." },
-  { q: "Quelle autonomie a l'e-bike en montagne ?", a: "Une batterie pleine tient une journée, soit 1000 à 1500 m de dénivelé selon l'assistance et le poids du rider. Le guide dose l'assistance pour que tout le monde rentre avec de la batterie." },
+  { q: "Quelle autonomie a l'e-bike en montagne ?", a: "Une batterie pleine tient en général une journée de sortie, selon l'assistance, le poids du rider et le dénivelé. Le guide dose l'assistance pour que tout le monde rentre avec de la batterie." },
   { q: 'À partir de quel âge ?', a: "Avec un e-bike de location, dès 16 ans (14 ans avec le permis cyclomoteur). Plus jeune, on cherche un vélo enfant chez nos partenaires, sur demande et selon la dispo." },
   { q: 'Peut-on venir avec son propre e-bike ?', a: 'Bien sûr. Vous ne payez que le guide, de 80.- à 320.- la demi-journée et de 120.- à 550.- la journée par personne selon la taille du groupe.' },
   { q: 'Que faut-il prendre ?', a: "Des habits de sport, des baskets fermées, une veste coupe-vent, des lunettes de soleil, de l'eau et de la crème solaire. Le casque vient avec l'e-bike." },
@@ -110,7 +110,7 @@ const faqLd = {
         {stats.map((c) => (
           <div data-reveal>
             <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
             <div class="counter__label">{c.label}</div>
           </div>
         ))}
@@ -160,7 +160,7 @@ const faqLd = {
           ))}
         </div>
         <figure class="figure" data-reveal>
-          <img src={IMG.libreEbike} alt="VTT électrique tout-suspendu posé sur un chemin de montagne" width="1600" height="720" loading="lazy" />
+          <img src={IMG.cardEntreprise} alt="Groupe en e-bike sur un chemin fleuri au-dessus de Verbier" width="1200" height="800" loading="lazy" />
         </figure>
       </div>
     </section>

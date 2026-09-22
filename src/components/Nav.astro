@@ -13,6 +13,8 @@ const cta = ui.nav.cta;
 
 // Contact passe en bouton CTA → on le retire des liens.
 const navItems: RouteKey[] = ['guide', 'ebike', 'cours', 'entreprise', 'nepal'];
+// Location : seulement dans le menu mobile (la barre bureau est déjà pleine).
+const mobileOnly: RouteKey[] = ['location'];
 ---
 
 <header class="nav" data-nav>
@@ -30,6 +32,15 @@ const navItems: RouteKey[] = ['guide', 'ebike', 'cours', 'entreprise', 'nepal'];
         {
           navItems.map((key) => (
             <li>
+              <a href={pathFor(key, lang)} aria-current={key === routeKey ? 'page' : undefined}>
+                {ui.nav[key]}
+              </a>
+            </li>
+          ))
+        }
+        {
+          mobileOnly.map((key) => (
+            <li class="nav__mobile-only">
               <a href={pathFor(key, lang)} aria-current={key === routeKey ? 'page' : undefined}>
                 {ui.nav[key]}
               </a>
@@ -102,6 +113,9 @@ const navItems: RouteKey[] = ['guide', 'ebike', 'cours', 'entreprise', 'nepal'];
     display: flex;
     align-items: center;
     gap: 1.4rem;
+  }
+  .nav__mobile-only {
+    display: none;
   }
   .nav__links a {
     color: rgba(255, 255, 255, 0.92);
@@ -201,6 +215,9 @@ const navItems: RouteKey[] = ['guide', 'ebike', 'cours', 'entreprise', 'nepal'];
       transform: none;
       opacity: 1;
       pointer-events: auto;
+    }
+    .nav__mobile-only {
+      display: list-item;
     }
     .nav__links {
       flex-direction: column;

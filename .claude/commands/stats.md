@@ -23,7 +23,7 @@ Quand cette commande est lancée, récupère les statistiques **Google Analytics
    - **Top 5 pages** les plus vues
    - **Top sources / canaux** (organique, direct, social, référence…)
    - **Top pays / villes**
-4. **Conversions formulaire** — compte les vues des pages `/merci` (FR) et `/en/thank-you` (EN) sur la période : c'est le nombre de **demandes envoyées via les formulaires**.
+4. **Demandes** — compte les vues des pages `/merci/` (FR), `/en/thank-you/` (EN) et `/de/danke/` (DE) sur la période : c'est le nombre de **demandes envoyées via les formulaires**. Ajoute les événements `contact_whatsapp` et `contact_phone` (Rapports > Engagement > Événements, suivis depuis le 23.09.2026) : ce sont les clics sur WhatsApp et sur le numéro de téléphone.
 5. Lis toujours les valeurs **réellement affichées à l'écran** (screenshot / read_page). **N'invente JAMAIS de chiffres.** Si une donnée est illisible ou absente, écris « n/d ».
 
 ## Présentation (le « tableau joli »)
@@ -31,7 +31,7 @@ Quand cette commande est lancée, récupère les statistiques **Google Analytics
 Affiche un **tableau de bord** avec, dans l'ordre :
 
 1. **🔴 En direct** : utilisateurs actifs maintenant (+ d'où ils viennent).
-2. **Tableau KPI** : colonnes `7 jours` vs `28 jours`, lignes = Utilisateurs · Sessions · Vues · Engagement moyen · **Demandes formulaire** (avec l'évolution ↑/↓ si visible).
+2. **Tableau KPI** : colonnes `7 jours` vs `28 jours`, lignes = Utilisateurs · Sessions · Vues · Engagement moyen · **Demandes formulaire** · **Clics WhatsApp** · **Clics téléphone** (avec l'évolution ↑/↓ si visible).
 3. **Top pages** (tableau court).
 4. **Top sources** + **Top pays** (tableaux courts).
 

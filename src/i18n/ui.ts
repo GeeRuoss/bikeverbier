@@ -129,7 +129,7 @@ export const UI = {
       tagline:
         'Entdecken Sie die Geschichte von Verbier und tanken Sie neue Energie in der Ruhe der Berge!',
       sections: 'Links',
-      social: 'Folgen Sie uns auf Insta!',
+      social: 'Folgen Sie uns auf Instagram!',
       cgv: 'AGB',
       credits: 'Bildnachweis',
       location: 'Verbier · Wallis · Schweiz',
@@ -159,7 +159,7 @@ export const UI = {
     shared: {
       speak: 'Wir sprechen',
       reviewsEyebrow: 'Bewertungen',
-      reviewsTitle: 'Sie sind mit uns gefahren',
+      reviewsTitle: 'Das sagen unsere Gäste',
       alsoSee: 'Auch interessant',
       home: 'Startseite',
     },

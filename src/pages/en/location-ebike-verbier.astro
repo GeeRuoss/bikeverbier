@@ -15,15 +15,15 @@ import { SITE, pathFor } from '../../data/site';
 const lang = 'en' as const;
 
 const etapes = [
-  { t: 'You message us', x: 'A WhatsApp or a call: your dates, your height, the kind of ride. We reply the same day.' },
+  { t: 'You message us', x: 'A WhatsApp or a call: your dates, your height, the kind of ride. We reply within 24 hours.' },
   { t: 'We book the right bike', x: 'E-bike or enduro, right model, right size, with Médran Sports, Backside or Philippe Roux Sports, our partner shops in Verbier.' },
   { t: 'The bike is waiting for you', x: 'With a guide, it is adjusted and ready at the start. Without a guide, you pick it up at the partner shop we indicate, with our route tips.' },
 ];
 
 const velos = [
   {
-    img: IMG.libreEbike,
-    alt: 'Full-suspension electric mountain bike lying on a mountain path',
+    img: IMG.heroEbike,
+    alt: 'Three e-bike riders above Verbier, the village below',
     icon: 'bike',
     eyebrow: 'E-bike',
     title: 'The e-bike, to climb without suffering',
@@ -83,7 +83,7 @@ const faq = [
   },
   {
     q: 'How far does an e-bike go in the mountains?',
-    a: 'A full battery usually lasts a day in the mountains, around 1,000 to 1,500 m of climbing depending on the assistance, the rider’s weight and the terrain. With a guide, we manage the assistance so everyone gets home with battery to spare.',
+    a: "A full battery usually lasts a day in the mountains, depending on the assistance, the rider's weight and the terrain. With a guide, we manage the assistance so everyone gets home with battery to spare.",
   },
   {
     q: 'Are helmets and protection included?',
@@ -106,7 +106,7 @@ const faqLd = {
   lang={lang}
   routeKey="location"
   title="E-bike Rental Verbier | Bike Hire from CHF 125 per day, helmet included | Bikeverbier.ch"
-  description="E-bike and mountain bike rental in Verbier, Switzerland: CHF 125 per day, helmet included, bike booked with our local partner shops and ready at the start of your ride. Solo or with a guide born in Verbier, in the Val de Bagnes or at the bike park."
+  description="E-bike and mountain bike rental in Verbier: CHF 125 per day, helmet included, bike booked with our partners and ready at the start. Solo or with a guide."
   ogImage={IMG.heroLocation}
 >
   <section class="hero">

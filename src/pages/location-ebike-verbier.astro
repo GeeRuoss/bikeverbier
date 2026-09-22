@@ -16,15 +16,15 @@ import { SITE, pathFor } from '../data/site';
 const lang = 'fr' as const;
 
 const etapes = [
-  { t: 'Vous nous écrivez', x: 'Un WhatsApp ou un appel : vos dates, votre taille, le type de sortie. On répond dans la journée.' },
+  { t: 'Vous nous écrivez', x: 'Un WhatsApp ou un appel : vos dates, votre taille, le type de sortie. On répond sous 24 h.' },
   { t: 'On réserve le bon vélo', x: 'E-bike ou enduro, bon modèle, bonne taille, chez Médran Sports, Backside ou Philippe Roux Sports, nos partenaires à Verbier.' },
   { t: 'Le vélo vous attend', x: "Avec un guide, il est réglé et prêt au départ. Sans guide, vous le prenez chez le partenaire indiqué, avec nos conseils d'itinéraire." },
 ];
 
 const velos = [
   {
-    img: IMG.libreEbike,
-    alt: 'VTT électrique tout-suspendu posé sur un chemin de montagne',
+    img: IMG.heroEbike,
+    alt: 'Trois riders en e-bike sur les hauteurs de Verbier, le village en contrebas',
     icon: 'bike',
     eyebrow: 'E-bike',
     title: "L'e-bike, pour monter sans souffrir",
@@ -84,7 +84,7 @@ const faq = [
   },
   {
     q: 'Quelle autonomie a un e-bike en montagne ?',
-    a: "Une batterie pleine tient en général une journée en montagne, soit 1000 à 1500 m de dénivelé selon l'assistance, le poids du rider et le terrain. Avec un guide, on dose l'assistance pour que tout le monde rentre avec de la batterie.",
+    a: "Une batterie pleine tient en général une journée en montagne, selon l'assistance, le poids du rider et le terrain. Avec un guide, on dose l'assistance pour que tout le monde rentre avec de la batterie.",
   },
   {
     q: 'Le casque et les protections sont-ils fournis ?',
@@ -107,7 +107,7 @@ const faqLd = {
   lang={lang}
   routeKey="location"
   title="Location E-bike & VTT à Verbier | 125.- la journée, casque offert | Bikeverbier.ch"
-  description="Location d'e-bike et de VTT à Verbier : 125 CHF la journée, casque offert, vélo réservé chez nos partenaires locaux et prêt au départ de votre sortie. Seul ou avec un guide né à Verbier, dans le Val de Bagnes ou au bike park."
+  description="Location e-bike et VTT à Verbier : 125.- la journée, casque offert, vélo réservé chez nos partenaires et prêt au départ. Seul ou avec un guide local."
   ogImage={IMG.heroLocation}
 >
   <section class="hero">
