@@ -51,15 +51,15 @@ const tips = [
 
 // Verbier bike park trails, 2026 season (verbierbikepark.ch and verbier.ch, checked on 22.09.2026).
 const pistes = [
-  { n: '09', nom: 'Tsenelle', niveau: 'Green', type: 'Learning, flow', km: '1.9 km', d: '187 m' },
-  { n: '08', nom: 'Chôtatai', niveau: 'Blue', type: 'Flow, 5 km down to La Tzoumaz', km: '5 km', d: '680 m' },
-  { n: '02', nom: 'Tsopu', niveau: 'Blue', type: 'Flow', km: '2.4 km', d: '389 m' },
-  { n: '04', nom: 'Wouaiy', niveau: 'Red', type: 'Flow and trail', km: '2.2 km', d: '529 m' },
-  { n: '03', nom: 'Tû çuci', niveau: 'Red', type: 'Freeride, jumps', km: '1.1 km', d: '527 m' },
-  { n: '07', nom: 'Rôdze', niveau: 'Red', type: 'Jumps, 65 features', km: '2.1 km', d: '307 m' },
-  { n: '06', nom: 'Bortabitche', niveau: 'Red to black', type: 'Freeride, jumps', km: '1.3 km', d: '227 m' },
-  { n: '01', nom: "Tire's Fire", niveau: 'Race', type: 'Race track, European DH Cup', km: '2.3 km', d: '573 m' },
-  { n: '05', nom: 'Woooohhh', niveau: 'Black', type: 'Technical', km: '0.6 km', d: '130 m' },
+  { n: '09', nom: 'Tsenelle', color: 'green', niveau: 'Green', type: 'Learning, flow', km: '1.9 km', d: '187 m' },
+  { n: '08', nom: 'Chôtatai', color: 'blue', niveau: 'Blue', type: 'Flow, 5 km down to La Tzoumaz', km: '5 km', d: '680 m' },
+  { n: '02', nom: 'Tsopu', color: 'blue', niveau: 'Blue', type: 'Flow', km: '2.4 km', d: '389 m' },
+  { n: '04', nom: 'Wouaiy', color: 'red', niveau: 'Red', type: 'Flow and trail', km: '2.2 km', d: '529 m' },
+  { n: '03', nom: 'Tû çuci', color: 'red', niveau: 'Red', type: 'Freeride, jumps', km: '1.1 km', d: '527 m' },
+  { n: '07', nom: 'Rôdze', color: 'red', niveau: 'Red', type: 'Jumps, 65 features', km: '2.1 km', d: '307 m' },
+  { n: '06', nom: 'Bortabitche', color: 'red', niveau: 'Red to black', type: 'Freeride, jumps', km: '1.3 km', d: '227 m' },
+  { n: '01', nom: "Tire's Fire", color: 'race', niveau: 'Race', type: 'Race track, European DH Cup', km: '2.3 km', d: '573 m' },
+  { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Black', type: 'Technical', km: '0.6 km', d: '130 m' },
 ];
 
 const faq = [
@@ -198,16 +198,18 @@ const faqLd = {
         </div>
 
         <h3 class="h3" style="margin-top:3rem">The nine trails, from green to <span class="teal">race track</span></h3>
-        <div style="overflow-x:auto; margin-top:1.25rem">
-          <table class="price-table">
-            <thead>
-              <tr><th>Trail</th><th>Level</th><th>Type</th><th>Length</th><th>Vertical</th></tr>
-            </thead>
-            <tbody>
-              {pistes.map((p) => <tr><td>{p.nom}</td><td>{p.niveau}</td><td>{p.type}</td><td>{p.km}</td><td>{p.d}</td></tr>)}
-            </tbody>
-          </table>
-        </div>
+        <ul class="trails">
+          {pistes.map((p) => (
+            <li class={`trail trail--${p.color}`} data-reveal>
+              <span class="trail__dot" aria-hidden="true"></span>
+              <span class="trail__name">{p.nom}</span>
+              <span class="trail__level">{p.niveau}</span>
+              <span class="trail__type">{p.type}</span>
+              <span class="trail__num">{p.km}</span>
+              <span class="trail__num">{p.d}</span>
+            </li>
+          ))}
+        </ul>
         <p class="measure" style="margin-top:1.25rem; color:var(--gray-text)">
           Beginner? Tsenelle first, then Chôtatai, five kilometres of flow down to La Tzoumaz, and Tsopu. Confident? Wouaiy and Rôdze, 65 jumps. Tire's Fire is the race track of the European Downhill Cup. Pump track, skill park and dirt park at the bottom of the trails.
         </p>
@@ -281,6 +283,7 @@ const faqLd = {
     <CrossLinks
       lang={lang}
       links={[
+        { href: pathFor('ebike', lang), label: 'E-bike tours in Verbier' },
         { href: pathFor('guide', lang), label: 'Private mountain bike guide in Verbier' },
         { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
         { href: pathFor('cours', lang), label: 'Private MTB lessons in Verbier' },

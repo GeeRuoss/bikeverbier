@@ -9,6 +9,7 @@ const { lang } = Astro.props;
 const ui = t(lang);
 const links: { key: Parameters<typeof pathFor>[0]; label: string }[] = [
   { key: 'guide', label: ui.footer.links.guide },
+  { key: 'ebike', label: ui.footer.links.ebike },
   { key: 'entreprise', label: ui.footer.links.entreprise },
   { key: 'nepal', label: ui.footer.links.nepal },
   { key: 'cours', label: ui.footer.links.cours },

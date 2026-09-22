@@ -7,6 +7,7 @@ export const UI = {
   fr: {
     nav: {
       guide: 'Guide Privé',
+      ebike: 'E-bike',
       entreprise: "Sortie d'entreprise",
       cours: 'Cours Privés',
       nepal: 'Nepal',
@@ -27,6 +28,7 @@ export const UI = {
       links: {
         entreprise: 'Entreprises',
         guide: 'Guide VTT Verbier',
+        ebike: 'Sorties e-bike à Verbier',
         cours: 'Cours privés VTT',
         contact: 'Contact',
         nepal: 'Nepal',
@@ -59,6 +61,7 @@ export const UI = {
   en: {
     nav: {
       guide: 'Private Guide',
+      ebike: 'E-bike tours',
       entreprise: 'Teambuilding',
       cours: 'Private Lessons',
       nepal: 'Nepal',
@@ -79,6 +82,7 @@ export const UI = {
       links: {
         entreprise: 'Businesses',
         guide: 'MTB guide Verbier',
+        ebike: 'E-bike tours in Verbier',
         cours: 'Private MTB lessons',
         contact: 'Contact',
         nepal: 'Nepal',
@@ -111,6 +115,7 @@ export const UI = {
   de: {
     nav: {
       guide: 'Privater Guide',
+      ebike: 'E-Bike-Touren',
       entreprise: 'Teambuilding',
       cours: 'Privatkurse',
       nepal: 'Nepal',
@@ -131,6 +136,7 @@ export const UI = {
       links: {
         entreprise: 'Firmen',
         guide: 'MTB-Guide Verbier',
+        ebike: 'E-Bike-Touren in Verbier',
         cours: 'Private MTB-Kurse',
         contact: 'Kontakt',
         nepal: 'Nepal',

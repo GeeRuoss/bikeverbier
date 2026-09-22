@@ -12,6 +12,7 @@ export const IMG = {
   heroLocation: '/img/hero-location.webp',
   heroCours: '/img/hero-cours.webp',
   heroVtt: '/img/hero-vtt.webp',
+  heroEbike: '/img/hero-ebike.webp',
 
   // Cartes offres (accueil)
   cardEntreprise: '/img/card-entreprise.webp',

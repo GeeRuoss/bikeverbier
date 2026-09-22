@@ -25,11 +25,11 @@ const gere = [
 
 // Sample schedule: adapted to every team (times, duration, options).
 const journee = [
-  { h: '9:00', t: 'Welcome and set-up', x: 'Coffee in Verbier, e-bikes adjusted to your size, a ten-minute briefing. Then we go.' },
-  { h: '9:45', t: 'Off on the e-bikes', x: 'Alpine paths of the Val de Bagnes, villages, views over the Combins. The guide sets the pace: nobody races, nobody waits.' },
-  { h: '12:30', t: 'Mountain lunch', x: 'A table booked in a hut or restaurant: Valais platter, Bagnes cheese, a terrace facing the peaks.' },
-  { h: '14:30', t: 'Second loop or activity', x: 'A panoramic descent, a skills session, or tandem paragliding with FlyVerbier to see the trails from above.' },
-  { h: '16:30', t: 'Local aperitif', x: 'Valais wine, dried meat, rye bread: the debrief happens on a terrace. We take care of the bikes.' },
+  { h: '9:00', icon: 'coffee', t: 'Welcome and set-up', x: 'Coffee in Verbier, e-bikes adjusted to your size, a ten-minute briefing. Then we go.' },
+  { h: '9:45', icon: 'bike', t: 'Off on the e-bikes', x: 'Alpine paths of the Val de Bagnes, villages, views over the Combins. The guide sets the pace: nobody races, nobody waits.' },
+  { h: '12:30', icon: 'utensils', t: 'Mountain lunch', x: 'A table booked in a hut or restaurant: Valais platter, Bagnes cheese, a terrace facing the peaks.' },
+  { h: '14:30', icon: 'mountain', t: 'Second loop or activity', x: 'A panoramic descent, a skills session, or tandem paragliding with FlyVerbier to see the trails from above.' },
+  { h: '16:30', icon: 'wine', t: 'Local aperitif', x: 'Valais wine, dried meat, rye bread: the debrief happens on a terrace. We take care of the bikes.' },
 ];
 
 const formules = [
@@ -171,7 +171,7 @@ const faqLd = {
             <li data-reveal>
               <span class="timeline__time">{j.h}</span>
               <div class="timeline__body">
-                <h3>{j.t}</h3>
+                <h3><span class="icon-badge icon-badge--sm"><Icon name={j.icon} size={18} /></span>{j.t}</h3>
                 <p>{j.x}</p>
               </div>
             </li>

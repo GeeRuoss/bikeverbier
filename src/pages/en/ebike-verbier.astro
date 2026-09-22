@@ -1,0 +1,221 @@
+---
+// "E-bike tours in Verbier" page (EN), created 22.09.2026. Guillermo: people searching
+// "ebike verbier" want a guide or e-bike tours, not a rental. Targets e-bike verbier,
+// e-bike tour verbier, electric bike verbier, guided e-bike ride verbier.
+// Visual and playful: counters, "which ride is for you" picker, icons, little text.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'en' as const;
+
+const stats = [
+  { n: 500, label: 'km of MTB routes', icon: 'route' },
+  { n: 12, label: 'mountain restaurants', icon: 'utensils' },
+  { n: 125, label: 'CHF for the e-bike, per day', icon: 'battery' },
+  { n: 80, label: 'CHF minimum, the guide per person', icon: 'users' },
+];
+
+// Three sample rides. The guide always adapts to the group: reference points, not a fixed menu.
+const sorties = [
+  {
+    id: 'easy', icon: 'smile', btn: 'Easy',
+    title: 'Discovering the Val de Bagnes',
+    text: 'Alpine paths, villages, views over the Combins. We ride, we stop, we look. Perfect for a first time.',
+    facts: [
+      { icon: 'clock', k: 'Duration', v: '2 to 3 hours' },
+      { icon: 'trending', k: 'Climbing', v: 'around 300 m, the e-bike does the rest' },
+      { icon: 'users', k: 'For whom', v: 'families, beginners, couples' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 80 per person, e-bike CHF 125' },
+    ],
+  },
+  {
+    id: 'gourmet', icon: 'utensils', btn: 'Gourmet',
+    title: 'The gourmet ride',
+    text: 'We pedal in the morning, we feast at noon: Valais platter, Bagnes cheese, a terrace facing the peaks. This is our gourmet ride.',
+    facts: [
+      { icon: 'clock', k: 'Duration', v: 'full day' },
+      { icon: 'trending', k: 'Climbing', v: '500 to 800 m' },
+      { icon: 'users', k: 'For whom', v: 'everyone, from age 16 on a rental e-bike' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 120 per person, lunch extra' },
+    ],
+  },
+  {
+    id: 'sporty', icon: 'trending', btn: 'Sporty',
+    title: 'The grand tour',
+    text: 'Passes, ridges, views over the Combins and Mont Blanc, singletracks on the way down. For those who want climbing and views.',
+    facts: [
+      { icon: 'clock', k: 'Duration', v: 'full day' },
+      { icon: 'trending', k: 'Climbing', v: '1,000 m and more' },
+      { icon: 'users', k: 'For whom', v: 'confident riders, e-bike or enduro' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 120 per person' },
+    ],
+  },
+];
+
+const pourquoi = [
+  { icon: 'battery', title: 'Climb without suffering', text: 'The assistance erases the gradient. You keep your breath for the view.' },
+  { icon: 'users', title: 'All together', text: 'The athlete and the beginner ride side by side. Everyone sets their own assistance.' },
+  { icon: 'route', title: 'Further, higher', text: 'Passes that hurt on a regular bike become a ride.' },
+  { icon: 'utensils', title: 'Up to the hut', text: 'A dozen mountain restaurants along our routes. We book for you.' },
+];
+
+const etapes = [
+  { t: 'You message us', x: 'WhatsApp or phone: your dates, your level, what you fancy. We reply the same day.' },
+  { t: 'We prepare everything', x: 'E-bikes booked with our partners, route chosen for the weather and the group, hut booked if you want to eat up there.' },
+  { t: 'We ride', x: 'Meeting point in Verbier, set-up, a ten-minute briefing. And off we go.' },
+];
+
+const faq = [
+  { q: 'Do I need mountain biking skills for an e-bike ride?', a: 'No. If you can ride a bike, you can ride an e-bike. We start on wide paths and only take the singletracks if the group feels like it.' },
+  { q: 'How far does an e-bike go in the mountains?', a: 'A full battery lasts a day, around 1,000 to 1,500 m of climbing depending on the assistance and the rider’s weight. The guide manages the assistance so everyone gets home with battery to spare.' },
+  { q: 'From what age?', a: 'On a rental e-bike, from age 16 (14 with a moped licence). Younger, we look for a kids’ bike with our partners, on request and depending on availability.' },
+  { q: 'Can I bring my own e-bike?', a: 'Of course. You only pay for the guide, CHF 80 to 320 for a half day and CHF 120 to 550 for a full day per person, depending on group size.' },
+  { q: 'What should I bring?', a: 'Sports clothes, closed trainers, a windproof jacket, sunglasses, water and sunscreen. The helmet comes with the e-bike.' },
+  { q: 'When is the best time for an e-bike ride in Verbier?', a: 'From May to October. May and June for the alpine pastures in bloom and a quiet resort, July and August with all the lifts open, September and October for the colours and quiet trails.' },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="ebike"
+  title="E-bike Tours in Verbier | Guided Electric Bike Rides, from CHF 80 | Bikeverbier.ch"
+  description="Guided e-bike tours in Verbier with guides born here: Val de Bagnes, alpine pastures, mountain restaurants, gourmet ride. From CHF 80 per person, e-bike CHF 125 per day."
+  ogImage={IMG.heroEbike}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroEbike} alt="Three e-bike riders above Verbier, the village below" width="1600" height="1066" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">E-bike in Verbier · guided tours</p>
+      <h1 class="h1" data-wipe>Verbier by e-bike, <span class="teal">the easy way up</span></h1>
+      <p class="lead">Alpine pastures, villages and mountain restaurants on an electric bike, with guides born in Verbier.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Book a ride" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--alt">
+      <div class="container counters">
+        {stats.map((c) => (
+          <div data-reveal>
+            <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
+            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__label">{c.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container" data-picker>
+      <div class="center">
+        <p class="eyebrow">Your call</p>
+        <h2 class="h2">Which e-bike ride <span class="teal">is for you</span>?</h2>
+      </div>
+      <div class="picker__btns">
+        {sorties.map((s, i) => (
+          <button type="button" class="picker__btn" data-pick={s.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="icon-badge"><Icon name={s.icon} size={24} /></span>{s.btn}
+          </button>
+        ))}
+      </div>
+      {sorties.map((s) => (
+        <div class="picker__panel" data-panel={s.id}>
+          <p class="eyebrow">{s.btn}</p>
+          <h3 class="h3 teal" style="margin-top:.5rem">{s.title}</h3>
+          <p class="lead" style="margin-top:.75rem; max-width:52ch">{s.text}</p>
+          <ul class="picker__facts">
+            {s.facts.map((f) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name={f.icon} size={18} /></span><span><strong>{f.k}</strong>: {f.v}</span></li>
+            ))}
+          </ul>
+          <div style="margin-top:1.75rem"><CtaButton href={SITE.whatsapp} label="Book this ride" variant="dark" external /></div>
+        </div>
+      ))}
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="center" style="margin-bottom:2.5rem">
+          <p class="eyebrow">Why e-bike</p>
+          <h2 class="h2">The mountains, <span class="teal">electric version</span></h2>
+        </div>
+        <div class="feature-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))">
+          {pourquoi.map((p) => (
+            <div class="feature" data-reveal>
+              <span class="icon-badge icon-badge--lg"><Icon name={p.icon} size={30} /></span>
+              <h3 class="h3 teal" style="margin-top:.75rem">{p.title}</h3>
+              <p style="color:var(--gray-text)">{p.text}</p>
+            </div>
+          ))}
+        </div>
+        <figure class="figure" data-reveal>
+          <img src={IMG.libreEbike} alt="Full-suspension electric mountain bike lying on a mountain path" width="1600" height="720" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Three steps, <span class="teal">zero logistics</span></h2>
+      <ol class="timeline timeline--steps">
+        {etapes.map((e, i) => (
+          <li data-reveal>
+            <span class="timeline__time">{i + 1}</span>
+            <div class="timeline__body"><h3>{e.t}</h3><p>{e.x}</p></div>
+          </li>
+        ))}
+      </ol>
+      <p class="measure" style="margin-top:2rem; color:var(--gray-text)">
+        Already have your e-bike? You only pay for the <a href={pathFor('guide', lang)}>guide</a>. Need one? We book it: <a href={pathFor('location', lang)}>e-bike rental in Verbier</a>, CHF 125 per day, helmet included.
+      </p>
+    </section>
+
+    <Reviews lang={lang} alt />
+
+    <section class="section container">
+      <p class="eyebrow">Frequently asked questions</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ: e-bike in <span class="teal">Verbier</span></h2>
+      <div class="faq">
+        {faq.map((item) => (
+          <details><summary>{item.q}</summary><p>{item.a}</p></details>
+        ))}
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('guide', lang), label: 'Private MTB guide and gourmet ride' },
+        { href: pathFor('entreprise', lang), label: 'E-bike team building' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script>
+    // "Which ride is for you" picker: one button, one panel. Without JS, all three panels stay visible.
+    document.querySelectorAll<HTMLElement>('[data-picker]').forEach((root) => {
+      const btns = root.querySelectorAll<HTMLButtonElement>('[data-pick]');
+      const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+      const show = (id: string | undefined) => {
+        btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.pick === id)));
+        panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+      };
+      btns.forEach((b) => b.addEventListener('click', () => show(b.dataset.pick)));
+      show(btns[0]?.dataset.pick);
+    });
+  </script>
+</Layout>

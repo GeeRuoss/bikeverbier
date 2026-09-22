@@ -1,0 +1,221 @@
+---
+// Page « Sortie e-bike à Verbier » (FR), créée le 22.09.2026. Guillermo : sur « ebike verbier »,
+// les gens cherchent un guide ou des tours e-bike, pas une location. Cette page cible donc
+// e-bike verbier, sortie e-bike verbier, vélo électrique verbier, e-bike tour verbier.
+// Visuelle et joueuse : compteurs, sélecteur « quelle sortie pour vous ? », icônes, peu de texte.
+import Layout from '../layouts/Layout.astro';
+import CtaButton from '../components/CtaButton.astro';
+import CallLink from '../components/CallLink.astro';
+import CrossLinks from '../components/CrossLinks.astro';
+import Icon from '../components/Icon.astro';
+import Reviews from '../components/Reviews.astro';
+import { IMG } from '../data/images';
+import { SITE, pathFor } from '../data/site';
+
+const lang = 'fr' as const;
+
+const stats = [
+  { n: 500, label: 'km de parcours VTT', icon: 'route' },
+  { n: 12, label: "restaurants d'altitude", icon: 'utensils' },
+  { n: 125, label: "CHF l'e-bike, la journée", icon: 'battery' },
+  { n: 80, label: 'CHF minimum, le guide par personne', icon: 'users' },
+];
+
+// Trois sorties types. Le guide adapte toujours au groupe : ce sont des repères, pas un menu figé.
+const sorties = [
+  {
+    id: 'tranquille', icon: 'smile', btn: 'Tranquille',
+    title: 'La découverte du Val de Bagnes',
+    text: "Chemins d'alpage, villages, vue sur les Combins. On roule, on s'arrête, on regarde. Parfait pour une première fois.",
+    facts: [
+      { icon: 'clock', k: 'Durée', v: '2 à 3 heures' },
+      { icon: 'trending', k: 'Dénivelé', v: "environ 300 m, l'e-bike fait le reste" },
+      { icon: 'users', k: 'Pour qui', v: 'familles, débutants, couples' },
+      { icon: 'flag', k: 'Repère prix', v: 'guide dès 80.- par personne, e-bike 125.-' },
+    ],
+  },
+  {
+    id: 'gourmande', icon: 'utensils', btn: 'Gourmande',
+    title: 'La rando gourmande',
+    text: "On pédale le matin, on déguste à midi : assiette valaisanne, fromage de Bagnes, terrasse face aux sommets. C'est notre rando gourmande.",
+    facts: [
+      { icon: 'clock', k: 'Durée', v: 'la journée' },
+      { icon: 'trending', k: 'Dénivelé', v: '500 à 800 m' },
+      { icon: 'users', k: 'Pour qui', v: 'tout le monde, dès 16 ans avec un e-bike de location' },
+      { icon: 'flag', k: 'Repère prix', v: 'guide dès 120.- par personne, repas en plus' },
+    ],
+  },
+  {
+    id: 'sportive', icon: 'trending', btn: 'Sportive',
+    title: 'Le grand tour',
+    text: 'Cols, crêtes, panoramas sur les Combins et le Mont-Blanc, singletracks en descente. Pour ceux qui veulent du dénivelé et de la vue.',
+    facts: [
+      { icon: 'clock', k: 'Durée', v: 'la journée' },
+      { icon: 'trending', k: 'Dénivelé', v: '1000 m et plus' },
+      { icon: 'users', k: 'Pour qui', v: "riders à l'aise, e-bike ou enduro" },
+      { icon: 'flag', k: 'Repère prix', v: 'guide dès 120.- par personne' },
+    ],
+  },
+];
+
+const pourquoi = [
+  { icon: 'battery', title: 'Monter sans souffrir', text: "L'assistance gomme la pente. Vous gardez le souffle pour la vue." },
+  { icon: 'users', title: 'Tous ensemble', text: 'Le sportif et le débutant roulent côte à côte. Chacun règle son assistance.' },
+  { icon: 'route', title: 'Plus loin, plus haut', text: 'Les cols qui font mal en vélo classique deviennent une balade.' },
+  { icon: 'utensils', title: "Jusqu'à la cabane", text: "Une douzaine de restaurants d'altitude sur nos itinéraires. On réserve pour vous." },
+];
+
+const etapes = [
+  { t: 'Vous nous écrivez', x: 'WhatsApp ou téléphone : vos dates, votre niveau, vos envies. On répond dans la journée.' },
+  { t: "On prépare tout", x: "E-bikes réservés chez nos partenaires, itinéraire choisi selon la météo et le groupe, cabane réservée si vous voulez manger là-haut." },
+  { t: 'On roule', x: 'Rendez-vous à Verbier, réglages, dix minutes de briefing. Et on y va.' },
+];
+
+const faq = [
+  { q: 'Faut-il savoir faire du VTT pour une sortie e-bike ?', a: "Non. Si vous savez faire du vélo, vous savez faire de l'e-bike. On commence sur des chemins larges, et on ne va sur les sentiers que si le groupe en a envie." },
+  { q: "Quelle autonomie a l'e-bike en montagne ?", a: "Une batterie pleine tient une journée, soit 1000 à 1500 m de dénivelé selon l'assistance et le poids du rider. Le guide dose l'assistance pour que tout le monde rentre avec de la batterie." },
+  { q: 'À partir de quel âge ?', a: "Avec un e-bike de location, dès 16 ans (14 ans avec le permis cyclomoteur). Plus jeune, on cherche un vélo enfant chez nos partenaires, sur demande et selon la dispo." },
+  { q: 'Peut-on venir avec son propre e-bike ?', a: 'Bien sûr. Vous ne payez que le guide, de 80.- à 320.- la demi-journée et de 120.- à 550.- la journée par personne selon la taille du groupe.' },
+  { q: 'Que faut-il prendre ?', a: "Des habits de sport, des baskets fermées, une veste coupe-vent, des lunettes de soleil, de l'eau et de la crème solaire. Le casque vient avec l'e-bike." },
+  { q: 'Quand rouler en e-bike à Verbier ?', a: "De mai à octobre. Mai et juin pour les alpages fleuris et la station calme, juillet et août avec toutes les remontées ouvertes, septembre et octobre pour les couleurs et les sentiers tranquilles." },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="ebike"
+  title="Sortie E-bike à Verbier | Tours guidés en vélo électrique, dès 80.- | Bikeverbier.ch"
+  description="Sorties e-bike guidées à Verbier par des guides nés ici : Val de Bagnes, restaurants d'altitude, rando gourmande. Dès 80.- par personne, e-bike 125.- la journée."
+  ogImage={IMG.heroEbike}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroEbike} alt="Trois riders en e-bike sur les hauteurs de Verbier, le village en contrebas" width="1600" height="1066" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">E-bike à Verbier · sorties guidées</p>
+      <h1 class="h1" data-wipe>Verbier en e-bike, <span class="teal">sans forcer</span></h1>
+      <p class="lead">Alpages, villages et restaurants d'altitude en vélo électrique, avec des guides nés à Verbier.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Réserver une sortie" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--alt">
+      <div class="container counters">
+        {stats.map((c) => (
+          <div data-reveal>
+            <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
+            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__label">{c.label}</div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section container" data-picker>
+      <div class="center">
+        <p class="eyebrow">À vous de choisir</p>
+        <h2 class="h2">Quelle sortie e-bike <span class="teal">pour vous</span> ?</h2>
+      </div>
+      <div class="picker__btns">
+        {sorties.map((s, i) => (
+          <button type="button" class="picker__btn" data-pick={s.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+            <span class="icon-badge"><Icon name={s.icon} size={24} /></span>{s.btn}
+          </button>
+        ))}
+      </div>
+      {sorties.map((s) => (
+        <div class="picker__panel" data-panel={s.id}>
+          <p class="eyebrow">{s.btn}</p>
+          <h3 class="h3 teal" style="margin-top:.5rem">{s.title}</h3>
+          <p class="lead" style="margin-top:.75rem; max-width:52ch">{s.text}</p>
+          <ul class="picker__facts">
+            {s.facts.map((f) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name={f.icon} size={18} /></span><span><strong>{f.k}</strong> : {f.v}</span></li>
+            ))}
+          </ul>
+          <div style="margin-top:1.75rem"><CtaButton href={SITE.whatsapp} label="Réserver cette sortie" variant="dark" external /></div>
+        </div>
+      ))}
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="center" style="margin-bottom:2.5rem">
+          <p class="eyebrow">Pourquoi l'e-bike</p>
+          <h2 class="h2">La montagne, <span class="teal">version électrique</span></h2>
+        </div>
+        <div class="feature-grid" style="grid-template-columns:repeat(auto-fit, minmax(220px, 1fr))">
+          {pourquoi.map((p) => (
+            <div class="feature" data-reveal>
+              <span class="icon-badge icon-badge--lg"><Icon name={p.icon} size={30} /></span>
+              <h3 class="h3 teal" style="margin-top:.75rem">{p.title}</h3>
+              <p style="color:var(--gray-text)">{p.text}</p>
+            </div>
+          ))}
+        </div>
+        <figure class="figure" data-reveal>
+          <img src={IMG.libreEbike} alt="VTT électrique tout-suspendu posé sur un chemin de montagne" width="1600" height="720" loading="lazy" />
+        </figure>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Comment ça marche</p>
+      <h2 class="h2">Trois étapes, <span class="teal">zéro logistique</span></h2>
+      <ol class="timeline timeline--steps">
+        {etapes.map((e, i) => (
+          <li data-reveal>
+            <span class="timeline__time">{i + 1}</span>
+            <div class="timeline__body"><h3>{e.t}</h3><p>{e.x}</p></div>
+          </li>
+        ))}
+      </ol>
+      <p class="measure" style="margin-top:2rem; color:var(--gray-text)">
+        Vous avez déjà votre e-bike ? Vous ne payez que le <a href={pathFor('guide', lang)}>guide</a>. Il vous en faut un ? On le réserve : <a href={pathFor('location', lang)}>location e-bike à Verbier</a>, 125.- la journée, casque offert.
+      </p>
+    </section>
+
+    <Reviews lang={lang} alt />
+
+    <section class="section container">
+      <p class="eyebrow">Questions fréquentes</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ : e-bike à <span class="teal">Verbier</span></h2>
+      <div class="faq">
+        {faq.map((item) => (
+          <details><summary>{item.q}</summary><p>{item.a}</p></details>
+        ))}
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('location', lang), label: 'Location e-bike à Verbier' },
+        { href: pathFor('guide', lang), label: 'Guide VTT privé et rando gourmande' },
+        { href: pathFor('entreprise', lang), label: 'Team building en e-bike' },
+        { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+  <script>
+    // Sélecteur « quelle sortie pour vous » : un bouton, un panneau. Sans JS, les trois panneaux restent visibles.
+    document.querySelectorAll<HTMLElement>('[data-picker]').forEach((root) => {
+      const btns = root.querySelectorAll<HTMLButtonElement>('[data-pick]');
+      const panels = root.querySelectorAll<HTMLElement>('[data-panel]');
+      const show = (id: string | undefined) => {
+        btns.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.pick === id)));
+        panels.forEach((p) => { p.hidden = p.dataset.panel !== id; });
+      };
+      btns.forEach((b) => b.addEventListener('click', () => show(b.dataset.pick)));
+      show(btns[0]?.dataset.pick);
+    });
+  </script>
+</Layout>
