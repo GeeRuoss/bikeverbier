@@ -990,12 +990,14 @@ button {
     font-size: 0.95rem;
   }
   .trail__num {
-    grid-column: auto;
+    grid-column: 2 / 4;
     text-align: left;
     font-size: 0.95rem;
+    white-space: normal;
   }
-  .trail__num + .trail__num {
-    grid-column: 3;
+  .trail__type,
+  .trail__name {
+    overflow-wrap: anywhere;
   }
 }
 
