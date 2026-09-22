@@ -63,6 +63,30 @@ const pistes = [
   { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Noire', type: 'Technique', km: '0,6 km', d: '130 m' },
 ];
 
+// Itinéraires enduro balisés (Verbier Bikepark, relevé le 22.09.2026). Niveau officiel : Débutant / Avancé / Expert.
+const enduros = [
+  { nom: "Ruinettes - Clambin - Le Châble", color: 'green', niveau: 'Débutant', type: "14 km, aucun sentier", km: "1743 m de descente", d: '2204 → 825 m' },
+  { nom: "La Planie", color: 'green', niveau: 'Débutant', type: "10,5 km, aucun sentier", km: "452 m de descente", d: '2215 → 2120 m' },
+  { nom: "Verbier - Le Châble", color: 'green', niveau: 'Débutant', type: "6,4 km dont 1,2 km de sentier", km: "830 m de descente", d: '1528 → 827 m' },
+  { nom: "La Côt - Bruson", color: 'green', niveau: 'Débutant', type: "7,2 km, aucun sentier", km: "867 m de descente", d: '1545 → 971 m' },
+  { nom: "La Côt - Le Châble", color: 'green', niveau: 'Débutant', type: "8,2 km, aucun sentier", km: "993 m de descente", d: '1553 → 825 m' },
+  { nom: "Croix de Cœur - La Tzoumaz", color: 'green', niveau: 'Débutant', type: "3,9 km dont 2,6 km de sentier", km: "646 m de descente", d: '2346 → 1700 m' },
+  { nom: "La Chaux - Schlérondes - Le Châble", color: 'red', niveau: 'Avancé', type: "7,7 km dont 6,2 km de sentier", km: "1576 m de descente", d: '2192 → 862 m' },
+  { nom: "Fontanet - La Chaux", color: 'red', niveau: 'Avancé', type: "6 km dont 4,2 km de sentier", km: "522 m de descente", d: '2475 → 2233 m' },
+  { nom: "Larzai - Bruson", color: 'red', niveau: 'Avancé', type: "8,5 km dont 6,2 km de sentier", km: "1312 m de descente", d: '2163 → 1079 m' },
+  { nom: "Six Blanc - Lourtier", color: 'red', niveau: 'Avancé', type: "19,8 km dont 8,5 km de sentier", km: "1874 m de descente", d: '1549 → 1084 m' },
+  { nom: "Cabane Mont-Fort - La Chaux - Lourtier", color: 'black', niveau: 'Expert', type: "7,8 km dont 6,8 km de sentier", km: "1449 m de descente", d: '2429 → 1067 m' },
+  { nom: "Col de Mille", color: 'black', niveau: 'Expert', type: "14,7 km dont 9,9 km de sentier", km: "1862 m de descente", d: '2063 → 1879 m' },
+  { nom: "Vallon d’Arby", color: 'black', niveau: 'Expert', type: "4,6 km dont 3,1 km de sentier", km: "669 m de descente", d: '2324 → 1725 m' },
+];
+
+const chiffres = [
+  { n: 1500, label: "m d'altitude à Verbier", icon: 'mountain' },
+  { n: 500, label: "km de parcours VTT", icon: 'route' },
+  { n: 23, label: "itinéraires enduro balisés", icon: 'flag' },
+  { n: 9, label: "pistes au bike park", icon: 'gondola' },
+];
+
 const faq = [
   {
     q: 'Faut-il un guide pour faire du VTT à Verbier ?',
@@ -99,6 +123,18 @@ const faq = [
   {
     q: 'Comment venir à Verbier avec son vélo ?',
     a: "En voiture, Verbier est à 30 minutes de Martigny, 50 minutes de Sion, 1 h 20 de Lausanne et 2 h de Genève. En train, descendez au Châble (25 minutes depuis Martigny), puis la télécabine Le Châble-Verbier vous monte en une dizaine de minutes, vélo compris.",
+  },
+  {
+    q: "Verbier est-il une bonne destination VTT ?",
+    a: "Oui, une des plus grandes de Suisse : 500 km de parcours, 23 itinéraires enduro balisés, un bike park de 9 pistes, 18 remontées ouvertes en été et une saison de juin à fin octobre. Le tout à 1500 m d'altitude, avec des descentes de plus de 1700 m jusqu'au Châble.",
+  },
+  {
+    q: "Quels sont les meilleurs sentiers VTT de Verbier ?",
+    a: "Pour débuter : Ruinettes - Clambin - Le Châble, 14 km de routes forestières et 1743 m de descente, ou La Planie, à plat à 2200 m. Pour l'enduro, niveau avancé : La Chaux - Schlérondes, Larzai - Bruson et Six Blanc - Lourtier. Pour les experts : Cabane Mont-Fort - La Chaux - Lourtier, le Col de Mille (1862 m de descente) et le Vallon d'Arby. Nos guides y ajoutent les sentiers qui ne sont pas balisés.",
+  },
+  {
+    q: "Peut-on faire du vélo de route à Verbier ?",
+    a: "Oui. La montée Le Châble - Verbier (8,8 km à 7,5 %) a été l'arrivée d'une étape du Tour de France 2009, et la Croix de Cœur (15,5 km à 8,7 %, sommet à 2174 m) a vu passer le Giro 2023. Col des Planches, Champex-Lac, Mauvoisin et Grand-Saint-Bernard complètent le menu, et le Tour des Stations part du Châble fin août. On est guides VTT et e-bike, pas guides route, mais nos partenaires Backside et Médran Sports louent des vélos de route.",
   },
 ];
 
@@ -140,6 +176,18 @@ const faqLd = {
       <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
         Cette page est notre guide local : ce qu'on répond quand on nous demande où, quand et comment rouler à Verbier. Pour le vivre sur le terrain, il y a nos <a href={pathFor('guide', lang)}>sorties guidées</a>, nos <a href={pathFor('cours', lang)}>cours privés</a> et la <a href={pathFor('location', lang)}>location d'e-bike</a>.
       </p>
+    </section>
+
+    <section class="section section--alt" style="padding-block:clamp(2.5rem,5vw,4rem)">
+      <div class="container counters">
+        {chiffres.map((c) => (
+          <div data-reveal>
+            <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
+            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__label">{c.label}</div>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="section container">
@@ -220,6 +268,56 @@ const faqLd = {
         <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
           Le rendez-vous de l'été : le Verbier Bike Festival, du 13 au 16 août 2026, du 12 au 15 août 2027. Chiffres relevés le 22 septembre 2026 sur <a href="https://www.verbierbikepark.ch/" target="_blank" rel="noopener">verbierbikepark.ch</a> et <a href="https://verbier4vallees.ch/" target="_blank" rel="noopener">verbier4vallees.ch</a> : vérifiez les horaires du jour avant de monter.
         </p>
+      </div>
+    </section>
+
+    <section class="section container" id="enduro">
+      <p class="eyebrow">Enduro balisé</p>
+      <h2 class="h2">Les itinéraires enduro <span class="teal">officiels</span></h2>
+      <p class="lead measure" style="margin-top:.75rem">Vingt-trois itinéraires balisés par Verbier Bikepark, du Châble aux cabanes. Voici les principaux, avec le niveau et la descente : de quoi choisir sa journée. Un guide né ici y ajoute les variantes qui ne sont pas balisées.</p>
+      <ul class="trails">
+        {enduros.map((p) => (
+          <li class={`trail trail--${p.color}`} data-reveal>
+            <span class="trail__dot" aria-hidden="true"></span>
+            <span class="trail__name">{p.nom}</span>
+            <span class="trail__level">{p.niveau}</span>
+            <span class="trail__type">{p.type}</span>
+            <span class="trail__num">{p.km}</span>
+            <span class="trail__num">{p.d}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="measure" style="margin-top:1.25rem; color:var(--gray-soft); font-size:.95rem">Chiffres Verbier Bikepark, saison 2026 (verbierbikepark.ch). L'itinéraire 03 La Chaux - Lourtier - Le Châble est fermé cette saison.</p>
+    </section>
+
+    <section class="section section--alt" id="cycling">
+      <div class="container">
+        <p class="eyebrow">Cyclisme</p>
+        <h2 class="h2">Route et gravel : Verbier <span class="teal">se grimpe aussi</span></h2>
+        <p class="lead measure" style="margin-top:.75rem">On est guides VTT et e-bike, pas guides route. Mais si vous venez avec un vélo de route ou un gravel, voilà ce qui attire les cyclistes ici.</p>
+        <div class="infobox-grid">
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="flag" size={20} /></span>
+            <h3 style="margin-top:.75rem">La montée du Tour de France</h3>
+            <p style="color:var(--gray-text)">Le Châble - Verbier, 8,8 km à 7,5 % : l'arrivée de la 15e étape du Tour de France 2009, gagnée par Alberto Contador le 19 juillet 2009. Le Tour de Suisse y est aussi arrivé en 2005, 2008, 2012 et 2014.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="mountain" size={20} /></span>
+            <h3 style="margin-top:.75rem">La Croix de Cœur</h3>
+            <p style="color:var(--gray-text)">Depuis Le Châble par Verbier : 15,5 km, 1342 m de dénivelé, 8,7 % de moyenne, sommet à 2174 m. Le Giro 2023 y est passé le 19 mai 2023, sur une étape partie du Châble.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="route" size={20} /></span>
+            <h3 style="margin-top:.75rem">Les autres classiques</h3>
+            <p style="color:var(--gray-text)">Col des Planches depuis Martigny, 10,3 km à 8,9 %. Champex-Lac depuis Bovernier, 10,4 km à 8,2 %. Barrage de Mauvoisin depuis Le Châble, 18,1 km pour 1145 m de dénivelé. Grand-Saint-Bernard depuis Martigny, 42 km pour 2072 m.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="trending" size={20} /></span>
+            <h3 style="margin-top:.75rem">Tour des Stations et gravel</h3>
+            <p style="color:var(--gray-text)">Le Tour des Stations, cyclosportive de fin août, part du Châble (29 août 2026) : de 77 à 242 km et jusqu'à 8848 m de dénivelé. Côté gravel, verbier.ch balise 10 itinéraires de 8,8 à 42,2 km.</p>
+          </div>
+        </div>
+        <p class="measure" style="margin-top:1.5rem; color:var(--gray-text)">Vélos de route en location chez nos partenaires Backside et Médran Sports. Pour les chemins d'alpage sans souffrir, il y a nos <a href={pathFor('ebike', lang)}>sorties e-bike guidées</a>. Itinéraires route et gravel détaillés sur <a href="https://www.verbier.ch/decouvrir/explore-activites/activites-sportives/tout-lunivers-du-velo/velo-de-route/" target="_blank" rel="noopener">verbier.ch</a>.</p>
       </div>
     </section>
 

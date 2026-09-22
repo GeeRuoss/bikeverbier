@@ -62,6 +62,30 @@ const pistes = [
   { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Schwarz', type: 'Technisch', km: '0,6 km', d: '130 m' },
 ];
 
+// Markierte Enduro-Routen (Verbier Bikepark, erhoben am 22.09.2026). Offizielle Niveaus Débutant / Avancé / Expert = Einsteiger / Fortgeschritten / Experte.
+const enduros = [
+  { nom: "Ruinettes - Clambin - Le Châble", color: 'green', niveau: 'Einsteiger', type: "14 km, ohne Trail", km: "1743 m Abfahrt", d: '2204 → 825 m' },
+  { nom: "La Planie", color: 'green', niveau: 'Einsteiger', type: "10,5 km, ohne Trail", km: "452 m Abfahrt", d: '2215 → 2120 m' },
+  { nom: "Verbier - Le Châble", color: 'green', niveau: 'Einsteiger', type: "6,4 km, davon 1,2 km Trail", km: "830 m Abfahrt", d: '1528 → 827 m' },
+  { nom: "La Côt - Bruson", color: 'green', niveau: 'Einsteiger', type: "7,2 km, ohne Trail", km: "867 m Abfahrt", d: '1545 → 971 m' },
+  { nom: "La Côt - Le Châble", color: 'green', niveau: 'Einsteiger', type: "8,2 km, ohne Trail", km: "993 m Abfahrt", d: '1553 → 825 m' },
+  { nom: "Croix de Cœur - La Tzoumaz", color: 'green', niveau: 'Einsteiger', type: "3,9 km, davon 2,6 km Trail", km: "646 m Abfahrt", d: '2346 → 1700 m' },
+  { nom: "La Chaux - Schlérondes - Le Châble", color: 'red', niveau: 'Fortgeschritten', type: "7,7 km, davon 6,2 km Trail", km: "1576 m Abfahrt", d: '2192 → 862 m' },
+  { nom: "Fontanet - La Chaux", color: 'red', niveau: 'Fortgeschritten', type: "6 km, davon 4,2 km Trail", km: "522 m Abfahrt", d: '2475 → 2233 m' },
+  { nom: "Larzai - Bruson", color: 'red', niveau: 'Fortgeschritten', type: "8,5 km, davon 6,2 km Trail", km: "1312 m Abfahrt", d: '2163 → 1079 m' },
+  { nom: "Six Blanc - Lourtier", color: 'red', niveau: 'Fortgeschritten', type: "19,8 km, davon 8,5 km Trail", km: "1874 m Abfahrt", d: '1549 → 1084 m' },
+  { nom: "Cabane Mont-Fort - La Chaux - Lourtier", color: 'black', niveau: 'Experte', type: "7,8 km, davon 6,8 km Trail", km: "1449 m Abfahrt", d: '2429 → 1067 m' },
+  { nom: "Col de Mille", color: 'black', niveau: 'Experte', type: "14,7 km, davon 9,9 km Trail", km: "1862 m Abfahrt", d: '2063 → 1879 m' },
+  { nom: "Vallon d’Arby", color: 'black', niveau: 'Experte', type: "4,6 km, davon 3,1 km Trail", km: "669 m Abfahrt", d: '2324 → 1725 m' },
+];
+
+const chiffres = [
+  { n: 1500, label: "m Höhe in Verbier", icon: 'mountain' },
+  { n: 500, label: "km MTB-Strecken", icon: 'route' },
+  { n: 23, label: "markierte Enduro-Routen", icon: 'flag' },
+  { n: 9, label: "Trails im Bikepark", icon: 'gondola' },
+];
+
 const faq = [
   {
     q: 'Braucht man einen Guide zum Mountainbiken in Verbier?',
@@ -98,6 +122,18 @@ const faq = [
   {
     q: 'Wie komme ich mit dem Bike nach Verbier?',
     a: 'Mit dem Auto liegt Verbier 30 Minuten von Martigny, 50 Minuten von Sion, 1 Stunde 20 von Lausanne und 2 Stunden von Genf entfernt. Mit dem Zug steigen Sie in Le Châble aus (25 Minuten ab Martigny), dann bringt Sie die Gondelbahn Le Châble-Verbier in rund zehn Minuten hinauf, Bike inklusive.',
+  },
+  {
+    q: "Ist Verbier gut zum Mountainbiken?",
+    a: "Ja. Verbier ist eine der grössten MTB-Destinationen der Schweiz: 500 km Strecken, 23 markierte Enduro-Routen, ein Bikepark mit 9 Trails, 18 im Sommer geöffnete Bergbahnen und eine Saison von Juni bis Ende Oktober. Das Dorf liegt auf 1500 m, und die Abfahrten bis nach Le Châble bringen mehr als 1700 Höhenmeter.",
+  },
+  {
+    q: "Wo sind die besten Mountainbike-Trails in Verbier?",
+    a: "Für den Einstieg: Ruinettes - Clambin - Le Châble, 14 km und 1743 Höhenmeter Abfahrt, nur auf Forststrassen, oder La Planie, flach auf 2200 m. Für Fortgeschrittene: La Chaux - Schlérondes - Le Châble, Larzai - Bruson und Six Blanc - Lourtier. Für Experten: Cabane Mont-Fort - La Chaux - Lourtier, das Vallon d’Arby und der Col de Mille mit 1862 Höhenmetern Abfahrt. Unsere Guides kennen dazu die Trails, die nicht markiert sind.",
+  },
+  {
+    q: "Kann man in Verbier Rennvelo fahren?",
+    a: "Ja. Der Anstieg Le Châble - Verbier (8,8 km mit 7,5 %) war 2009 Etappenziel der Tour de France, gewonnen von Alberto Contador, und über die Croix de Cœur (15,5 km mit 8,7 %) fuhr 2023 der Giro d'Italia. Col des Planches, Champex-Lac, Mauvoisin und der Grosse St. Bernhard ergänzen das Programm. Wir sind Mountainbike- und E-Bike-Guides; Rennvelos vermieten unsere Partner Backside und Médran Sports.",
   },
 ];
 
@@ -139,6 +175,18 @@ const faqLd = {
       <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
         Diese Seite ist unser Guide der Einheimischen: das, was wir antworten, wenn uns jemand fragt, wo, wann und wie man in Verbier biken soll. Um es auf den Trails zu erleben, gibt es unsere <a href={pathFor('guide', lang)}>geführten Touren</a>, unsere <a href={pathFor('cours', lang)}>Privatkurse</a> und die <a href={pathFor('location', lang)}>E-Bike-Miete</a>.
       </p>
+    </section>
+
+    <section class="section section--alt" style="padding-block:clamp(2.5rem,5vw,4rem)">
+      <div class="container counters">
+        {chiffres.map((c) => (
+          <div data-reveal>
+            <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
+            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__label">{c.label}</div>
+          </div>
+        ))}
+      </div>
     </section>
 
     <section class="section container">
@@ -219,6 +267,56 @@ const faqLd = {
         <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
           Der Höhepunkt des Sommers: das Verbier Bike Festival, 13. bis 16. August 2026, 12. bis 15. August 2027. Zahlen geprüft am 22. September 2026 auf <a href="https://www.verbierbikepark.ch/" target="_blank" rel="noopener">verbierbikepark.ch</a> und <a href="https://verbier4vallees.ch/" target="_blank" rel="noopener">verbier4vallees.ch</a>: Prüfen Sie die Öffnungszeiten des Tages, bevor Sie hochfahren.
         </p>
+      </div>
+    </section>
+
+    <section class="section container" id="enduro">
+      <p class="eyebrow">Markierte Enduro-Routen</p>
+      <h2 class="h2">Die offiziellen <span class="teal">Enduro-Routen</span></h2>
+      <p class="lead measure" style="margin-top:.75rem">23 vom Verbier Bikepark markierte Routen, von Le Châble bis zu den Berghütten. Hier 13 davon, mit Niveau, Länge, Trailanteil und Höhenmetern der Abfahrt: genug, um den Tag zu planen. Ein Guide von hier kennt dazu die Varianten, die nicht markiert sind.</p>
+      <ul class="trails">
+        {enduros.map((p) => (
+          <li class={`trail trail--${p.color}`} data-reveal>
+            <span class="trail__dot" aria-hidden="true"></span>
+            <span class="trail__name">{p.nom}</span>
+            <span class="trail__level">{p.niveau}</span>
+            <span class="trail__type">{p.type}</span>
+            <span class="trail__num">{p.km}</span>
+            <span class="trail__num">{p.d}</span>
+          </li>
+        ))}
+      </ul>
+      <p class="measure" style="margin-top:1.25rem; color:var(--gray-soft); font-size:.95rem">Zahlen vom Verbier Bikepark, Saison 2026 (verbierbikepark.ch). Route 03 La Chaux - Lourtier - Le Châble ist diese Saison geschlossen.</p>
+    </section>
+
+    <section class="section section--alt" id="cycling">
+      <div class="container">
+        <p class="eyebrow">Rennvelo</p>
+        <h2 class="h2">Rennvelo und Gravel: Verbier <span class="teal">ist auch ein Anstieg</span></h2>
+        <p class="lead measure" style="margin-top:.75rem">Wir sind Mountainbike- und E-Bike-Guides, keine Rennvelo-Guides. Aber wer mit dem Rennvelo oder Gravelbike kommt, findet hier Anstiege, die Geschichte geschrieben haben.</p>
+        <div class="infobox-grid">
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="flag" size={20} /></span>
+            <h3 style="margin-top:.75rem">Der Anstieg der Tour de France</h3>
+            <p style="color:var(--gray-text)">Le Châble - Verbier, 8,8 km mit 7,5 %: Zielankunft der 15. Etappe der Tour de France 2009, gewonnen von Alberto Contador am 19. Juli 2009. Auch die Tour de Suisse hatte hier 2005, 2008, 2012 und 2014 ein Etappenziel.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="mountain" size={20} /></span>
+            <h3 style="margin-top:.75rem">Die Croix de Cœur</h3>
+            <p style="color:var(--gray-text)">Ab Le Châble über Verbier: 15,5 km, 1342 Höhenmeter, 8,7 % im Schnitt, Passhöhe 2174 m. Der Giro d'Italia fuhr hier durch: 13. Etappe vom 19. Mai 2023, mit Start in Le Châble.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="route" size={20} /></span>
+            <h3 style="margin-top:.75rem">Die anderen Klassiker</h3>
+            <p style="color:var(--gray-text)">Col des Planches ab Martigny, 10,3 km mit 8,9 %. Champex-Lac ab Bovernier, 10,4 km mit 8,2 %. Staumauer Mauvoisin ab Le Châble, 18,1 km und 1145 Höhenmeter. Grosser St. Bernhard ab Martigny, 42 km und 2072 Höhenmeter.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="trending" size={20} /></span>
+            <h3 style="margin-top:.75rem">Tour des Stations und Gravel</h3>
+            <p style="color:var(--gray-text)">Der Radmarathon Tour des Stations startet Ende August in Le Châble (2026 am 29. August), mit Strecken von 77 bis 242 km und bis zu 8848 Höhenmetern. Für Gravel gibt es 10 markierte Routen von 8,8 bis 42,2 km, beschrieben auf verbier.ch.</p>
+          </div>
+        </div>
+        <p class="measure" style="margin-top:1.5rem; color:var(--gray-text)">Rennvelos zum Mieten bei unseren Partnern Backside und Médran Sports. Lieber Alpwege statt Asphalt? Dann sind unsere <a href={pathFor('ebike', lang)}>geführten E-Bike-Touren</a> das Richtige. Rennvelo- und Gravel-Routen im Detail auf <a href="https://www.verbier.ch/de/entdecken-sie/explore-aktivitaten/sportliche-aktivitaten/die-ganze-welt-des-fahrrads/rennrad/" target="_blank" rel="noopener">verbier.ch</a>.</p>
       </div>
     </section>
 
