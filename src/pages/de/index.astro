@@ -1,0 +1,151 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import { IMG, PARTNERS } from '../../data/images';
+import { pathFor } from '../../data/site';
+
+const lang = 'de' as const;
+
+const offers = [
+  {
+    img: IMG.cardEntreprise,
+    alt: 'Gruppe auf einer geführten Tour auf einem blumengesäumten Trail oberhalb von Verbier',
+    eyebrow: 'Mai bis Oktober · alles organisiert',
+    title: 'Firmenausflug',
+    items: ['Firmenausflug mit dem E-Bike', 'Regionale Produkte entdecken', 'Besuch bei lokalen Gastronomen'],
+    cta: 'Infos und Preise',
+    href: pathFor('entreprise', lang),
+  },
+  {
+    img: IMG.cardGuide,
+    alt: 'Geführte MTB-Tour auf einem angelegten Trail in Verbier',
+    eyebrow: 'Ab CHF 120.-',
+    title: 'Privatguide / Genusstour',
+    items: ['Vom Anfänger bis zum Experten', 'Ideal für Familien', 'Mit dem E-Bike oder Enduro'],
+    cta: 'Entdecken',
+    href: pathFor('guide', lang),
+  },
+  {
+    img: IMG.cardSemaine,
+    alt: 'Rider im Anlieger während eines MTB-Kurses in Verbier',
+    eyebrow: 'Erwachsene & Kinder',
+    title: 'Private MTB-Kurse',
+    items: ['Position, Kurven, Bremsen', 'Vom Anfänger zum sicheren Fahrer', 'Mit einem in Verbier geborenen Instruktor'],
+    cta: 'Entdecken',
+    href: pathFor('cours', lang),
+  },
+  {
+    img: IMG.cardNepal,
+    alt: 'Rider trägt sein Bike vor den Gipfeln des Himalaya, Nepal',
+    eyebrow: 'Die Reise Ihres Lebens',
+    title: '10 Tage Enduro in Nepal',
+    items: ['Empfang vor Ort', 'Privater Shuttle', 'Inlandflüge'],
+    cta: 'Entdecken',
+    href: pathFor('nepal', lang),
+  },
+];
+
+// Zähler: Quellen verbier4vallees.ch (500 km MTB-Strecken, Bahnen Sommer 2026) und verbier.ch (Bergrestaurants), abgerufen am 22.09.2026.
+const counters = [
+  { n: 15, label: 'Bergrestaurants und Hütten', icon: 'utensils' },
+  { n: 500, label: 'km MTB-Strecken in den 4 Vallées', icon: 'route' },
+  { n: 150, label: 'Biketage pro Jahr', icon: 'sun' },
+  { n: 18, label: 'Bergbahnen im Sommer geöffnet', icon: 'gondola' },
+];
+---
+
+<Layout
+  lang={lang}
+  routeKey="home"
+  title="Mountainbike Verbier | MTB- & E-Bike-Guides, Verleih, Bikepark | Bikeverbier.ch"
+  description="MTB-Guide in Verbier: geführte E-Bike- und Enduro-Touren, Genusstouren, private Kurse, E-Bike-Verleih für CHF 125.- pro Tag, Teambuilding. Guides aus Verbier."
+  ogImage={IMG.ogHome}
+  jsonLd={true}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroHome} alt="Mountainbike-Abfahrt auf den Trails von Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">MTB- und E-Bike-Guides in Verbier</p>
+      <h1 class="h1" data-wipe>Entdecken Sie <span class="teal">das verborgene Verbier</span></h1>
+      <p class="lead">Lokale MTB-Guides, E-Bike- und Enduro-Touren: von abgelegenen Trails bis zu den Spezialitäten des Wallis, geführt von echten Einheimischen, alle in Verbier geboren.</p>
+      <div class="hero-actions"><CtaButton href={pathFor('contact', lang)} label="Los geht's!" variant="light" /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Unsere Angebote</p>
+        <h2 class="h2">Geführte MTB- und E-Bike-Touren in <span class="teal">Verbier</span></h2>
+      </div>
+      <div class="cards">
+        {
+          offers.map((o, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`} data-reveal>
+              <img class="card__img" src={o.img} alt={o.alt} loading="lazy" />
+              <div class="card__body">
+                <p class="eyebrow">{o.eyebrow}</p>
+                <h3 class="h3 teal">{o.title}</h3>
+                <ul>{o.items.map((it) => <li>{it}</li>)}</ul>
+                <CtaButton href={o.href} label={o.cta} variant="dark" />
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container counters">
+        {
+          counters.map((c) => (
+            <div data-reveal>
+              <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
+              <div class="counter__num"><span data-count={c.n}>0</span></div>
+              <div class="counter__label">{c.label}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="card" data-reveal>
+        <img class="card__img" src={IMG.welcome} alt="Bikeverbier-Guide in Verbier" loading="lazy" />
+        <div class="card__body">
+          <p class="eyebrow">Willkommen</p>
+          <h2 class="h2">Willkommen bei <span class="teal">Bikeverbier.ch</span>!</h2>
+          <p class="lead">Wir sind Guides, alle in Verbier geboren, und zeigen Ihnen gerne unsere Wege und lokalen Traditionen!</p>
+          <p style="color:var(--gray-text)">Ihr lokaler <a href={pathFor('guide', lang)}>MTB-Guide in Verbier</a>: geführte Touren mit dem E-Bike oder Enduro, Genusstouren und <a href={pathFor('cours', lang)}>private Kurse</a>, <a href={pathFor('location', lang)}>E-Bike-Verleih</a> auf Wunsch für jede Tour. Von den wenig befahrenen Trails im Wallis bis zu den besten Bergrestaurants: Wir teilen unsere Berge mit allen, die sie anders erleben wollen. Sie planen Ihren Aufenthalt? Stöbern Sie in unserem <a href={pathFor('itineraires', lang)}>kompletten Guide zum Mountainbiken in Verbier</a>.</p>
+          <CtaButton href={`${pathFor('contact', lang)}#guides`} label="Unsere Guides" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} alt />
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('itineraires', lang), label: 'Mountainbike in Verbier: Trails, Bikepark, Saison' },
+        { href: `${pathFor('itineraires', lang)}#bike-park`, label: "Bikepark Verbier: so funktioniert's" },
+        { href: pathFor('location', lang), label: 'E-Bike- und MTB-Verleih in Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Teambuilding mit MTB und E-Bike' },
+        { href: pathFor('nepal', lang), label: 'Enduro-Reise nach Nepal' },
+      ]}
+    />
+
+    <section class="section">
+      <div class="container">
+        <p class="eyebrow center">Unsere Partner</p>
+        <div class="partners" style="margin-top:2.5rem">
+          {PARTNERS.map((p) => <img src={p.src} alt={p.name} title={p.name} loading="lazy" />)}
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

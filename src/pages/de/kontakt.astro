@@ -1,0 +1,113 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ContactForm from '../../components/ContactForm.astro';
+import CallLink from '../../components/CallLink.astro';
+import { IMG, BADGES } from '../../data/images';
+import { SITE } from '../../data/site';
+
+const lang = 'de' as const;
+
+const guides = [
+  {
+    img: IMG.guideGuillermo,
+    name: 'Guillermo Ruoss',
+    role: 'Swiss Cycling Guide · Direktor',
+    bio: 'Guillermo, Direktor von Bikeverbier.ch, von Swiss Cycling zertifiziert und selbstständiger Grafiker, wurde 2001 in Verbier geboren. Aus Neugier und Freude an Begegnungen gründete er Bikeverbier, um seine Liebe zu den Bergen mit Menschen aus aller Welt zu teilen.',
+    quote: 'Es gibt ein verborgenes Verbier.',
+    badges: [{ src: BADGES.swissCycling, label: 'Swiss Cycling Guide' }],
+  },
+  {
+    img: IMG.guideJoshua,
+    name: 'Joshua Ruoss',
+    website: 'https://joshruoss.ch/',
+    websiteLabel: 'Seine Bergtouren und Gleitschirmflüge entdecken',
+    role: 'Swiss Cycling Guide · Bergführer · Tandempilot',
+    bio: '«Josh» Ruoss, diplomierter Bergführer und begeisterter Gleitschirmpilot, wurde 1998 in Verbier geboren. Fest verwurzelt in den Walliser Alpen, teilt er seine Zeit heute zwischen Gipfeln, Trails und Himmel auf. Seine Leidenschaft und seinen Blick auf die Berge möchte er an alle weitergeben, die mit ihm unterwegs sind.',
+    badges: [
+      { src: BADGES.mountainGuide, label: 'Bergführer IVBV / IFMGA / UIAGM' },
+      { src: BADGES.shvFsvl, label: 'SHV / FSVL · Tandempilot' },
+      { src: BADGES.swissCycling, label: 'Swiss Cycling Guide' },
+    ],
+  },
+  {
+    img: IMG.guideGilles,
+    name: 'Gilles Ammann',
+    role: 'Swiss Cycling Guide · Tandempilot',
+    bio: 'Gilles Ammann, Direktor von Flyverbier.ch und begeisterter Gleitschirmpilot, lebt seine Verbundenheit mit Verbier zwischen Thermikwinden und Alpenwegen. Wenn der Himmel den Schirmen verschlossen bleibt, schwingt er sich aufs Bike, erkundet das Gelände und geniesst jeden Anstieg wie einen Flug, der noch bevorsteht. Sein durch Erfahrung geschärfter Blick auf die Berge überträgt sich ganz natürlich auf alle, die er durch die Luft führt.',
+    badges: [
+      { src: BADGES.flyverbier, label: 'FlyVerbier.ch' },
+      { src: BADGES.shvFsvl, label: 'SHV / FSVL · Tandempilot' },
+      { src: BADGES.swissCycling, label: 'Swiss Cycling Guide' },
+    ],
+  },
+];
+
+// Person-Karten (Schema.org) der Guides: Identität, Zertifizierungen, Sprachen.
+// Ein starkes E-E-A-T-Signal, das Suchmaschinen und KI-Assistenten lesen können.
+const personsLd = {
+  '@context': 'https://schema.org',
+  '@graph': guides.map((g) => ({
+    '@type': 'Person',
+    name: g.name,
+    jobTitle: g.role,
+    description: g.bio,
+    ...(g.website ? { url: g.website, sameAs: [g.website] } : {}),
+    image: SITE.domain + g.img,
+    worksFor: { '@id': SITE.domain + '/#business' },
+    knowsLanguage: ['fr', 'en', 'es', 'de'],
+    hasCredential: g.badges.map((b) => ({ '@type': 'EducationalOccupationalCredential', name: b.label })),
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="contact"
+  title="MTB-Guide in Verbier buchen | Kontakt Bikeverbier.ch"
+  description="MTB-Guide in Verbier buchen: per Telefon, WhatsApp oder Formular, Antwort innerhalb von 24 Stunden. Wir sprechen Deutsch, Französisch, Englisch und Spanisch. Swiss Cycling Guides, alle in Verbier geboren."
+>
+  <section class="section contact-hero contact-hero--top">
+    <div class="container contact-split">
+      <div>
+        <img class="contact-avatar" src={IMG.guideGuillermo} alt="Bikeverbier-Guide" loading="lazy" />
+        <h1 class="h1" style="color:#fff">Buchen Sie Ihren Mountainbike-Guide: Entdecken Sie Verbier mit den Einheimischen!</h1>
+        <p class="lead" style="margin-top:1.25rem; max-width:42ch">Rufen Sie uns ruhig an, auch bei Fragen oder für Tipps zur Region!</p>
+        <p style="margin-top:1.5rem; display:flex; align-items:center; gap:.75rem; flex-wrap:wrap; font-weight:600">Wir sprechen <img class="contact-flags" src={IMG.flags} alt="Français, English, Español, Deutsch" /></p>
+        <p style="margin-top:1.75rem"><CallLink /></p>
+      </div>
+      <div>
+        <ContactForm lang={lang} subject="Nachricht · Bikeverbier.ch" card />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="guides">
+    <div class="container">
+      <p class="eyebrow">Lernen Sie unsere Guides kennen</p>
+      <h2 class="h2" style="margin-bottom:.75rem">Alle in <span class="teal">Verbier</span> geboren</h2>
+      <p class="measure" style="margin-bottom:2.5rem; color:var(--gray-text)">Alle sind von Swiss Cycling zertifiziert und führen Sie auf die schönsten Wege im Wallis und in die besten Restaurants.</p>
+
+      <div class="cards">
+        {
+          guides.map((g) => (
+            <article class="card" data-reveal>
+              <img class="card__img" src={g.img} alt={g.name} loading="lazy" />
+              <div class="card__body">
+                <h3 class="h3">{g.name}</h3>
+                <p class="eyebrow">{g.role}</p>
+                <p style="color:var(--gray-text)">{g.bio}</p>
+                {g.website && <p><a href={g.website} class="teal" style="text-decoration:underline; text-underline-offset:.2em">{g.websiteLabel} ↗</a></p>}
+                {g.badges.length > 0 && (
+                  <div class="badges">{g.badges.map((b) => <img src={b.src} alt={b.label} title={b.label} />)}</div>
+                )}
+                {g.quote && <p class="lead teal">«{g.quote}»</p>}
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(personsLd)} />
+</Layout>

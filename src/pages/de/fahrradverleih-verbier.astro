@@ -1,0 +1,251 @@
+---
+// Eigene Seite «E-Bike mieten Verbier» (DE). Deutscher Slug «fahrradverleih-verbier» für die
+// Suchanfragen «fahrradverleih verbier», «bikemiete verbier», «velovermietung verbier».
+// Wir sind kein Shop: Wir reservieren bei unseren Partnern in Verbier, und wir sagen das offen.
+// DE-Version vom 22.09.2026, gleiche Struktur wie EN: Schritte, Bikewahl, wo fahren,
+// erweiterte FAQ, Bewertungen, interne Links. Preis unverändert: CHF 125.- pro Tag.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+
+const lang = 'de' as const;
+
+const etapes = [
+  { t: 'Sie schreiben uns', x: 'Eine WhatsApp-Nachricht oder ein Anruf: Ihre Wunschdaten, Ihre Körpergrösse, die Art der Tour. Wir antworten noch am selben Tag.' },
+  { t: 'Wir reservieren das richtige Bike', x: 'E-Bike oder Enduro, richtiges Modell, richtige Grösse, bei Médran Sports, Backside oder Philippe Roux Sports, unseren Partnershops in Verbier.' },
+  { t: 'Das Bike wartet auf Sie', x: 'Mit Guide steht es fertig eingestellt am Start der Tour bereit. Ohne Guide holen Sie es im angegebenen Partnershop ab, mit unseren Routentipps.' },
+];
+
+const velos = [
+  {
+    img: IMG.libreEbike,
+    alt: 'Vollgefedertes E-Mountainbike, abgestellt auf einem Bergweg',
+    icon: 'bike',
+    eyebrow: 'E-Bike',
+    title: 'Das E-Bike, bergauf ohne zu leiden',
+    desc: 'Vollgefedertes E-Mountainbike: das Bike für die Alpwege des Val de Bagnes, die Genusstour und grosse Tage mit vielen Höhenmetern. Anfänger, Familien, gemischte Gruppen: Alle fahren zusammen, jeder dosiert seine Unterstützung selbst.',
+  },
+  {
+    img: IMG.cardGuide,
+    alt: 'Geführte MTB-Tour auf einem angelegten Trail in Verbier',
+    icon: 'mountain',
+    eyebrow: 'Enduro-MTB',
+    title: 'Das Enduro, zum Spielen in den Abfahrten',
+    desc: 'Vollgefedertes Mountainbike ohne Motor, leicht und verspielt, für die Singletrails oberhalb des Dorfs und die Strecken im Bikepark Verbier, mit den Bergbahnen für den Aufstieg. Für alle, die technisches Gelände wollen.',
+  },
+];
+
+const avantages = [
+  { icon: 'bike', text: 'Das richtige Bike in der richtigen Grösse, ausgewählt nach Ihrer Tour und Ihrem Niveau' },
+  { icon: 'pin', text: 'Bike bereit am Start der Tour: keine Logistik, keine Warteschlange im Shop' },
+  { icon: 'shield', text: 'Helm inklusive bei jeder Miete' },
+  { icon: 'users', text: 'Tipps von Guides, die in Verbier geboren sind, auch wenn Sie ohne uns fahren' },
+];
+
+const ouRouler = [
+  { icon: 'leaf', title: 'Das Val de Bagnes mit dem E-Bike', text: 'Alpwege, Dörfer, Bergrestaurants: das einfachste Gelände der Region, perfekt für eine erste Tour mit dem E-Bike.' },
+  { icon: 'gondola', title: 'Les Ruinettes und der Bikepark', text: 'Gondelbahn Médran, Bike in die Kabine, dann Abfahrt auf den angelegten Strecken oder den Panorama-Singletrails der 4 Vallées. Wie der Bikepark Verbier funktioniert, steht in unserem Guide zum Mountainbiken in Verbier.' },
+  { icon: 'users', title: 'Mit einem lokalen Guide', text: 'Ruhigere Trails, das richtige Tempo, keine falsche Abzweigung. Ab CHF 80.- pro Person wird aus der Miete ein echter Entdeckungstag.' },
+];
+
+const faq = [
+  {
+    q: 'Was kostet es, ein E-Bike in Verbier zu mieten?',
+    a: 'CHF 125.- pro Tag, E-Bike oder klassisches Mountainbike, Helm inklusive. Der Preis bleibt gleich, wenn Sie die Miete mit einer geführten Tour kombinieren.',
+  },
+  {
+    q: 'Muss ich im Voraus reservieren?',
+    a: 'Ja, idealerweise 24 bis 48 Stunden im Voraus, vor allem im Sommer. Eine WhatsApp-Nachricht oder ein Anruf genügt: Wir klären die Verfügbarkeit schnell bei unseren Partnershops ab.',
+  },
+  {
+    q: 'Kann ich ein Velo ohne geführte Tour mieten?',
+    a: 'Ja. Wir reservieren das richtige Bike für Sie und empfehlen Ihnen gerne eine Route, die zu Ihrem Niveau passt. Das echte Plus ist aber die Kombination von Bikemiete und lokalem Guide: ruhigere Trails, das richtige Tempo und keine falsche Abzweigung.',
+  },
+  {
+    q: 'Welche Bikes bieten Sie an?',
+    a: 'Aktuelle, gut gewartete E-Bikes und Mountainbikes, reserviert bei unseren Partnern in Verbier: Médran Sports, Backside und Philippe Roux Sports. Modell und Grösse wählen wir nach Ihrer Statur und dem geplanten Gelände.',
+  },
+  {
+    q: 'Wo hole ich das Bike ab?',
+    a: 'Mit Guide wartet das Bike am Start auf Sie, auf Ihre Grösse eingestellt. Ohne Guide holen Sie es im Partnershop ab, den wir bei der Buchung angeben, wenige Schritte von der Gondelbahn Médran entfernt.',
+  },
+  {
+    q: 'Kann ich einen halben Tag oder mehrere Tage mieten?',
+    a: 'Der Basispreis ist CHF 125.- pro Tag. Halber Tag oder mehrere Tage: Schreiben Sie uns, wir machen Ihnen ein Angebot je nach Verfügbarkeit bei unseren Partnern.',
+  },
+  {
+    q: 'Gibt es Velos für Kinder?',
+    a: 'Auf Anfrage, je nach Körpergrösse des Kindes und Verfügbarkeit bei unseren Partnern. Sagen Sie uns Alter und Grösse, wir suchen das passende Bike. Wir geben auch Privatkurse für Kinder.',
+  },
+  {
+    q: 'Wie weit kommt man mit einem E-Bike in den Bergen?',
+    a: 'Ein voller Akku reicht in den Bergen in der Regel für einen Tag, also 1000 bis 1500 Höhenmeter je nach Unterstützung, Gewicht des Fahrers und Gelände. Mit Guide dosieren wir die Unterstützung so, dass alle mit Restakku nach Hause kommen.',
+  },
+  {
+    q: 'Sind Helm und Protektoren inklusive?',
+    a: 'Der Helm ist bei jeder Miete inklusive. Für Bikepark oder Enduro empfehlen wir Knie- und Ellbogenschoner: Fragen Sie bei der Buchung danach.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="location"
+  title="E-Bike & Velo mieten in Verbier | Bikeverleih CHF 125.- pro Tag, Helm inklusive | Bikeverbier.ch"
+  description="E-Bike und Mountainbike mieten in Verbier (Wallis): CHF 125.- pro Tag, Helm inklusive, Bike bei unseren lokalen Partnershops reserviert und bereit am Start Ihrer Tour. Allein oder mit einem in Verbier geborenen Guide, im Val de Bagnes oder im Bikepark."
+  ogImage={IMG.heroLocation}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroLocation} alt="Mountainbiker auf einem Singletrail im Wald bei Verbier" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Fahrradverleih Verbier: E-Bike und Mountainbike mieten</p>
+      <h1 class="h1" data-wipe>Ihr E-Bike wartet, <span class="teal">wir kümmern uns um den Rest</span></h1>
+      <p class="lead">CHF 125.- pro Tag, Helm inklusive, Bike bereit am Start Ihrer Tour.</p>
+      <div class="hero-actions"><CtaButton href={SITE.whatsapp} label="Bike reservieren" variant="light" external /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">So funktioniert es</p>
+      <h2 class="h2">Bikeverleih nach Art der <span class="teal">lokalen Guides</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Wir sind kein Shop, wir sind Guides. Für jede Miete reservieren wir das richtige Bike bei unseren Partnern in Verbier, und es wartet am Start der Tour auf Sie, auf Ihre Grösse eingestellt.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Lieber mit Begleitung unterwegs? Buchen Sie dazu einen <a href={pathFor('guide', lang)}>privaten MTB-Guide in Verbier</a> ab CHF 80.- pro Person, oder lassen Sie sich von unserem <a href={pathFor('itineraires', lang)}>Guide zum Mountainbiken in Verbier</a> inspirieren.
+      </p>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">In drei Schritten</p>
+      <h2 class="h2">Velovermietung in Verbier, <span class="teal">ganz ohne Aufwand</span></h2>
+      <ol class="timeline timeline--steps">
+        {etapes.map((e, i) => (
+          <li data-reveal>
+            <span class="timeline__time">{i + 1}</span>
+            <div class="timeline__body">
+              <h3>{e.t}</h3>
+              <p>{e.x}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Preis</p>
+        <h2 class="h2">Einfach und <span class="teal">alles inklusive</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span>E-Bike oder Mountainbike: <strong style="margin-left:.3rem">CHF 125.- pro Tag</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>Helm: <strong style="margin-left:.3rem">inklusive</strong></li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span>Geführte Touren dazu: <strong style="margin-left:.3rem">ab CHF 80.- pro Person</strong></li>
+        </ul>
+        <div style="margin-top:2rem"><CtaButton href={SITE.whatsapp} label="Bike reservieren" variant="dark" external /></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Welches Bike für welche Tour</p>
+        <h2 class="h2">E-Bike oder <span class="teal">Enduro</span>?</h2>
+      </div>
+      <div class="cards">
+        {velos.map((v, i) => (
+          <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+            <img class="card__img" src={v.img} alt={v.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+            <div class="card__body" data-reveal>
+              <span class="icon-badge icon-badge--lg"><Icon name={v.icon} size={30} /></span>
+              <p class="eyebrow">{v.eyebrow}</p>
+              <h3 class="h3 teal">{v.title}</h3>
+              <p style="color:var(--gray-text)">{v.desc}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+      <p class="measure" style="margin-top:2rem; color:var(--gray-text)">Kindervelos und Sondergrössen auf Anfrage, je nach Verfügbarkeit bei unseren Partnern.</p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Warum über uns buchen</p>
+        <h2 class="h2">Guides, keine <span class="teal">Ladentheke</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          {avantages.map((a) => (
+            <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Wo fahren</p>
+        <h2 class="h2">Drei Ideen für Ihren <span class="teal">Tag mit dem Mietbike</span></h2>
+      </div>
+      <div class="feature-grid">
+        {ouRouler.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+      <figure class="figure" data-reveal>
+        <img src={IMG.libreLourtier} alt="Lourtier, Dorf im Val de Bagnes, in der Morgensonne" width="1600" height="1087" loading="lazy" />
+      </figure>
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap">
+        <CtaButton href={`${pathFor('itineraires', lang)}#bike-park`} label="Bikepark Verbier: so funktioniert's" variant="dark" />
+        <CtaButton href={pathFor('guide', lang)} label="Mit einem Guide fahren" variant="teal" />
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Häufige Fragen</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: E-Bike mieten in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} />
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Privater MTB-Guide in Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Teambuilding mit dem E-Bike in Verbier' },
+        { href: pathFor('itineraires', lang), label: 'Mountainbiken in Verbier: der komplette Guide' },
+        { href: pathFor('cours', lang), label: 'Private MTB-Kurse, Erwachsene und Kinder' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

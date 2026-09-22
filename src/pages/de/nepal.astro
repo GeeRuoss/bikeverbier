@@ -1,0 +1,478 @@
+---
+// Reiseseite Nepal, SEO-Neuaufbau vom 26.08.2026 (siehe SEO-NEPAL.md), DE-Version 09.2026.
+// Ziel: « upper mustang mountain bike tour » und « enduro mtb nepal », die beiden Suchanfragen,
+// bei denen kein starker westlicher Anbieter rankt (nur lokale Anbieter und Marktplätze).
+// Blöcke ergänzt, weil JEDER rankende Mitbewerber sie hat: Ablauf der 10 Tage, ausgewiesener
+// und aufgeschlüsselter Preis, nötiges Niveau, Höhe, Permits, Bike, FAQ, Product-Schema.
+// ⚠ Die Tageswerte (km, Abfahrtsmeter, Höhen) warten auf das Roadbook des Partners.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import ContactBand from '../../components/ContactBand.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
+import { TRIP } from '../../data/nepal';
+
+const lang = 'de' as const;
+// Google Form (siehe site.ts): Das globale Script in Layout.astro fängt das Absenden ab und leitet weiter.
+const G = SITE.gform;
+
+const features = [
+  {
+    img: IMG.nepalMustang,
+    icon: 'mountain',
+    eyebrow: 'Das Tal',
+    title: 'Das tiefste Tal der Welt',
+    desc: 'Umgeben von zwei Gipfeln über 8000 m ist das Tal der Kali Gandaki das tiefste der Welt. Atemberaubende Himalaya-Landschaften, die Sie mit dem Bike durchqueren.',
+  },
+  {
+    img: IMG.nepalDays,
+    icon: 'route',
+    eyebrow: '7 Tage Biken',
+    title: 'Von Kathmandu nach Upper Mustang',
+    desc: 'Erleben Sie Enduro von den belebten Strassen Kathmandus bis zu den abgelegenen Trails von Upper Mustang, einem ehemaligen tibetischen Königreich, das bis 1992 für die Aussenwelt geschlossen war.',
+  },
+  {
+    img: IMG.nepalShuttle,
+    icon: 'van',
+    eyebrow: 'Privater Shuttle',
+    title: 'Ein herzlicher Empfang in Nepal',
+    desc: 'Erleben Sie die Gastfreundschaft junger, dynamischer nepalesischer Teams. Privater Shuttle, Logistik geregelt: Sie müssen nur noch fahren.',
+  },
+];
+
+const days = [
+  { d: 'Tage 1 und 2', t: 'Kathmandu', x: 'Abholung am Flughafen, Einchecken im Hotel und Willkommensessen. Ein ganzer Tag, um die Stadt, ihre Tempel und ihre Energie zu entdecken und den Jetlag abzuschütteln, bevor es aufs Bike geht.' },
+  { d: 'Tag 3', t: 'Flug nach Pokhara', x: 'Inlandflug nach Pokhara, am Fuss der Annapurnas. Übernachtung vor Ort, letzter Bike-Check, bevor es in die Höhe geht.' },
+  { d: 'Tag 4', t: 'Flug nach Jomsom, Ankunft im Mustang', x: 'Der Flug von Pokhara nach Jomsom folgt der Kali Gandaki zwischen Annapurna und Dhaulagiri, zwei Gipfeln über 8000 m. Landung auf 2700 m, erste Pedalumdrehungen.' },
+  { d: 'Tage 4 bis 10', t: '7 Tage Biken im Mustang', x: 'Das Herzstück der Reise. Singletrails, alte Karawanenrouten nach Tibet, Lehmdörfer und Klöster. Der private Shuttle bringt die Gruppe wieder hoch: Die Energie bleibt für die Abfahrt, nicht für die Schotterpiste.' },
+  { d: 'Tag 10', t: 'Rückflug und Abschiedsessen', x: 'Rückflug nach Kathmandu, Abschiedsessen mit dem Team, Transfer zum Flughafen. Bleibt nur noch, die Fotos zu sortieren.' },
+];
+
+const included = [
+  'Die Inlandflüge: Kathmandu-Pokhara hin und zurück sowie Pokhara-Jomsom',
+  'Die Permits für Upper Mustang und ACAP, von A bis Z durch unsere nepalesische Partneragentur organisiert',
+  'Unterkunft und alle Mahlzeiten während der 7 Tage in den Bergen',
+  '2 Nächte in Kathmandu und 1 Nacht in Pokhara, Frühstück inbegriffen',
+  'Der private Shuttle und das Begleitfahrzeug während der ganzen Biketage',
+  'Der nepalesische Guide während der 10 Tage, plus ein Bikeverbier-Guide, der Sie ab der Schweiz begleitet',
+  'Die Flughafentransfers, das Willkommensessen und das Abschiedsessen',
+];
+
+const notIncluded = [
+  'Der internationale Flug nach Nepal und zurück',
+  'Die Reiseversicherung, obligatorisch, inklusive Mountainbiken und Helikopter-Evakuierung in der Höhe',
+  'Das nepalesische Visum, bei der Ankunft in Kathmandu erhältlich',
+  'Ihr Bike und dessen Transport im Flugzeug (Miete vor Ort möglich, bei der Anmeldung anfragen)',
+  'Getränke, Trinkgelder und persönliche Ausgaben',
+];
+
+const faq = [
+  {
+    q: 'Welches Niveau brauche ich für diese MTB-Reise nach Nepal?',
+    a: 'Ein gutes mittleres Niveau reicht. Technisch müssen Sie sich auf natürlichen Bergtrails wohlfühlen und eine lange Abfahrt ohne Verkrampfen durchfahren können: Das sind natürliche Trails, kein Bikepark. Körperlich liegt die Herausforderung in den 7 Biketagen am Stück in der Höhe, nicht in den Höhenmetern bergauf, denn der private Shuttle bringt die Gruppe wieder hoch. Wenn Sie regelmässig Enduro fahren, in Verbier, in den 4 Vallées oder anderswo, haben Sie das Niveau. Im Zweifel rufen Sie uns an: Uns ist eine ehrliche Antwort vor der Abreise lieber.',
+  },
+  {
+    q: 'Was kostet die Reise und was ist inbegriffen?',
+    a: `${TRIP.priceLabelDe} pro Person. Vor Ort ist alles inbegriffen: Inlandflüge, Permits, Unterkunft, Mahlzeiten in den Bergen, Shuttle, Guides und Transfers. Der internationale Flug, die Versicherung, das Visum und Ihr Bike gehen zu Ihren Lasten. Eine Buchung wird mit einer Anzahlung von 30 % bestätigt, der Restbetrag ist vor der Abreise fällig.`,
+  },
+  {
+    q: 'Soll ich mein eigenes Bike mitbringen oder kann ich vor Ort mieten?',
+    a: 'Die meisten Biker kommen mit dem eigenen Bike, und das empfehlen wir auch: Auf 7 Biketagen ist man auf der eigenen Maschine, eingestellt wie gewohnt, immer besser unterwegs. Ein vollgefedertes Enduro-Bike mit 150 bis 170 mm Federweg ist das ideale Werkzeug. Wenn Sie lieber leicht reisen, sagen Sie es uns bei der Anmeldung, und wir organisieren die Miete mit dem nepalesischen Team.',
+  },
+  {
+    q: 'Kann man die Reise mit dem E-Bike machen?',
+    a: 'Das ist nicht das Format dieser Reise, anders als beim E-Bike in Verbier: Das Laden in den Lodges der Hochtäler ist unzuverlässig, und die Reichweite in der Höhe lässt sich kaum garantieren. Genau deshalb gehört der private Shuttle zur Reise. Sprechen Sie uns an, wenn es Ihnen wichtig ist, dann schauen wir, was machbar ist.',
+  },
+  {
+    q: 'Auf welcher Höhe fahren wir, und muss man sich akklimatisieren?',
+    a: 'Mustang ist ein Hochtal: Wir starten in Jomsom auf rund 2700 m und steigen weiter ins alte Königreich Lo auf, dessen Hauptstadt Lo Manthang auf rund 3800 m liegt. Die Route ist so aufgebaut, dass wir schrittweise an Höhe gewinnen, und auch die ersten beiden Tage in Nepal dienen dazu. Ihr Guide beobachtet die Gruppe jeden Tag, und das Tempo passt sich an: viel trinken, gut essen, nie forcieren. Erfahrung in grosser Höhe ist nicht nötig, aber teilen Sie uns jede medizinische Vorgeschichte mit.',
+  },
+  {
+    q: 'Warum im November?',
+    a: 'Es ist das beste Zeitfenster des Jahres. Nach dem Monsun klart der Himmel auf, die Luft wird kristallklar und die Trails sind trocken. Mustang, im Schutz der Annapurnas, ist zudem eine der trockensten Regionen Nepals. Unsere Abreise ist vom 5. bis 14. November 2026 festgelegt.',
+  },
+  {
+    q: 'Wie funktioniert das Permit für Upper Mustang?',
+    a: 'Upper Mustang ist ein Gebiet mit Zugangsbeschränkung: Man kommt nur mit einem Sonderpermit, einem Guide und einer registrierten nepalesischen Agentur hinein, und mindestens zu zweit. Wir kümmern uns um alles: Das Upper-Mustang-Permit und das ACAP-Permit für das Annapurna-Schutzgebiet sind im Preis inbegriffen. Sie müssen uns nur eine Kopie Ihres Passes und Passfotos schicken.',
+  },
+  {
+    q: 'Upper Mustang oder Lower Mustang, was ist der Unterschied?',
+    a: 'Lower Mustang, rund um Jomsom und Kagbeni, ist ohne Sonderpermit zugänglich und leicht zu besuchen. Upper Mustang, weiter nördlich, ist das alte Königreich Lo: bis 1992 für Ausländer geschlossen, noch immer permitpflichtig, mit ockerfarbenen Felswänden, Höhlenwohnungen und einer intakt gebliebenen tibetischen Kultur. Dorthin fahren wir, und das ändert alles.',
+  },
+  {
+    q: 'Wer trägt das Gepäck, und was passiert bei einer Panne?',
+    a: 'Ein Begleitfahrzeug folgt der Gruppe mit dem Gepäck: Sie fahren leicht, nur mit Ihrem Tagesrucksack. Bei einem Defekt oder wenn die Kraft ausgeht, ist der Shuttle da. Ihr Bikeverbier-Guide und das lokale Team kümmern sich vom ersten bis zum letzten Tag um Logistik, Übernachtungen und Mahlzeiten.',
+  },
+  {
+    q: 'Welche Versicherung brauche ich?',
+    a: 'Eine Reiseversicherung, die ausdrücklich Mountainbiken und die Helikopter-Evakuierung in der Höhe abdeckt, ist Pflicht. Das ist die einzige Zeile im Dossier, bei der wir nicht verhandeln: Im Mustang erfolgt eine Rettung per Helikopter, und das wird ohne Deckung sehr teuer. Wir sagen Ihnen genau, was Sie in Ihrer Police prüfen müssen.',
+  },
+  {
+    q: 'Wie viele Biker sind in der Gruppe?',
+    a: `${TRIP.spotsLabelDe}. Das ist Absicht: Eine kleine Gruppe fährt in ihrem Tempo, hält an, wenn das Licht schön ist, und verliert keine Stunde mit Warten auf Nachzügler. Sie sind keine Nummer in einer Gruppe von zwanzig Personen.`,
+  },
+  {
+    q: 'Muss ich Englisch sprechen?',
+    a: 'Nein. Ihr Bikeverbier-Guide ist Schweizer und spricht Deutsch, Französisch, Englisch und Spanisch. Er ist von Anfang bis Ende das Bindeglied zum nepalesischen Team, auch bei den praktischen Fragen des Alltags.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+
+// Product- und Offer-Schema: das Muster der lokalen Anbieter, die das SERP zu
+// « upper mustang mountain bike tour » dominieren und das den grossen westlichen Agenturen fehlt.
+const tripLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  '@id': SITE.domain + pathFor('nepal', lang) + '#trip',
+  name: 'Enduro-MTB-Reise nach Nepal: 10 Tage im Upper Mustang',
+  description:
+    'Enduro-MTB-Reise von 10 Tagen in Nepal, von Kathmandu nach Upper Mustang, geführt von Bikeverbier.ch. 7 Biketage mit privatem Shuttle, Permits und Inlandflüge inbegriffen, kleine Gruppe ab der Schweiz begleitet.',
+  image: SITE.domain + IMG.ogNepal,
+  brand: { '@id': SITE.domain + '/#business' },
+  category: 'MTB-Reise',
+  offers: {
+    '@type': 'Offer',
+    price: TRIP.price,
+    priceCurrency: TRIP.currency,
+    availability: 'https://schema.org/InStock',
+    url: SITE.domain + pathFor('nepal', lang),
+    validFrom: TRIP.validFrom,
+    priceValidUntil: TRIP.priceValidUntil,
+    seller: { '@id': SITE.domain + '/#business' },
+  },
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="nepal"
+  title="Enduro-MTB-Reise Nepal | 10 Tage Upper Mustang, CHF 5400 | Bikeverbier.ch"
+  description="Enduro-MTB-Reise Nepal: 10 Tage von Kathmandu ins Upper Mustang mit Schweizer Guides. 7 Biketage, Shuttle, Permits inbegriffen. 5. bis 14. November 2026, CHF 5400.-"
+  ogImage={IMG.ogNepal}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroNepal} alt="Enduro-Biker auf einem Trail im Upper Mustang mit Blick auf die Gipfel des Himalaya, Nepal" width="1920" height="1080" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Die Reise Ihres Lebens</p>
+      <h1 class="h1" data-wipe>10 Tage Enduro-MTB im <span class="teal">Upper Mustang, Nepal</span></h1>
+      <p class="lead">Lokale Kultur in einem wahrhaft magischen Land, mit Guides aus Verbier im Wallis, von der Abreise bis zur Rückkehr.</p>
+      <p class="hero-facts">{TRIP.datesLabelDe} · {TRIP.priceLabelDe} · {TRIP.spotsLabelDe}</p>
+      <div class="hero-actions"><CtaButton href="#demande" label="Abenteuer buchen" variant="light" /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="lead measure" style="margin-inline:auto">
+        Fahren Sie Enduro in Nepal, von den Strassen Kathmandus bis zu den Trails von Upper Mustang. Zehn Tage in einem magischen Land, geprägt von tibetischer Kultur, Himalaya-Landschaften und dem tiefsten Tal der Welt: ein Mountainbike-Abenteuer in der Höhe, das Sie kein zweites Mal erleben.
+      </p>
+      <ul class="tripfacts" data-reveal>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><strong>{TRIP.datesLabelDe}</strong><em>10 Tage, 7 davon auf dem Bike</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="pin" size={20} /></span><strong>Upper Mustang</strong><em>Kathmandu, Pokhara, Jomsom</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><strong>{TRIP.spotsLabelDe}</strong><em>Schweizer Guide und lokales Team</em></li>
+        <li><span class="icon-badge icon-badge--sm"><Icon name="check" size={20} /></span><strong>{TRIP.priceLabelDe}</strong><em>Ohne internationalen Flug</em></li>
+      </ul>
+    </section>
+
+    <section class="section container">
+      <div class="cards">
+        {
+          features.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.title} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h2 class="h3 teal">{f.title}</h2>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Der Ablauf</p>
+        <h2 class="h2">So sind die <span class="teal">10 Tage</span> aufgebaut</h2>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Zwei Reisetage, ein Tag in Kathmandu und sieben Tage Biken im Mustang. Das ist der Rahmen, die Details der Etappen erhalten Sie mit den Anmeldeunterlagen.
+        </p>
+        <ol class="days" style="margin-top:2rem">
+          {days.map((day) => (
+            <li data-reveal>
+              <span class="days__num">{day.d}</span>
+              <h3 class="h3 teal">{day.t}</h3>
+              <p style="color:var(--gray-text)">{day.x}</p>
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Der Preis</p>
+        <h2 class="h2">{TRIP.priceLabelDe}, <span class="teal">alles inklusive vor Ort</span></h2>
+        <p class="measure" style="margin:1.25rem auto 0; color:var(--gray-text)">
+          Ein einziger Preis, im Voraus bekannt, ohne Zuschläge, die bei der Ankunft auftauchen. Die Buchung wird mit einer Anzahlung von 30 % bestätigt, der Restbetrag ist vor der Abreise fällig.
+        </p>
+      </div>
+      <div class="incl">
+        <div data-reveal>
+          <h3 class="h3 teal">Im Preis inbegriffen</h3>
+          <ul class="icon-list" style="margin-top:1.25rem">
+            {included.map((item) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name="check" size={20} /></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+        <div data-reveal="right">
+          <h3 class="h3">Zusätzlich einzuplanen</h3>
+          <ul class="icon-list icon-list--muted" style="margin-top:1.25rem">
+            {notIncluded.map((item) => (
+              <li><span class="icon-badge icon-badge--sm"><Icon name="sparkles" size={20} /></span>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div style="margin-top:2.5rem; display:flex; justify-content:center">
+        <CtaButton href="#demande" label="Komplette Reiseunterlagen anfragen" variant="teal" />
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <div class="center" style="margin-bottom:2.5rem">
+          <p class="eyebrow">Für wen</p>
+          <h2 class="h2">Niveau, Höhe, <span class="teal">Ihr Bike</span></h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="bike" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Technisches Niveau</h3>
+            <p style="color:var(--gray-text)">Mittleres bis fortgeschrittenes Niveau. Natürliche Bergtrails, teils exponiert, keine geshapten Lines wie im Bikepark Verbier. Wenn Sie die Trails in Verbier ohne Verkrampfen runterfahren, sind Sie hier richtig.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="sun" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Kondition</h3>
+            <p style="color:var(--gray-text)">Es geht nicht um die Höhenmeter bergauf, der private Shuttle bringt die Gruppe wieder hoch. Es geht um die Abfolge: sieben Biketage am Stück, in der Höhe, weit weg von allem. Das braucht Ausdauer und Lust.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="mountain" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Höhe</h3>
+            <p style="color:var(--gray-text)">Wir starten in Jomsom auf rund 2700 m und steigen ins alte Königreich Lo auf, dessen Hauptstadt auf rund 3800 m liegt. Der Anstieg ist gestaffelt, und das Tempo passt sich der Gruppe an.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="shield" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Permits und Formalitäten</h3>
+            <p style="color:var(--gray-text)">Upper Mustang ist ein Gebiet mit Zugangsbeschränkung: Sonderpermit, Guide und registrierte Agentur sind Pflicht. Wir kümmern uns um alles, und es ist im Preis inbegriffen. Sie kümmern sich um Visum und Versicherung.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="van" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Ihr Bike</h3>
+            <p style="color:var(--gray-text)">Ein vollgefedertes Enduro-Bike mit 150 bis 170 mm Federweg, in gutem Zustand, mit neuen Bremsbelägen und Reifen. Bringen Sie Ihr eigenes mit, oder sagen Sie uns bei der Anmeldung, wenn Sie lieber vor Ort mieten möchten.</p>
+          </div>
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name="users" size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">Die Gruppe</h3>
+            <p style="color:var(--gray-text)">{TRIP.spotsLabelDe}, ein Guide aus Verbier, der ab der Schweiz mit Ihnen reist, und das nepalesische Team vor Ort. Niemand geht in der Masse unter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container center">
+        <p class="eyebrow">Video</p>
+        <h2 class="h2">Das Abenteuer in <span class="teal">Bewegung</span></h2>
+        <div class="video-embed" data-reveal>
+          <iframe
+            src="https://www.youtube-nocookie.com/embed/4ukFqHzGKEI"
+            title="Enduro-MTB-Reise nach Nepal · Bikeverbier.ch"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow center">Galerie</p>
+        <div class="gallery" style="margin-top:2rem" data-reveal>
+          {IMG.nepalGallery.map((src, i) => <img src={src} alt={['Drei Biker bei Sonnenuntergang auf einem Grat in Nepal', 'Enduro-Abfahrt mit Blick auf die verschneiten Gipfel des Himalaya, Nepal', 'Enduro durch einen moosigen Wald in Nepal'][i]} loading="lazy" />)}
+        </div>
+        <p class="center" style="margin-top:1.5rem; color:var(--gray-soft); font-size:.85rem">Fotos: Soren Rickards</p>
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container center">
+        <p class="eyebrow">Warum mit uns</p>
+        <h2 class="h2">Guides aus Verbier, <span class="teal">bis ins Mustang</span></h2>
+        <p class="lead measure" style="margin:1.25rem auto 0">
+          Wir verkaufen keine Katalogreise weiter. Ein Bikeverbier-Guide, in Verbier geboren und von Swiss Cycling zertifiziert, reist ab der Schweiz mit Ihnen und fährt alle sieben Tage an Ihrer Seite. Vor Ort arbeiten wir mit einem nepalesischen Team, das wir kennen und das Permits, Lodges und Shuttle organisiert. Das Ergebnis: eine Gruppe von drei Bikern, eine solide lokale Organisation, und niemand, der Sie daran erinnert, dass Sie Kunde sind.
+        </p>
+        <div style="margin-top:2rem; display:flex; justify-content:center">
+          <CtaButton href="#demande" label="Offerte anfragen" variant="teal" />
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Häufige Fragen</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: MTB-Reise nach <span class="teal">Nepal</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <ContactBand lang={lang} eyebrow="Anfrage" title="Schreiben Sie uns" lead="Damit wir Ihre Erwartungen treffen, schreiben Sie uns, und wir geben unser Bestes für Sie." id="demande">
+      <form class="cform cform--card" action={G.action} method="POST" data-next="/de/danke/" data-message={G.message}>
+          <input type="hidden" name={G.request} value="Anfrage Nepal" />
+          <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" />
+          <input type="hidden" name={G.antibot} value={G.antibotValue} />
+          <div class="cform__row">
+            <label><span>Name</span><input type="text" name={G.name} required /></label>
+            <label><span>E-Mail</span><input type="email" name={G.email} required /></label>
+          </div>
+          <div class="cform__row">
+            <label><span>Telefon</span><input type="tel" name={G.phone} /></label>
+            <label><span>Anzahl Biker</span>
+              <select name="riders" data-label="Anzahl Biker">{['1','2','3','4','5','6','7','8','9','Mehr'].map((n) => <option>{n}</option>)}</select>
+            </label>
+          </div>
+          <label><span>Nachricht</span><textarea name={G.message} rows="5"></textarea></label>
+          <button type="submit" class="btn btn--dark cform__submit"><span>Senden</span><span class="btn__dot" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span></button>
+        </form>
+    </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Privater MTB-Guide Verbier: geführte Touren' },
+        { href: pathFor('itineraires', lang), label: 'Mountainbike Verbier: der komplette Guide' },
+        { href: pathFor('contact', lang), label: 'Unsere Guides kennenlernen' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(tripLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>
+
+<style>
+  /* Faktenleiste unter dem Hero-H1 */
+  .hero-facts {
+    margin-top: 0.85rem;
+    color: #fff;
+    font-family: var(--font-lead);
+    font-size: 1rem;
+    letter-spacing: 0.02em;
+    opacity: 0.92;
+  }
+
+  /* Eckdaten der Reise (Daten, Ort, Gruppe, Preis) */
+  .tripfacts {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem auto 0;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .tripfacts li {
+    display: grid;
+    justify-items: center;
+    gap: 0.35rem;
+    padding-left: 0;
+  }
+  .tripfacts li::before {
+    content: none;
+  }
+  .tripfacts strong {
+    font-family: var(--font-lead);
+    font-weight: 600;
+  }
+  .tripfacts em {
+    font-style: normal;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+  }
+  @media (min-width: 768px) {
+    .tripfacts {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  /* Ablauf der 10 Tage */
+  .days {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 2rem;
+  }
+  .days li {
+    padding-left: 1.25rem;
+    border-left: 2px solid rgba(84, 184, 179, 0.35);
+  }
+  .days li::before {
+    content: none;
+  }
+  .days__num {
+    display: block;
+    font-family: var(--font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--gray-soft);
+    margin-bottom: 0.35rem;
+  }
+  .days p {
+    margin-top: 0.5rem;
+    max-width: 62ch;
+  }
+
+  /* Inbegriffen / nicht inbegriffen */
+  .incl {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 768px) {
+    .incl {
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+  }
+  .icon-list--muted .icon-badge {
+    background: rgba(0, 0, 0, 0.06);
+    color: var(--gray-text);
+  }
+</style>

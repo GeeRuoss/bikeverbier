@@ -60,3 +60,20 @@ Format à produire pour le web : WebP + fallback JPG, plusieurs tailles (`srcset
 - `l0eD4PCp2VAmzmeruvXBOB7Ukb0.png` — image OG par défaut (la plupart des pages).
 - Logos partenaires : à récupérer (section « Nos partenaires », non identifiables dans le HTML).
 - Icône WhatsApp : remplacer par un SVG inline propre (règle atelier : pas d'icônes externes).
+
+## Photos libres de droits ajoutées le 22.09.2026 (Wikimedia Commons)
+
+Servies depuis `public/img/libre/` (WebP 1600 px, bandeau 1920 px), copies 2000 px dans `src/assets/photos-libres/` (hors build), registre dans `src/data/credits.ts`, crédits publics sur `/credits/` (lien dans le pied de page). Licences CC BY-SA : attribution + même licence pour l'image, rien d'autre. Ne pas réutiliser ces photos sur un autre site sans reprendre les crédits.
+
+| Fichier | Usage | Licence |
+|---|---|---|
+| `verbier-ruinettes-sentiers.webp` | Section bike park (page VTT à Verbier, 3 langues) | CC BY-SA 4.0, Sylvie Nicollerat |
+| `verbier-village-ete.webp` | Page entreprise, bloc « Pourquoi Verbier » | CC BY-SA 4.0, Jérémy Toma |
+| `melezes-automne-valais.webp` | Bandeau « De mai à octobre » (page entreprise) | CC BY-SA 4.0, Giles Laurent (forêt d'Aletsch) |
+| `vtt-verbier-singletrack.webp` | Carte « Les sentiers au-dessus de la station » | CC BY-SA 2.0, /kallu |
+| `ebike-tout-suspendu.webp` | Carte e-bike (page location) | CC0, N1k0mmons (Les Saisies) |
+| `lourtier-val-de-bagnes.webp` | Page location, bloc « Où rouler » | CC0, Plutowiki |
+| `grand-combin-la-chaux.webp` | Page guide | CC BY-SA 4.0, Zacharie Grossen |
+| `vtt-sentier-alpin.webp` | Page cours | CC BY 2.0, TRAILSOURCE.COM (Lenzerheide) |
+
+Non trouvé en libre de droits : bike park de Verbier (Tire's Fire), télécabine avec vélos, groupe en e-bike, terrasse d'alpage valaisanne. À photographier maison.

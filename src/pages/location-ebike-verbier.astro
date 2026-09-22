@@ -1,16 +1,44 @@
 ---
-// Page dédiée « location e-bike Verbier » : requête transactionnelle locale majeure
-// qui n'avait aucune page cible (cf. audit SEO 08.2026). On ne loue pas nous-mêmes :
-// on réserve chez nos partenaires de Verbier, et on le dit honnêtement.
+// Page dédiée « location e-bike Verbier » : requête transactionnelle locale majeure.
+// On ne loue pas nous-mêmes : on réserve chez nos partenaires de Verbier, et on le dit.
+// Refonte SEO du 22.09.2026 : en bas de page 1 (position 9 à 10) sur « location vtt
+// verbier » et « location vélo électrique verbier » sans clic. Ajouts : étapes, choix du
+// vélo, où rouler, FAQ étendue, avis, maillage interne. Tarif inchangé : 125.- la journée.
 import Layout from '../layouts/Layout.astro';
 import CtaButton from '../components/CtaButton.astro';
 import CallLink from '../components/CallLink.astro';
 import CrossLinks from '../components/CrossLinks.astro';
 import Icon from '../components/Icon.astro';
+import Reviews from '../components/Reviews.astro';
 import { IMG } from '../data/images';
 import { SITE, pathFor } from '../data/site';
 
 const lang = 'fr' as const;
+
+const etapes = [
+  { t: 'Vous nous écrivez', x: 'Un WhatsApp ou un appel : vos dates, votre taille, le type de sortie. On répond dans la journée.' },
+  { t: 'On réserve le bon vélo', x: 'E-bike ou enduro, bon modèle, bonne taille, chez Médran Sports, Backside ou Philippe Roux Sports, nos partenaires à Verbier.' },
+  { t: 'Le vélo vous attend', x: "Avec un guide, il est réglé et prêt au départ. Sans guide, vous le prenez chez le partenaire indiqué, avec nos conseils d'itinéraire." },
+];
+
+const velos = [
+  {
+    img: IMG.libreEbike,
+    alt: 'VTT électrique tout-suspendu posé sur un chemin de montagne',
+    icon: 'bike',
+    eyebrow: 'E-bike',
+    title: "L'e-bike, pour monter sans souffrir",
+    desc: "VTT électrique tout-suspendu : le vélo des chemins d'alpage du Val de Bagnes, de la rando gourmande et des grosses journées de dénivelé. Débutants, familles, groupes mixtes : tout le monde roule ensemble, chacun dose son assistance.",
+  },
+  {
+    img: IMG.cardGuide,
+    alt: 'Sortie VTT guidée sur une piste aménagée à Verbier',
+    icon: 'mountain',
+    eyebrow: 'VTT enduro',
+    title: "L'enduro, pour jouer dans les descentes",
+    desc: "VTT tout-suspendu sans moteur, léger et joueur, pour les singletracks au-dessus de la station et les pistes du bike park, remontées à l'appui. Pour ceux qui veulent du terrain technique.",
+  },
+];
 
 const avantages = [
   { icon: 'bike', text: 'Le bon vélo à la bonne taille, choisi selon votre sortie et votre niveau' },
@@ -19,10 +47,16 @@ const avantages = [
   { icon: 'users', text: 'Conseils de guides nés à Verbier, même pour rouler sans nous' },
 ];
 
+const ouRouler = [
+  { icon: 'leaf', title: 'Le Val de Bagnes en e-bike', text: "Chemins d'alpage, villages, restaurants d'altitude : le terrain le plus facile de la région, parfait pour une première sortie électrique." },
+  { icon: 'gondola', title: 'Les Ruinettes et le bike park', text: 'Télécabine de Médran, vélo dans la cabine, puis descente sur les pistes aménagées ou les sentiers panoramiques. Le mode d’emploi du bike park est dans notre guide du VTT à Verbier.' },
+  { icon: 'users', title: 'Avec un guide local', text: 'Sentiers moins fréquentés, bon rythme, zéro hésitation sur le chemin. Dès 80.- par personne, la location devient une vraie journée de découverte.' },
+];
+
 const faq = [
   {
     q: 'Combien coûte la location d’un e-bike à Verbier ?',
-    a: "125 CHF la journée, e-bike ou VTT classique, casque offert. Le prix est le même si vous combinez la location avec une sortie guidée.",
+    a: '125 CHF la journée, e-bike ou VTT classique, casque offert. Le prix est le même si vous combinez la location avec une sortie guidée.',
   },
   {
     q: 'Faut-il réserver à l’avance ?',
@@ -34,7 +68,27 @@ const faq = [
   },
   {
     q: 'Quels vélos proposez-vous ?',
-    a: "Des e-bikes et des VTT récents et bien entretenus, réservés chez nos partenaires de Verbier : Médran Sports, Backside et Philippe Roux Sports. On choisit le modèle et la taille selon votre gabarit et le terrain prévu.",
+    a: 'Des e-bikes et des VTT récents et bien entretenus, réservés chez nos partenaires de Verbier : Médran Sports, Backside et Philippe Roux Sports. On choisit le modèle et la taille selon votre gabarit et le terrain prévu.',
+  },
+  {
+    q: 'Où récupérer le vélo ?',
+    a: "Avec un guide, le vélo vous attend au départ, réglé à votre taille. Sans guide, vous le prenez chez le magasin partenaire indiqué à la réservation, à deux pas de la télécabine de Médran.",
+  },
+  {
+    q: 'Peut-on louer à la demi-journée ou pour plusieurs jours ?',
+    a: "Le tarif de base, c'est 125.- la journée. Demi-journée ou plusieurs jours : écrivez-nous, on vous fait une proposition selon la dispo chez nos partenaires.",
+  },
+  {
+    q: 'Y a-t-il des vélos pour les enfants ?',
+    a: "Sur demande, selon la taille de l'enfant et la dispo chez nos partenaires. Dites-nous son âge et sa taille, on cherche le bon vélo. On donne aussi des cours privés aux enfants.",
+  },
+  {
+    q: 'Quelle autonomie a un e-bike en montagne ?',
+    a: "Une batterie pleine tient en général une journée en montagne, soit 1000 à 1500 m de dénivelé selon l'assistance, le poids du rider et le terrain. Avec un guide, on dose l'assistance pour que tout le monde rentre avec de la batterie.",
+  },
+  {
+    q: 'Le casque et les protections sont-ils fournis ?',
+    a: 'Le casque est offert avec chaque location. Pour le bike park ou l’enduro, genouillères et coudières sont conseillées : demandez-les à la réservation.',
   },
 ];
 
@@ -53,7 +107,7 @@ const faqLd = {
   lang={lang}
   routeKey="location"
   title="Location E-bike & VTT à Verbier | 125.- la journée, casque offert | Bikeverbier.ch"
-  description="Location d'e-bike et de VTT à Verbier : 125 CHF la journée, casque offert, vélo réservé chez nos partenaires locaux et prêt au départ de votre sortie. Seul ou avec un guide né à Verbier."
+  description="Location d'e-bike et de VTT à Verbier : 125 CHF la journée, casque offert, vélo réservé chez nos partenaires locaux et prêt au départ de votre sortie. Seul ou avec un guide né à Verbier, dans le Val de Bagnes ou au bike park."
   ogImage={IMG.heroLocation}
 >
   <section class="hero">
@@ -78,6 +132,22 @@ const faqLd = {
       </p>
     </section>
 
+    <section class="section container">
+      <p class="eyebrow">En trois étapes</p>
+      <h2 class="h2">Louer un vélo à Verbier, <span class="teal">sans y penser</span></h2>
+      <ol class="timeline timeline--steps">
+        {etapes.map((e, i) => (
+          <li data-reveal>
+            <span class="timeline__time">{i + 1}</span>
+            <div class="timeline__body">
+              <h3>{e.t}</h3>
+              <p>{e.x}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
     <section class="section section--alt">
       <div class="container">
         <p class="eyebrow">Tarif</p>
@@ -92,13 +162,59 @@ const faqLd = {
     </section>
 
     <section class="section container">
-      <p class="eyebrow">Pourquoi passer par nous</p>
-      <h2 class="h2">Des guides, pas un <span class="teal">comptoir</span></h2>
-      <ul class="icon-list" style="margin-top:1.75rem">
-        {avantages.map((a) => (
-          <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Quel vélo pour quelle sortie</p>
+        <h2 class="h2">E-bike ou <span class="teal">enduro</span> ?</h2>
+      </div>
+      <div class="cards">
+        {velos.map((v, i) => (
+          <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+            <img class="card__img" src={v.img} alt={v.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+            <div class="card__body" data-reveal>
+              <span class="icon-badge icon-badge--lg"><Icon name={v.icon} size={30} /></span>
+              <p class="eyebrow">{v.eyebrow}</p>
+              <h3 class="h3 teal">{v.title}</h3>
+              <p style="color:var(--gray-text)">{v.desc}</p>
+            </div>
+          </article>
         ))}
-      </ul>
+      </div>
+      <p class="measure" style="margin-top:2rem; color:var(--gray-text)">Vélos enfants et tailles spéciales sur demande, selon la dispo chez nos partenaires.</p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Pourquoi passer par nous</p>
+        <h2 class="h2">Des guides, pas un <span class="teal">comptoir</span></h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          {avantages.map((a) => (
+            <li><span class="icon-badge icon-badge--sm"><Icon name={a.icon} size={20} /></span>{a.text}</li>
+          ))}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Où rouler</p>
+        <h2 class="h2">Trois idées pour votre <span class="teal">journée de location</span></h2>
+      </div>
+      <div class="feature-grid">
+        {ouRouler.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+      <figure class="figure" data-reveal>
+        <img src={IMG.libreLourtier} alt="Lourtier, village du Val de Bagnes, au soleil du matin" width="1600" height="1087" loading="lazy" />
+      </figure>
+      <div style="margin-top:2.5rem; display:flex; gap:1rem; flex-wrap:wrap">
+        <CtaButton href={`${pathFor('itineraires', lang)}#bike-park`} label="Le bike park, mode d'emploi" variant="dark" />
+        <CtaButton href={pathFor('guide', lang)} label="Rouler avec un guide" variant="teal" />
+      </div>
     </section>
 
     <section class="section section--alt">
@@ -118,13 +234,15 @@ const faqLd = {
       </div>
     </section>
 
+    <Reviews lang={lang} />
+
     <CrossLinks
       lang={lang}
       links={[
         { href: pathFor('guide', lang), label: 'Guide VTT privé à Verbier' },
-        { href: pathFor('entreprise', lang), label: "Sortie d'entreprise en e-bike" },
+        { href: pathFor('entreprise', lang), label: "Team building en e-bike à Verbier" },
         { href: pathFor('itineraires', lang), label: 'VTT à Verbier : le guide complet' },
-        { href: pathFor('contact', lang), label: 'Nous contacter' },
+        { href: pathFor('cours', lang), label: 'Cours privés VTT, adultes et enfants' },
       ]}
     />
   </div>

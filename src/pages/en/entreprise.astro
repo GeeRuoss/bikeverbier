@@ -1,46 +1,98 @@
 ---
+// Corporate outing / team building page (EN). SEO rewrite of 22.09.2026, mirrors the FR page:
+// sample day, packages, why Verbier, extended FAQ, reviews, internal links.
+// No invented prices: decreasing guide rate from the Guide page, rental CHF 125, rest on quote.
 import Layout from '../../layouts/Layout.astro';
 import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import ContactForm from '../../components/ContactForm.astro';
 import ContactBand from '../../components/ContactBand.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
 import Icon from '../../components/Icon.astro';
+import Reviews from '../../components/Reviews.astro';
 import { IMG } from '../../data/images';
+import { SITE, pathFor } from '../../data/site';
 
 const lang = 'en' as const;
 const formUrl = '/docs/formulaire-entreprise.pdf';
 
 const gere = [
-  { icon: 'calendar', text: 'Planning a tour tailored for the group' },
-  { icon: 'bike', text: 'Reservation of E-bikes with our partners' },
-  { icon: 'users', text: 'Coordination with your supervisor' },
-  { icon: 'utensils', text: 'Restaurant reservations and appetizers' },
+  { icon: 'calendar', text: 'A route tailored to the group and the weather' },
+  { icon: 'bike', text: 'E-bikes booked with our partners, set up for everyone' },
+  { icon: 'users', text: 'One contact person, several guides for large groups' },
+  { icon: 'utensils', text: 'The mountain restaurant and the local aperitif' },
+];
+
+// Sample schedule: adapted to every team (times, duration, options).
+const journee = [
+  { h: '9:00', t: 'Welcome and set-up', x: 'Coffee in Verbier, e-bikes adjusted to your size, a ten-minute briefing. Then we go.' },
+  { h: '9:45', t: 'Off on the e-bikes', x: 'Alpine paths of the Val de Bagnes, villages, views over the Combins. The guide sets the pace: nobody races, nobody waits.' },
+  { h: '12:30', t: 'Mountain lunch', x: 'A table booked in a hut or restaurant: Valais platter, Bagnes cheese, a terrace facing the peaks.' },
+  { h: '14:30', t: 'Second loop or activity', x: 'A panoramic descent, a skills session, or tandem paragliding with FlyVerbier to see the trails from above.' },
+  { h: '16:30', t: 'Local aperitif', x: 'Valais wine, dried meat, rye bread: the debrief happens on a terrace. We take care of the bikes.' },
+];
+
+const formules = [
+  { icon: 'sun', title: 'Half day', items: ['About 3 hours on e-bikes with a guide', 'Local aperitif on a terrace', 'Ideal at the end of a seminar'] },
+  { icon: 'utensils', title: 'Full day', items: ['Morning e-bike ride', 'Lunch in a mountain restaurant', 'Second loop and aperitif'] },
+  { icon: 'mountain', title: 'Full day + activity', items: ['Tandem paragliding with FlyVerbier', 'Gourmet ride or skills session', 'Tailor-made for your team'] },
+];
+
+const pourquoi = [
+  { icon: 'pin', title: 'Right on your doorstep', text: '30 minutes from Martigny, 50 from Sion, 1 h 20 from Lausanne, 2 h from Geneva. By train, the Le Châble gondola takes you up in ten minutes.' },
+  { icon: 'bike', title: 'For the whole team', text: 'On e-bikes, the athlete and the colleague who never rides move together. We adapt the route to the group, not the other way round.' },
+  { icon: 'users', title: 'Guides born here', text: 'Swiss Cycling certified, born in Verbier. We speak English, French, German and Spanish: a mixed team rides with a single guide.' },
+  { icon: 'route', title: 'A unique playground', text: '500 km of MTB routes, a dozen mountain restaurants, views over the Combins and Mont Blanc. Everything happens outdoors, no transfers.' },
 ];
 
 const faq = [
   {
-    q: 'Is a good level of mountain biking required to participate?',
+    q: 'When can we organise a corporate outing?',
+    a: 'From May to October. May, June, September and October are our favourite months: a quiet resort, the trails to yourselves, alpine pastures in bloom in spring and golden larches in autumn. July and August work too, with every lift open.',
+  },
+  {
+    q: 'Is a good level of mountain biking required to take part?',
     a: 'Not at all. The outings are open to all levels, beginners included. Thanks to e-bikes, everyone goes at their own pace, with no pressure. The goal is to share a friendly moment out in nature, not to race.',
   },
   {
+    q: 'How much does a team building day in Verbier cost?',
+    a: 'On quote, depending on group size, duration and options. As a reference: the guide rate decreases with group size (from CHF 320 for a half day solo down to CHF 80 per person from 6 riders), the e-bike costs CHF 125 per person and per day, helmet included, and lunch depends on the restaurant. Send us your team size and date: reply within 24 hours.',
+  },
+  {
     q: 'Do you provide e-bikes and the necessary equipment?',
-    a: 'Yes. We book quality e-bikes for you with our local partners. Helmets and other gear can be provided on request. You simply come with suitable outdoor clothing, we take care of the rest.',
+    a: 'Yes. We book quality e-bikes for you with our local partners, adjusted to each participant. Helmets are provided, other protection can be on request. You simply come with suitable outdoor clothing, we take care of the rest.',
   },
   {
     q: 'Do you offer all-inclusive packages with meals and activities?',
-    a: 'Yes, we design turnkey packages: aperitifs on the terrace, mountain-top meals, tastings of local produce or even side activities. Every outing is designed as a complete, tailor-made experience.',
+    a: 'Yes, we design turnkey packages: aperitifs on a terrace, mountain lunches, local produce tastings or side activities such as tandem paragliding with FlyVerbier. Every outing is designed as a complete, tailor-made experience.',
   },
   {
     q: 'Is it possible to arrange an outing for a large group?',
-    a: 'Absolutely. We can host groups of all sizes, including 20 people or more. The logistics are adapted to ensure comfort, safety and flow, even for large teams. Several guides are sometimes needed.',
+    a: 'Absolutely. We host groups of all sizes, including 20 people or more. The logistics are adapted to ensure comfort, safety and flow, with several guides and sub-groups by level when needed.',
+  },
+  {
+    q: 'How far in advance should we book?',
+    a: 'Two to three weeks are usually enough for the e-bikes and the restaurant. More for large groups and high season, July to September. Last minute? Ask, we will check.',
   },
   {
     q: 'How is the coordination with our company managed?',
     a: 'A single point of contact is assigned to your company to make sharing information and handling the details easy. We stay available and responsive at every step, so everything runs smoothly.',
   },
   {
-    q: 'Is the excursion still on in case of bad weather?',
+    q: 'Can we come by train?',
+    a: 'Yes. Train to Le Châble, then the gondola up to Verbier in ten minutes. We wait for you at the top with the bikes ready. The day can also start from Le Châble.',
+  },
+  {
+    q: 'Is the outing still on in case of bad weather?',
     a: 'In case of bad weather, several options are considered: adapting the route, changing the date, or switching to an alternative activity. Our priority remains the safety and enjoyment of every participant.',
+  },
+  {
+    q: 'What should we bring?',
+    a: 'Sports clothes, closed trainers, a windproof jacket, sunglasses and sunscreen. The helmet comes with the bike. We take care of the rest.',
+  },
+  {
+    q: 'Do you run outings in English or German?',
+    a: 'Yes. We speak English, French, German and Spanish: a mixed team rides with a single guide.',
   },
 ];
 
@@ -58,21 +110,42 @@ const faqLd = {
 <Layout
   lang={lang}
   routeKey="entreprise"
-  title="MTB & E-bike Team Building in Verbier | Corporate Outings | Bike Verbier"
-  description="Corporate outings and e-bike team building in Verbier: a turnkey day with bikes booked for you, mountain restaurants and local aperitifs. Local guides, all levels, large groups welcome."
+  title="Team Building in Verbier, May to October | MTB & E-bike Corporate Outings, Turnkey | Bike Verbier"
+  description="Team building and corporate outings on e-bikes in Verbier, Switzerland, from May to October: a turnkey day with bikes booked, guides born here, mountain lunch and local aperitif. All levels, large groups welcome, 2 hours from Geneva."
   ogImage={IMG.heroEntreprise}
 >
   <section class="hero">
     <img class="hero__bg" src={IMG.heroEntreprise} alt="Corporate mountain biking outing in Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">MTB and e-bike team building in Verbier</p>
+      <p class="eyebrow" style="color:#fff">MTB and e-bike team building in Verbier · May to October</p>
       <h1 class="h1" data-wipe>We take care of everything, <span class="teal">you enjoy</span>.</h1>
-      <p class="lead">Let your team breathe, experience a timeless day right on your doorstep.</p>
+      <p class="lead">A team day on e-bikes, from May to October: bikes booked, guides born in Verbier, mountain lunch and local aperitif.</p>
       <div class="hero-actions"><CtaButton href="#contact" label="Plan an outing" variant="light" /><CallLink /></div>
     </div>
   </section>
 
   <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Corporate outings in Verbier</p>
+      <h2 class="h2">Team building on bikes, <span class="teal">the Verbier way</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        A team pedalling along alpine paths, a hut stop for the Valais platter, the aperitif on a terrace to finish. Everything is organised by guides born in Verbier, and on e-bikes everyone rides together.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Want to see the terrain before deciding? Have a look at our <a href={pathFor('itineraires', lang)}>guide to mountain biking in Verbier</a> or our <a href={pathFor('guide', lang)}>guided tours</a>.
+      </p>
+    </section>
+
+    <section class="season">
+      <img class="season__bg" src={IMG.libreAutomne} alt="" width="1920" height="832" loading="lazy" />
+      <div class="container">
+        <p class="eyebrow" style="color:#fff">The corporate outing season</p>
+        <h2 class="season__big">May <span class="teal">to October</span></h2>
+        <p class="lead">Alpine pastures in bloom in June, golden larches in October, a quiet resort and the trails to yourselves: the season lasts six months. Time to get your team out.</p>
+        <div class="hero-actions"><CtaButton href="#contact" label="Plan an outing" variant="light" /><CtaButton href={SITE.whatsapp} label="Message us on WhatsApp" variant="teal" external /></div>
+      </div>
+    </section>
+
     <section class="section container">
       <article class="card">
         <img class="card__img" src={IMG.contactVisual} alt="Corporate outing in Verbier" loading="lazy" data-reveal="left" />
@@ -90,32 +163,91 @@ const faqLd = {
 
     <section class="section section--alt">
       <div class="container">
-        <article class="card card--reverse">
-          <img class="card__img" src={IMG.entrepriseForm} alt="Corporate outing form" loading="lazy" data-reveal="right" />
-          <div class="card__body" data-reveal>
-            <p class="eyebrow">Form</p>
-            <h2 class="h2">Download the <span class="teal">form</span></h2>
-            <p style="color:var(--gray-text)">Fill it in and send it back to us, we take care of the rest. Everything is ready to organise your team day.</p>
-            <CtaButton href={formUrl} label="Download the PDF" variant="dark" external />
-          </div>
-        </article>
+        <p class="eyebrow">A typical day</p>
+        <h2 class="h2">How a <span class="teal">corporate outing</span> unfolds</h2>
+        <p class="lead measure" style="margin-top:.5rem">Example for a full day. Times, duration and options adapt to your team.</p>
+        <ol class="timeline">
+          {journee.map((j) => (
+            <li data-reveal>
+              <span class="timeline__time">{j.h}</span>
+              <div class="timeline__body">
+                <h3>{j.t}</h3>
+                <p>{j.x}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
 
     <section class="section container">
-      <p class="eyebrow">Inquiries?</p>
-      <h2 class="h2" style="margin-bottom:1.5rem">FAQ: corporate MTB outings in <span class="teal">Verbier</span></h2>
-      <div class="faq">
-        {
-          faq.map((item) => (
-            <details>
-              <summary>{item.q}</summary>
-              <p>{item.a}</p>
-            </details>
-          ))
-        }
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Packages</p>
+        <h2 class="h2">Three ways to experience <span class="teal">Verbier as a team</span></h2>
+      </div>
+      <div class="feature-grid">
+        {formules.map((f) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={f.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{f.title}</h3>
+            <ul class="checks">{f.items.map((it) => <li>{it}</li>)}</ul>
+          </div>
+        ))}
+      </div>
+      <p class="measure" style="margin-top:2.5rem; color:var(--gray-text)">
+        Every package is on quote, depending on group size and options. Reference points: decreasing guide rate, <a href={pathFor('location', lang)}>e-bike</a> at CHF 125 per person and per day, helmet included.
+      </p>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Why Verbier</p>
+        <h2 class="h2">Team building that <span class="teal">happens outdoors</span></h2>
+        <figure class="figure" data-reveal>
+          <img src={IMG.libreVerbierVillage} alt="Verbier in summer, seen from above" width="1600" height="977" loading="lazy" />
+        </figure>
+        <div class="feature-grid" style="margin-top:2rem; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))">
+          {pourquoi.map((p) => (
+            <div class="feature" data-reveal>
+              <span class="icon-badge"><Icon name={p.icon} size={24} /></span>
+              <h3 class="h3 teal" style="margin-top:.75rem">{p.title}</h3>
+              <p style="color:var(--gray-text)">{p.text}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
+
+    <section class="section container">
+      <article class="card card--reverse">
+        <img class="card__img" src={IMG.entrepriseForm} alt="Corporate outing form" loading="lazy" data-reveal="right" />
+        <div class="card__body" data-reveal>
+          <p class="eyebrow">Form</p>
+          <h2 class="h2">Download the <span class="teal">form</span></h2>
+          <p style="color:var(--gray-text)">Fill it in and send it back to us, we take care of the rest. Everything is ready to organise your team day.</p>
+          <CtaButton href={formUrl} label="Download the PDF" variant="dark" external />
+        </div>
+      </article>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Questions?</p>
+        <h2 class="h2" style="margin-bottom:1.5rem">FAQ: team building in <span class="teal">Verbier</span></h2>
+        <div class="faq">
+          {
+            faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <Reviews lang={lang} />
 
     <ContactBand
       lang={lang}
@@ -126,6 +258,16 @@ const faqLd = {
     >
       <ContactForm lang={lang} subject="Teambuilding inquiry · Bikeverbier.ch" card />
     </ContactBand>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Private MTB guide and gourmet ride' },
+        { href: pathFor('location', lang), label: 'E-bike rental in Verbier' },
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: the guide' },
+        { href: pathFor('cours', lang), label: 'Private MTB lessons' },
+      ]}
+    />
   </div>
 
   <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />

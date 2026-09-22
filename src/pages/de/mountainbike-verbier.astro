@@ -1,0 +1,294 @@
+---
+// Ressourcenseite «Mountainbiken in Verbier» (DE). Eigener DE-Slug, siehe ROUTES in site.ts.
+// Ziel SEO + GEO: informationelle Suchanfragen abdecken (mountainbike verbier, mtb verbier,
+// bikepark verbier, saison) und KI-Assistenten eine faktenreiche Seite zum Zitieren geben.
+// Überarbeitung vom 22.09.2026: Abschnitt «Bikepark Verbier: so funktioniert es» (Zugang, Saison,
+// Öffnungszeiten, Bikepässe, Trails, Regeln), Zahlen abgeglichen mit den offiziellen Quellen
+// (verbier4vallees.ch, verbierbikepark.ch, verbier.ch), erweiterte FAQ. Jede Saison aktualisieren.
+import Layout from '../../layouts/Layout.astro';
+import CtaButton from '../../components/CtaButton.astro';
+import CallLink from '../../components/CallLink.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
+import Icon from '../../components/Icon.astro';
+import { IMG } from '../../data/images';
+import { pathFor } from '../../data/site';
+
+const lang = 'de' as const;
+
+const terrains = [
+  {
+    img: IMG.libreVttVerbier,
+    alt: 'Mountainbiker auf einem Singletrail über dem Rhonetal, in Verbier',
+    icon: 'mountain',
+    eyebrow: 'Enduro & Singletrails',
+    title: 'Die Trails oberhalb des Dorfs',
+    desc: 'Das ist das Herz des Mountainbikens in Verbier: Singletrails am Berghang, Spitzkehren, Wald, Ausblicke auf die Combins. 23 markierte Enduro-Routen, von La Chaux bis nach Le Châble, mit mehr als 1500 Höhenmetern Abfahrt. Und genau hier machen unsere Guides den Unterschied: Die schönsten Trails stehen auf keiner Karte.',
+  },
+  {
+    img: IMG.heroHome,
+    alt: 'Mountainbike-Abfahrt auf den Trails von Verbier',
+    icon: 'gondola',
+    eyebrow: 'Bikepark',
+    title: 'Der Bikepark Verbier',
+    desc: "Gondelbahn Médran, dann 9 Trails und 19 km Abfahrt, von der grünen Lernstrecke bis zur Rennstrecke Tire's Fire, den ganzen Sommer über gepflegt. Perfekt, um Run für Run besser zu werden. Wie es funktioniert, steht etwas weiter unten.",
+  },
+  {
+    img: IMG.guideGourmande,
+    alt: 'Walliser Teller: Trockenfleisch, Käse und Roggenbrot',
+    icon: 'utensils',
+    eyebrow: 'E-Bike & Genuss',
+    title: 'Die Alpwege im Val de Bagnes',
+    desc: 'Mit dem E-Bike öffnet sich das Val de Bagnes für alle: Alpwege, Dörfer, Hütten und ein Dutzend Bergrestaurants für den Walliser Teller und den Bagnes-Käse. Das ist das Gelände unserer Genusstour.',
+  },
+];
+
+const tips = [
+  { icon: 'sun', title: 'Die Saison', text: 'Die Bergbahnen nehmen Bikes von Juni bis Ende Oktober mit (Bikepark 2026: 4. Juni bis 25. Oktober), die Trails sind je nach Schneelage von Mai bis November fahrbar. Juli und August für die Stimmung und alle offenen Anlagen, September und Oktober für die Farben und die ruhigen Trails.' },
+  { icon: 'route', title: 'Das Revier', text: 'Etwa 500 km MTB-Routen rund um Verbier und das Val de Bagnes, 23 markierte Enduro-Routen und 9 Abfahrtstrails im Bikepark, mitten im Gebiet der 4 Vallées.' },
+  { icon: 'bike', title: 'Die Ausrüstung', text: 'E-Bike, um bergauf nicht zu leiden, Enduro-Bike, um in den Abfahrten zu spielen. Miete möglich für CHF 125.- pro Tag, Helm inklusive, das Bike wird bei unseren Partnern reserviert und steht am Start bereit. Gratis-Ladestation für E-MTB in Médran.' },
+  { icon: 'shield', title: 'Die Sicherheit', text: 'Immer mit Helm, Schutzausrüstung für die Abfahrt (Handschuhe, Knieschoner, Rückenprotektor), und Rücksicht auf Wanderer, die auf gemeinsam genutzten Wegen Vortritt haben. Wir teilen uns den Berg. Bei Zweifeln zu einem Trail: Fragen Sie einen Einheimischen.' },
+];
+
+// Trails des Bikeparks Verbier, Saison 2026 (verbierbikepark.ch und verbier.ch, geprüft am 22.09.2026).
+const pistes = [
+  { n: '09', nom: 'Tsenelle', niveau: 'Grün', type: 'Lernstrecke, Flow', km: '1,9 km', d: '187 m' },
+  { n: '08', nom: 'Chôtatai', niveau: 'Blau', type: 'Flowtrail, 5 km bis La Tzoumaz', km: '5 km', d: '680 m' },
+  { n: '02', nom: 'Tsopu', niveau: 'Blau', type: 'Flowtrail', km: '2,4 km', d: '389 m' },
+  { n: '04', nom: 'Wouaiy', niveau: 'Rot', type: 'Flow und Trail', km: '2,2 km', d: '529 m' },
+  { n: '03', nom: 'Tû çuci', niveau: 'Rot', type: 'Freeride, Sprünge', km: '1,1 km', d: '527 m' },
+  { n: '07', nom: 'Rôdze', niveau: 'Rot', type: 'Sprünge, 65 Elemente', km: '2,1 km', d: '307 m' },
+  { n: '06', nom: 'Bortabitche', niveau: 'Rot bis Schwarz', type: 'Freeride, Sprünge', km: '1,3 km', d: '227 m' },
+  { n: '01', nom: "Tire's Fire", niveau: 'Rennstrecke', type: 'Wettkampfstrecke, DH-Europacup', km: '2,3 km', d: '573 m' },
+  { n: '05', nom: 'Woooohhh', niveau: 'Schwarz', type: 'Technisch', km: '0,6 km', d: '130 m' },
+];
+
+const faq = [
+  {
+    q: 'Braucht man einen Guide zum Mountainbiken in Verbier?',
+    a: 'Pflicht ist es nicht, aber es ändert alles: Die schönsten Trails in Verbier sind nicht markiert, und ein MTB-Guide aus Verbier bringt Sie an den richtigen Ort, passend zu Ihrem Niveau, dem Wetter und dem Zustand der Trails. Unsere Guides sind in Verbier geboren und von Swiss Cycling zertifiziert, ab CHF 80.- pro Person.',
+  },
+  {
+    q: 'Was ist die beste Mountainbike-Route in Verbier?',
+    a: 'Das hängt von Ihrem Niveau ab. Für die Aussicht: die Abfahrt vom oberen Ende des Gebiets bis nach Le Châble, mehr als 1500 Höhenmeter. Für Enduro: die Singletrails oberhalb des Dorfs. Für eine entspannte Familientour: die Alpwege im Val de Bagnes mit dem E-Bike, mit einer Pause in einem Bergrestaurant.',
+  },
+  {
+    q: 'Ist Verbier für Mountainbike-Anfänger geeignet?',
+    a: 'Ja. Dank dem E-Bike und den sanften Wegen im Val de Bagnes hat ein Anfänger schon bei der ersten Tour Spass. Im Bikepark sind der grüne Trail Tsenelle und die blauen Trails Chôtatai und Tsopu zum Lernen gemacht. Unsere geführten Touren und Privatkurse passen sich jedem Niveau an, Familien und Kinder inklusive.',
+  },
+  {
+    q: 'Wann öffnet der Bikepark Verbier?',
+    a: '2026 ist der Bikepark vom 4. Juni bis 25. Oktober geöffnet. Die Gondelbahn Verbier-Les Ruinettes fährt vom 27. Juni bis 21. September von 8.30 bis 17 Uhr, danach bis Ende Oktober von 9 bis 17 Uhr, mit Teilöffnungen im Juni. Die Daten jeder Saison veröffentlicht Téléverbier auf verbier4vallees.ch.',
+  },
+  {
+    q: 'Was kostet der Bikepass im Bikepark Verbier?',
+    a: '2026 kostet der Verbier Bike Pass (Verbier, Bruson, La Tzoumaz) CHF 47.- pro Tag für Erwachsene, CHF 40.- für Jugendliche und CHF 24.- für Kinder; der 4 Vallées Bike Pass kostet CHF 57.-. Gäste, die die Kurtaxe bezahlen, erhalten den VIP Pass, der 50 % Rabatt auf den Tages-Bikepass 4 Vallées gibt. Online-Kauf auf verbier4vallees.ch, mit 10 % Rabatt zehn Tage im Voraus.',
+  },
+  {
+    q: 'Kann ich mein E-Bike in der Gondelbahn Médran mitnehmen?',
+    a: 'Ja. Die Zehnerkabinen der Gondelbahn Médran-Les Ruinettes transportieren Bikes, E-Bikes inklusive, und überwinden in sechs Minuten 666 Höhenmeter. In Médran steht eine Gratis-Ladestation für E-MTB.',
+  },
+  {
+    q: 'Kann man in Verbier ein E-Bike oder ein Mountainbike mieten?',
+    a: 'Ja: CHF 125.- pro Tag, Helm inklusive. Wir reservieren das Bike für Sie bei unseren Partnern in Verbier, und es wartet am Start Ihrer Tour auf Sie.',
+  },
+  {
+    q: 'Was kostet eine geführte Mountainbike-Tour in Verbier?',
+    a: 'Von CHF 80.- bis 320.- pro Person für einen halben Tag und von CHF 120.- bis 550.- für einen ganzen Tag, je nach Gruppengrösse. Privatkurse und die Nepal-Reise auf Anfrage.',
+  },
+  {
+    q: 'Wie komme ich mit dem Bike nach Verbier?',
+    a: 'Mit dem Auto liegt Verbier 30 Minuten von Martigny, 50 Minuten von Sion, 1 Stunde 20 von Lausanne und 2 Stunden von Genf entfernt. Mit dem Zug steigen Sie in Le Châble aus (25 Minuten ab Martigny), dann bringt Sie die Gondelbahn Le Châble-Verbier in rund zehn Minuten hinauf, Bike inklusive.',
+  },
+];
+
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((f) => ({
+    '@type': 'Question',
+    name: f.q,
+    acceptedAnswer: { '@type': 'Answer', text: f.a },
+  })),
+};
+---
+
+<Layout
+  lang={lang}
+  routeKey="itineraires"
+  title="Mountainbike Verbier: der komplette Guide der Einheimischen | Trails, Bikepark, Saison, Bikepässe"
+  description="Mountainbike in Verbier von einheimischen Guides: 500 km Routen, 23 Enduro-Trails, Bikepark Médran (Bikepässe 2026), E-Bike im Val de Bagnes, Saison, Preise."
+  ogImage={IMG.heroVtt}
+>
+  <section class="hero">
+    <img class="hero__bg" src={IMG.heroVtt} alt="Mountainbike auf einem Singletrail oberhalb von Verbier, Wallis" width="1920" height="1280" fetchpriority="high" />
+    <div class="hero__inner container">
+      <p class="eyebrow" style="color:#fff">Der Guide der Einheimischen</p>
+      <h1 class="h1" data-wipe>Mountainbiken in Verbier, erzählt von <span class="teal">denen, die hier geboren sind</span></h1>
+      <p class="lead">Trails, Bikepark, Saison, Bikepässe, Preise: alles, was Sie wissen sollten, bevor Sie hier fahren.</p>
+      <div class="hero-actions"><CtaButton href={pathFor('guide', lang)} label="Mit einem Guide fahren" variant="light" /><CallLink /></div>
+    </div>
+  </section>
+
+  <div class="sheet">
+    <section class="section section--intro container center">
+      <p class="eyebrow">Verbier, Val de Bagnes, Wallis</p>
+      <h2 class="h2">Eine der grössten MTB-Destinationen <span class="teal">der Schweiz</span></h2>
+      <p class="lead measure" style="margin:1.25rem auto 0">
+        Verbier, auf 1500 m im Val de Bagnes im Wallis, bietet rund 500 km MTB-Routen im Herzen des Gebiets der 4 Vallées, 23 markierte Enduro-Routen, einen Bikepark mit 9 Trails, erschlossen durch die Gondelbahn Médran, und ein Dutzend Bergrestaurants. Die Bergbahnen nehmen Bikes von Juni bis Ende Oktober mit.
+      </p>
+      <p class="measure" style="margin:1rem auto 0; color:var(--gray-text)">
+        Diese Seite ist unser Guide der Einheimischen: das, was wir antworten, wenn uns jemand fragt, wo, wann und wie man in Verbier biken soll. Um es auf den Trails zu erleben, gibt es unsere <a href={pathFor('guide', lang)}>geführten Touren</a>, unsere <a href={pathFor('cours', lang)}>Privatkurse</a> und die <a href={pathFor('location', lang)}>E-Bike-Miete</a>.
+      </p>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Das Gelände</p>
+        <h2 class="h2">Drei Arten, in <span class="teal">Verbier</span> zu biken</h2>
+      </div>
+      <div class="cards">
+        {
+          terrains.map((f, i) => (
+            <article class={`card ${i % 2 === 1 ? 'card--reverse' : ''}`}>
+              <img class="card__img" src={f.img} alt={f.alt} loading="lazy" data-reveal={i % 2 === 1 ? 'right' : 'left'} />
+              <div class="card__body" data-reveal>
+                <span class="icon-badge icon-badge--lg"><Icon name={f.icon} size={30} /></span>
+                <p class="eyebrow">{f.eyebrow}</p>
+                <h3 class="h3 teal">{f.title}</h3>
+                <p style="color:var(--gray-text)">{f.desc}</p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--alt" id="bike-park">
+      <div class="container">
+        <p class="eyebrow">So geht's</p>
+        <h2 class="h2">Der Bikepark Verbier, <span class="teal">erklärt von Einheimischen</span></h2>
+        <p class="lead measure" style="margin-top:.75rem">
+          Neun Trails, 19 km Abfahrt, bis zu 880 Höhenmeter zwischen Les Ruinettes und Verbier. So funktioniert es, mit den Zahlen 2026.
+        </p>
+        <figure class="figure" data-reveal>
+          <img src={IMG.libreRuinettes} alt="Les Ruinettes und ihre Trails oberhalb von Verbier, im Sommer" width="1600" height="1067" loading="lazy" />
+        </figure>
+
+        <div class="infobox-grid">
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="gondola" size={20} /></span>
+            <h3 style="margin-top:.75rem">Zugang</h3>
+            <p style="color:var(--gray-text)">Start in Médran, mitten im Zentrum von Verbier. Die Gondelbahn Médran-Les Ruinettes (Zehnerkabinen, Bikes in der Kabine) steigt in sechs Minuten von 1531 m auf 2198 m. Der Sessellift Chaux Express bringt Sie weitere 275 m hinauf zu den oberen Trails. Gratis-Ladestation für E-MTB in Médran.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>
+            <h3 style="margin-top:.75rem">Saison und Öffnungszeiten 2026</h3>
+            <p style="color:var(--gray-text)">Bikepark geöffnet vom 4. Juni bis 25. Oktober. Verbier-Les Ruinettes vom 27. Juni bis 21. September von 8.30 bis 17 Uhr, danach bis 25. Oktober von 9 bis 17 Uhr; im Juni Wochenendbetrieb und Shuttles während der Revisionen. Die oberen Trails (Ruinettes-La Chaux) sind vom 4. Juli bis 21. September offen.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>
+            <h3 style="margin-top:.75rem">Bikepässe 2026</h3>
+            <p style="color:var(--gray-text)">Verbier Bike Pass (Verbier, Bruson, La Tzoumaz): CHF 47.- pro Tag für Erwachsene, CHF 40.- für Jugendliche, CHF 24.- für Kinder. 4 Vallées Bike Pass: CHF 57.-. Der VIP Pass für Gäste gibt 50 % Rabatt auf den Tagespass 4 Vallées. 10 % Rabatt online zehn Tage im Voraus, 15 % ab 15 Personen. Gondelbahn Le Châble-Verbier: CHF 6.40 pro Fahrt.</p>
+          </div>
+          <div class="infobox" data-reveal>
+            <span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>
+            <h3 style="margin-top:.75rem">Ausrüstung und Regeln</h3>
+            <p style="color:var(--gray-text)">Helm, Handschuhe, Knieschoner und Rückenprotektor dringend empfohlen, Fullface-Helm für die Abfahrt. Fussgänger haben auf gemeinsam genutzten Wegen Vortritt: Tempo drosseln und vor jeder Kreuzung anhalten. Auf den markierten Trails bleiben, die Weidegatter hinter sich schliessen, den eigenen Abfall mitnehmen.</p>
+          </div>
+        </div>
+
+        <h3 class="h3" style="margin-top:3rem">Die neun Trails, von Grün bis zur <span class="teal">Rennstrecke</span></h3>
+        <div style="overflow-x:auto; margin-top:1.25rem">
+          <table class="price-table">
+            <thead>
+              <tr><th>Trail</th><th>Niveau</th><th>Typ</th><th>Länge</th><th>Höhenmeter</th></tr>
+            </thead>
+            <tbody>
+              {pistes.map((p) => <tr><td>{p.nom}</td><td>{p.niveau}</td><td>{p.type}</td><td>{p.km}</td><td>{p.d}</td></tr>)}
+            </tbody>
+          </table>
+        </div>
+        <p class="measure" style="margin-top:1.25rem; color:var(--gray-text)">
+          Anfänger? Zuerst Tsenelle, dann Chôtatai, fünf Kilometer Flow bis nach La Tzoumaz, und Tsopu. Fortgeschritten? Wouaiy und Rôdze, 65 Sprünge. Tire's Fire ist die Rennstrecke des Downhill-Europacups. Pumptrack, Skillpark und Dirtpark am Fuss der Trails.
+        </p>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Lust, in der richtigen Reihenfolge zu lernen? Unsere <a href={pathFor('cours', lang)}>Privatkurse</a> beginnen auf den grünen und blauen Trails, für Erwachsene und Kinder. Für Enduro ausserhalb des Parks kennt ein <a href={pathFor('guide', lang)}>in Verbier geborener Guide</a> die 23 markierten Routen, und die, die nicht markiert sind.
+        </p>
+        <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
+          Der Höhepunkt des Sommers: das Verbier Bike Festival, 13. bis 16. August 2026, 12. bis 15. August 2027. Zahlen geprüft am 22. September 2026 auf <a href="https://www.verbierbikepark.ch/" target="_blank" rel="noopener">verbierbikepark.ch</a> und <a href="https://verbier4vallees.ch/" target="_blank" rel="noopener">verbier4vallees.ch</a>: Prüfen Sie die Öffnungszeiten des Tages, bevor Sie hochfahren.
+        </p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="center" style="margin-bottom:2.5rem">
+        <p class="eyebrow">Tipps von Einheimischen</p>
+        <h2 class="h2">Gut vorbereitet nach <span class="teal">Verbier</span></h2>
+      </div>
+      <div class="feature-grid" style="grid-template-columns:repeat(auto-fit, minmax(240px, 1fr))">
+        {tips.map((c) => (
+          <div class="feature" data-reveal>
+            <span class="icon-badge"><Icon name={c.icon} size={24} /></span>
+            <h3 class="h3 teal" style="margin-top:.75rem">{c.title}</h3>
+            <p style="color:var(--gray-text)">{c.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="section section--alt">
+      <div class="container">
+        <p class="eyebrow">Budget</p>
+        <h2 class="h2">Was kostet es <span class="teal">konkret</span>?</h2>
+        <ul class="icon-list" style="margin-top:1.75rem">
+          <li><span class="icon-badge icon-badge--sm"><Icon name="users" size={20} /></span><a href={pathFor('guide', lang)} style="text-decoration:underline; text-underline-offset:2px">Private geführte Tour</a>: CHF 80.- bis 550.- pro Person, je nach Gruppe und Dauer</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="bike" size={20} /></span><a href={pathFor('location', lang)} style="text-decoration:underline; text-underline-offset:2px">E-Bike oder Mountainbike mieten</a>: CHF 125.- pro Tag, Helm inklusive</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="gondola" size={20} /></span>Bikepass für den Bikepark: CHF 47.- pro Tag für Erwachsene 2026 (Verbier Bike Pass), CHF 57.- für die 4 Vallées</li>
+          <li><span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span><a href={pathFor('cours', lang)} style="text-decoration:underline; text-underline-offset:2px">Privater MTB-Kurs</a>: auf Anfrage, Erwachsene und Kinder</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section container">
+      <p class="eyebrow">Häufige Fragen</p>
+      <h2 class="h2" style="margin-bottom:1.5rem">FAQ: Mountainbiken in <span class="teal">Verbier</span></h2>
+      <div class="faq">
+        {
+          faq.map((item) => (
+            <details>
+              <summary>{item.q}</summary>
+              <p>{item.a}</p>
+            </details>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section section--dark">
+      <div class="container center">
+        <p class="eyebrow">Lust zu fahren?</p>
+        <h2 class="h2">Das verborgene Verbier entdeckt man am besten <span class="teal">mit einem Einheimischen</span></h2>
+        <p class="lead measure" style="margin:1.25rem auto 0">
+          Guides, in Verbier geboren, von Swiss Cycling zertifiziert. Wir sprechen Deutsch, Französisch, Englisch und Spanisch.
+        </p>
+        <div style="margin-top:2rem; display:flex; justify-content:center; gap:1rem; flex-wrap:wrap">
+          <CtaButton href={pathFor('guide', lang)} label="Geführte Touren ansehen" variant="teal" />
+          <CtaButton href={pathFor('contact', lang)} label="Kontakt aufnehmen" variant="light" />
+        </div>
+      </div>
+    </section>
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('guide', lang), label: 'Privater MTB-Guide Verbier' },
+        { href: pathFor('location', lang), label: 'E-Bike mieten in Verbier' },
+        { href: pathFor('cours', lang), label: 'Private MTB-Kurse in Verbier' },
+        { href: pathFor('entreprise', lang), label: 'Teambuilding mit MTB und E-Bike' },
+        { href: pathFor('nepal', lang), label: 'Enduro-Reise nach Nepal' },
+      ]}
+    />
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqLd)} />
+</Layout>

@@ -4,6 +4,7 @@ import CtaButton from '../../components/CtaButton.astro';
 import CallLink from '../../components/CallLink.astro';
 import Icon from '../../components/Icon.astro';
 import Reviews from '../../components/Reviews.astro';
+import CrossLinks from '../../components/CrossLinks.astro';
 import { IMG, PARTNERS } from '../../data/images';
 import { pathFor } from '../../data/site';
 
@@ -13,7 +14,7 @@ const offers = [
   {
     img: IMG.cardEntreprise,
     alt: 'Group on a guided ride on a flower-lined trail above Verbier',
-    eyebrow: 'Turnkey',
+    eyebrow: 'May to October · turnkey',
     title: 'Teambuilding',
     items: ['Corporate outing on an E-bike', 'Exploration of local produce', 'Visit of local restaurateurs'],
     cta: 'Information and Prices',
@@ -48,27 +49,27 @@ const offers = [
   },
 ];
 
-// ⚠ Counter values to CONFIRM with Guillermo (0 on the current Framer site).
+// Counters: sources verbier4vallees.ch (500 km of MTB routes, summer 2026 lifts) and verbier.ch (mountain restaurants), checked on 22.09.2026.
 const counters = [
-  { n: 15, label: 'Mountain-top restaurants', icon: 'utensils' },
-  { n: 400, label: 'km of marked trails', icon: 'route' },
+  { n: 15, label: 'Mountain restaurants and huts', icon: 'utensils' },
+  { n: 500, label: 'km of MTB routes', icon: 'route' },
   { n: 150, label: 'Bicycle days per year', icon: 'sun' },
-  { n: 30, label: 'Ski lifts', icon: 'gondola' },
+  { n: 18, label: 'Lifts open in summer', icon: 'gondola' },
 ];
 ---
 
 <Layout
   lang={lang}
   routeKey="home"
-  title="Mountain Bike Guide Verbier | E-bike & Enduro Tours | Bikeverbier.ch"
-  description="Local mountain bike guides in Verbier, Switzerland: guided e-bike and enduro tours, gourmet rides, private MTB lessons for adults and kids, e-bike rental. Guides born in Verbier, all levels welcome."
+  title="Mountain Biking in Verbier | MTB & E-bike Guides, Rental, Bike Park | Bikeverbier.ch"
+  description="Mountain biking in Verbier, Switzerland, with local guides: guided e-bike and enduro tours, gourmet rides, private MTB lessons, e-bike rental at CHF 125 per day, team building and the bike park explained. Guides born in Verbier, all levels welcome."
   ogImage={IMG.ogHome}
   jsonLd={true}
 >
   <section class="hero">
     <img class="hero__bg" src={IMG.heroHome} alt="Mountain biking down the trails of Verbier" width="1920" height="1280" fetchpriority="high" />
     <div class="hero__inner container">
-      <p class="eyebrow" style="color:#fff">Mountain bike guides in Verbier</p>
+      <p class="eyebrow" style="color:#fff">Mountain bike and e-bike guides in Verbier</p>
       <h1 class="h1" data-wipe>Discover the <span class="teal">hidden Verbier</span></h1>
       <p class="lead">Local mountain bike guides, e-bike and enduro tours: from remote trails to the flavours of Valais, let yourself be guided by locals born in Verbier.</p>
       <div class="hero-actions"><CtaButton href={pathFor('contact', lang)} label="Let's go!" variant="light" /><CallLink /></div>
@@ -126,6 +127,17 @@ const counters = [
     </section>
 
     <Reviews lang={lang} alt />
+
+    <CrossLinks
+      lang={lang}
+      links={[
+        { href: pathFor('itineraires', lang), label: 'Mountain biking in Verbier: trails, bike park, season' },
+        { href: `${pathFor('itineraires', lang)}#bike-park`, label: 'Verbier bike park: how it works' },
+        { href: pathFor('location', lang), label: 'E-bike and mountain bike rental in Verbier' },
+        { href: pathFor('entreprise', lang), label: 'MTB and e-bike team building' },
+        { href: pathFor('nepal', lang), label: 'Enduro trip to Nepal' },
+      ]}
+    />
 
     <section class="section">
       <div class="container">

@@ -9,7 +9,7 @@ interface Props {
 const { lang, routeKey } = Astro.props;
 const ui = t(lang);
 const homeHref = pathFor('home', lang);
-const cta = lang === 'fr' ? 'Réserver' : 'Book';
+const cta = ui.nav.cta;
 
 // Contact passe en bouton CTA → on le retire des liens.
 const navItems: RouteKey[] = ['guide', 'cours', 'entreprise', 'nepal'];
@@ -42,6 +42,8 @@ const navItems: RouteKey[] = ['guide', 'cours', 'entreprise', 'nepal'];
           <a href={pathFor(routeKey, 'fr')} aria-current={lang === 'fr' ? 'true' : undefined}>FR</a>
           <span aria-hidden="true">/</span>
           <a href={pathFor(routeKey, 'en')} aria-current={lang === 'en' ? 'true' : undefined}>EN</a>
+          <span aria-hidden="true">/</span>
+          <a href={pathFor(routeKey, 'de')} aria-current={lang === 'de' ? 'true' : undefined}>DE</a>
         </div>
         <a class="nav__cta" href={pathFor('contact', lang)}>{cta}</a>
       </div>

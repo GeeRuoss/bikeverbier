@@ -12,7 +12,7 @@ export const SITE = {
   // Adresse de contact « publique » (non affichée sur le site actuellement).
   contactEmail: 'info@bikeverbier.ch',
   // Réception des formulaires : Google Form « Messages du site bikeverbier.ch »
-  // (compte ruosscommunication@gmail.com — notification e-mail à chaque envoi, réponses archivées dans le Form).
+  // (compte ruosscommunication@gmail.com : notification e-mail à chaque envoi, réponses archivées dans le Form).
   // Remplace Formsubmit qui ne livrait plus aucun e-mail (constat du 10.07.2026).
   gform: {
     action:
@@ -37,21 +37,27 @@ export const SITE = {
   },
 } as const;
 
-export type Lang = 'fr' | 'en';
+// Trois langues depuis le 22.09.2026 : FR (racine), EN (/en/), DE (/de/).
+export type Lang = 'fr' | 'en' | 'de';
+export const LANGS = ['fr', 'en', 'de'] as const;
 
-// Routes équivalentes FR <-> EN. Sert au routage, aux hreflang et au sélecteur de langue.
-// On garde les slugs FR même en EN (cf. README : zéro redirection, zéro perte SEO).
+// Code de langue HTML, og:locale et hreflang de chaque version.
+export const LOCALES: Record<Lang, string> = { fr: 'fr-FR', en: 'en-GB', de: 'de-CH' };
+
+// Routes équivalentes FR <-> EN <-> DE. Sert au routage, aux hreflang et au sélecteur de langue.
+// FR et EN gardent les slugs historiques (cf. README : zéro redirection, zéro perte SEO).
+// DE est nouveau (09.2026) : slugs allemands, pensés pour les recherches alémaniques.
 // Slash final OBLIGATOIRE : GitHub Pages sert /guide/ (301 depuis /guide), et le sitemap
 // liste les URLs avec slash. Canonical, hreflang et liens internes doivent correspondre.
 export const ROUTES = [
-  { key: 'home', fr: '/', en: '/en/' },
-  { key: 'guide', fr: '/guide/', en: '/en/guide/' },
-  { key: 'entreprise', fr: '/entreprise/', en: '/en/entreprise/' },
-  { key: 'nepal', fr: '/nepal/', en: '/en/nepal/' },
-  { key: 'cours', fr: '/cours-vtt-verbier/', en: '/en/cours-vtt-verbier/' },
-  { key: 'location', fr: '/location-ebike-verbier/', en: '/en/location-ebike-verbier/' },
-  { key: 'itineraires', fr: '/vtt-verbier/', en: '/en/vtt-verbier/' },
-  { key: 'contact', fr: '/contact/', en: '/en/contact/' },
+  { key: 'home', fr: '/', en: '/en/', de: '/de/' },
+  { key: 'guide', fr: '/guide/', en: '/en/guide/', de: '/de/mtb-guide-verbier/' },
+  { key: 'entreprise', fr: '/entreprise/', en: '/en/entreprise/', de: '/de/teambuilding-verbier/' },
+  { key: 'nepal', fr: '/nepal/', en: '/en/nepal/', de: '/de/nepal/' },
+  { key: 'cours', fr: '/cours-vtt-verbier/', en: '/en/cours-vtt-verbier/', de: '/de/mtb-kurse-verbier/' },
+  { key: 'location', fr: '/location-ebike-verbier/', en: '/en/location-ebike-verbier/', de: '/de/fahrradverleih-verbier/' },
+  { key: 'itineraires', fr: '/vtt-verbier/', en: '/en/vtt-verbier/', de: '/de/mountainbike-verbier/' },
+  { key: 'contact', fr: '/contact/', en: '/en/contact/', de: '/de/kontakt/' },
 ] as const;
 
 export type RouteKey = (typeof ROUTES)[number]['key'];
@@ -60,3 +66,6 @@ export function pathFor(key: RouteKey, lang: Lang): string {
   const r = ROUTES.find((x) => x.key === key);
   return r ? r[lang] : '/';
 }
+
+// Pages de remerciement après envoi d'un formulaire (hors ROUTES : autonomes, noindex).
+export const THANKS: Record<Lang, string> = { fr: '/merci/', en: '/en/thank-you/', de: '/de/danke/' };

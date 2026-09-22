@@ -55,3 +55,10 @@ Extrait du site Framer en live (CSS calculé réel). À reproduire dans la refon
 
 ## Responsive
 Desktop : cartes image+texte côte à côte, hero plein écran. Mobile : empilement vertical (image au-dessus du texte), nav en menu burger probable, tailles typo réduites. Tester aux breakpoints classiques (~768px, ~480px). Mobile-first au build.
+
+## Composants ajoutés le 22.09.2026 (global.css)
+- `.season` + `.season__bg` + `.season__big` : bandeau pleine largeur photo + voile + très grand titre (page entreprise, « De mai à octobre »).
+- `.timeline` (déroulé horaire) et `.timeline--steps` (étapes numérotées dans une pastille).
+- `.checks` : liste à coches hors carte d'offre (formules).
+- `.infobox` + `.infobox-grid` : encadrés pratiques (bike park : accès, saison, forfaits, règles).
+- `.figure` : photo pleine largeur de section, sans légende (les crédits sont sur /credits/).

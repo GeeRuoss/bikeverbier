@@ -1,0 +1,88 @@
+---
+// Crédits photos (page autonome, trilingue, hors sitemap). Requis par les licences
+// Creative Commons des photos ajoutées le 22.09.2026. Voir src/data/credits.ts.
+import '@fontsource-variable/inter';
+import '../styles/global.css';
+import { PHOTO_CREDITS } from '../data/credits';
+import { SITE } from '../data/site';
+---
+
+<!doctype html>
+<html lang="fr-FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Crédits photos · Photo credits · Bildnachweis | Bikeverbier.ch</title>
+    <meta name="description" content="Crédits des photos utilisées sur bikeverbier.ch : Tiffany Troillet, Soren Rickards et photos sous licence Creative Commons." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://www.bikeverbier.ch/credits/" />
+    <meta name="theme-color" content="#54B8B3" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  </head>
+  <body>
+    <main class="container" style="padding-block: 3rem 5rem">
+      <a href="/" aria-label="Bikeverbier.ch, accueil" style="display:inline-block">
+        <img src="/brand/logo-mark.png" alt="Bikeverbier.ch" width="64" height="64" />
+      </a>
+      <h1 class="h2" style="margin-top:2rem">Crédits photos · Photo credits · Bildnachweis</h1>
+      <p class="lead" style="margin-top:1rem; max-width:60ch">
+        Photos de Verbier et des sorties : <a href={SITE.credits.photosUrl} target="_blank" rel="noopener noreferrer">{SITE.credits.photos}</a>. Photos du Népal : Soren Rickards. Les photos ci-dessous viennent de Wikimedia Commons, sous licence Creative Commons.
+      </p>
+      <p style="margin-top:.75rem; max-width:60ch; color:var(--gray-text)">
+        Photos of Verbier and our rides by Tiffany Troillet Photography, Nepal photos by Soren Rickards. The photos below come from Wikimedia Commons under Creative Commons licences. · Fotos von Verbier und unseren Touren: Tiffany Troillet Photography, Nepal: Soren Rickards. Die folgenden Fotos stammen von Wikimedia Commons unter Creative-Commons-Lizenz.
+      </p>
+
+      <ul class="credits" style="margin-top:2.5rem">
+        {PHOTO_CREDITS.map((c) => (
+          <li>
+            <img src={c.file} alt={c.title} width="240" height="160" loading="lazy" />
+            <div>
+              <p style="font-weight:600">{c.title}</p>
+              <p style="color:var(--gray-text)">{c.author} · <a href={c.licenseUrl} target="_blank" rel="noopener noreferrer">{c.license}</a> · <a href={c.source} target="_blank" rel="noopener noreferrer">Wikimedia Commons</a></p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <p style="margin-top:3rem; display:flex; gap:1.25rem; flex-wrap:wrap; font-weight:600">
+        <a href="/">Accueil</a><a href="/en/">Home</a><a href="/de/">Startseite</a>
+      </p>
+    </main>
+
+    <style>
+      .credits {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .credits li {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 1rem;
+        align-items: center;
+      }
+      .credits img {
+        width: 120px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: var(--radius-card);
+      }
+      .credits a,
+      main > p a {
+        color: var(--teal-dark);
+        text-decoration: underline;
+        text-underline-offset: 2px;
+      }
+      @media (min-width: 600px) {
+        .credits li {
+          grid-template-columns: 240px 1fr;
+        }
+        .credits img {
+          width: 240px;
+          height: 160px;
+        }
+      }
+    </style>
+  </body>
+</html>
