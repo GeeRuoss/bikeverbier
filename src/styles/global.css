@@ -872,13 +872,16 @@ button {
 
 /* ---------- Figure photo avec légende courte ---------- */
 .figure {
-  margin-top: 2.5rem;
+  margin: 2.5rem auto 0;
+  max-width: 720px;
 }
 .figure img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 5 / 2;
+  max-height: 280px;
   object-fit: cover;
   border-radius: var(--radius-card);
+  opacity: 0.96;
 }
 .figure figcaption {
   margin-top: 0.6rem;
