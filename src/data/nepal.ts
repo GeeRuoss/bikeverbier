@@ -10,8 +10,8 @@ export const TRIP = {
   price: 5400,
   currency: 'CHF',
   spots: 3,
-  // Dates du départ 2026 (ISO pour le schema, libellés pour l'affichage).
-  validFrom: '2026-11-05',
+  // validFrom : date de publication du prix (12.08.2026) ; priceValidUntil : date du départ (ISO pour le schema)
+  validFrom: '2026-08-12',
   priceValidUntil: '2026-11-05',
 
   datesLabel: '5 au 14 novembre 2026',

@@ -28,21 +28,21 @@ const sorties = [
     title: 'Das Val de Bagnes entdecken',
     text: 'Alpwege, Dörfer, Blick auf die Combins. Wir fahren, wir halten an, wir schauen. Perfekt für das erste Mal.',
     facts: [
-      { icon: 'clock', k: 'Dauer', v: '2 bis 3 Stunden' },
-      { icon: 'trending', k: 'Höhenmeter', v: 'rund 300 m, den Rest macht das E-Bike' },
+      { icon: 'clock', k: 'Dauer', v: 'ein halber Tag' },
+      { icon: 'trending', k: 'Höhenmeter', v: 'wenige, das E-Bike hilft mit' },
       { icon: 'users', k: 'Für wen', v: 'Familien, Anfänger, Paare' },
-      { icon: 'flag', k: 'Richtpreis', v: 'Guide ab CHF 80.- pro Person, E-Bike CHF 125.-' },
+      { icon: 'flag', k: 'Richtpreis', v: 'Guide CHF 195.- pro Person zu zweit, CHF 80.- ab sechs Personen; E-Bike CHF 125.-' },
     ],
   },
   {
     id: 'gourmet', icon: 'utensils', btn: 'Genuss',
-    title: 'Die Gourmet-Tour',
-    text: 'Morgens in die Pedale treten, mittags geniessen: Walliser Teller, Käse aus Bagnes, eine Terrasse mit Blick auf die Gipfel. Das ist unsere Gourmet-Tour.',
+    title: 'Die Genusstour',
+    text: 'Morgens in die Pedale treten, mittags geniessen: Walliser Teller, Käse aus Bagnes, eine Terrasse mit Blick auf die Gipfel. Das ist unsere Genusstour.',
     facts: [
       { icon: 'clock', k: 'Dauer', v: 'ganzer Tag' },
-      { icon: 'trending', k: 'Höhenmeter', v: '500 bis 800 m' },
-      { icon: 'users', k: 'Für wen', v: 'alle, ab 16 Jahren mit einem Miet-E-Bike' },
-      { icon: 'flag', k: 'Richtpreis', v: 'Guide ab CHF 120.- pro Person, Essen extra' },
+      { icon: 'trending', k: 'Höhenmeter', v: 'mittel' },
+      { icon: 'users', k: 'Für wen', v: 'alle, Familien inklusive (Miet-E-Bike ab 16 Jahren)' },
+      { icon: 'flag', k: 'Richtpreis', v: 'Guide CHF 290.- pro Person zu zweit, CHF 120.- ab sechs Personen; Essen extra' },
     ],
   },
   {
@@ -51,29 +51,29 @@ const sorties = [
     text: 'Pässe, Grate, Panorama auf die Combins und den Mont Blanc, Singletrails bergab. Für alle, die Höhenmeter und Aussicht wollen.',
     facts: [
       { icon: 'clock', k: 'Dauer', v: 'ganzer Tag' },
-      { icon: 'trending', k: 'Höhenmeter', v: '1000 m und mehr' },
+      { icon: 'trending', k: 'Höhenmeter', v: 'viele, für trainierte Beine' },
       { icon: 'users', k: 'Für wen', v: 'sichere Biker, E-Bike oder Enduro' },
-      { icon: 'flag', k: 'Richtpreis', v: 'Guide ab CHF 120.- pro Person' },
+      { icon: 'flag', k: 'Richtpreis', v: 'Guide CHF 290.- pro Person zu zweit, CHF 120.- ab sechs Personen' },
     ],
   },
 ];
 
 const pourquoi = [
-  { icon: 'battery', title: 'Bergauf ohne zu leiden', text: 'Die Unterstützung bügelt die Steigung weg. Den Atem sparen Sie sich für die Aussicht.' },
+  { icon: 'battery', title: 'Mühelos bergauf', text: 'Die Unterstützung bügelt die Steigung weg. Den Atem sparen Sie sich für die Aussicht.' },
   { icon: 'users', title: 'Alle zusammen', text: 'Sportler und Anfänger fahren Seite an Seite. Jeder stellt seine Unterstützung selbst ein.' },
   { icon: 'route', title: 'Weiter, höher', text: 'Pässe, die mit dem normalen Bike wehtun, werden zur gemütlichen Tour.' },
   { icon: 'utensils', title: 'Bis zur Hütte', text: 'Ein Dutzend Bergrestaurants auf unseren Routen im Wallis. Wir reservieren für Sie.' },
 ];
 
 const etapes = [
-  { t: 'Sie schreiben uns', x: 'WhatsApp oder Telefon: Ihre Termine, Ihr Niveau, Ihre Wünsche. Wir antworten noch am selben Tag.' },
+  { t: 'Sie schreiben uns', x: 'WhatsApp oder Telefon: Ihre Termine, Ihr Niveau, Ihre Wünsche. Wir antworten innert 24 Stunden.' },
   { t: 'Wir bereiten alles vor', x: 'E-Bikes bei unseren Partnern reserviert, Route nach Wetter und Gruppe gewählt, Hütte reserviert, wenn Sie oben essen möchten.' },
   { t: 'Wir fahren', x: 'Treffpunkt in Verbier, Einstellungen, zehn Minuten Briefing. Und los.' },
 ];
 
 const faq = [
   { q: 'Brauche ich MTB-Erfahrung für eine geführte E-Bike-Tour?', a: 'Nein. Wenn Sie Velo fahren können, können Sie auch E-Bike fahren. Wir starten auf breiten Wegen und nehmen die Singletrails nur, wenn die Gruppe Lust darauf hat.' },
-  { q: 'Wie lange hält der Akku eines E-Bikes in den Bergen?', a: 'Ein voller Akku hält einen Tag, also rund 1000 bis 1500 Höhenmeter, je nach Unterstützung und Gewicht des Fahrers. Der Guide dosiert die Unterstützung, damit alle mit Reserve im Akku zurückkommen.' },
+  { q: 'Wie lange hält der Akku eines E-Bikes in den Bergen?', a: "Ein voller Akku hält in der Regel eine Tagestour, je nach Unterstützung, Gewicht des Fahrers und Höhenmetern. Der Guide dosiert die Unterstützung, damit alle mit Restakku zurückkommen." },
   { q: 'Ab welchem Alter?', a: 'Mit einem Miet-E-Bike ab 16 Jahren (ab 14 mit Mofa-Ausweis). Für Jüngere suchen wir bei unseren Partnern ein Kinderbike, auf Anfrage und je nach Verfügbarkeit.' },
   { q: 'Kann ich mit meinem eigenen E-Bike kommen?', a: 'Natürlich. Sie zahlen nur den Guide: CHF 80.- bis 320.- für einen halben Tag und CHF 120.- bis 550.- für einen ganzen Tag pro Person, je nach Gruppengrösse.' },
   { q: 'Was muss ich mitnehmen?', a: 'Sportkleidung, geschlossene Turnschuhe, eine Windjacke, Sonnenbrille, Wasser und Sonnencreme. Der Helm ist beim E-Bike dabei.' },
@@ -91,7 +91,7 @@ const faqLd = {
   lang={lang}
   routeKey="ebike"
   title="E-Bike-Touren Verbier | Geführte Touren mit einheimischen Guides, ab CHF 80.- | Bikeverbier.ch"
-  description="Geführte E-Bike-Touren in Verbier mit Guides von hier: Val de Bagnes, Alpweiden, Bergrestaurants, Gourmet-Tour. Ab CHF 80.- pro Person, E-Bike CHF 125.- pro Tag."
+  description="Geführte E-Bike-Touren in Verbier mit Guides von hier: Val de Bagnes, Alpweiden, Bergrestaurants, Genusstour. Ab CHF 80.- pro Person, E-Bike CHF 125.- pro Tag."
   ogImage={IMG.heroEbike}
 >
   <section class="hero">
@@ -110,7 +110,7 @@ const faqLd = {
         {stats.map((c) => (
           <div data-reveal>
             <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
             <div class="counter__label">{c.label}</div>
           </div>
         ))}
@@ -160,7 +160,7 @@ const faqLd = {
           ))}
         </div>
         <figure class="figure" data-reveal>
-          <img src={IMG.libreEbike} alt="Vollgefedertes E-Mountainbike auf einem Bergweg" width="1600" height="720" loading="lazy" />
+          <img src={IMG.cardEntreprise} alt="Gruppe mit E-Bikes auf einem blumengesäumten Weg oberhalb von Verbier" width="1200" height="800" loading="lazy" />
         </figure>
       </div>
     </section>
@@ -197,7 +197,7 @@ const faqLd = {
       lang={lang}
       links={[
         { href: pathFor('location', lang), label: 'E-Bike mieten in Verbier' },
-        { href: pathFor('guide', lang), label: 'Privater MTB-Guide und Gourmet-Tour' },
+        { href: pathFor('guide', lang), label: 'Privater MTB-Guide und Genusstour' },
         { href: pathFor('entreprise', lang), label: 'Teambuilding mit dem E-Bike' },
         { href: pathFor('itineraires', lang), label: 'Mountainbike Verbier: der komplette Guide' },
       ]}

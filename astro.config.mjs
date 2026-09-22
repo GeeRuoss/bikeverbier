@@ -14,16 +14,12 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // FR à la racine (défaut), EN sous /en/, DE sous /de/ : génère les hreflang dans le sitemap.
-      i18n: {
-        defaultLocale: 'fr',
-        locales: { fr: 'fr-FR', en: 'en-GB', de: 'de-CH' },
-      },
-      // Pages de remerciement (post-formulaire) et 404 : hors sitemap, elles sont en noindex.
+      // hreflang : déclarés dans le HTML de chaque page (complets et réciproques, 7 par page).
+      // Le bloc i18n du sitemap a été retiré le 23.09.2026 : il ne couvrait pas les slugs allemands.
+      // Pages de remerciement (post-formulaire) et 404 : hors sitemap, elles sont en noindex. /credits/ : hors sitemap, page utilitaire.
       filter: (page) => !page.includes('/merci') && !page.includes('/thank-you') && !page.includes('/danke') && !page.includes('/credits') && !page.includes('/404'),
       changefreq: 'monthly',
       priority: 0.7,
-      lastmod: new Date(),
       serialize(item) {
         // L'accueil (FR et EN) en priorité maximale.
         if (item.url.endsWith('bikeverbier.ch/') || item.url.endsWith('/en/') || item.url.endsWith('/de/')) {

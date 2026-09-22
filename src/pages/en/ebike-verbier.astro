@@ -28,10 +28,10 @@ const sorties = [
     title: 'Discovering the Val de Bagnes',
     text: 'Alpine paths, villages, views over the Combins. We ride, we stop, we look. Perfect for a first time.',
     facts: [
-      { icon: 'clock', k: 'Duration', v: '2 to 3 hours' },
-      { icon: 'trending', k: 'Climbing', v: 'around 300 m, the e-bike does the rest' },
+      { icon: 'clock', k: 'Duration', v: 'half a day' },
+      { icon: 'trending', k: 'Climbing', v: 'gentle, the e-bike does the rest' },
       { icon: 'users', k: 'For whom', v: 'families, beginners, couples' },
-      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 80 per person, e-bike CHF 125' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide CHF 195 per person for two, CHF 80 from six; e-bike CHF 125' },
     ],
   },
   {
@@ -40,9 +40,9 @@ const sorties = [
     text: 'We pedal in the morning, we feast at noon: Valais platter, Bagnes cheese, a terrace facing the peaks. This is our gourmet ride.',
     facts: [
       { icon: 'clock', k: 'Duration', v: 'full day' },
-      { icon: 'trending', k: 'Climbing', v: '500 to 800 m' },
-      { icon: 'users', k: 'For whom', v: 'everyone, from age 16 on a rental e-bike' },
-      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 120 per person, lunch extra' },
+      { icon: 'trending', k: 'Climbing', v: 'moderate' },
+      { icon: 'users', k: 'For whom', v: 'everyone, families included (rental e-bike from age 16)' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide CHF 290 per person for two, CHF 120 from six; lunch extra' },
     ],
   },
   {
@@ -51,9 +51,9 @@ const sorties = [
     text: 'Passes, ridges, views over the Combins and Mont Blanc, singletracks on the way down. For those who want climbing and views.',
     facts: [
       { icon: 'clock', k: 'Duration', v: 'full day' },
-      { icon: 'trending', k: 'Climbing', v: '1,000 m and more' },
+      { icon: 'trending', k: 'Climbing', v: 'big, for strong legs' },
       { icon: 'users', k: 'For whom', v: 'confident riders, e-bike or enduro' },
-      { icon: 'flag', k: 'Ballpark', v: 'guide from CHF 120 per person' },
+      { icon: 'flag', k: 'Ballpark', v: 'guide CHF 290 per person for two, CHF 120 from six' },
     ],
   },
 ];
@@ -66,14 +66,14 @@ const pourquoi = [
 ];
 
 const etapes = [
-  { t: 'You message us', x: 'WhatsApp or phone: your dates, your level, what you fancy. We reply the same day.' },
+  { t: 'You message us', x: 'WhatsApp or phone: your dates, your level, what you fancy. We reply within 24 hours.' },
   { t: 'We prepare everything', x: 'E-bikes booked with our partners, route chosen for the weather and the group, hut booked if you want to eat up there.' },
   { t: 'We ride', x: 'Meeting point in Verbier, set-up, a ten-minute briefing. And off we go.' },
 ];
 
 const faq = [
   { q: 'Do I need mountain biking skills for an e-bike ride?', a: 'No. If you can ride a bike, you can ride an e-bike. We start on wide paths and only take the singletracks if the group feels like it.' },
-  { q: 'How far does an e-bike go in the mountains?', a: 'A full battery lasts a day, around 1,000 to 1,500 m of climbing depending on the assistance and the rider’s weight. The guide manages the assistance so everyone gets home with battery to spare.' },
+  { q: 'How far does an e-bike go in the mountains?', a: "A full battery usually lasts a day's ride, depending on the assistance, the rider's weight and the climbing. The guide manages the assistance so everyone gets home with battery to spare." },
   { q: 'From what age?', a: 'On a rental e-bike, from age 16 (14 with a moped licence). Younger, we look for a kids’ bike with our partners, on request and depending on availability.' },
   { q: 'Can I bring my own e-bike?', a: 'Of course. You only pay for the guide, CHF 80 to 320 for a half day and CHF 120 to 550 for a full day per person, depending on group size.' },
   { q: 'What should I bring?', a: 'Sports clothes, closed trainers, a windproof jacket, sunglasses, water and sunscreen. The helmet comes with the e-bike.' },
@@ -91,7 +91,7 @@ const faqLd = {
   lang={lang}
   routeKey="ebike"
   title="E-bike Tours in Verbier | Guided Electric Bike Rides, from CHF 80 | Bikeverbier.ch"
-  description="Guided e-bike tours in Verbier with guides born here: Val de Bagnes, alpine pastures, mountain restaurants, gourmet ride. From CHF 80 per person, e-bike CHF 125 per day."
+  description="Guided e-bike tours in Verbier with guides born here: Val de Bagnes, mountain restaurants, gourmet ride. From CHF 80 per person, e-bike CHF 125 per day."
   ogImage={IMG.heroEbike}
 >
   <section class="hero">
@@ -110,7 +110,7 @@ const faqLd = {
         {stats.map((c) => (
           <div data-reveal>
             <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
             <div class="counter__label">{c.label}</div>
           </div>
         ))}
@@ -160,7 +160,7 @@ const faqLd = {
           ))}
         </div>
         <figure class="figure" data-reveal>
-          <img src={IMG.libreEbike} alt="Full-suspension electric mountain bike lying on a mountain path" width="1600" height="720" loading="lazy" />
+          <img src={IMG.cardEntreprise} alt="Group on e-bikes on a flower-lined path above Verbier" width="1200" height="800" loading="lazy" />
         </figure>
       </div>
     </section>

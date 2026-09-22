@@ -7,7 +7,6 @@ import Footer from '../components/Footer.astro';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { SITE, ROUTES, LOCALES, pathFor, type Lang, type RouteKey } from '../data/site';
 import { IMG } from '../data/images';
-import { REVIEWS } from '../data/reviews';
 import { TRIP } from '../data/nepal';
 import { t } from '../i18n/ui';
 
@@ -44,14 +43,8 @@ const businessDescription = tr(
   'Lokale Mountainbike-Guides in Verbier (Wallis, Schweiz): geführte E-Bike- und Enduro-Touren, Genusstouren, Privatkurse für Erwachsene und Kinder, E-Bike-Verleih und eine Enduro-Reise nach Nepal. In Verbier geborene Guides, Swiss Cycling zertifiziert, für alle Niveaus.'
 );
 
-// Avis clients (reviews.ts) exposés en JSON-LD : Google n'affiche plus d'étoiles pour les
-// avis hébergés sur son propre site, mais les autres moteurs et les IA les lisent.
-const reviewsLd = REVIEWS[lang].map((r) => ({
-  '@type': 'Review',
-  reviewRating: { '@type': 'Rating', ratingValue: 5, bestRating: 5 },
-  author: { '@type': 'Person', name: r.author.split(',')[0].trim() },
-  reviewBody: r.quote,
-}));
+// Avis clients : affichés sur les pages (composant Reviews), mais PAS déclarés en JSON-LD.
+// Retiré le 23.09.2026 : Google interdit les avis auto-déclarés sur LocalBusiness (self-serving reviews).
 
 const businessLd = {
   '@context': 'https://schema.org',
@@ -78,13 +71,6 @@ const businessLd = {
   geo: { '@type': 'GeoCoordinates', latitude: 46.0979, longitude: 7.227 },
   areaServed: { '@type': 'Place', name: 'Verbier, Val de Bagnes, Valais, Suisse' },
   sameAs: [SITE.instagram, SITE.googleMaps],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 5,
-    bestRating: 5,
-    reviewCount: REVIEWS[lang].length,
-  },
-  review: reviewsLd,
   makesOffer: [
     {
       '@type': 'Offer',
@@ -232,8 +218,12 @@ const breadcrumbLd =
       }
 
       // Compteurs animés (montent depuis 0 à l'entrée dans le viewport).
+      // La vraie valeur est dans le HTML (lisible par les robots sans JavaScript) ;
+      // on remet à 0 au chargement puis on anime à l'entrée dans l'écran.
       const counters = document.querySelectorAll<HTMLElement>('[data-count]');
-      if (counters.length) {
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (counters.length && !reduceMotion) {
+        counters.forEach((el) => { el.textContent = '0'; });
         const run = (el: HTMLElement) => {
           const target = Number(el.dataset.count || '0');
           const dur = 1400;
@@ -258,6 +248,19 @@ const breadcrumbLd =
         );
         counters.forEach((el) => cio.observe(el));
       }
+
+      // Suivi des contacts dans GA4 (23.09.2026) : clic WhatsApp et clic téléphone.
+      // À marquer comme « événements clés » dans GA4 (Admin > Événements) pour les compter comme demandes.
+      document.addEventListener('click', (e) => {
+        const a = (e.target as HTMLElement | null)?.closest?.('a');
+        if (!a) return;
+        const href = a.getAttribute('href') || '';
+        const name = href.startsWith('tel:') ? 'contact_phone' : href.includes('wa.me/') ? 'contact_whatsapp' : '';
+        const g = (window as unknown as { gtag?: (...args: unknown[]) => void }).gtag;
+        if (name && typeof g === 'function') {
+          g('event', name, { page_path: location.pathname, link_text: (a.textContent || '').trim().slice(0, 60), transport_type: 'beacon' });
+        }
+      });
 
       // Formulaires de contact → Google Form (voir site.ts). Les champs annexes (nom sans
       // « entry.* » : riders, couples, week, _context…) sont fusionnés en tête du message,

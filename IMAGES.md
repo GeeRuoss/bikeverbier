@@ -71,7 +71,7 @@ Servies depuis `public/img/libre/` (WebP 1600 px, bandeau 1920 px), copies 2000 
 | `verbier-village-ete.webp` | Page entreprise, bloc « Pourquoi Verbier » | CC BY-SA 4.0, Jérémy Toma |
 | `melezes-automne-valais.webp` | Bandeau « De mai à octobre » (page entreprise) | CC BY-SA 4.0, Giles Laurent (forêt d'Aletsch) |
 | `vtt-verbier-singletrack.webp` | Carte « Les sentiers au-dessus de la station » | CC BY-SA 2.0, /kallu |
-| `ebike-tout-suspendu.webp` | Carte e-bike (page location) | CC0, N1k0mmons (Les Saisies) |
+| `ebike-tout-suspendu.webp` | Plus utilisée dans les pages depuis le 23.09 (remplacée par des photos de Verbier), gardée pour les crédits | CC0, N1k0mmons (Les Saisies) |
 | `lourtier-val-de-bagnes.webp` | Page location, bloc « Où rouler » | CC0, Plutowiki |
 | `grand-combin-la-chaux.webp` | Page guide | CC BY-SA 4.0, Zacharie Grossen |
 | `vtt-sentier-alpin.webp` | Page cours | CC BY 2.0, TRAILSOURCE.COM (Lenzerheide) |

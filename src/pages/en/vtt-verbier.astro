@@ -30,7 +30,7 @@ const terrains = [
     icon: 'gondola',
     eyebrow: 'Bike park',
     title: 'The Verbier bike park',
-    desc: "Médran gondola, then 9 trails and 19 km of descent, from the green learning trail to the Tire's Fire race track, maintained all summer. Perfect for progressing by stacking up runs. How it works is a little further down.",
+    desc: "Nine trails and 19 km of descent, from the green learning trail to the Tire's Fire race track, served from Médran, La Chaux and Savoleyres. Perfect for progressing by stacking up runs. How it works is a little further down.",
   },
   {
     img: IMG.guideGourmande,
@@ -51,32 +51,32 @@ const tips = [
 
 // Verbier bike park trails, 2026 season (verbierbikepark.ch and verbier.ch, checked on 22.09.2026).
 const pistes = [
-  { n: '09', nom: 'Tsenelle', color: 'green', niveau: 'Green', type: 'Learning, flow', km: '1.9 km', d: '187 m' },
-  { n: '08', nom: 'Chôtatai', color: 'blue', niveau: 'Blue', type: 'Flow, 5 km down to La Tzoumaz', km: '5 km', d: '680 m' },
-  { n: '02', nom: 'Tsopu', color: 'blue', niveau: 'Blue', type: 'Flow', km: '2.4 km', d: '389 m' },
-  { n: '04', nom: 'Wouaiy', color: 'red', niveau: 'Red', type: 'Flow and trail', km: '2.2 km', d: '529 m' },
-  { n: '03', nom: 'Tû çuci', color: 'red', niveau: 'Red', type: 'Freeride, jumps', km: '1.1 km', d: '527 m' },
-  { n: '07', nom: 'Rôdze', color: 'red', niveau: 'Red', type: 'Jumps, 65 features', km: '2.1 km', d: '307 m' },
-  { n: '06', nom: 'Bortabitche', color: 'red', niveau: 'Red to black', type: 'Freeride, jumps', km: '1.3 km', d: '227 m' },
-  { n: '01', nom: "Tire's Fire", color: 'race', niveau: 'Race', type: 'Race track, European DH Cup', km: '2.3 km', d: '573 m' },
-  { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Black', type: 'Technical', km: '0.6 km', d: '130 m' },
+  { n: '09', nom: 'Tsenelle', color: 'green', niveau: 'Green', type: "Learning, flow · La Chaux, 4 July to 21 Sept", km: '1.9 km', d: '187 m' },
+  { n: '08', nom: 'Chôtatai', color: 'blue', niveau: 'Blue', type: "Flow, 5 km down to La Tzoumaz · Savoleyres, 4 July to 30 Aug, plus 3 Sept weekends", km: '5 km', d: '680 m' },
+  { n: '02', nom: 'Tsopu', color: 'blue', niveau: 'Blue', type: "Flow · Médran, 4 June to 25 Oct", km: '2.4 km', d: '389 m' },
+  { n: '04', nom: 'Wouaiy', color: 'red', niveau: 'Red', type: "Flow and trail · Médran, 4 June to 25 Oct", km: '2.2 km', d: '529 m' },
+  { n: '03', nom: 'Tû çuci', color: 'red', niveau: 'Red', type: "Freeride, jumps · Médran, 4 June to 25 Oct", km: '1.1 km', d: '527 m' },
+  { n: '07', nom: 'Rôdze', color: 'red', niveau: 'Red', type: "Jumps, 65 features · La Chaux, 4 July to 21 Sept", km: '2.1 km', d: '307 m' },
+  { n: '06', nom: 'Bortabitche', color: 'red', niveau: 'Red to black', type: "Freeride, jumps · La Chaux, 4 July to 21 Sept", km: '1.3 km', d: '227 m' },
+  { n: '01', nom: "Tire's Fire", color: 'race', niveau: 'Race', type: "Race track, European DH Cup · Médran, 4 June to 25 Oct", km: '2.3 km', d: '573 m' },
+  { n: '05', nom: 'Woooohhh', color: 'black', niveau: 'Black', type: "Technical · Médran, 4 June to 25 Oct", km: '0.6 km', d: '130 m' },
 ];
 
 // Itinéraires enduro balisés (Verbier Bikepark, relevé le 22.09.2026). Niveau officiel : Débutant / Avancé / Expert.
 const enduros = [
-  { nom: "Ruinettes - Clambin - Le Châble", color: 'green', niveau: 'Beginner', type: "14 km, no singletrack", km: "1,743 m of descent", d: '2,204 → 825 m' },
-  { nom: "La Planie", color: 'green', niveau: 'Beginner', type: "10.5 km, no singletrack", km: "452 m of descent", d: '2,215 → 2,120 m' },
-  { nom: "Verbier - Le Châble", color: 'green', niveau: 'Beginner', type: "6.4 km, 1.2 km of singletrack", km: "830 m of descent", d: '1,528 → 827 m' },
-  { nom: "La Côt - Bruson", color: 'green', niveau: 'Beginner', type: "7.2 km, no singletrack", km: "867 m of descent", d: '1,545 → 971 m' },
-  { nom: "La Côt - Le Châble", color: 'green', niveau: 'Beginner', type: "8.2 km, no singletrack", km: "993 m of descent", d: '1,553 → 825 m' },
-  { nom: "Croix de Cœur - La Tzoumaz", color: 'green', niveau: 'Beginner', type: "3.9 km, 2.6 km of singletrack", km: "646 m of descent", d: '2,346 → 1,700 m' },
-  { nom: "La Chaux - Schlérondes - Le Châble", color: 'red', niveau: 'Advanced', type: "7.7 km, 6.2 km of singletrack", km: "1,576 m of descent", d: '2,192 → 862 m' },
-  { nom: "Fontanet - La Chaux", color: 'red', niveau: 'Advanced', type: "6 km, 4.2 km of singletrack", km: "522 m of descent", d: '2,475 → 2,233 m' },
-  { nom: "Larzai - Bruson", color: 'red', niveau: 'Advanced', type: "8.5 km, 6.2 km of singletrack", km: "1,312 m of descent", d: '2,163 → 1,079 m' },
-  { nom: "Six Blanc - Lourtier", color: 'red', niveau: 'Advanced', type: "19.8 km, 8.5 km of singletrack", km: "1,874 m of descent", d: '1,549 → 1,084 m' },
-  { nom: "Cabane Mont-Fort - La Chaux - Lourtier", color: 'black', niveau: 'Expert', type: "7.8 km, 6.8 km of singletrack", km: "1,449 m of descent", d: '2,429 → 1,067 m' },
-  { nom: "Col de Mille", color: 'black', niveau: 'Expert', type: "14.7 km, 9.9 km of singletrack", km: "1,862 m of descent", d: '2,063 → 1,879 m' },
-  { nom: "Vallon d’Arby", color: 'black', niveau: 'Expert', type: "4.6 km, 3.1 km of singletrack", km: "669 m of descent", d: '2,324 → 1,725 m' },
+  { nom: "Ruinettes - Clambin - Le Châble", color: 'green', niveau: 'Beginner', type: "14 km, no singletrack", km: "1,743 m of descent", d: "374 m of climbing" },
+  { nom: "La Planie", color: 'green', niveau: 'Beginner', type: "10.5 km, no singletrack", km: "452 m of descent", d: "537 m of climbing" },
+  { nom: "Verbier - Le Châble", color: 'green', niveau: 'Beginner', type: "6.4 km, 1.2 km of singletrack", km: "830 m of descent", d: "129 m of climbing" },
+  { nom: "La Côt - Bruson", color: 'green', niveau: 'Beginner', type: "7.2 km, no singletrack", km: "867 m of descent", d: "293 m of climbing" },
+  { nom: "La Côt - Le Châble", color: 'green', niveau: 'Beginner', type: "8.2 km, no singletrack", km: "993 m of descent", d: "271 m of climbing" },
+  { nom: "Croix de Cœur - La Tzoumaz", color: 'green', niveau: 'Beginner', type: "3.9 km, 2.6 km of singletrack", km: "646 m of descent", d: "0 m of climbing" },
+  { nom: "La Chaux - Schlérondes - Le Châble", color: 'red', niveau: 'Advanced', type: "7.7 km, 6.2 km of singletrack", km: "1,576 m of descent", d: "248 m of climbing" },
+  { nom: "Fontanet - La Chaux", color: 'red', niveau: 'Advanced', type: "6 km, 4.2 km of singletrack", km: "522 m of descent", d: "285 m of climbing" },
+  { nom: "Larzai - Bruson", color: 'red', niveau: 'Advanced', type: "8.5 km, 6.2 km of singletrack", km: "1,312 m of descent", d: "342 m of climbing" },
+  { nom: "Six Blanc - Lourtier", color: 'red', niveau: 'Advanced', type: "19.8 km, 8.5 km of singletrack", km: "1,874 m of descent", d: "1,181 m of climbing" },
+  { nom: "Cabane Mont-Fort - La Chaux - Lourtier", color: 'black', niveau: 'Expert', type: "7.8 km, 6.8 km of singletrack", km: "1,449 m of descent", d: "85 m of climbing" },
+  { nom: "Col de Mille", color: 'black', niveau: 'Expert', type: "14.7 km, 9.9 km of singletrack", km: "1,862 m of descent", d: "684 m of climbing" },
+  { nom: "Vallon d’Arby", color: 'black', niveau: 'Expert', type: "4.6 km, 3.1 km of singletrack", km: "669 m of descent", d: "212 m of climbing" },
 ];
 
 const chiffres = [
@@ -97,7 +97,7 @@ const faq = [
   },
   {
     q: 'Is Verbier suitable for beginner mountain bikers?',
-    a: 'Yes. Thanks to e-bikes and the gentle paths of the Val de Bagnes, a beginner can enjoy it from the first ride. At the bike park, the green Tsenelle trail and the blue Chôtatai and Tsopu are made for learning. Our guided tours and private lessons adapt to every level, families and children included.',
+    a: 'Yes. Thanks to e-bikes and the gentle paths of the Val de Bagnes, a beginner can enjoy it from the first ride. At the bike park, the green Tsenelle (4 July to 21 September) and the blue Chôtatai (July and August) are made for learning; outside those dates, start on the blue Tsopu, from Médran. Our guided tours and private lessons adapt to every level, families and children included.',
   },
   {
     q: 'When does the Verbier bike park open?',
@@ -105,7 +105,7 @@ const faq = [
   },
   {
     q: 'How much is a bike park pass in Verbier?',
-    a: 'In 2026 the Verbier Bike Pass (Verbier, Bruson, La Tzoumaz) costs CHF 47 per day for an adult, CHF 40 for a youth and CHF 24 for a child; the 4 Vallées Bike Pass costs CHF 57. Guests who pay the tourist tax receive the VIP Pass, which gives 50 % off the 4 Vallées day bike pass. Buy online at verbier4vallees.ch, with 10 % off ten days in advance.',
+    a: 'In 2026 the Verbier Bike Pass (Verbier, Bruson, La Tzoumaz) costs CHF 47 per day for an adult, CHF 40 for a youth and CHF 24 for a child; the 4 Vallées Bike Pass costs CHF 57. Guests who pay the tourist tax receive the VIP Pass: with it, a Verbier bike day costs CHF 24 for an adult. Buy online at verbier4vallees.ch, with 10 % off ten days in advance.',
   },
   {
     q: 'Can I take my e-bike on the Médran gondola?',
@@ -121,7 +121,7 @@ const faq = [
   },
   {
     q: 'How do I get to Verbier with my bike?',
-    a: 'By car, Verbier is 30 minutes from Martigny, 50 minutes from Sion, 1 h 20 from Lausanne and 2 hours from Geneva. By train, get off at Le Châble (25 minutes from Martigny), then the Le Châble-Verbier gondola takes you up in around ten minutes, bike included.',
+    a: 'By car, Verbier is 30 minutes from Martigny, 50 minutes from Sion, 1 h 20 from Lausanne and 2 hours from Geneva. By train, get off at Le Châble (25 minutes from Martigny), then the Le Châble-Verbier gondola takes you up in around ten minutes, bike included. From 27 April to 22 May and from 26 to 30 October it is closed for maintenance and a bus replaces it.',
   },
   {
     q: "Is Verbier good for mountain biking?",
@@ -182,7 +182,7 @@ const faqLd = {
         {chiffres.map((c) => (
           <div data-reveal>
             <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-            <div class="counter__num"><span data-count={c.n}>0</span></div>
+            <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
             <div class="counter__label">{c.label}</div>
           </div>
         ))}
@@ -216,27 +216,27 @@ const faqLd = {
         <p class="eyebrow">How it works</p>
         <h2 class="h2">The Verbier bike park, <span class="teal">explained by locals</span></h2>
         <p class="lead measure" style="margin-top:.75rem">
-          Nine trails, 19 km of descent, up to 880 m of vertical between Les Ruinettes and Verbier. How it works, with the 2026 figures.
+          Nine trails, 19 km of descent, three starting points: Médran, La Chaux and Savoleyres. How it works, with the 2026 figures.
         </p>
         <figure class="figure" data-reveal>
-          <img src={IMG.libreRuinettes} alt="Les Ruinettes and their trails above Verbier, in summer" width="1600" height="1067" loading="lazy" />
+          <img src={IMG.libreRuinettes} alt="Les Ruinettes and their trails above Verbier, in summer" width="1440" height="960" loading="lazy" />
         </figure>
 
         <div class="infobox-grid">
           <div class="infobox" data-reveal>
             <span class="icon-badge icon-badge--sm"><Icon name="gondola" size={20} /></span>
             <h3 style="margin-top:.75rem">Access</h3>
-            <p style="color:var(--gray-text)">Start at Médran, right in the centre of Verbier. The Médran-Les Ruinettes gondola (ten-seat cabins, bikes inside) climbs from 1,531 m to 2,198 m in six minutes. The Chaux Express chairlift adds 275 m for the upper trails. Free e-MTB charging station at Médran.</p>
+            <p style="color:var(--gray-text)">Start at Médran, right in the centre of Verbier. The Médran-Les Ruinettes gondola (ten-seat cabins, bikes inside) climbs from 1,531 m to 2,198 m in six minutes. The Chaux Express chairlift adds 275 m for the upper trails. Free e-MTB charging station at Médran. Chôtatai starts from Savoleyres, above La Tzoumaz.</p>
           </div>
           <div class="infobox" data-reveal>
             <span class="icon-badge icon-badge--sm"><Icon name="sun" size={20} /></span>
             <h3 style="margin-top:.75rem">Season and hours 2026</h3>
-            <p style="color:var(--gray-text)">Bike park open from 4 June to 25 October. Verbier-Les Ruinettes from 8:30 to 17:00 between 27 June and 21 September, then 9:00 to 17:00 until 25 October; in June, weekends and shuttles during lift maintenance. The upper trails (Ruinettes-La Chaux) run from 4 July to 21 September.</p>
+            <p style="color:var(--gray-text)">Bike park open from 4 June to 25 October. Verbier-Les Ruinettes from 8:30 to 17:00 between 27 June and 21 September, then 9:00 to 17:00 until 25 October; in June, only 4 to 7, 13 and 14, and 20 to 26 June. The upper trails (Ruinettes-Fontanet and La Chaux-Fontanet) run from 4 July to 21 September. Chôtatai, from Savoleyres: 4 July to 30 August, plus a few September weekends.</p>
           </div>
           <div class="infobox" data-reveal>
             <span class="icon-badge icon-badge--sm"><Icon name="calendar" size={20} /></span>
             <h3 style="margin-top:.75rem">Passes 2026</h3>
-            <p style="color:var(--gray-text)">Verbier Bike Pass (Verbier, Bruson, La Tzoumaz): CHF 47 per day for adults, CHF 40 for youths, CHF 24 for children. 4 Vallées Bike Pass: CHF 57. The guests' VIP Pass gives 50 % off the 4 Vallées day pass. 10 % off online ten days ahead, 15 % off from 15 people. Le Châble-Verbier gondola: CHF 6.40 per ride.</p>
+            <p style="color:var(--gray-text)">Verbier Bike Pass (Verbier, Bruson, La Tzoumaz): CHF 47 per day for adults, CHF 40 for youths, CHF 24 for children. 4 Vallées Bike Pass: CHF 57. With the guests' VIP Pass, a Verbier day costs CHF 24 for adults. 10 % off online ten days ahead, 15 % off from 15 people. Le Châble-Verbier gondola: CHF 6.40 per ride.</p>
           </div>
           <div class="infobox" data-reveal>
             <span class="icon-badge icon-badge--sm"><Icon name="shield" size={20} /></span>
@@ -259,7 +259,7 @@ const faqLd = {
           ))}
         </ul>
         <p class="measure" style="margin-top:1.25rem; color:var(--gray-text)">
-          Beginner? Tsenelle first, then Chôtatai, five kilometres of flow down to La Tzoumaz, and Tsopu. Confident? Wouaiy and Rôdze, 65 jumps. Tire's Fire is the race track of the European Downhill Cup. Pump track, skill park and dirt park at the bottom of the trails.
+          Beginner? From 4 July to 21 September, Tsenelle first (La Chaux), then Chôtatai (July and August), five kilometres of flow from Savoleyres down to La Tzoumaz. Outside those dates, only the Médran trails run: start with Tsopu, ideally with a lesson. Confident? Wouaiy and Rôdze, 65 jumps. Tire's Fire is the race track of the European Downhill Cup. Pump track, skill park and dirt park at the bottom of the trails.
         </p>
         <p class="measure" style="margin-top:1rem; color:var(--gray-text)">
           Want to learn in the right order? Our <a href={pathFor('cours', lang)}>private lessons</a> start on the greens and blues, adults and kids. For enduro outside the park, a <a href={pathFor('guide', lang)}>guide born in Verbier</a> knows the 23 signposted routes, and the ones that are not.
@@ -273,7 +273,7 @@ const faqLd = {
     <section class="section container" id="enduro">
       <p class="eyebrow">Signposted enduro</p>
       <h2 class="h2">The official enduro <span class="teal">routes</span></h2>
-      <p class="lead measure" style="margin-top:.75rem">Twenty-three MTB routes signposted by Verbier Bikepark, from the mountain huts down to Le Châble. Here are thirteen of them, with level, distance, singletrack and descent: enough to plan your day. A guide born here adds the variants that are not signposted.</p>
+      <p class="lead measure" style="margin-top:.75rem">Twenty-three MTB routes signposted by Verbier Bikepark, from the mountain huts down to Le Châble. Here are thirteen of them, with level, distance, singletrack, descent and climbing: enough to plan your day. A guide born here adds the variants that are not signposted.</p>
       <ul class="trails">
         {enduros.map((p) => (
           <li class={`trail trail--${p.color}`} data-reveal>

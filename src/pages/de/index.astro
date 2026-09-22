@@ -23,11 +23,20 @@ const offers = [
   {
     img: IMG.cardGuide,
     alt: 'Geführte MTB-Tour auf einem angelegten Trail in Verbier',
-    eyebrow: 'Ab CHF 120.-',
+    eyebrow: 'Ab CHF 80.- pro halben Tag',
     title: 'Privatguide / Genusstour',
     items: ['Vom Anfänger bis zum Experten', 'Ideal für Familien', 'Mit dem E-Bike oder Enduro'],
     cta: 'Entdecken',
     href: pathFor('guide', lang),
+  },
+  {
+    img: IMG.heroEbike,
+    alt: 'Drei E-Bike-Fahrer oberhalb von Verbier',
+    eyebrow: 'Alle Niveaus',
+    title: 'E-Bike-Touren',
+    items: ['Alpwege im Val de Bagnes', 'Genusstour bis zur Hütte', 'Gemütlich, Genuss oder sportlich'],
+    cta: 'Entdecken',
+    href: pathFor('ebike', lang),
   },
   {
     img: IMG.cardSemaine,
@@ -51,9 +60,9 @@ const offers = [
 
 // Zähler: Quellen verbier4vallees.ch (500 km MTB-Strecken, Bahnen Sommer 2026) und verbier.ch (Bergrestaurants), abgerufen am 22.09.2026.
 const counters = [
-  { n: 15, label: 'Bergrestaurants und Hütten', icon: 'utensils' },
+  { n: 12, label: 'Bergrestaurants', icon: 'utensils' },
   { n: 500, label: 'km MTB-Strecken in den 4 Vallées', icon: 'route' },
-  { n: 150, label: 'Biketage pro Jahr', icon: 'sun' },
+  { n: 23, label: 'Markierte Enduro-Routen', icon: 'flag' },
   { n: 18, label: 'Bergbahnen im Sommer geöffnet', icon: 'gondola' },
 ];
 ---
@@ -61,7 +70,7 @@ const counters = [
 <Layout
   lang={lang}
   routeKey="home"
-  title="Mountainbike Verbier | MTB- & E-Bike-Guides, Verleih, Bikepark | Bikeverbier.ch"
+  title="Bike Verbier | MTB- & E-Bike-Guides, Verleih, Teambuilding | Bikeverbier.ch"
   description="MTB-Guide in Verbier: geführte E-Bike- und Enduro-Touren, Genusstouren, private Kurse, E-Bike-Verleih für CHF 125.- pro Tag, Teambuilding. Guides aus Verbier."
   ogImage={IMG.ogHome}
   jsonLd={true}
@@ -105,7 +114,7 @@ const counters = [
           counters.map((c) => (
             <div data-reveal>
               <div class="counter__icon icon-badge"><Icon name={c.icon} size={26} /></div>
-              <div class="counter__num"><span data-count={c.n}>0</span></div>
+              <div class="counter__num"><span data-count={c.n}>{c.n}</span></div>
               <div class="counter__label">{c.label}</div>
             </div>
           ))
